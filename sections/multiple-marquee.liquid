@@ -101,17 +101,49 @@
   {% endfor %}
   
   <div class="multiple-marquee-section section-{{ section.id }}">
-    <div
-      class="marquee-container marquee-first-row"
-      data-marquee-container="multiple-marquee-{{ section.id }}"
-    >
-      <div
-        class="marquee-track marquee-track-{{ section.id }}"
-        data-marquee-track
-      >
-        {{ marqee_content }}
-        {{ marqee_content }}
-      </div>
+    <div class="multiple-marquee-container">
+      {% if first_marquee != blank %}
+        <div
+          class="marquee-container marquee-first-row"
+          data-marquee-container="multiple-marquee-{{ section.id }}-1"
+          data-marquee-direction="-1"
+        >
+          <div
+            class="marquee-track marquee-track-{{ section.id }}-1"
+            data-marquee-track
+          >
+            {{ first_marquee }}
+          </div>
+        </div>
+      {% endif %}
+      {% if second_marquee != blank %}
+        <div
+          class="marquee-container marquee-first-row"
+          data-marquee-container="multiple-marquee-{{ section.id }}-2"
+          data-marquee-direction="1"
+        >
+          <div
+            class="marquee-track marquee-track-{{ section.id }}-2"
+            data-marquee-track
+          >
+            {{ second_marquee }}
+          </div>
+        </div>
+      {% endif %}
+      {% if third_marquee != blank %}
+        <div
+          class="marquee-container marquee-first-row"
+          data-marquee-container="multiple-marquee-{{ section.id }}-3"
+          data-marquee-direction="-1"
+        >
+          <div
+            class="marquee-track marquee-track-{{ section.id }}-3"
+            data-marquee-track
+          >
+            {{ third_marquee }}
+          </div>
+        </div>
+      {% endif %}
     </div>
   </div>
 {% endif %}
@@ -122,7 +154,7 @@
   "blocks": [
     {
       "type": "first_marquee",
-      "name": "First Image",
+      "name": "First Marquee",
       "settings": [
         {
           "type": "image_picker",
@@ -143,7 +175,7 @@
     },
     {
       "type": "second_marquee",
-      "name": "Second Image",
+      "name": "Second Marquee",
       "settings": [
         {
           "type": "image_picker",
@@ -164,7 +196,7 @@
     },
     {
       "type": "third_marquee",
-      "name": "Third Image",
+      "name": "Third Marquee",
       "settings": [
         {
           "type": "image_picker",
