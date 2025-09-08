@@ -1,0 +1,47 @@
+{% comment %}
+  {% render 'image-element',
+    image: recommendation.featured_image,
+    widths: '100, 200, 300, 375, 550, 750, 1100, 1500, 1780',
+    sizes: '(max-width: 989px) 100vw, 45vw',
+    class: 'tw-w-full tw-block tw-object-contain tw-h-auto'
+  %}
+{% endcomment %}
+
+{%- if image != blank -%}
+  {%- liquid
+    assign image_height = image.width | divided_by: image.aspect_ratio
+    assign sizes = sizes | default: '100vw'
+    if ignore_auto_priority != true
+      if section.index > 1
+        assign lazy_loading = 'lazy'
+        assign fetch_priority = 'auto'
+      else
+        assign lazy_loading = 'eager'
+        assign fetch_priority = 'high'
+      endif
+    endif
+    assign image_class = class
+    if image_width
+      assign image_width = image_width
+    else
+      assign image_width = image.width
+    endif
+  -%}
+  {%- assign alt_text = image.alt | default: image | split: '?' | first | split: '/' | last | split: '.' | first -%}
+
+  {{-
+    image
+    | image_url: width: image.width
+    | image_tag:
+      class: image_class,
+      width: image_width,
+      height: image_height,
+      sizes: sizes,
+      widths: widths,
+      loading: lazy_loading,
+      fetchpriority: fetch_priority,
+      alt: alt_text
+    | escape
+  -}}
+{%- endif -%}
+ 

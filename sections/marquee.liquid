@@ -1,0 +1,56 @@
+{% if section.blocks.size > 0 %}
+  {{ 'marquee.js' | asset_url | script_tag }}
+  
+  <div class="marquee-section section-{{ section.id }}">
+    <div
+      class="marquee-container"
+      data-marquee-container="marquee-{{ section.id }}"
+    >
+      <div
+        class="marquee-track marquee-track-{{ section.id }}"
+        data-marquee-track
+      >
+        {%- capture marqee_content -%}
+            {% for block in section.blocks %}
+              {% if block.settings.image != blank %}
+                <div class="marquee-item">
+                  {%- render 'image-element',
+                    image: block.settings.image,
+                    widths: '375, 550, 750, 950',
+                    sizes: '(max-width: 749px) 100vw, 100vw',
+                    class: 'tw-w-full tw-h-full max-md:tw-hidden tw-h-auto'
+                -%}
+                </div>  
+              {% endif %}
+            {% endfor %}
+          {%- endcapture -%}
+        {{ marqee_content }}
+        {{ marqee_content }}
+      </div>
+    </div>
+  </div>
+{% endif %}
+{% schema %}
+{
+  "name": "Marquee",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Marquee"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,142 @@
+<div class="image-banner-main">
+  <div class="container">
+    {% if section.settings.heading != blank %}
+      <div class="header-wrapper">
+        <h2 class="heading">{{ section.settings.heading }}</h2>
+      </div>
+    {% endif %}
+    <div class="multiple-static-images">
+      {% if section.settings.image_1 != blank %}
+        {%- render 'image-element',
+          image: section.settings.image_1,
+          widths: '375, 550, 750, 950,1150, 1500, 1780, 2000, 2500',
+          sizes: '(max-width: 749px) 100vw, 100vw',
+          class: 'tw-w-full tw-h-full max-md:tw-hidden tw-h-auto'
+        -%}
+      {% endif %}
+      {% if section.settings.image_2 != blank %}
+        {%- render 'image-element',
+          image: section.settings.image_2,
+          widths: '375, 550, 750, 950,1150, 1500, 1780, 2000, 2500',
+          sizes: '(max-width: 749px) 100vw, 100vw',
+          class: 'tw-w-full tw-h-full max-md:tw-hidden tw-h-auto'
+        -%}
+      {% endif %}
+      {% if section.settings.image_3 != blank %}
+        {%- render 'image-element',
+          image: section.settings.image_3,
+          widths: '375, 550, 750, 950,1150, 1500, 1780, 2000, 2500',
+          sizes: '(max-width: 749px) 100vw, 100vw',
+          class: 'tw-w-full tw-h-full max-md:tw-hidden tw-h-auto'
+        -%}
+      {% endif %}
+      {% if section.settings.image_4 != blank %}
+        {%- render 'image-element',
+          image: section.settings.image_4,
+          widths: '375, 550, 750, 950,1150, 1500, 1780, 2000, 2500',
+          sizes: '(max-width: 749px) 100vw, 100vw',
+          class: 'tw-w-full tw-h-full max-md:tw-hidden tw-h-auto'
+        -%}
+      {% endif %}
+    </div>
+    <div class="image-with-text-content">
+      <div class="left-text-content">
+        {% if section.settings.sub_heading != blank %}
+          {% assign heart_svg = 'icon-heart.svg' | inline_asset_content %}
+          {% assign main_sub_heading = section.settings.sub_heading | replace: '$heart', heart_svg %}
+          <h2 class="sub-heading">{{ main_sub_heading }}</h2>
+        {% endif %}
+        {% if section.settings.text != blank %}
+          <p class="text">{{ section.settings.text }}</p>
+        {% endif %}
+        {% if section.blocks.size > 0 %}
+          <div class="multiple-blocks-content">
+            {% for block in section.blocks %}
+              {% if block.settings.text != blank %}
+                <div class="block-content">
+                  <p class="text">{{ block.settings.text }}</p>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+      {% if section.settings.image != blank %}
+        <div class="right-image-wrapper">
+          {%- render 'image-element',
+            image: section.settings.image,
+            widths: '375, 550, 750, 950,1150, 1500, 1780, 2000, 2500',
+            sizes: '(max-width: 749px) 100vw, 100vw',
+            class: 'tw-w-full tw-h-full max-md:tw-hidden tw-h-auto'
+          -%}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Image Banner",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "sub_heading",
+      "label": "Sub Heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "Image 4"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image Banner"
+    }
+  ]
+}
+{% endschema %}

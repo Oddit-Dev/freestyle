@@ -1,0 +1,113 @@
+<div class="hero-banner-section tw-relative tw-bg-black tw-overflow-hidden">
+  <div class="hero-banner-image tw-absolute tw-inset-0 tw-h-full tw-w-full tw-overflow-hidden">
+    {% assign desktop_image = section.settings.image %}
+    {% assign mobile_image = section.settings.mobile_image |  default: desktop_image %}
+
+    {% if desktop_image %}
+      {%- render 'image-element',
+        image: desktop_image,
+        widths: '375, 550, 750, 950,1150, 1500, 1780, 2000, 2500',
+        sizes: '(max-width: 749px) 100vw, 100vw',
+        class: 'tw-w-full tw-block tw-object-cover tw-h-full max-md:tw-hidden tw-h-auto'
+      -%}
+    {% endif %}
+    
+    {% if mobile_image %}
+      {%- render 'image-element',
+        image: mobile_image,
+        widths: '750, 1100, 1500, 1780',
+        sizes: '(max-width: 749px) 100vw, 750px',
+        class: 'tw-w-full tw-block tw-object-cover tw-h-full md:tw-hidden tw-h-auto'
+      -%}
+    {% endif %}
+  </div>
+  {%  capture 'caption_alignment' %}
+    {% if section.settings.text_alignment == 'align-left' %}tw-text-left md:tw-justify-start
+    {% elsif section.settings.text_alignment == 'align-right' %}tw-text-right md:tw-justify-end
+    {% else %}tw-text-center tw-justify-center{% endif %}
+  {% endcapture %}
+
+  <div class="hero-banner-content page-width tw-min-h-[636px] tw-relative tw-flex tw-items-center {{ caption_alignment }}">
+    <div class="hero-banner-inner tw-max-w-[655px] tw-w-full">
+      <div class="hero-banner-text">
+        {%- if section.settings.heading != blank -%}
+          {% assign heart_svg = 'icon-heart.svg' | inline_asset_content %}
+          {% assign main_heading = section.settings.heading | replace: '$heart', heart_svg %}
+          <h2>
+            {{ main_heading }}
+          </h2>
+        {%- endif -%}
+        {%- if section.settings.text != blank -%}
+          <div class="hero-banner-rte">
+            {{ section.settings.text }}
+          </div>
+        {%- endif -%}
+      </div>          
+      <div class="tw-inline-flex tw-gap-[10px]">
+        {%- if section.settings.button_text != blank and section.settings.button_link != blank -%}
+          {% assign main_button = section.settings.button_text | replace: '$heart', heart_svg %}
+          <a href="{{ section.settings.button_link }}" class="button button-primary">
+            {{ main_button }}
+          </a>
+        {%- endif -%}
+      </div> 
+    </div>
+  </div>
+</div>  
+{%- schema -%}
+  {
+    "name": "Image With Overlay Banner",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Background Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "mobile_image",
+        "label": "Mobile Background Image"
+      },
+      {
+        "type": "header",
+        "content": "Caption content"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "heading",
+        "label": "Heading"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "text",
+        "label": "Text"
+      },
+      {
+        "type": "text",
+        "id": "button_text",
+        "label": "Button Text",
+        "default": "Shop Now"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button Link"
+      },
+      {
+        "type": "select",
+        "id": "text_alignment",
+        "label": "Text alignment",
+        "options": [
+          { "value": "center", "label": "Center" },
+          { "value": "align-left", "label": "Left" },
+          { "value": "align-right", "label": "Right" }
+        ]
+      },
+    ],
+    "presets": [
+      {
+        "name": "Image With Overlay Banner"
+      }
+    ]
+  }
+  {% endschema %}

@@ -1,0 +1,193 @@
+{% if section.blocks.size > 0 %}
+  {{ 'multiple-marquee.js' | asset_url | script_tag }}
+
+  {% capture first_marquee %}{% endcapture %}
+  {% capture second_marquee %}{% endcapture %}
+  {% capture third_marquee %}{% endcapture %}
+
+  {% for block in section.blocks %}
+    {% case block.type %}
+      {% when 'first_marquee' %}
+        {% if block.settings.image != blank or block.settings.heading != blank or block.settings.sub_heading != blank %}
+          {%  capture first_marquee %}
+            {{ first_marquee }}
+            <div class="marquee-item">
+              <div class="flex-image-with-content">
+                {% if block.settings.image != blank %}
+                  <div class="left-image">
+                    {%- render 'image-element',
+                      image: block.settings.image,
+                      widths: '375, 550, 750, 950',
+                      sizes: '(max-width: 749px) 100vw, 100vw',
+                      class: 'tw-w-full tw-h-full max-md:tw-hidden tw-h-auto'
+                    -%}
+                  </div>
+                {% endif %}
+                {% if block.settings.heading != blank or block.settings.sub_heading != blank %}
+                  <div class="right-content">
+                    {% if block.settings.heading != blank %}
+                      <h2 class="heading">{{ block.settings.heading }}</h2>
+                    {% endif %}
+                    {% if block.settings.sub_heading != blank %}
+                      <p class="sub-heading">{{ block.settings.sub_heading }}</p>
+                    {% endif %}
+                  </div>
+                {% endif %}
+              </div>
+            </div>  
+          {% endcapture %}
+        {% endif %}
+      {% when 'second_marquee' %}
+        {% if block.settings.image != blank or block.settings.heading != blank or block.settings.sub_heading != blank %}
+          {%  capture second_marquee %}
+            {{ second_marquee }}
+            <div class="marquee-item">
+              <div class="flex-image-with-content">
+                {% if block.settings.image != blank %}
+                  <div class="left-image">
+                    {%- render 'image-element',
+                      image: block.settings.image,
+                      widths: '375, 550, 750, 950',
+                      sizes: '(max-width: 749px) 100vw, 100vw',
+                      class: 'tw-w-full tw-h-full max-md:tw-hidden tw-h-auto'
+                    -%}
+                  </div>
+                {% endif %}
+                {% if block.settings.heading != blank or block.settings.sub_heading != blank %}
+                  <div class="right-content">
+                    {% if block.settings.heading != blank %}
+                      <h2 class="heading">{{ block.settings.heading }}</h2>
+                    {% endif %}
+                    {% if block.settings.sub_heading != blank %}
+                      <p class="sub-heading">{{ block.settings.sub_heading }}</p>
+                    {% endif %}
+                  </div>
+                {% endif %}
+              </div>
+            </div>  
+          {% endcapture %}  
+        {% endif %}
+      {% when 'third_marquee' %}
+        {% if block.settings.image != blank or block.settings.heading != blank or block.settings.sub_heading != blank %}
+          {%  capture third_marquee %}
+            {{ third_marquee }}
+            <div class="marquee-item">
+              <div class="flex-image-with-content">
+                {% if block.settings.image != blank %}
+                  <div class="left-image">
+                    {%- render 'image-element',
+                      image: block.settings.image,
+                      widths: '375, 550, 750, 950',
+                      sizes: '(max-width: 749px) 100vw, 100vw',
+                      class: 'tw-w-full tw-h-full max-md:tw-hidden tw-h-auto'
+                    -%}
+                  </div>
+                {% endif %}
+                {% if block.settings.heading != blank or block.settings.sub_heading != blank %}
+                  <div class="right-content">
+                    {% if block.settings.heading != blank %}
+                      <h2 class="heading">{{ block.settings.heading }}</h2>
+                    {% endif %}
+                    {% if block.settings.sub_heading != blank %}
+                      <p class="sub-heading">{{ block.settings.sub_heading }}</p>
+                    {% endif %}
+                  </div>
+                {% endif %}
+              </div>
+            </div>  
+          {% endcapture %}  
+        {% endif %}
+    {% endcase %}
+  {% endfor %}
+  
+  <div class="multiple-marquee-section section-{{ section.id }}">
+    <div
+      class="marquee-container marquee-first-row"
+      data-marquee-container="multiple-marquee-{{ section.id }}"
+    >
+      <div
+        class="marquee-track marquee-track-{{ section.id }}"
+        data-marquee-track
+      >
+        {{ marqee_content }}
+        {{ marqee_content }}
+      </div>
+    </div>
+  </div>
+{% endif %}
+{% schema %}
+{
+  "name": "Multiple Marquee",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "first_marquee",
+      "name": "First Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "sub_heading",
+          "label": "Sub Heading"
+        }
+      ]
+    },
+    {
+      "type": "second_marquee",
+      "name": "Second Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "sub_heading",
+          "label": "Sub Heading"
+        }
+      ]
+    },
+    {
+      "type": "third_marquee",
+      "name": "Third Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "sub_heading",
+          "label": "Sub Heading"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Multiple Marquee"
+    }
+  ]
+}
+{% endschema %}
