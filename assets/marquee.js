@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const marquees = document.querySelectorAll("[data-marquee-container]");
+  const marquees = document.querySelectorAll(".marquee-section [data-marquee-container]");
 
   marquees.forEach((container) => {
     const track = container.querySelector("[data-marquee-track]");

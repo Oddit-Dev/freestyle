@@ -101,12 +101,19 @@
   {% endfor %}
   
   <div class="multiple-marquee-section section-{{ section.id }}">
+    {% if section.settings.heading != blank %}
+      {% assign heart_svg = 'icon-heart.svg' | inline_asset_content %}
+      {% assign main_heading = section.settings.heading | replace: '$heart', heart_svg %}
+      <div class="header-wrapper">
+        <h2 class="heading">{{ main_heading }}</h2>
+      </div>
+    {% endif %}
     <div class="multiple-marquee-container">
       {% if first_marquee != blank %}
         <div
-          class="marquee-container marquee-first-row"
+          class="marquee-container marquee-first-row{% if section.settings.first_marquee_hide_desktop %} desktop-hide{% endif %}{% if section.settings.first_marquee_hide_mobile %} mobile-hide{% endif %}"
           data-marquee-container="multiple-marquee-{{ section.id }}-1"
-          data-marquee-direction="-1"
+          data-marquee-direction="{{ section.settings.first_marquee_direction }}"
         >
           <div
             class="marquee-track marquee-track-{{ section.id }}-1"
@@ -118,9 +125,9 @@
       {% endif %}
       {% if second_marquee != blank %}
         <div
-          class="marquee-container marquee-first-row"
+          class="marquee-container marquee-first-row{% if section.settings.second_marquee_hide_desktop %} desktop-hide{% endif %}{% if section.settings.second_marquee_hide_mobile %} mobile-hide{% endif %}"
           data-marquee-container="multiple-marquee-{{ section.id }}-2"
-          data-marquee-direction="1"
+          data-marquee-direction="{{ section.settings.second_marquee_direction }}"
         >
           <div
             class="marquee-track marquee-track-{{ section.id }}-2"
@@ -132,9 +139,9 @@
       {% endif %}
       {% if third_marquee != blank %}
         <div
-          class="marquee-container marquee-first-row"
+          class="marquee-container marquee-first-row{% if section.settings.third_marquee_hide_desktop %} desktop-hide{% endif %}{% if section.settings.third_marquee_hide_mobile %} mobile-hide{% endif %}"
           data-marquee-container="multiple-marquee-{{ section.id }}-3"
-          data-marquee-direction="-1"
+          data-marquee-direction="{{ section.settings.third_marquee_direction }}"
         >
           <div
             class="marquee-track marquee-track-{{ section.id }}-3"
@@ -150,7 +157,103 @@
 {% schema %}
 {
   "name": "Multiple Marquee",
-  "settings": [],
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "header",
+      "content": "First Marquee"
+    },
+    {
+      "type": "checkbox",
+      "id": "first_marquee_hide_desktop",
+      "label": "Marquee Hide On Desktop"
+    },
+    {
+      "type": "checkbox",
+      "id": "first_marquee_hide_mobile",
+      "label": "Marquee Hide On Mobile"
+    },
+    {
+      "type": "select",
+      "id": "first_marquee_direction",
+      "options": [
+        {
+          "value": "-1",
+          "label": "Right To Left"
+        },
+        {
+          "value": "1",
+          "label": "Left To Right"
+        }
+      ],
+      "default": "-1",
+      "label": "Marquee Position"
+    },
+    {
+      "type": "header",
+      "content": "Second Marquee"
+    },
+    {
+      "type": "checkbox",
+      "id": "second_marquee_hide_desktop",
+      "label": "Marquee Hide On Desktop"
+    },
+    {
+      "type": "checkbox",
+      "id": "second_marquee_hide_mobile",
+      "label": "Marquee Hide On Mobile"
+    },
+    {
+      "type": "select",
+      "id": "second_marquee_direction",
+      "options": [
+        {
+          "value": "-1",
+          "label": "Right To Left"
+        },
+        {
+          "value": "1",
+          "label": "Left To Right"
+        }
+      ],
+      "default": "1",
+      "label": "Marquee Position"
+    },
+    {
+      "type": "header",
+      "content": "Third Marquee"
+    },
+    {
+      "type": "checkbox",
+      "id": "third_marquee_hide_desktop",
+      "label": "Marquee Hide On Desktop"
+    },
+    {
+      "type": "checkbox",
+      "id": "third_marquee_hide_mobile",
+      "label": "Marquee Hide On Mobile"
+    },
+    {
+      "type": "select",
+      "id": "third_marquee_direction",
+      "options": [
+        {
+          "value": "-1",
+          "label": "Right To Left"
+        },
+        {
+          "value": "1",
+          "label": "Left To Right"
+        }
+      ],
+      "default": "-1",
+      "label": "Marquee Position"
+    }
+  ],
   "blocks": [
     {
       "type": "first_marquee",

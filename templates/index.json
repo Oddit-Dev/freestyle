@@ -9,43 +9,6 @@
  */
 {
   "sections": {
-    "marquee_qcpmje": {
-      "type": "marquee",
-      "blocks": {
-        "image_eBmMme": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/Freestyle_01_1050.png"
-          }
-        },
-        "image_XaJKpH": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/Freestyle_Wipes_Club_Bag_1130.png"
-          }
-        },
-        "image_6LjkH6": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/image_5305.png"
-          }
-        },
-        "image_aieGcc": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/image_5306.png"
-          }
-        }
-      },
-      "block_order": [
-        "image_eBmMme",
-        "image_XaJKpH",
-        "image_6LjkH6",
-        "image_aieGcc"
-      ],
-      "name": "Marquee",
-      "settings": {}
-    },
     "image_with_overlay_banner_RDda4e": {
       "type": "image-with-overlay-banner",
       "name": "Image With Overlay Banner",
@@ -57,6 +20,107 @@
         "button_text": "Shop Skin $heart Shield™ Diapers",
         "button_link": "shopify://collections",
         "text_alignment": "align-left"
+      }
+    },
+    "multiple_marquee_NAAYw3": {
+      "type": "multiple-marquee",
+      "blocks": {
+        "first_marquee_n9RnWt": {
+          "type": "first_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2025-09-01_at_3.29.27_PM_1.png",
+            "heading": "\"Proving that you don't need to sacrifice quality to go green\"",
+            "sub_heading": "@freestyle.fan"
+          }
+        },
+        "first_marquee_GLpbbU": {
+          "type": "first_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2025-09-01_at_3.29.27_PM_1.png",
+            "heading": "\"Proving that you don't need to sacrifice quality to go green\"",
+            "sub_heading": "@freestyle.fan"
+          }
+        },
+        "first_marquee_J6yMrM": {
+          "type": "first_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2025-09-01_at_3.29.27_PM_1.png",
+            "heading": "\"Proving that you don't need to sacrifice quality to go green\"",
+            "sub_heading": "@freestyle.fan"
+          }
+        },
+        "second_marquee_GRJKQ4": {
+          "type": "second_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2025-09-01_at_3.29.27_PM_1.png",
+            "heading": "\"Proving that you don't need to sacrifice quality to go green\"",
+            "sub_heading": "@freestyle.fan"
+          }
+        },
+        "second_marquee_Jhbbqd": {
+          "type": "second_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2025-09-01_at_3.29.27_PM_1.png",
+            "heading": "\"Proving that you don't need to sacrifice quality to go green\"",
+            "sub_heading": "@freestyle.fan"
+          }
+        },
+        "second_marquee_Xe48QW": {
+          "type": "second_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2025-09-01_at_3.29.27_PM_1.png",
+            "heading": "\"Proving that you don't need to sacrifice quality to go green\"",
+            "sub_heading": "@freestyle.fan"
+          }
+        },
+        "third_marquee_8HiaHg": {
+          "type": "third_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2025-09-01_at_3.29.27_PM_1.png",
+            "heading": "\"Proving that you don't need to sacrifice quality to go green\"",
+            "sub_heading": "@freestyle.fan"
+          }
+        },
+        "third_marquee_LBrKp7": {
+          "type": "third_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2025-09-01_at_3.29.27_PM_1.png",
+            "heading": "\"Proving that you don't need to sacrifice quality to go green\"",
+            "sub_heading": "@freestyle.fan"
+          }
+        },
+        "third_marquee_KKDGrx": {
+          "type": "third_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2025-09-01_at_3.29.27_PM_1.png",
+            "heading": "\"Proving that you don't need to sacrifice quality to go green\"",
+            "sub_heading": "@freestyle.fan"
+          }
+        }
+      },
+      "block_order": [
+        "first_marquee_n9RnWt",
+        "first_marquee_GLpbbU",
+        "first_marquee_J6yMrM",
+        "second_marquee_GRJKQ4",
+        "second_marquee_Jhbbqd",
+        "second_marquee_Xe48QW",
+        "third_marquee_8HiaHg",
+        "third_marquee_LBrKp7",
+        "third_marquee_KKDGrx"
+      ],
+      "name": "Multiple Marquee",
+      "settings": {
+        "heading": "Millions $heart FreeStyle",
+        "first_marquee_hide_desktop": false,
+        "first_marquee_hide_mobile": false,
+        "first_marquee_direction": "-1",
+        "second_marquee_hide_desktop": false,
+        "second_marquee_hide_mobile": false,
+        "second_marquee_direction": "1",
+        "third_marquee_hide_desktop": true,
+        "third_marquee_hide_mobile": false,
+        "third_marquee_direction": "-1"
       }
     },
     "image_banner_6JmcCC": {
@@ -98,6 +162,43 @@
         "image_4": "shopify://shop_images/Freestyle_Full-product-family_1307_2.png"
       }
     },
+    "marquee_qcpmje": {
+      "type": "marquee",
+      "blocks": {
+        "image_eBmMme": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Freestyle_01_1050.png"
+          }
+        },
+        "image_XaJKpH": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Freestyle_Wipes_Club_Bag_1130.png"
+          }
+        },
+        "image_6LjkH6": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/image_5305.png"
+          }
+        },
+        "image_aieGcc": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/image_5306.png"
+          }
+        }
+      },
+      "block_order": [
+        "image_eBmMme",
+        "image_XaJKpH",
+        "image_6LjkH6",
+        "image_aieGcc"
+      ],
+      "name": "Marquee",
+      "settings": {}
+    },
     "image_with_text_Dc79b8": {
       "type": "image-with-text",
       "name": "Image With Text",
@@ -111,29 +212,61 @@
         "link": "shopify://collections"
       }
     },
-    "c_hero_img_9HYJYd": {
-      "type": "c-hero-img",
-      "custom_css": [],
+    "testimonial_KfHNHw": {
+      "type": "testimonial",
+      "blocks": {
+        "testimonial_KrPV97": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_1901.png",
+            "rating_image": "shopify://shop_images/Stars.png",
+            "text": "<p>“I just tried these diapers, they were recommended to me on the internet, and they are so soft and comfortable. My baby loves them! It gives me piece of mind to know she's in diapers that are gentle on her skin and you can't beat the price at Walmart!”</p>",
+            "title": "Carrie",
+            "verified_buyer": true
+          }
+        },
+        "testimonial_dkCqrc": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/Image.png",
+            "rating_image": "shopify://shop_images/Stars.png",
+            "text": "<p>“I just tried these diapers, they were recommended to me on the internet, and they are so soft and comfortable. My baby loves them! It gives me piece of mind to know she's in diapers that are gentle on her skin and you can't beat the price at Walmart!”</p>",
+            "title": "Carrie",
+            "verified_buyer": true
+          }
+        },
+        "testimonial_3QYzKn": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_1901.png",
+            "rating_image": "shopify://shop_images/Stars.png",
+            "text": "<p>“I just tried these diapers, they were recommended to me on the internet, and they are so soft and comfortable. My baby loves them! It gives me piece of mind to know she's in diapers that are gentle on her skin and you can't beat the price at Walmart!”</p>",
+            "title": "Carrie",
+            "verified_buyer": true
+          }
+        },
+        "testimonial_Gp9pUQ": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/Image.png",
+            "rating_image": "shopify://shop_images/Stars.png",
+            "text": "<p>“I just tried these diapers, they were recommended to me on the internet, and they are so soft and comfortable. My baby loves them! It gives me piece of mind to know she's in diapers that are gentle on her skin and you can't beat the price at Walmart!”</p>",
+            "title": "Carrie",
+            "verified_buyer": true
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_KrPV97",
+        "testimonial_dkCqrc",
+        "testimonial_3QYzKn",
+        "testimonial_Gp9pUQ"
+      ],
+      "name": "Testimonial",
       "settings": {
-        "image": "shopify://shop_images/image-hero-freestyle_V2_EWG.webp",
-        "heading": "Safe & Soft Protection.",
-        "heading_color": "#ffffff",
-        "heading_weight": "normal",
-        "heading_icon_size": 36,
-        "description": "Meet Skin Shield™– the future of diapers",
-        "description_color": "#ffffff",
-        "button_icon": "shopify://shop_images/wallmart-icon.svg",
-        "button_icon_size": 16,
-        "button_text_icon": "shopify://shop_images/heart-icon-text.svg",
-        "button_text_icon_size": 16,
-        "banner_height_desktop": "818",
-        "banner_height_mobile": "500",
-        "description_icon": "shopify://shop_images/Group_26613.svg",
-        "description_icon_size": 36,
-        "button_label": "Shop Skin  Shield™",
-        "button_link": "https://www.walmart.com/ip/Freestyle-Diaper-Size-5-44CT/13920570352",
-        "show_popup": false,
-        "popup__trigger": ""
+        "heading": "<strong>Trusted by</strong> Real Families",
+        "button": "Shop Skin $heart Shield™ Diapers",
+        "link": "shopify://collections"
       }
     },
     "logo-section": {
@@ -187,6 +320,7 @@
         "testimonial_6xcadw",
         "testimonial_tyLFUV"
       ],
+      "disabled": true,
       "custom_css": [
         "span {font-weight: 400;}"
       ],
@@ -238,6 +372,7 @@
         "logo_block_XaYNnR",
         "logo_block_7B6MRn"
       ],
+      "disabled": true,
       "settings": {
         "logo_1": "shopify://shop_images/skin-shield-logo.png",
         "logo_2": "shopify://shop_images/7-Layer_Protection.svg",
@@ -245,120 +380,11 @@
         "additional_text": "*up to 14x better absorption than a leading brand"
       }
     },
-    "c_scrub_scrolling_dke3Md": {
-      "type": "c-scrub-scrolling",
-      "blocks": {
-        "video_bMmbGT": {
-          "type": "video",
-          "settings": {
-            "video_url": "https://cdn.shopify.com/videos/c/o/v/9d50381e47f141b28d1ad4b13fdd158d.mp4",
-            "video_url_mobile": "https://cdn.shopify.com/videos/c/o/v/96c0b079076843b5ab93ebd1ef4bc1b5.mp4",
-            "use_keyframes": false,
-            "keyframe_prefix": "/assets/keyframe-",
-            "keyframe_count": 60
-          }
-        },
-        "text_zBpedE": {
-          "type": "text",
-          "settings": {
-            "padding": 80,
-            "text_vertical": "start",
-            "horizontal_position": "start",
-            "text_color": "#020617",
-            "title": "Up to 14x more absorbent than leading brands",
-            "text": "<p>Thanks to its 7-layer design, Skin <em>1</em> Shield™ starts dry and stays dry. </p><p>Better protection for them and fewer changes for you. </p>",
-            "button_text": "Meet the future of diapers",
-            "button_url": "https://www.walmart.com/ip/Freestyle-Diaper-Size-4-48CT/13932710597"
-          }
-        },
-        "text_XAFeQB": {
-          "type": "text",
-          "settings": {
-            "padding": 80,
-            "text_vertical": "start",
-            "horizontal_position": "start",
-            "text_color": "#020617",
-            "title": "7-layer protection means fewer leaks and longer nights",
-            "text": "<p>Best-in-class absorbent material draws away moisture quickly</p><p>and locks it in to protect against rash or discomfort.</p>",
-            "button_text": "Level up bedtime",
-            "button_url": "https://www.walmart.com/ip/Freestyle-Diaper-Size-4-48CT/13932710597"
-          }
-        },
-        "text_Mgmdew": {
-          "type": "text",
-          "settings": {
-            "padding": 80,
-            "text_vertical": "start",
-            "horizontal_position": "start",
-            "text_color": "#020617",
-            "title": "Safer, for longer, than leading brands",
-            "text": "<p>Our lab-tested diapers are made from clean, </p><p>non-toxic, Total Chlorine Free materials.</p>",
-            "button_text": "Our safety standards",
-            "button_url": "https://freestyle.world/pages/safety-and-testing"
-          }
-        },
-        "text_wTUQNR": {
-          "type": "text",
-          "settings": {
-            "padding": 80,
-            "text_vertical": "start",
-            "horizontal_position": "start",
-            "text_color": "#020617",
-            "title": "Cloud-like softness engineered for delicate skin",
-            "text": "<p>We found the softest materials available to keep them comfortable</p><p> round the clock.</p>",
-            "button_text": "Shop Skin [heart_white] Shield™",
-            "button_icon": "shopify://shop_images/Group_26613.svg",
-            "button_url": "https://www.walmart.com/ip/Freestyle-Diaper-Size-4-48CT/13932710597"
-          }
-        }
-      },
-      "block_order": [
-        "video_bMmbGT",
-        "text_zBpedE",
-        "text_XAFeQB",
-        "text_Mgmdew",
-        "text_wTUQNR"
-      ],
-      "disabled": true,
-      "custom_css": [
-        "h3 {font-weight: 400;}"
-      ],
-      "settings": {
-        "enable_smooth_scroll": true,
-        "promo_text": "Your baby is perfect, now their diaper is too.",
-        "button_text": "Shop Skin [heart_white] Shield™",
-        "button_url": "https://www.walmart.com/ip/Freestyle-Diaper-Size-4-48CT/13932710597"
-      }
-    },
     "diaper_custom_section_R8nRxJ": {
       "type": "diaper-custom-section",
+      "disabled": true,
       "name": "Diaper Custom Section",
       "settings": {}
-    },
-    "c_hero_img_3b7kXN": {
-      "type": "c-hero-img",
-      "settings": {
-        "image": "shopify://shop_images/hero-2-freestyle_V2_EWG.webp",
-        "heading": "Shop Skin Shield™ <br> at Walmart",
-        "heading_color": "#ffffff",
-        "heading_icon": "shopify://shop_images/Vector_3_ad6f0543-bcfe-467a-8de3-60f5813853ff.png",
-        "heading_weight": "normal",
-        "heading_icon_size": 94,
-        "description": "",
-        "description_color": "#ffffff",
-        "button_icon": "shopify://shop_images/wallmart-icon.svg",
-        "button_icon_size": 16,
-        "button_text_icon": "shopify://shop_images/Vector_6.svg",
-        "button_text_icon_size": 16,
-        "banner_height_desktop": "818",
-        "banner_height_mobile": "500",
-        "description_icon": "shopify://shop_images/heart-icon-violet.svg",
-        "description_icon_size": 36,
-        "button_label": "Shop Skin Shield™",
-        "button_link": "https://www.walmart.com/ip/Freestyle-Diaper-Size-5-44CT/13920570352",
-        "show_popup": false,
-        "popup__trigger": ""
-      }
     },
     "review_scroller_custom_CMUd3m": {
       "type": "review-scroller-custom",
@@ -438,6 +464,7 @@
         "review_hWVwfN",
         "review_GAyDCY"
       ],
+      "disabled": true,
       "settings": {
         "title": "For parents, by parents",
         "subtitle": "Don’t just trust us. Hear from our community  why they love and trust Freestyle."
@@ -445,16 +472,15 @@
     }
   },
   "order": [
-    "marquee_qcpmje",
     "image_with_overlay_banner_RDda4e",
+    "multiple_marquee_NAAYw3",
     "image_banner_6JmcCC",
+    "marquee_qcpmje",
     "image_with_text_Dc79b8",
-    "c_hero_img_9HYJYd",
+    "testimonial_KfHNHw",
     "logo-section",
     "product_features",
-    "c_scrub_scrolling_dke3Md",
     "diaper_custom_section_R8nRxJ",
-    "c_hero_img_3b7kXN",
     "review_scroller_custom_CMUd3m"
   ]
 }
