@@ -11,7 +11,7 @@
           image: section.settings.image_1,
           widths: '90, 120, 150, 180, 210, 240, 270, 300',
           sizes: '(max-width: 749px) 50vw, 100vw',
-          class: 'tw-w-full tw-h-full max-md:tw-hidden tw-h-auto'
+          class: 'tw-w-full h-full max-md:tw-hidden h-auto'
         -%}
       {% endif %}
       {% if section.settings.image_2 != blank %}
@@ -19,7 +19,7 @@
           image: section.settings.image_2,
           widths: '90, 120, 150, 180, 210, 240, 270, 300',
           sizes: '(max-width: 749px) 50vw, 100vw',
-          class: 'tw-w-full tw-h-full max-md:tw-hidden tw-h-auto'
+          class: 'tw-w-full h-full max-md:tw-hidden h-auto'
         -%}
       {% endif %}
       {% if section.settings.image_3 != blank %}
@@ -27,7 +27,7 @@
           image: section.settings.image_3,
           widths: '90, 120, 150, 180, 210, 240, 270, 300',
           sizes: '(max-width: 749px) 50vw, 100vw',
-          class: 'tw-w-full tw-h-full max-md:tw-hidden tw-h-auto'
+          class: 'tw-w-full h-full max-md:tw-hidden h-auto'
         -%}
       {% endif %}
       {% if section.settings.image_4 != blank %}
@@ -35,11 +35,11 @@
           image: section.settings.image_4,
           widths: '90, 120, 150, 180, 210, 240, 270, 300',
           sizes: '(max-width: 749px) 50vw, 100vw',
-          class: 'tw-w-full tw-h-full max-md:tw-hidden tw-h-auto'
+          class: 'tw-w-full h-full max-md:tw-hidden h-auto'
         -%}
       {% endif %}
     </div>
-    <div class="image-with-text-content">
+    <div class="image-with-text-content text-[45px]">
       <div class="left-text-content">
         {% if section.settings.sub_heading != blank %}
           {% assign heart_svg = 'icon-heart.svg' | inline_asset_content %}
@@ -67,7 +67,7 @@
             image: section.settings.image,
             widths: '375, 550, 750',
             sizes: '(max-width: 749px) 60vw, 40vw',
-            class: 'tw-w-full tw-h-full max-md:tw-hidden tw-h-auto'
+            class: 'tw-w-full h-full max-md:tw-hidden h-auto'
           -%}
         </div>
       {% endif %}

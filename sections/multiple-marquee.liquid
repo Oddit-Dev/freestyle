@@ -19,7 +19,7 @@
                       image: block.settings.image,
                       widths: '375, 550, 750, 950',
                       sizes: '(max-width: 749px) 100vw, 100vw',
-                      class: 'tw-w-full tw-h-full max-md:tw-hidden tw-h-auto'
+                      class: 'w-full h-full max-md:hidden h-auto'
                     -%}
                   </div>
                 {% endif %}
@@ -49,7 +49,7 @@
                       image: block.settings.image,
                       widths: '375, 550, 750, 950',
                       sizes: '(max-width: 749px) 100vw, 100vw',
-                      class: 'tw-w-full tw-h-full max-md:tw-hidden tw-h-auto'
+                      class: 'w-full h-full max-md:hidden h-auto'
                     -%}
                   </div>
                 {% endif %}
@@ -79,7 +79,7 @@
                       image: block.settings.image,
                       widths: '375, 550, 750, 950',
                       sizes: '(max-width: 749px) 100vw, 100vw',
-                      class: 'tw-w-full tw-h-full max-md:tw-hidden tw-h-auto'
+                      class: 'w-full h-full max-md:hidden h-auto'
                     -%}
                   </div>
                 {% endif %}
@@ -116,7 +116,7 @@
           data-marquee-direction="{{ section.settings.first_marquee_direction }}"
         >
           <div
-            class="marquee-track marquee-track-{{ section.id }}-1"
+            class="marquee-track marquee-track-{{ section.id }}-1 flex gap-[20px]"
             data-marquee-track
           >
             {{ first_marquee }}
@@ -130,7 +130,7 @@
           data-marquee-direction="{{ section.settings.second_marquee_direction }}"
         >
           <div
-            class="marquee-track marquee-track-{{ section.id }}-2"
+            class="marquee-track marquee-track-{{ section.id }}-2 flex gap-[20px]"
             data-marquee-track
           >
             {{ second_marquee }}
@@ -144,7 +144,7 @@
           data-marquee-direction="{{ section.settings.third_marquee_direction }}"
         >
           <div
-            class="marquee-track marquee-track-{{ section.id }}-3"
+            class="marquee-track marquee-track-{{ section.id }}-3 flex gap-[20px]"
             data-marquee-track
           >
             {{ third_marquee }}

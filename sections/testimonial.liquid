@@ -6,7 +6,7 @@
           <h2 class="heading">{{ section.settings.heading }}</h2>
         </div>
       {% endif %}
-      <div class="multiple-testimonial testimonial-slider">
+      <div class="multiple-testimonial testimonial-slider overflow-hidden">
         <div class="swiper-wrapper">
           {% for block in section.blocks %}
             {% if block.settings.image != blank or block.settings.rating_image != blank or block.settings.text != blank or block.settings.title != blank %}

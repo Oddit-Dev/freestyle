@@ -1,5 +1,5 @@
-<div class="hero-banner-section tw-relative tw-bg-black tw-overflow-hidden">
-  <div class="hero-banner-image tw-absolute tw-inset-0 tw-h-full tw-w-full tw-overflow-hidden">
+<div class="hero-banner-section relative mt-[20px] bg-black overflow-hidden">
+  <div class="hero-banner-image absolute inset-0 h-full w-full overflow-hidden">
     {% assign desktop_image = section.settings.image %}
     {% assign mobile_image = section.settings.mobile_image |  default: desktop_image %}
 
@@ -8,7 +8,7 @@
         image: desktop_image,
         widths: '375, 550, 750, 950,1150, 1500, 1780, 2000, 2500',
         sizes: '(max-width: 749px) 100vw, 100vw',
-        class: 'tw-w-full tw-block tw-object-cover tw-h-full max-md:tw-hidden tw-h-auto'
+        class: 'w-full block object-cover h-full max-md:hidden h-auto'
       -%}
     {% endif %}
     
@@ -17,18 +17,18 @@
         image: mobile_image,
         widths: '300, 480, 640, 750',
         sizes: '(max-width: 749px) 100vw, 750px',
-        class: 'tw-w-full tw-block tw-object-cover tw-h-full md:tw-hidden tw-h-auto'
+        class: 'w-full block object-cover h-full md:hidden h-auto'
       -%}
     {% endif %}
   </div>
   {%  capture 'caption_alignment' %}
-    {% if section.settings.text_alignment == 'align-left' %}tw-text-left md:tw-justify-start
-    {% elsif section.settings.text_alignment == 'align-right' %}tw-text-right md:tw-justify-end
-    {% else %}tw-text-center tw-justify-center{% endif %}
+    {% if section.settings.text_alignment == 'align-left' %}text-left md:justify-start
+    {% elsif section.settings.text_alignment == 'align-right' %}text-right md:justify-end
+    {% else %}text-center justify-center{% endif %}
   {% endcapture %}
 
-  <div class="hero-banner-content page-width tw-min-h-[636px] tw-relative tw-flex tw-items-center {{ caption_alignment }}">
-    <div class="hero-banner-inner tw-max-w-[655px] tw-w-full">
+  <div class="hero-banner-content page-width min-h-[636px] relative flex items-center {{ caption_alignment }}">
+    <div class="hero-banner-inner max-w-[655px] w-full">
       <div class="hero-banner-text">
         {%- if section.settings.heading != blank -%}
           {% assign heart_svg = 'icon-heart.svg' | inline_asset_content %}
@@ -43,7 +43,7 @@
           </div>
         {%- endif -%}
       </div>          
-      <div class="tw-inline-flex tw-gap-[10px]">
+      <div class="inline-flex gap-[10px]">
         {%- if section.settings.button_text != blank and section.settings.button_link != blank -%}
           {% assign main_button = section.settings.button_text | replace: '$heart', heart_svg %}
           <a href="{{ section.settings.button_link }}" class="button button-primary">
