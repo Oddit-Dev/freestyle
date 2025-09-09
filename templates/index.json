@@ -13,10 +13,10 @@
       "type": "image-with-overlay-banner",
       "name": "Image With Overlay Banner",
       "settings": {
-        "image": "shopify://shop_images/Freestyle_Full-product-family_1307_1.png",
+        "image": "shopify://shop_images/Hero.jpg",
         "mobile_image": "shopify://shop_images/Freestyle_Full-product-family_1307_1_1.png",
-        "heading": "<strong>Ultra Soft Skin</strong> $heart <strong>Shield™</strong> Diapers",
-        "text": "14x Better Absorption  •  7-Layer Skin Protection  •  Total Chlorine Free",
+        "heading": "<strong>Ultra Soft Skin $heart </strong> <strong>Shield™</strong> Diapers",
+        "text": "14x Better Absorption  <strong>•</strong>  7-Layer Skin Protection  <strong>•</strong>  Total Chlorine Free",
         "button_text": "Shop Skin $heart Shield™ Diapers",
         "button_link": "shopify://collections",
         "text_alignment": "align-left"
@@ -152,9 +152,9 @@
       ],
       "name": "Image Banner",
       "settings": {
-        "heading": "<strong>Safe &</strong> Soft Protection",
+        "heading": "Safe & <strong>Soft Protection</strong>",
         "image": "shopify://shop_images/image_5303.png",
-        "sub_heading": "<strong>Skin $heart Shield</strong>™ Diapers",
+        "sub_heading": "Skin $heart Shield™ <strong>Diapers</strong>",
         "text": "7-layer protection with superior absorbency and clean, non-toxic materials.",
         "image_1": "shopify://shop_images/Freestyle_Full-product-family_1307_1_4.png",
         "image_2": "shopify://shop_images/Freestyle-Boxes-345-0676.png",

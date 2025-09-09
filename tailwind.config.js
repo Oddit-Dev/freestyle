@@ -152,6 +152,16 @@ export default {
           secondary: 'var(--theme-color-secondary)',
           tertiary: 'var(--theme-color-tertiary)',
         },
+        color_7: {
+          DEFAULT: '#6638B6',
+          secondary: '#000000',
+          tertiary: '#fff',
+        },
+        color_8: {
+          DEFAULT: '#6638B6',
+          secondary: '#DADAFF',
+          tertiary: '#B5B5F5',
+        },
       },
       utilities: {
         '.scrollbar-hide': {

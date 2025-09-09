@@ -4,3 +4,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+h2,.h2{
+  @apply font-grotesk font-medium text-[52px] leading-[120%] tracking-[-2.6px] text-color_7 max-md:text-[32px] max-md:tracking-[-1.6px]
+}
+
+.button{
+  @apply flex items-center flex-wrap px-[40px] py-[6px] text-center justify-center;
+}
+.button svg {
+  @apply w-[14px] h-auto block mx-[4px]
+}
+
+.desktop-hide {
+  @apply md:hidden
+}
+.mobile-hide{
+  @apply max-md:hidden
+}
+
+.container{
+  @apply px-[40px] max-w-[1360px] mx-auto max-md:px-[16px] w-full
+}

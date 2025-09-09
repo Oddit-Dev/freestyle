@@ -1,76 +1,81 @@
-<div class="image-banner-main">
+<div class="image-banner-main overflow-hidden py-[80px] max-md:py-[40px]">
   <div class="container">
     {% if section.settings.heading != blank %}
-      <div class="header-wrapper">
-        <h2 class="heading">{{ section.settings.heading }}</h2>
+      <div class="header-wrapper text-center mb-[60px] max-md:mb-[40px]">
+        <h2 class="heading [&_strong]:font-fkroman [&_strong]:font-normal">{{ section.settings.heading }}</h2>
       </div>
     {% endif %}
-    <div class="multiple-static-images">
-      {% if section.settings.image_1 != blank %}
-        {%- render 'image-element',
-          image: section.settings.image_1,
-          widths: '90, 120, 150, 180, 210, 240, 270, 300',
-          sizes: '(max-width: 749px) 50vw, 100vw',
-          class: 'tw-w-full h-full max-md:tw-hidden h-auto'
-        -%}
-      {% endif %}
-      {% if section.settings.image_2 != blank %}
-        {%- render 'image-element',
-          image: section.settings.image_2,
-          widths: '90, 120, 150, 180, 210, 240, 270, 300',
-          sizes: '(max-width: 749px) 50vw, 100vw',
-          class: 'tw-w-full h-full max-md:tw-hidden h-auto'
-        -%}
-      {% endif %}
-      {% if section.settings.image_3 != blank %}
-        {%- render 'image-element',
-          image: section.settings.image_3,
-          widths: '90, 120, 150, 180, 210, 240, 270, 300',
-          sizes: '(max-width: 749px) 50vw, 100vw',
-          class: 'tw-w-full h-full max-md:tw-hidden h-auto'
-        -%}
-      {% endif %}
-      {% if section.settings.image_4 != blank %}
-        {%- render 'image-element',
-          image: section.settings.image_4,
-          widths: '90, 120, 150, 180, 210, 240, 270, 300',
-          sizes: '(max-width: 749px) 50vw, 100vw',
-          class: 'tw-w-full h-full max-md:tw-hidden h-auto'
-        -%}
-      {% endif %}
-    </div>
-    <div class="image-with-text-content text-[45px]">
-      <div class="left-text-content">
-        {% if section.settings.sub_heading != blank %}
-          {% assign heart_svg = 'icon-heart.svg' | inline_asset_content %}
-          {% assign main_sub_heading = section.settings.sub_heading | replace: '$heart', heart_svg %}
-          <h2 class="sub-heading">{{ main_sub_heading }}</h2>
+    <div class="bg-color_8-secondary rounded-[30px] relative max-md:py-[32px] max-md:px-[24px] ">
+      <div class="multiple-static-images max-lg:hidden">
+        {% if section.settings.image_1 != blank %}
+          {%- render 'image-element',
+            image: section.settings.image_1,
+            widths: '90, 120, 150, 180, 210, 240, 270, 300',
+            sizes: '(max-width: 749px) 50vw, 100vw',
+            class: 'w-full h-auto max-w-[100px] absolute left-[70px] top-[-30px]'
+          -%}
         {% endif %}
-        {% if section.settings.text != blank %}
-          <p class="text">{{ section.settings.text }}</p>
+        {% if section.settings.image_2 != blank %}
+          {%- render 'image-element',
+            image: section.settings.image_2,
+            widths: '90, 120, 150, 180, 210, 240, 270, 300',
+            sizes: '(max-width: 749px) 50vw, 100vw',
+            class: 'w-full h-auto max-w-[238px] absolute left-[30%] bottom-[-8px]'
+          -%}
         {% endif %}
-        {% if section.blocks.size > 0 %}
-          <div class="multiple-blocks-content">
-            {% for block in section.blocks %}
-              {% if block.settings.text != blank %}
-                <div class="block-content">
-                  <p class="text">{{ block.settings.text }}</p>
-                </div>
-              {% endif %}
-            {% endfor %}
+        {% if section.settings.image_4 != blank %}
+          {%- render 'image-element',
+            image: section.settings.image_4,
+            widths: '90, 120, 150, 180, 210, 240, 270, 300',
+            sizes: '(max-width: 749px) 50vw, 100vw',
+            class: 'w-full h-auto max-w-[107px] absolute right-[-36px] bottom-[85px]'
+          -%}
+        {% endif %}
+      </div>
+      <div class="image-with-text-content flex items-center max-md:flex-col-reverse">
+        <div class="left-text-content w-full md:w-1/2 lg:pl-[80px]  md:pl-[40px]  md:py-[40px]">
+         <div class="left-text-content-inner md:max-w-[480px] w-full">
+            {% if section.settings.sub_heading != blank %}
+              {% assign heart_svg = 'icon-heart.svg' | inline_asset_content %}
+              {% assign main_sub_heading = section.settings.sub_heading | replace: '$heart', heart_svg %}
+              <h2 class="sub-heading !text-[46px] !tracking-[-2.3px] max-md:!text-[24px] max-md:!tracking-[-1.2px] flex flex-wrap items-center max-md:justify-center gap-x-[10px] max-md:gap-x-[6px] [&_strong]:font-fkroman [&_strong]:!font-normal mb-[35px] max-md:mb-[20px] [&_svg]:max-md:w-[28px] [&_svg]:max-md:h-[23px]">{{ main_sub_heading }}</h2>
+            {% endif %}
+            {% if section.settings.text != blank %}
+              <p class="text text-color_8 mb-[35px] max-md:mb-[20px] max-md:text-center">{{ section.settings.text }}</p>
+            {% endif %}
+            {% if section.blocks.size > 0 %}
+              <div class="multiple-blocks-content flex gap-[10px] max-md:gap-[7px] flex-wrap max-md:justify-center">
+                {% for block in section.blocks %}
+                  {% if block.settings.text != blank %}
+                    <div class="block-content bg-color_8-tertiary text-color_8 text-[14px] max-md:text-[10px] max-md:tracking-[-0.5px] uppercase tracking-[-0.7px] rounded-[25px] px-[10px] max-md:px-[7px] py-[7px] font-bold">
+                    {{ block.settings.text }}
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            {% endif %}
+            </div>
+        </div>
+
+        {% if section.settings.image != blank %}
+          <div class="right-image-wrapper w-full md:w-1/2 relative max-md:mb-[15px] ">
+            {%- render 'image-element',
+              image: section.settings.image,
+              widths: '375, 550, 750',
+              sizes: '(max-width: 749px) 60vw, 40vw',
+              class: 'w-full h-full max-w-[470px] ml-auto mr-auto md:mt-[-50px] mt-[-20px] block relative z-[1] max-md:rotate-[-8deg]'
+            -%}
+            {% if section.settings.image_3 != blank %}
+              {%- render 'image-element',
+                image: section.settings.image_3,
+                widths: '90, 120, 150, 180, 210, 240, 270, 300',
+                sizes: '(max-width: 749px) 50vw, 100vw',
+                class: 'w-full h-auto max-w-[82px] absolute left-[17%] top-[55px] max-lg:hidden'
+              -%}
+          {% endif %}
           </div>
         {% endif %}
       </div>
-      {% if section.settings.image != blank %}
-        <div class="right-image-wrapper">
-          {%- render 'image-element',
-            image: section.settings.image,
-            widths: '375, 550, 750',
-            sizes: '(max-width: 749px) 60vw, 40vw',
-            class: 'tw-w-full h-full max-md:tw-hidden h-auto'
-          -%}
-        </div>
-      {% endif %}
     </div>
   </div>
 </div>
@@ -140,3 +145,4 @@
   ]
 }
 {% endschema %}
+
