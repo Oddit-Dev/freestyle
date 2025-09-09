@@ -464,10 +464,211 @@
         "review_hWVwfN",
         "review_GAyDCY"
       ],
-      "disabled": true,
       "settings": {
         "title": "For parents, by parents",
         "subtitle": "Don’t just trust us. Hear from our community  why they love and trust Freestyle."
+      }
+    },
+    "comparison_W96rKh": {
+      "type": "comparison",
+      "blocks": {
+        "text_HRaCKH": {
+          "type": "text",
+          "settings": {
+            "text": "14x better protection"
+          }
+        },
+        "text_3NTQVL": {
+          "type": "text",
+          "settings": {
+            "text": "7-LAYER SKIN PROTECTION"
+          }
+        },
+        "text_YgiTMi": {
+          "type": "text",
+          "settings": {
+            "text": "total chlorine-free"
+          }
+        },
+        "text_U7yeed": {
+          "type": "text",
+          "settings": {
+            "text": "skin-safe"
+          }
+        },
+        "text_WxKh7K": {
+          "type": "text",
+          "settings": {
+            "text": "affordable"
+          }
+        },
+        "text_BRDpix": {
+          "type": "text",
+          "settings": {
+            "text": "cloud-like softness"
+          }
+        },
+        "text_rQk9KN": {
+          "type": "text",
+          "settings": {
+            "text": "EWG VERIFIED®"
+          }
+        },
+        "compare_text_QGKtzY": {
+          "type": "compare_text",
+          "settings": {
+            "text": "late night leaks"
+          }
+        },
+        "compare_text_cMjGM6": {
+          "type": "compare_text",
+          "settings": {
+            "text": "blowouts"
+          }
+        },
+        "compare_text_bCMGGX": {
+          "type": "compare_text",
+          "settings": {
+            "text": "plasticky feel"
+          }
+        },
+        "compare_text_meJbNB": {
+          "type": "compare_text",
+          "settings": {
+            "text": "cost prohibitive"
+          }
+        },
+        "compare_text_NLHCrL": {
+          "type": "compare_text",
+          "settings": {
+            "text": "toxic chemicals"
+          }
+        },
+        "compare_text_BHgBci": {
+          "type": "compare_text",
+          "settings": {
+            "text": "chlorine bleaching"
+          }
+        },
+        "compare_text_4cVQGi": {
+          "type": "compare_text",
+          "settings": {
+            "text": "no testing"
+          }
+        }
+      },
+      "block_order": [
+        "text_HRaCKH",
+        "text_3NTQVL",
+        "text_YgiTMi",
+        "text_U7yeed",
+        "text_WxKh7K",
+        "text_BRDpix",
+        "text_rQk9KN",
+        "compare_text_QGKtzY",
+        "compare_text_cMjGM6",
+        "compare_text_bCMGGX",
+        "compare_text_meJbNB",
+        "compare_text_NLHCrL",
+        "compare_text_BHgBci",
+        "compare_text_4cVQGi"
+      ],
+      "name": "Comparison",
+      "settings": {
+        "main_heading": "A Better Diaper",
+        "image": "shopify://shop_images/image_5303_1.png",
+        "heading": "Skin $heart Shield™ Diapers",
+        "compare_image": "shopify://shop_images/Screenshot_2025-08-07_at_11.17.01_AM_2_1.png",
+        "compare_heading": "Other Diapers"
+      }
+    },
+    "image_hero_banner_hWWaDf": {
+      "type": "image-hero-banner",
+      "name": "Image Hero Banner",
+      "settings": {
+        "image": "shopify://shop_images/Freestyle-Boxes-345-0676_1.png",
+        "image_mobile": "shopify://shop_images/Freestyle-Boxes-345-0676_1_1.png",
+        "heading": "Find $logo at a Walmart near you.",
+        "button": "Shop at $walmart",
+        "link": "shopify://collections"
+      }
+    },
+    "media_slider_6dEPzQ": {
+      "type": "media-slider",
+      "blocks": {
+        "media_LyRtXq": {
+          "type": "media",
+          "settings": {
+            "thumbanil": "shopify://shop_images/Rectangle_1901.png",
+            "video": "shopify://files/videos/video-compress-1.mov",
+            "text": "\"I am literally so excited about these. They are so nice. If you are looking for a new TCF diaper and you want something more affordable, definitely check out Freestyle from Walmart.\"",
+            "button": "@taylor.dyne",
+            "link": "shopify://collections"
+          }
+        },
+        "media_wd9mNd": {
+          "type": "media",
+          "settings": {
+            "thumbanil": "shopify://shop_images/Image.png",
+            "video": "shopify://files/videos/freestyle absorbancy test final(1).mp4",
+            "text": "\"I am literally so excited about these. They are so nice. If you are looking for a new TCF diaper and you want something more affordable, definitely check out Freestyle from Walmart.\"",
+            "button": "@taylor.dyne",
+            "link": "shopify://collections"
+          }
+        },
+        "media_KjX6MX": {
+          "type": "media",
+          "settings": {
+            "thumbanil": "shopify://shop_images/Rectangle_1901.png",
+            "video": "shopify://files/videos/KennedyAd2.mp4",
+            "text": "\"I am literally so excited about these. They are so nice. If you are looking for a new TCF diaper and you want something more affordable, definitely check out Freestyle from Walmart.\"",
+            "button": "@taylor.dyne",
+            "link": "shopify://collections"
+          }
+        },
+        "media_knHJnP": {
+          "type": "media",
+          "settings": {
+            "thumbanil": "shopify://shop_images/Image.png",
+            "video": "shopify://files/videos/copy_9479F2B8-C285-4D6C-A2DA-48DEE54C16B8.MOV",
+            "text": "\"I am literally so excited about these. They are so nice. If you are looking for a new TCF diaper and you want something more affordable, definitely check out Freestyle from Walmart.\"",
+            "button": "@taylor.dyne",
+            "link": "shopify://collections"
+          }
+        },
+        "media_tY7aWM": {
+          "type": "media",
+          "settings": {
+            "thumbanil": "shopify://shop_images/Rectangle_1901.png",
+            "video": "shopify://files/videos/Video.mov",
+            "text": "\"I am literally so excited about these. They are so nice. If you are looking for a new TCF diaper and you want something more affordable, definitely check out Freestyle from Walmart.\"",
+            "button": "@taylor.dyne",
+            "link": "shopify://collections"
+          }
+        },
+        "media_UmjNED": {
+          "type": "media",
+          "settings": {
+            "thumbanil": "shopify://shop_images/Image.png",
+            "video": "shopify://files/videos/f638ab6e9897459186a252843e0004d2.mov",
+            "text": "\"I am literally so excited about these. They are so nice. If you are looking for a new TCF diaper and you want something more affordable, definitely check out Freestyle from Walmart.\"",
+            "button": "@taylor.dyne",
+            "link": "shopify://collections"
+          }
+        }
+      },
+      "block_order": [
+        "media_LyRtXq",
+        "media_wd9mNd",
+        "media_KjX6MX",
+        "media_knHJnP",
+        "media_tY7aWM",
+        "media_UmjNED"
+      ],
+      "name": "Media Slider",
+      "settings": {
+        "heading": "For parents, by parents",
+        "description": "<p>Don’t just trust us. Hear from our community why they love and trust Freestyle.<br/><br/></p>"
       }
     }
   },
@@ -481,6 +682,9 @@
     "logo-section",
     "product_features",
     "diaper_custom_section_R8nRxJ",
-    "review_scroller_custom_CMUd3m"
+    "review_scroller_custom_CMUd3m",
+    "comparison_W96rKh",
+    "image_hero_banner_hWWaDf",
+    "media_slider_6dEPzQ"
   ]
 }

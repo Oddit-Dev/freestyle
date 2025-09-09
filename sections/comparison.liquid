@@ -9,7 +9,7 @@
           {% capture main_compare_text %}
             {{ main_compare_text }}
             <p class="block-text">
-              {{ icon-emoji.svg | inline_asset_content }}
+              {{ 'icon-emoji.svg' | inline_asset_content }}
               <span class="text">{{ block.settings.text }}</span>
             </p>
           {% endcapture %}
@@ -19,7 +19,7 @@
           {% capture other_compare_text %}
             {{ other_compare_text }}
             <p class="block-text">
-              {{ icon-compare-emoji.svg | inline_asset_content }}
+              {{ 'icon-compare-emoji.svg' | inline_asset_content }}
               <span class="text">{{ block.settings.text }}</span>
             </p>
           {% endcapture %}
@@ -30,6 +30,11 @@
 
   <div class="comparison-main">
     <div class="container">
+      {% if section.settings.main_heading != blank %}
+        <div class="header-wrapper">
+          <h2 class="heading">{{ section.settings.main_heading }}</h2>
+        </div>
+      {% endif %}
       <div class="flex-multiple-compare">
         {% if main_compare_text != blank or section.settings.image != blank %}
           <div class="left-compare">
@@ -52,6 +57,9 @@
           </div>
         {% endif %}
         {% if other_compare_text != blank or section.settings.compare_image != blank %}
+          <div class="vs-compare">
+            <p class="vs-text">VS</p>
+          </div>
           <div class="right-compare">
             <div class="image-wrapper">
               {%- render 'image-element',
@@ -80,6 +88,15 @@
 {
   "name": "Comparison",
   "settings": [
+    {
+      "type": "text",
+      "id": "main_heading",
+      "label": "Heading"
+    },
+    {
+      "type": "header",
+      "content": "Text"
+    },
     {
       "type": "image_picker",
       "id": "image",

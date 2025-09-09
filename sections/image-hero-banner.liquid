@@ -1,0 +1,87 @@
+
+{% if section.settings.image != blank or section.settings.heading != blank or section.settings.button != blank %}
+  <div class="image-hero-banner">
+    <div class="container">
+      <div class="image-with-text-content">
+        {% if section.settings.image != blank %}
+          <div class="image-wrapper">
+            {%- render 'image-element',
+              image: section.settings.image,
+              widths: '375, 550, 750, 950,1150, 1500, 1780, 2000, 2500',
+              sizes: '(max-width: 749px) 100vw, 100vw',
+              class: 'mobile-hide w-full block object-cover h-full max-md:hidden h-auto'
+            -%}
+            {% if section.settings.image_mobile != blank %}
+              {%- render 'image-element',
+                image: section.settings.image_mobile,
+                widths: '375, 550, 750, 950,1150, 1500, 1780, 2000, 2500',
+                sizes: '(max-width: 749px) 100vw, 100vw',
+                class: 'desktop-hide w-full block object-cover h-full max-md:hidden h-auto'
+              -%}
+            {% else %}
+              {%- render 'image-element',
+                image: section.settings.image,
+                widths: '375, 550, 750, 950,1150, 1500, 1780, 2000, 2500',
+                sizes: '(max-width: 749px) 100vw, 100vw',
+                class: 'desktop-hide w-full block object-cover h-full max-md:hidden h-auto'
+              -%}
+            {% endif %}
+          </div>
+        {% endif %}
+        {% if section.settings.button != blank or section.settings.heading != blank %}
+          <div class="content-wrapper">
+            {% if section.settings.heading != blank %}
+              {% assign logo_svg = 'icon-logo.svg' | inline_asset_content %}
+              {% assign main_heading = section.settings.heading | replace: '$logo', logo_svg %}
+              <h2 class="heading">{{ main_heading }}</h2>
+            {% endif %}
+            {% if section.settings.button != blank and section.settings.link %}
+              {% assign walmart_svg = 'icon-walmart.svg' | inline_asset_content %}
+              {% assign main_button = section.settings.button | replace: '$walmart', walmart_svg %}
+              <a class="button" href="{{ section.settings.link }}">{{ main_button }}</a>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+
+{% schema %}
+{
+  "name": "Image Hero Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Image Mobile"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "button",
+      "label": "Button"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image Hero Banner"
+    }
+  ]
+}
+{% endschema %}
