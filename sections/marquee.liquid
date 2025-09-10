@@ -1,13 +1,13 @@
 {% if section.blocks.size > 0 %}
   {{ 'marquee.js' | asset_url | script_tag }}
   
-  <div class="marquee-section section-{{ section.id }}">
+  <div class="marquee-section section-{{ section.id }} pt-[60px] pb-[140px] max-md:py-[30px]">
     <div
-      class="marquee-container"
+      class="marquee-container overflow-hidden"
       data-marquee-container="marquee-{{ section.id }}"
     >
       <div
-        class="marquee-track marquee-track-{{ section.id }} flex gap-[20px]"
+        class="marquee-track marquee-track-{{ section.id }} flex gap-[60px] w-[max-content] lg:gap-[116px] "
         data-marquee-track
       >
         {%- capture marqee_content -%}
@@ -18,7 +18,7 @@
                     image: block.settings.image,
                     widths: '375, 550, 750, 950',
                     sizes: '(max-width: 749px) 100vw, 100vw',
-                    class: 'w-full h-full max-md:hidden h-auto'
+                    class: 'w-full h-full object-contain block max-h-[89px]'
                 -%}
                 </div>  
               {% endif %}

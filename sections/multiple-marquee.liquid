@@ -11,25 +11,25 @@
         {% if block.settings.image != blank or block.settings.heading != blank or block.settings.sub_heading != blank %}
           {%  capture first_marquee %}
             {{ first_marquee }}
-            <div class="marquee-item">
-              <div class="flex-image-with-content">
+            <div class="marquee-item min-w-[458px] max-md:min-w-[250px]">
+              <div class="flex-image-with-content flex items-center gap-[25px]  max-md:gap-[15px]">
                 {% if block.settings.image != blank %}
-                  <div class="left-image">
+                  <div class="left-image flex-[0_0_60px] w-[60px] h-[60px] max-md:flex-[0_0_32px] max-md:w-[32px] max-md:h-[32px] rounded-full overflow-hidden ">
                     {%- render 'image-element',
                       image: block.settings.image,
                       widths: '375, 550, 750, 950',
                       sizes: '(max-width: 749px) 100vw, 100vw',
-                      class: 'w-full h-full max-md:hidden h-auto'
+                      class: 'w-full h-full object-cover h-auto'
                     -%}
                   </div>
                 {% endif %}
                 {% if block.settings.heading != blank or block.settings.sub_heading != blank %}
-                  <div class="right-content">
+                  <div class="right-content flex-1">
                     {% if block.settings.heading != blank %}
-                      <h2 class="heading">{{ block.settings.heading }}</h2>
+                      <h2 class="heading font-grotesk font-medium text-[19px] max-md:text-[10.35px] leading-[120%] mb-[8px] max-md:mb-[5px] text-color_7 tracking-normal">{{ block.settings.heading }}</h2>
                     {% endif %}
                     {% if block.settings.sub_heading != blank %}
-                      <p class="sub-heading">{{ block.settings.sub_heading }}</p>
+                      <p class="sub-heading font-grotesk font-medium text-[16px] max-md:text-[9px] text-color_7 opacity-70">{{ block.settings.sub_heading }}</p>
                     {% endif %}
                   </div>
                 {% endif %}
@@ -41,25 +41,25 @@
         {% if block.settings.image != blank or block.settings.heading != blank or block.settings.sub_heading != blank %}
           {%  capture second_marquee %}
             {{ second_marquee }}
-            <div class="marquee-item">
-              <div class="flex-image-with-content">
+            <div class="marquee-item min-w-[458px] max-md:min-w-[250px]">
+              <div class="flex-image-with-content flex items-center gap-[25px] max-md:gap-[15px]">
                 {% if block.settings.image != blank %}
-                  <div class="left-image">
+                  <div class="left-image flex-[0_0_60px] w-[60px] h-[60px] max-md:flex-[0_0_32px] max-md:w-[32px] max-md:h-[32px] rounded-full overflow-hidden ">
                     {%- render 'image-element',
                       image: block.settings.image,
                       widths: '375, 550, 750, 950',
                       sizes: '(max-width: 749px) 100vw, 100vw',
-                      class: 'w-full h-full max-md:hidden h-auto'
+                      class: 'w-full h-full object-cover h-auto'
                     -%}
                   </div>
                 {% endif %}
                 {% if block.settings.heading != blank or block.settings.sub_heading != blank %}
-                  <div class="right-content">
+                  <div class="right-content flex-1">
                     {% if block.settings.heading != blank %}
-                      <h2 class="heading">{{ block.settings.heading }}</h2>
+                      <h2 class="heading font-grotesk font-medium text-[19px] max-md:text-[10.35px] leading-[120%] mb-[8px] max-md:mb-[5px] text-color_7 tracking-normal">{{ block.settings.heading }}</h2>
                     {% endif %}
                     {% if block.settings.sub_heading != blank %}
-                      <p class="sub-heading">{{ block.settings.sub_heading }}</p>
+                      <p class="sub-heading font-grotesk font-medium text-[16px] max-md:text-[9px] text-color_7 opacity-70">{{ block.settings.sub_heading }}</p>
                     {% endif %}
                   </div>
                 {% endif %}
@@ -71,25 +71,25 @@
         {% if block.settings.image != blank or block.settings.heading != blank or block.settings.sub_heading != blank %}
           {%  capture third_marquee %}
             {{ third_marquee }}
-            <div class="marquee-item">
-              <div class="flex-image-with-content">
+            <div class="marquee-item min-w-[458px] max-md:min-w-[250px]">
+              <div class="flex-image-with-content flex items-center gap-[25px]  max-md:gap-[15px]">
                 {% if block.settings.image != blank %}
-                  <div class="left-image">
+                  <div class="left-image flex-[0_0_60px] w-[60px] h-[60px] max-md:flex-[0_0_32px] max-md:w-[32px] max-md:h-[32px] rounded-full overflow-hidden">
                     {%- render 'image-element',
                       image: block.settings.image,
                       widths: '375, 550, 750, 950',
                       sizes: '(max-width: 749px) 100vw, 100vw',
-                      class: 'w-full h-full max-md:hidden h-auto'
+                      class: 'w-full h-full object-cover h-auto'
                     -%}
                   </div>
                 {% endif %}
                 {% if block.settings.heading != blank or block.settings.sub_heading != blank %}
-                  <div class="right-content">
+                  <div class="right-content flex-1">
                     {% if block.settings.heading != blank %}
-                      <h2 class="heading">{{ block.settings.heading }}</h2>
+                      <h2 class="heading font-grotesk font-medium text-[19px] max-md:text-[10.35px] leading-[120%] mb-[8px] max-md:mb-[5px] text-color_7 tracking-normal">{{ block.settings.heading }}</h2>
                     {% endif %}
                     {% if block.settings.sub_heading != blank %}
-                      <p class="sub-heading">{{ block.settings.sub_heading }}</p>
+                      <p class="sub-heading font-grotesk font-medium text-[16px] max-md:text-[9px] text-color_7 opacity-70">{{ block.settings.sub_heading }}</p>
                     {% endif %}
                   </div>
                 {% endif %}
@@ -100,23 +100,22 @@
     {% endcase %}
   {% endfor %}
   
-  <div class="multiple-marquee-section section-{{ section.id }}">
+  <div class="multiple-marquee-section section-{{ section.id }} pt-[70px] pb-[55px] max-md:pt-[30px] max-md:pb-[20px]">
     {% if section.settings.heading != blank %}
       {% assign heart_svg = 'icon-heart.svg' | inline_asset_content %}
       {% assign main_heading = section.settings.heading | replace: '$heart', heart_svg %}
-      <div class="header-wrapper">
-        <h2 class="heading">{{ main_heading }}</h2>
+      <div class="header-wrapper mb-[50px] max-md:mb-[30px] px-[16px]">
+        <h2 class="heading flex flex-wrap items-center gap-x-[10px] justify-center [&_svg]:max-md:w-[30px] [&_svg]:max-md:h-auto">{{ main_heading }}</h2>
       </div>
     {% endif %}
-    <div class="multiple-marquee-container">
+    <div class="multiple-marquee-container overflow-hidden flex flex-wrap gap-[55px] max-md:gap-[30px]">
       {% if first_marquee != blank %}
         <div
           class="marquee-container marquee-first-row{% if section.settings.first_marquee_hide_desktop %} desktop-hide{% endif %}{% if section.settings.first_marquee_hide_mobile %} mobile-hide{% endif %}"
           data-marquee-container="multiple-marquee-{{ section.id }}-1"
-          data-marquee-direction="{{ section.settings.first_marquee_direction }}"
-        >
+          data-marquee-direction="{{ section.settings.first_marquee_direction }}">
           <div
-            class="marquee-track marquee-track-{{ section.id }}-1 flex gap-[20px]"
+            class="marquee-track marquee-track-{{ section.id }}-1 flex gap-[75px] max-md:gap-[40px]"
             data-marquee-track
           >
             {{ first_marquee }}
@@ -130,7 +129,7 @@
           data-marquee-direction="{{ section.settings.second_marquee_direction }}"
         >
           <div
-            class="marquee-track marquee-track-{{ section.id }}-2 flex gap-[20px]"
+            class="marquee-track marquee-track-{{ section.id }}-2 flex gap-[75px] max-md:gap-[40px]"
             data-marquee-track
           >
             {{ second_marquee }}
@@ -144,7 +143,7 @@
           data-marquee-direction="{{ section.settings.third_marquee_direction }}"
         >
           <div
-            class="marquee-track marquee-track-{{ section.id }}-3 flex gap-[20px]"
+            class="marquee-track marquee-track-{{ section.id }}-3 flex gap-[75px] max-md:gap-[40px]"
             data-marquee-track
           >
             {{ third_marquee }}

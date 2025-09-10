@@ -1,4 +1,4 @@
-<div class="hero-banner-section relative mt-[20px] bg-black overflow-hidden">
+<div class="hero-banner-section relative overflow-hidden pt-[167%] sm:pt-[120%] md:pt-[41.7%] md:min-h-[500px]">
   <div class="hero-banner-image absolute inset-0 h-full w-full overflow-hidden">
     {% assign desktop_image = section.settings.image %}
     {% assign mobile_image = section.settings.mobile_image |  default: desktop_image %}
@@ -27,26 +27,28 @@
     {% else %}text-center justify-center{% endif %}
   {% endcapture %}
 
-  <div class="hero-banner-content page-width min-h-[636px] relative flex items-center {{ caption_alignment }}">
-    <div class="hero-banner-inner max-w-[655px] w-full">
-      <div class="hero-banner-text">
+  <div class="hero-banner-content bg-[linear-gradient(180deg,rgba(241,242,245,0)9.16%,rgba(241,242,245,0.8)36.44%,#F1F2F5_100%);] md:bg-[linear-gradient(270deg,rgba(241,242,245,0)7.25%,rgba(241,242,245,0.8)49.26%,#F1F2F5_76.11%)] md:max-w-[830px] w-full md:w-[57.5%] absolute left-0 md:top-0 bottom-0 flex items-center md:h-full pl-[120px] pr-[150px] max-[1199px]:pl-[60px] max-[1199px]:pr-[60px] max-md:px-[13px] max-md:pt-[160px] max-md:pb-[30px] py-[60px] {{ caption_alignment }}">
+    <div class="hero-banner-inner w-full">
+      <div class="hero-banner-text max-md:text-center">
         {%- if section.settings.heading != blank -%}
           {% assign heart_svg = 'icon-heart.svg' | inline_asset_content %}
           {% assign main_heading = section.settings.heading | replace: '$heart', heart_svg %}
-          <h2>
+          <h2 class="flex flex-wrap gap-x-[10px] max-md:justify-center text-color_7 font-fkroman font-normal text-[52px] max-lg:text-[46px] leading-[120%] tracking-[-2.6px] max-md:tracking-[-1.8px] mb-[30px] max-md:mb-[24px] max-md:text-[36px] [&_strong]:font-grotesk [&_strong]:!font-medium [&_strong]:flex [&_strong]:gap-[10px] [&_strong]:items-center [&_strong]:flex-wrap 
+          [&_strong_svg]:max-md:w-[30px] [&_strong_svg]:max-md:h-[26px]">
             {{ main_heading }}
           </h2>
+
         {%- endif -%}
         {%- if section.settings.text != blank -%}
-          <div class="hero-banner-rte">
+          <div class="hero-banner-rte text-color_7-secondary [&_strong]:text-[8px] [&_strong]:px-[6px]">
             {{ section.settings.text }}
           </div>
         {%- endif -%}
       </div>          
-      <div class="inline-flex gap-[10px]">
+      <div class="mt-[50px] max-md:mt-[24px]">
         {%- if section.settings.button_text != blank and section.settings.button_link != blank -%}
           {% assign main_button = section.settings.button_text | replace: '$heart', heart_svg %}
-          <a href="{{ section.settings.button_link }}" class="button button-primary">
+          <a href="{{ section.settings.button_link }}" class="button button-primary !max-w-[390px] w-full max-md:mx-auto">
             {{ main_button }}
           </a>
         {%- endif -%}
