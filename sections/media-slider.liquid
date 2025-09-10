@@ -1,103 +1,99 @@
 
-<div class="media-slider-section section--{{section.id}} tw-py-[60px] max-md:tw-py-[40px] tw-bg-[var(--bg-color)] tw-overflow-hidden">
-  <div class="page-width">
-    <div class="media-slider-main">
-      {% if section.settings.heading != blank or section.settings.description != blank %}
-        <div class="section-header tw-mb-[40px]">
-          {% if section.settings.heading != blank %}
-            <h2 class="section-heading tw-mb-[10px] tw-font-primary tw-font-medium tw-text-[42px] max-md:tw-text-[36px] tw-leading-[1.2] tw-capitalize tw-text-light_white tw-text-center tw-mt-0">
-              {{ section.settings.heading }}
-            </h2>
-          {% endif %}
-          {% if section.settings.description != blank %}
-            <div class="section-description tw-font-secondary tw-font-normal tw-text-[16px] tw-leading-[1.6] tw-text-light_white tw-text-center [&_p]:tw-m-0 max-md:tw-max-w-[272px] max-md:tw-w-full max-md:tw-mx-auto">
-              {{ section.settings.description }}
-            </div>
-          {% endif %}
-        </div>
-      {% endif %}
-      {% if section.blocks.size > 0 %}
-        <div class="section-content tw-w-full tw-mx-auto">
-          <div class="media-container">
-            <div class="swiper media-swiper">
-              <div class="swiper-wrapper tw-flex">
-                  {% for block in section.blocks %}
-                    {% case block.type %}
-                      {% when 'media' %}
-                        {% if block.settings.thumbanil != blank or block.settings.video != blank %}
-                          <div class="swiper-slide tw-h-auto">
-                            <div class="media-item-block">
-                              <div class="media-block tw-relative tw-h-0 tw-pb-[520px]">
-                                {% if block.settings.video != blank %}
-                                  <div class="media-video tw-rounded-[12px] tw-overflow-hidden">
-                                    {% if block.settings.thumbanil != blank %}
-                                      {% assign video_poster = block.settings.thumbanil
-                                        | image_url: width: block.settings.thumbanil.width
-                                      %}
-                                      {{
-                                        block.settings.video
-                                        | video_tag:
-                                          poster: video_poster,
-                                          class: 'video tw-w-full tw-h-full tw-object-cover tw-rounded-[12px] tw-absolute tw-top-0 tw-left-0'
-                                      }}
-                                    {% else %}
-                                      {{
-                                        block.settings.video
-                                        | video_tag:
-                                          class: 'video tw-w-full tw-h-full tw-object-cover tw-absolute tw-top-0 tw-left-0'
-                                      }}
-                                    {% endif %}
-                                    <div class="video-overly tw-absolute tw-top-0 tw-left-0 tw-w-full tw-h-full tw-bg-[#00000033]">
-                                      <span class="play-icon tw-absolute tw-top-1/2 tw-left-1/2 tw-transform -tw-translate-x-1/2 -tw-translate-y-1/2 tw-w-[48px] tw-min-w-[48px] tw-h-[48px] tw-flex tw-items-center tw-justify-center tw-cursor-pointer">
-                                        {{ 'play-button-icon.svg' | inline_asset_content }}
-                                      </span>
+{% if section.blocks.size > 0 %}
+  <div class="media-slider-section section--{{section.id}} tw-py-[60px] max-md:tw-py-[40px] tw-bg-[var(--bg-color)] tw-overflow-hidden">
+    <div class="page-width">
+      <div class="media-slider-main">
+        {% if section.settings.heading != blank or section.settings.description != blank %}
+          <div class="section-header tw-mb-[40px]">
+            {% if section.settings.heading != blank %}
+              <h2 class="section-heading tw-mb-[10px] tw-font-primary tw-font-medium tw-text-[42px] max-md:tw-text-[36px] tw-leading-[1.2] tw-capitalize tw-text-light_white tw-text-center tw-mt-0">
+                {{ section.settings.heading }}
+              </h2>
+            {% endif %}
+            {% if section.settings.description != blank %}
+              <div class="section-description tw-font-secondary tw-font-normal tw-text-[16px] tw-leading-[1.6] tw-text-light_white tw-text-center [&_p]:tw-m-0 max-md:tw-max-w-[272px] max-md:tw-w-full max-md:tw-mx-auto">
+                {{ section.settings.description }}
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+        {% if section.blocks.size > 0 %}
+          <div class="section-content tw-w-full tw-mx-auto">
+            <div class="media-container">
+              <div class="swiper media-swiper">
+                <div class="swiper-wrapper tw-flex">
+                    {% for block in section.blocks %}
+                      {% case block.type %}
+                        {% when 'media' %}
+                          {% if block.settings.thumbanil != blank or block.settings.video != blank %}
+                            <div class="swiper-slide tw-h-auto">
+                              <div class="media-item-block">
+                                <div class="media-block tw-relative tw-h-0 tw-pb-[520px]">
+                                  {% if block.settings.video != blank %}
+                                    <div class="media-video tw-rounded-[12px] tw-overflow-hidden">
+                                      {% if block.settings.thumbanil != blank %}
+                                        {% assign video_poster = block.settings.thumbanil
+                                          | image_url: width: block.settings.thumbanil.width
+                                        %}
+                                        {{
+                                          block.settings.video
+                                          | video_tag:
+                                            poster: video_poster,
+                                            class: 'video tw-w-full tw-h-full tw-object-cover tw-rounded-[12px] tw-absolute tw-top-0 tw-left-0'
+                                        }}
+                                      {% else %}
+                                        {{
+                                          block.settings.video
+                                          | video_tag:
+                                            class: 'video tw-w-full tw-h-full tw-object-cover tw-absolute tw-top-0 tw-left-0'
+                                        }}
+                                      {% endif %}
+                                      <div class="video-overly tw-absolute tw-top-0 tw-left-0 tw-w-full tw-h-full tw-bg-[#00000033]">
+                                        <span class="play-icon tw-absolute tw-top-1/2 tw-left-1/2 tw-transform -tw-translate-x-1/2 -tw-translate-y-1/2 tw-w-[48px] tw-min-w-[48px] tw-h-[48px] tw-flex tw-items-center tw-justify-center tw-cursor-pointer">
+                                          {{ 'play-button-icon.svg' | inline_asset_content }}
+                                        </span>
+                                      </div>
                                     </div>
-                                  </div>
-                                {% else %}
-                                  <div class="media-image tw-w-full tw-h-full tw-absolute tw-top-0 tw-left-0 tw-rounded-[12px] tw-overflow-hidden">
-                                    {% if block.settings.thumbanil != blank %}
-                                      {% render 'image-element',
-                                        image: block.settings.thumbanil,
-                                        class: 'thumbnail-image tw-w-full tw-h-full tw-object-cover',
-                                        widths: '250,350,450,550,650,750,850',
-                                        sizes: '(max-width:749px),25vw,95vw'
-                                      %}
+                                  {% else %}
+                                    <div class="media-image tw-w-full tw-h-full tw-absolute tw-top-0 tw-left-0 tw-rounded-[12px] tw-overflow-hidden">
+                                      {% if block.settings.thumbanil != blank %}
+                                        {% render 'image-element',
+                                          image: block.settings.thumbanil,
+                                          class: 'thumbnail-image tw-w-full tw-h-full tw-object-cover',
+                                          widths: '250,350,450,550,650,750,850',
+                                          sizes: '(max-width:749px),25vw,95vw'
+                                        %}
+                                      {% endif %}
+                                    </div>
+                                  {% endif %}
+                                </div>
+                                {% if block.settings.text != blank or block.settings.button != blank %}
+                                  <div class="media-item-info">
+                                    {% if block.settings.text != blank %}
+                                      <p class="text">{{ block.settings.text }}</p>
+                                    {% endif %}
+                                    {% if block.settings.button != blank and block.settings.link != blank %}
+                                      <a class="link-button" href="{{ block.settings.link }}">
+                                        {{ 'icon-instagram.svg' | inline_asset_content }}
+                                        {{ block.settings.button }}
+                                      </a>
                                     {% endif %}
                                   </div>
                                 {% endif %}
                               </div>
-                              {% if block.settings.text != blank or block.settings.button != blank %}
-                                <div class="media-item-info">
-                                  {% if block.settings.text != blank %}
-                                    <p class="text">{{ block.settings.text }}</p>
-                                  {% endif %}
-                                  {% if block.settings.button != blank and block.settings.link != blank %}
-                                    <a class="link-button" href="{{ block.settings.link }}">
-                                      {{ 'icon-instagram.svg' | inline_asset_content }}
-                                      {{ block.settings.button }}
-                                    </a>
-                                  {% endif %}
-                                </div>
-                              {% endif %}
                             </div>
-                          </div>
-                        {% endif %}
-                    {% endcase %}
-                  {% endfor %}
+                          {% endif %}
+                      {% endcase %}
+                    {% endfor %}
+                </div>
               </div>
-              {% comment %} <div class="swiper-navigation-block">
-                <div class="swiper-button-prev"></div>  
-                <div class="swiper-pagination"></div>
-                <div class="swiper-button-next"></div>
-              </div> {% endcomment %}
             </div>
           </div>
-        </div>
-      {% endif %}
+        {% endif %}
+      </div>
     </div>
   </div>
-</div>
-{% if section.blocks.size > 0 %}
+
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       const thisMediaSliderSecEle = document.querySelector('.media-slider-section.section--{{section.id}}');
@@ -128,14 +124,6 @@
               spaceBetween: 32,
               centeredSlides: false
             }
-          },
-          pagination: {
-            el: mediaSwiperEle.querySelector('.swiper-pagination'),
-            clickable: true,
-          },
-          navigation: {
-            nextEl: mediaSwiperEle.querySelector('.swiper-button-next'),
-            prevEl: mediaSwiperEle.querySelector('.swiper-button-prev')
           },
         });
       }
@@ -173,6 +161,8 @@
     });
   </script>
 {% endif %}
+
+
 {% schema %}
 {
   "name": "Media Slider",

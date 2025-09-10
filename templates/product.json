@@ -147,13 +147,226 @@
         "show_product_details": false
       }
     },
+    "multiple_marquee_pUJj6y": {
+      "type": "multiple-marquee",
+      "blocks": {
+        "first_marquee_fYVW4M": {
+          "type": "first_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2025-09-01_at_3.29.27_PM_1.png",
+            "heading": "\"Proving that you don't need to sacrifice quality to go green\"",
+            "sub_heading": "@freestyle.fan"
+          }
+        },
+        "first_marquee_3m6ACQ": {
+          "type": "first_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2025-09-01_at_3.29.27_PM_1.png",
+            "heading": "\"Proving that you don't need to sacrifice quality to go green\"",
+            "sub_heading": "@freestyle.fan"
+          }
+        },
+        "first_marquee_7Edfy9": {
+          "type": "first_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2025-09-01_at_3.29.27_PM_1.png",
+            "heading": "\"Proving that you don't need to sacrifice quality to go green\"",
+            "sub_heading": "@freestyle.fan"
+          }
+        },
+        "first_marquee_wj939T": {
+          "type": "first_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2025-09-01_at_3.29.27_PM_1.png",
+            "heading": "\"Proving that you don't need to sacrifice quality to go green\"",
+            "sub_heading": "@freestyle.fan"
+          }
+        },
+        "first_marquee_zzkEzB": {
+          "type": "first_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2025-09-01_at_3.29.27_PM_1.png",
+            "heading": "\"Proving that you don't need to sacrifice quality to go green\"",
+            "sub_heading": "@freestyle.fan"
+          }
+        },
+        "second_marquee_FmFzdf": {
+          "type": "second_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2025-09-01_at_3.29.27_PM_1.png",
+            "heading": "\"Proving that you don't need to sacrifice quality to go green\"",
+            "sub_heading": "@freestyle.fan"
+          }
+        },
+        "second_marquee_AAPGkg": {
+          "type": "second_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2025-09-01_at_3.29.27_PM_1.png",
+            "heading": "\"Proving that you don't need to sacrifice quality to go green\"",
+            "sub_heading": "@freestyle.fan"
+          }
+        },
+        "second_marquee_bzHjkh": {
+          "type": "second_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2025-09-01_at_3.29.27_PM_1.png",
+            "heading": "\"Proving that you don't need to sacrifice quality to go green\"",
+            "sub_heading": "@freestyle.fan"
+          }
+        },
+        "second_marquee_ybEtVh": {
+          "type": "second_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2025-09-01_at_3.29.27_PM_1.png",
+            "heading": "\"Proving that you don't need to sacrifice quality to go green\"",
+            "sub_heading": "@freestyle.fan"
+          }
+        },
+        "second_marquee_axYFwz": {
+          "type": "second_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2025-09-01_at_3.29.27_PM_1.png",
+            "heading": "\"Proving that you don't need to sacrifice quality to go green\"",
+            "sub_heading": "@freestyle.fan"
+          }
+        }
+      },
+      "block_order": [
+        "first_marquee_fYVW4M",
+        "first_marquee_3m6ACQ",
+        "first_marquee_7Edfy9",
+        "first_marquee_wj939T",
+        "first_marquee_zzkEzB",
+        "second_marquee_FmFzdf",
+        "second_marquee_AAPGkg",
+        "second_marquee_bzHjkh",
+        "second_marquee_ybEtVh",
+        "second_marquee_axYFwz"
+      ],
+      "name": "Multiple Marquee",
+      "settings": {
+        "heading": "Millions $heart FreeStyle",
+        "first_marquee_hide_desktop": false,
+        "first_marquee_hide_mobile": false,
+        "first_marquee_direction": "-1",
+        "second_marquee_hide_desktop": false,
+        "second_marquee_hide_mobile": false,
+        "second_marquee_direction": "1",
+        "third_marquee_hide_desktop": true,
+        "third_marquee_hide_mobile": true,
+        "third_marquee_direction": "-1"
+      }
+    },
+    "perfect_info_mgPXdV": {
+      "type": "perfect-info",
+      "blocks": {
+        "text_w4pAFR": {
+          "type": "text",
+          "settings": {
+            "image": "shopify://shop_images/Frame.png",
+            "heading": "14x better absorption",
+            "description": "Better protection and fewer changes. Skin $heart Shield™ ‘s unique 7-layer  keeps your baby’s skin dry.",
+            "text": "*Up to 14x better absorption as measured by rewet testing compared to a leading brand"
+          }
+        },
+        "text_Y6cYEm": {
+          "type": "text",
+          "settings": {
+            "image": "shopify://shop_images/Frame_1_b8e23f19-0f7c-4c95-b179-9237cf84dc71.png",
+            "heading": "7-layer protection means fewer leaks and longer nights",
+            "description": "Best-in-class absorbent material draws away moisture quickly and locks it in to protect against rash or discomfort.",
+            "text": ""
+          }
+        },
+        "text_4VrKDj": {
+          "type": "text",
+          "settings": {
+            "image": "shopify://shop_images/EWGV_black_480x480_1.png",
+            "heading": "Safer, for longer, than leading brands",
+            "description": "The first accessibly priced EWG Verified® diaper made from Total Chlorine Free, lab-tested non-toxic materials.",
+            "text": ""
+          }
+        },
+        "text_gPi7eD": {
+          "type": "text",
+          "settings": {
+            "image": "shopify://shop_images/Frame_2.png",
+            "heading": "Cloud-like softness engineered for skin comfort",
+            "description": "We found the softest materials available inside and out to keep them comfortable all day and all night.",
+            "text": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_w4pAFR",
+        "text_Y6cYEm",
+        "text_4VrKDj",
+        "text_gPi7eD"
+      ],
+      "name": "Perfect Info",
+      "settings": {
+        "image": "shopify://shop_images/Freestyle_Loose-Diapers_Wipes_1426_3.png",
+        "heading": "<strong>Your baby is perfect,</strong> now their diaper is too."
+      }
+    },
+    "icon_with_text_Tirzyn": {
+      "type": "icon-with-text",
+      "blocks": {
+        "icon_8XwHGp": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Vector_e70b4c88-8309-486e-abd3-84fa4cb5271e.png",
+            "heading": "SkinSafe™ Materials",
+            "text": "Hypoallergenic, fragrance- and lotion-free materials free from PFAS, BPAs, and phthalates."
+          }
+        },
+        "icon_cPwWet": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Works_Overnight.png",
+            "heading": "Total Chlorine Free",
+            "text": "No use of chlorine or chlorine derivatives."
+          }
+        },
+        "icon_JCck3C": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/EWGV_black_480x480_1_1.png",
+            "heading": "EWG Verified®",
+            "text": "Free from 1,500+ known chemicals of concern with full ingredient transparency."
+          }
+        },
+        "icon_wr7y76": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/microscope-pictogram-3_svgrepo.com.png",
+            "heading": "Independent Lab Testing",
+            "text": "Verified by third-party labs for safety and performance."
+          }
+        }
+      },
+      "block_order": [
+        "icon_8XwHGp",
+        "icon_cPwWet",
+        "icon_JCck3C",
+        "icon_wr7y76"
+      ],
+      "name": "Icon With Text",
+      "settings": {
+        "background_image": "shopify://shop_images/Rectangle_1902.png",
+        "heading": "Our Safety Standards",
+        "text": "Freestyle delivers safe, sustainable diapers that keep your baby protected and you worry-free."
+      }
+    },
     "174411240666086477": {
       "type": "apps",
       "blocks": {
         "junip_junip_product_review_xLN8Xa": {
           "type": "shopify://apps/junip/blocks/junip-product-review/dc14f5a8-ed15-41b1-ad08-cfba23f9789b",
           "settings": {
-            "product": "{{product}}"
+            "product": "{{product}}",
+            "title": "",
+            "alignment": ""
           }
         }
       },
@@ -162,119 +375,91 @@
       ],
       "settings": {}
     },
-    "c_hero_img_3b7kXN": {
-      "type": "c-hero-img",
-      "settings": {
-        "image": "shopify://shop_images/242A6894_6.jpg",
-        "heading": "Shop Skin Shield ™ <br> at Walmart",
-        "heading_color": "#ffffff",
-        "heading_icon": "shopify://shop_images/hear-icon-2-light.svg",
-        "heading_weight": "normal",
-        "heading_icon_size": 94,
-        "description": "",
-        "description_color": "#ffffff",
-        "button_icon": "shopify://shop_images/wallmart-icon.svg",
-        "button_icon_size": 16,
-        "button_text_icon": "shopify://shop_images/heart-icon-text.svg",
-        "button_text_icon_size": 16,
-        "banner_height_desktop": "818",
-        "banner_height_mobile": "500",
-        "description_icon": "shopify://shop_images/heart-icon-violet.svg",
-        "description_icon_size": 36,
-        "button_label": "Shop Skin Shield™",
-        "button_link": "https://www.walmart.com/ip/Freestyle-Diaper-Size-5-44CT/13920570352",
-        "show_popup": false,
-        "popup__trigger": ""
-      }
-    },
-    "review_scroller_custom_CMUd3m": {
-      "type": "review-scroller-custom",
+    "media_slider_CJgbn8": {
+      "type": "media-slider",
       "blocks": {
-        "review_Aw7wkC": {
-          "type": "review",
+        "media_4y6Vdb": {
+          "type": "media",
           "settings": {
-            "author_name": "@taylor.dyne",
-            "author_url": "https://www.instagram.com/taylor.dyne/",
-            "is_verified": false,
-            "author_handle": "",
-            "review_text": "\"I am literally so excited about these. They are so nice. If you are looking for a new TCF diaper and you want something more affordable...definitely check out Freestyle from Walmart.\"",
-            "review_video": "shopify://files/videos/Video.mov"
+            "thumbanil": "shopify://shop_images/Image.png",
+            "video": "shopify://files/videos/video-compress-1.mov",
+            "text": "\"I am literally so excited about these. They are so nice. If you are looking for a new TCF diaper and you want something more affordable, definitely check out Freestyle from Walmart.\"",
+            "button": "@taylor.dyne",
+            "link": "shopify://collections"
           }
         },
-        "review_3Briaz": {
-          "type": "review",
+        "media_HEU87G": {
+          "type": "media",
           "settings": {
-            "author_name": "@cathrinmanningg",
-            "author_url": "https://www.instagram.com/cathrinmanningg/",
-            "is_verified": false,
-            "author_handle": "",
-            "review_text": "\"I still don't understand how the paper towel was completely dry!!! If you're looking for a super soft & very absorbent diaper, you need to try these Freestyle diapers!\"",
-            "review_video": "shopify://files/videos/Download(2).mp4"
+            "thumbanil": "shopify://shop_images/Rectangle_1901.png",
+            "video": "shopify://files/videos/freestyle absorbancy test final(1).mp4",
+            "text": "\"I am literally so excited about these. They are so nice. If you are looking for a new TCF diaper and you want something more affordable, definitely check out Freestyle from Walmart.\"",
+            "button": "@taylor.dyne",
+            "link": "shopify://collections"
           }
         },
-        "review_UGacVf": {
-          "type": "review",
+        "media_cH4tCR": {
+          "type": "media",
           "settings": {
-            "author_name": "@megtimmons",
-            "author_url": "https://www.instagram.com/megtimmons/",
-            "is_verified": false,
-            "author_handle": "",
-            "review_text": "\"If you are not using Freestyle diapers, you need to\"",
-            "review_video": "shopify://files/videos/f638ab6e9897459186a252843e0004d2.mov"
+            "thumbanil": "shopify://shop_images/Image.png",
+            "video": "shopify://files/videos/KennedyAd2.mp4",
+            "text": "\"I am literally so excited about these. They are so nice. If you are looking for a new TCF diaper and you want something more affordable, definitely check out Freestyle from Walmart.\"",
+            "button": "@taylor.dyne",
+            "link": "shopify://collections"
           }
         },
-        "review_Pw4aDj": {
-          "type": "review",
+        "media_WriNcd": {
+          "type": "media",
           "settings": {
-            "author_name": "@nicolewebz",
-            "author_url": "https://www.instagram.com/nicolewebz/",
-            "is_verified": false,
-            "author_handle": "",
-            "review_text": "\"It is so absorbent you can use it as an overnight diaper. It is so soft. The best thing about the diaper is it is TCF...these are actually really cost effective and very comparable to some non-TCF diapers.\"",
-            "review_video": "shopify://files/videos/Download.mp4"
+            "thumbanil": "shopify://shop_images/Rectangle_1901.png",
+            "video": "shopify://files/videos/copy_9479F2B8-C285-4D6C-A2DA-48DEE54C16B8.MOV",
+            "text": "\"I am literally so excited about these. They are so nice. If you are looking for a new TCF diaper and you want something more affordable, definitely check out Freestyle from Walmart.\"",
+            "button": "@taylor.dyne",
+            "link": "shopify://collections"
           }
         },
-        "review_hWVwfN": {
-          "type": "review",
+        "media_UyMzkP": {
+          "type": "media",
           "settings": {
-            "author_name": "@cathrinmanningg",
-            "author_url": "https://www.instagram.com/cathrinmanningg/",
-            "is_verified": false,
-            "author_handle": "",
-            "review_text": "\"These diapers are so dang soft...the price point is actually reasonable....I love them so much\"",
-            "review_video": "shopify://files/videos/Download (1).mp4"
+            "thumbanil": "shopify://shop_images/Image.png",
+            "video": "shopify://files/videos/f638ab6e9897459186a252843e0004d2.mov",
+            "text": "\"I am literally so excited about these. They are so nice. If you are looking for a new TCF diaper and you want something more affordable, definitely check out Freestyle from Walmart.\"",
+            "button": "@taylor.dyne",
+            "link": "shopify://collections"
           }
         },
-        "review_GAyDCY": {
-          "type": "review",
+        "media_QjYJ6c": {
+          "type": "media",
           "settings": {
-            "author_name": "@emmsab",
-            "author_url": "https://www.instagram.com/emmsab/",
-            "is_verified": false,
-            "author_handle": "",
-            "review_text": "\"That's amazing. Wow.\"",
-            "review_video": "shopify://files/videos/copy_9479F2B8-C285-4D6C-A2DA-48DEE54C16B8.MOV"
+            "thumbanil": "shopify://shop_images/Rectangle_1901.png",
+            "video": "shopify://files/videos/Video.mov",
+            "text": "\"I am literally so excited about these. They are so nice. If you are looking for a new TCF diaper and you want something more affordable, definitely check out Freestyle from Walmart.\"",
+            "button": "@taylor.dyne",
+            "link": "shopify://collections"
           }
         }
       },
       "block_order": [
-        "review_Aw7wkC",
-        "review_3Briaz",
-        "review_UGacVf",
-        "review_Pw4aDj",
-        "review_hWVwfN",
-        "review_GAyDCY"
+        "media_4y6Vdb",
+        "media_HEU87G",
+        "media_cH4tCR",
+        "media_WriNcd",
+        "media_UyMzkP",
+        "media_QjYJ6c"
       ],
+      "name": "Media Slider",
       "settings": {
-        "title": "For parents, by parents",
-        "subtitle": "Don’t just trust us. Hear from our community  why they love and trust Freestyle."
+        "heading": "For parents, by parents",
+        "description": "<p>Hear from our community why they love and trust Freestyle. Then try it for youself. </p>"
       }
     }
   },
   "order": [
     "main",
+    "multiple_marquee_pUJj6y",
+    "perfect_info_mgPXdV",
+    "icon_with_text_Tirzyn",
     "174411240666086477",
-    "c_hero_img_3b7kXN",
-    "review_scroller_custom_CMUd3m"
+    "media_slider_CJgbn8"
   ]
 }

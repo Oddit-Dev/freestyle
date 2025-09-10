@@ -1,0 +1,111 @@
+{% if section.blocks.size > 0 %}
+  <div class="perfect-info">
+    <div class="container-full">
+      <div class="flex-image-with-content">
+        <div class="left-content-wrapper">
+          {% if section.settings.heading != blank %}
+            <div class="header-wrapper">
+              <h2 class="heading">{{ section.settings.heading }}</h2>
+            </div>
+          {% endif %}
+          {% if section.blocks.size > 0 %}
+            <div class="multiple-information">
+              {% for block in section.blocks %}
+                {% if block.settings.image != blank or block.settings.heading != blank or block.settings.description != blank or block.settings.text != blank %}
+                  <div class="information-block">
+                    {% if block.settings.image != blank %}
+                      <div class="left-image">
+                        {%- render 'image-element',
+                          image: block.settings.image,
+                          widths: '40, 50, 60, 70, 80',
+                          sizes: '(max-width: 749px) 100vw, 100vw',
+                          class: 'w-full h-full h-auto'
+                        -%}
+                      </div>
+                    {% endif %}
+                    {% if block.settings.heading != blank or block.settings.description != blank or block.settings.text != blank %}
+                      <div class="right-content">
+                        {% if block.settings.heading != blank %}
+                          <h3 class="heading">{{ block.settings.heading }}</h3>
+                        {% endif %}
+                        {% if block.settings.description != blank %}
+                          {% assign heart_svg = 'icon-heart.svg' | inline_asset_content %}
+                          {% assign main_description = block.settings.description | replace: '$heart', heart_svg %}
+                          <p class="description">{{ main_description }}</p>
+                        {% endif %}
+                        {% if block.settings.text != blank %}
+                          <p class="text">{{ block.settings.text }}</p>
+                        {% endif %}
+                      </div>
+                    {% endif %}
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+        {% if section.settings.image != blank %}
+          <div class="right-image-wrapper">
+            {%- render 'image-element',
+              image: section.settings.image,
+              widths: '375, 550, 750, 950,1150, 1500, 1780, 2000, 2500',
+              sizes: '(max-width: 749px) 100vw, 50vw',
+              class: 'w-full h-full h-auto'
+            -%}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Perfect Info",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Perfect Info"
+    }
+  ]
+}
+{% endschema %}

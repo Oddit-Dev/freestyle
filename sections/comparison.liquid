@@ -28,60 +28,96 @@
   {% endfor %}
 
 
-  <div class="comparison-main">
+  <div class="comparison-main comparison-section--{{ section.id }}">
     <div class="container">
       {% if section.settings.main_heading != blank %}
         <div class="header-wrapper">
           <h2 class="heading">{{ section.settings.main_heading }}</h2>
         </div>
       {% endif %}
-      <div class="flex-multiple-compare">
-        {% if main_compare_text != blank or section.settings.image != blank %}
-          <div class="left-compare">
-            <div class="image-wrapper">
-              {%- render 'image-element',
-                image: section.settings.image,
-                widths: '240, 270, 300, 330, 360, 290',
-                sizes: '(max-width: 749px) 100vw, 50vw',
-                class: 'w-full h-full max-md:hidden h-auto'
-              -%}
-            </div>
-            <div class="content-wrapper">
-              {% if section.settings.heading != blank %}
-                <h2 class="heading">{{ section.settings.heading }}</h2>
-              {% endif %}
-              <div class="multiple-text-content">
-                {{ main_compare_text }}
+      <div class="flex-multiple-compare comparison-slider">
+        <div class="swiper-wrapper">
+          {% if main_compare_text != blank or section.settings.image != blank %}
+            <div class="left-compare swiper-slide">
+              <div class="image-wrapper">
+                {%- render 'image-element',
+                  image: section.settings.image,
+                  widths: '240, 270, 300, 330, 360, 290',
+                  sizes: '(max-width: 749px) 100vw, 50vw',
+                  class: 'w-full h-full h-auto'
+                -%}
+              </div>
+              <div class="content-wrapper">
+                {% if section.settings.heading != blank %}
+                  <h2 class="heading">{{ section.settings.heading }}</h2>
+                {% endif %}
+                <div class="multiple-text-content">
+                  {{ main_compare_text }}
+                </div>
               </div>
             </div>
-          </div>
-        {% endif %}
-        {% if other_compare_text != blank or section.settings.compare_image != blank %}
-          <div class="vs-compare">
-            <p class="vs-text">VS</p>
-          </div>
-          <div class="right-compare">
-            <div class="image-wrapper">
-              {%- render 'image-element',
-                image: section.settings.compare_image,
-                widths: '240, 270, 300, 330, 360, 290',
-                sizes: '(max-width: 749px) 100vw, 50vw',
-                class: 'w-full h-full max-md:hidden h-auto'
-              -%}
-            </div>
-            <div class="content-wrapper">
-              {% if section.settings.compare_heading != blank %}
-                <h2 class="heading">{{ section.settings.compare_heading }}</h2>
-              {% endif %}
-              <div class="multiple-text-content">
-                {{ other_compare_text }}
+          {% endif %}
+          {% if other_compare_text != blank or section.settings.compare_image != blank %}
+            <div class="right-compare swiper-slide">
+              <div class="vs-compare">
+                <p class="vs-text">VS</p>
+              </div>
+              <div class="image-wrapper">
+                {%- render 'image-element',
+                  image: section.settings.compare_image,
+                  widths: '240, 270, 300, 330, 360, 290',
+                  sizes: '(max-width: 749px) 100vw, 50vw',
+                  class: 'w-full h-full h-auto'
+                -%}
+              </div>
+              <div class="content-wrapper">
+                {% if section.settings.compare_heading != blank %}
+                  <h2 class="heading">{{ section.settings.compare_heading }}</h2>
+                {% endif %}
+                <div class="multiple-text-content">
+                  {{ other_compare_text }}
+                </div>
               </div>
             </div>
-          </div>
-        {% endif %}
+          {% endif %}
+        </div>
+        <div class="swiper-navigation-block">
+          <div class="swiper-pagination"></div>
+        </div>
       </div>
     </div>
   </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const theComparisonSlider = document.querySelector('.comparison-section--{{ section.id }}');
+      const mediaSwiperEle = theComparisonSlider.querySelector('.comparison-slider');
+      if (mediaSwiperEle) {
+        const mediaSwiper = new Swiper(mediaSwiperEle, {
+          slidesPerView: 1.2,
+          spaceBetween: 8,
+          loop: false,
+          centeredSlides: false,
+          mousewheel: {
+            forceToAxis: true,
+            releaseOnEdges: true,
+          },
+          breakpoints: {
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 24,
+              centeredSlides: false,
+            }
+          },
+          pagination: {
+            el: mediaSwiperEle.querySelector('.swiper-pagination'),
+            clickable: true,
+          },
+        });
+      }
+    });
+  </script>
+
 {% endif %}
 
 {% schema %}
