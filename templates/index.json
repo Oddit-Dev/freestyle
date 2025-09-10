@@ -15,7 +15,7 @@
       "settings": {
         "image": "shopify://shop_images/Hero.jpg",
         "mobile_image": "shopify://shop_images/Freestyle_Full-product-family_1307_1_1.png",
-        "heading": "<strong>Ultra Soft Skin $heart </strong> <strong>Shield™</strong> Diapers",
+        "heading": "Ultra Soft Skin $heart  Shield™ <strong>Diapers</strong>",
         "text": "14x Better Absorption  <strong>•</strong>  7-Layer Skin Protection  <strong>•</strong>  Total Chlorine Free",
         "button_text": "Shop Skin $heart Shield™ Diapers",
         "button_link": "shopify://collections",
@@ -205,9 +205,9 @@
       "settings": {
         "background_image": "shopify://shop_images/Freestyle_Full-product-family_1307_1_2.png",
         "image": "shopify://shop_images/Freestyle_Full-product-family_1307_1_3.png",
-        "image_position": "left",
+        "image_position": "right",
         "sub_heading": "Skip the hassle",
-        "heading": "<strong>Get your diapers delivered monthly</strong> and save 10%",
+        "heading": "Get your diapers delivered monthly <strong>and save 10%</strong>",
         "button": "Subscribe Now",
         "link": "shopify://collections"
       }

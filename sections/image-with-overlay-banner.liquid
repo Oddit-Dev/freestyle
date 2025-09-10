@@ -33,14 +33,14 @@
         {%- if section.settings.heading != blank -%}
           {% assign heart_svg = 'icon-heart.svg' | inline_asset_content %}
           {% assign main_heading = section.settings.heading | replace: '$heart', heart_svg %}
-          <h2 class="flex flex-wrap gap-x-[10px] max-md:justify-center text-color_7 font-fkroman font-normal text-[52px] max-lg:text-[46px] leading-[120%] tracking-[-2.6px] max-md:tracking-[-1.8px] mb-[30px] max-md:mb-[24px] max-md:text-[36px] [&_strong]:font-grotesk [&_strong]:!font-medium [&_strong]:flex [&_strong]:gap-[10px] [&_strong]:items-center [&_strong]:flex-wrap 
-          [&_strong_svg]:max-md:w-[30px] [&_strong_svg]:max-md:h-[26px]">
+          <h2 class="flex flex-wrap items-center gap-x-[10px] max-md:justify-center text-scheme_one [&_strong]:font-fkroman [&_strong]:font-normal text-[52px] max-lg:text-[46px] leading-[120%] tracking-[-2.6px] max-md:tracking-[-1.8px] mb-[30px] max-md:mb-[24px] max-md:text-[36px] [&_strong]:items-center [&_strong]:flex-wrap 
+          [&_svg]:max-md:w-[30px] [&_svg]:max-md:h-[26px]">
             {{ main_heading }}
           </h2>
 
         {%- endif -%}
         {%- if section.settings.text != blank -%}
-          <div class="hero-banner-rte text-color_7-secondary [&_strong]:text-[8px] [&_strong]:px-[6px]">
+          <div class="hero-banner-rte text-scheme_one-secondary [&_strong]:text-[8px] [&_strong]:px-[6px]">
             {{ section.settings.text }}
           </div>
         {%- endif -%}

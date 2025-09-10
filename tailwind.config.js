@@ -152,15 +152,17 @@ export default {
           secondary: 'var(--theme-color-secondary)',
           tertiary: 'var(--theme-color-tertiary)',
         },
-        color_7: {
+        scheme_one: {
           DEFAULT: '#6638B6',
           secondary: '#000000',
           tertiary: '#fff',
+          white: '#FBFAF8'
         },
-        color_8: {
+        scheme_two: {
           DEFAULT: '#6638B6',
           secondary: '#DADAFF',
           tertiary: '#B5B5F5',
+          black:'#000000'
         },
       },
       utilities: {
