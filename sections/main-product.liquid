@@ -4,6 +4,7 @@
 {% assign blocks = section.blocks %}
 {% assign features = blocks | where: 'type', 'product_feature' %}
 {% assign accordionItems = blocks | where: 'type', 'accordion_item' %}
+{% assign specificationItems = blocks | where: 'type', 'specification_item' %}
 {% assign productCurrent = product %}
 {% assign activeVariant = product.selected_or_first_available_variant %}
 {% assign product_badge = product.metafields.custom.badge_product %}
@@ -20,7 +21,15 @@
 >
   <div class="container container-lg">
     <div class="product__inner">
-      {% render 'product-gallery', product: product %}
+      <div class="main-image-gallery-with-location">
+        <div class="custom-gallery">
+          {% render 'product-gallery', product: product %}
+        </div>
+        <div class="custom-pdp-store-locater">
+          {% render 'c-store-locator', title: "Find SkinShieldTM Diapers near you", text: "See nearby stores with SkinSkinShieldTM Diapers in stock." %}
+        </div>
+      </div>
+      
       <div class="product__content flex flex-col gap-6 lg:mr-24">
         {% for block in blocks %}
           {% case block.type %}
@@ -92,6 +101,9 @@
                       class="button"
                       @click="addToCart(activeVariant.id)">
                       {{ block.settings.cta_label }}
+                      <span class="sale-price">
+                        {{ product.selected_or_first_available_variant.price | money }}
+                      </span>
                     </span>
                   </div>
 
@@ -103,6 +115,11 @@
                   <a href="{{ block.settings.cta_url }}" class="btn btn--walmart" target="_blank">
                     {{ block.settings.cta_label }}
                   </a>
+                {% endif %}
+                {% if block.settings.text != blank %}
+                  <div class="bottom-text">
+                    {{ block.settings.text }}
+                  </div>
                 {% endif %}
               </div>
 
@@ -216,7 +233,7 @@
                           {% endif %}
                         </div>
                         <div
-                          class="product__size-price"
+                          class="product__size-price hidden"
                           :style="{ backgroundColor: item.id === activeVariant.id ? item.accentBottom : 'transparent' }"
                           x-text="price(item.price)"></div>
                       </div>
@@ -236,6 +253,48 @@
                   </div>
                 {% endif %}
               </div>
+
+            {% when 'specification' %}
+              <div class="multiple-specifications">
+                {% for item in specificationItems %}
+                  {% if item.settings.text != blank %}
+                    <div class="specification-text">
+                      {{ 'icon-right.svg' | inline_asset_content }}
+                      <span class="text">{{ item.settings.text }}</span>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            
+            {% when 'add_on_product' %}
+              {% if block.settings.product != blank %}
+                {% assign add_on_product = block.settings.product %}
+                <div class="add-on-product">
+                  {% if block.settings.heading != blank %}
+                    <h2 class="heading">{{ block.settings.heading }}</h2>
+                  {% endif %}
+                  <input type="checkbox" id="add-on-product-{{ forloop.index }}" data-variant-id="{{ add_on_product.selected_or_first_available_variant.id }}">
+                  <label for="add-on-product-{{ forloop.index }}" class="add-on-label">
+                    <div class="flex-add-on-details">
+                      <div class="add-on-image">
+                        {%- render 'image-element',
+                          image: add_on_product.featured_image,
+                          widths: '50, 60, 70, 80',
+                          sizes: '(max-width: 749px) 100vw, 100vw',
+                          class: 'w-full h-full h-auto'
+                        -%}
+                      </div>
+                      <div class="add-on-text">
+                        <h2 class="title">{{ add_on_product.title }}</h2>
+                        <p class="price">{{ add_on_product.selected_or_first_available_variant.price | money }}</p>
+                      </div>
+                      <div class="add-on-control">
+                        <span class="controls"></span>
+                      </div>
+                    </div>
+                  </label>
+                </div>
+              {% endif %}
 
             {% when 'accordion' %}
               <div class="product__accordion">
@@ -367,6 +426,17 @@
                   this.activeVariant = this.variants[0];
                   console.log('Set default variant:', this.activeVariant);
                   // this.slideToSlideByDataAttribute(this.activeVariant.id);
+              }
+              
+              function formatMoney(cents, format, currencySymbol = '$') {
+                  cents = Number(cents);
+                  let value = (cents / 100).toFixed(2);
+                  return format.replace('{{amount}}', currencySymbol + value);
+              }
+              const activeVariantPrice = formatMoney(this.activeVariant.price, "{{amount}}", "$");
+              const addToCartPrice = document.querySelector('.product__cta .sale-price');
+              if(activeVariantPrice && addToCartPrice){
+                addToCartPrice.innerHTML = activeVariantPrice;
               }
 
               if (this.templateName === 'product-bambootek') {
@@ -608,6 +678,39 @@
   ],
   "blocks": [
     {
+      "type": "add_on_product",
+      "name": "Add On Product",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    },
+    {
+      "type": "specification",
+      "name": "Specification",
+      "limit": 1
+    },
+    {
+      "type": "specification_item",
+      "name": "Specification Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    },
+    {
       "type": "accordion",
       "name": "Accordion",
       "limit": 1
@@ -658,6 +761,11 @@
           "type": "url",
           "id": "cta_url",
           "label": "CTA URL"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text"
         }
       ]
     },
