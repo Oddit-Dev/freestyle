@@ -8,7 +8,7 @@
         {% if block.settings.text != blank %}
           {% capture main_compare_text %}
             {{ main_compare_text }}
-            <p class="block-text">
+            <p class="block-text leading-none font-bold border-[1px] border-solid border-scheme_one-white rounded-[30px] px-[10px] py-[7px] flex items-center gap-[6px] uppercase tracking-[-0.8px] max-md:text-[13px] [&_svg]:w-[18px] [&_svg]:h-[18px] [&_svg]:block">
               {{ 'icon-emoji.svg' | inline_asset_content }}
               <span class="text">{{ block.settings.text }}</span>
             </p>
@@ -18,7 +18,7 @@
         {% if block.settings.text != blank %}
           {% capture other_compare_text %}
             {{ other_compare_text }}
-            <p class="block-text">
+            <p class="block-text leading-none font-bold border-[1px] border-solid border-[#909090] rounded-[30px] px-[10px] py-[7px] flex items-center gap-[6px] uppercase tracking-[-0.8px] max-md:text-[13px] [&_svg]:w-[18px] [&_svg]:h-[18px] [&_svg]:block">
               {{ 'icon-compare-emoji.svg' | inline_asset_content }}
               <span class="text">{{ block.settings.text }}</span>
             </p>
@@ -28,60 +28,65 @@
   {% endfor %}
 
 
-  <div class="comparison-main comparison-section--{{ section.id }}">
+  <div class="comparison-main comparison-section--{{ section.id }} py-[80px] max-md:py-[40px] overflow-hidden">
     <div class="container">
       {% if section.settings.main_heading != blank %}
-        <div class="header-wrapper">
-          <h2 class="heading">{{ section.settings.main_heading }}</h2>
+        <div class="header-wrapper mb-[50px] max-md:mb-[35px]">
+          <h2 class="heading text-center">{{ section.settings.main_heading }}</h2>
         </div>
       {% endif %}
-      <div class="flex-multiple-compare comparison-slider">
+      <div class="flex-multiple-compare comparison-slider max-w-[1172px] mx-auto">
         <div class="swiper-wrapper">
           {% if main_compare_text != blank or section.settings.image != blank %}
-            <div class="left-compare swiper-slide">
-              <div class="image-wrapper">
+            <div class="left-compare swiper-slide bg-scheme_one py-[50px] px-[32px] max-md:pt-[30px] max-md:pb-[65px] max-md:px-[24px] rounded-[30px] !h-auto">
+              <div class="image-wrapper max-w-[325px] mx-auto max-md:px-[20px]">
                 {%- render 'image-element',
                   image: section.settings.image,
                   widths: '240, 270, 300, 330, 360, 290',
                   sizes: '(max-width: 749px) 100vw, 50vw',
-                  class: 'w-full h-full h-auto'
+                  class: 'w-full h-full block object-contain'
                 -%}
               </div>
-              <div class="content-wrapper">
+              <div class="content-wrapper mt-[60px] max-md:mt-[30px]">
                 {% if section.settings.heading != blank %}
-                  <h2 class="heading">{{ section.settings.heading }}</h2>
+                  {% assign heart_svg = 'icon-heart-white-border.svg' | inline_asset_content %}
+                  {% assign main_heading = section.settings.heading | replace: '$heart', heart_svg %}
+                  <h2 class="heading text-scheme_one-white text-[36px] max-md:text-[24px] text-center [&_strong]:font-fkroman [&_strong]:font-normal tracking-[-1.8px] max-md:tracking-[-1.2px] mb-[30px] max-md:mb-[25px] flex items-center flex-wrap justify-center gap-[5px] [&_svg]:w-[28px] [&_svg]:h-[23px]">{{ main_heading }}</h2>
                 {% endif %}
-                <div class="multiple-text-content">
+                <div class="multiple-text-content text-scheme_one-white flex items-center justify-center gap-[10px] max-md:gap-[8px] flex-wrap">
                   {{ main_compare_text }}
                 </div>
               </div>
             </div>
           {% endif %}
           {% if other_compare_text != blank or section.settings.compare_image != blank %}
-            <div class="right-compare swiper-slide">
-              <div class="vs-compare">
-                <p class="vs-text">VS</p>
+            <div class="right-compare swiper-slide bg-[#F1F2F5] py-[50px] px-[32px] max-md:pt-[30px] max-md:pb-[65px] max-md:px-[24px] rounded-[30px] !h-auto">
+              <div class="vs-compare absolute left-[-50px] max-md:left-[-30px] top-[30%] max-md:top-[15%] bg-scheme_two-tertiary w-[80px] h-[80px] max-md:w-[50px] max-md:h-[50px] flex items-center justify-center rounded-full">
+                <p class="vs-text font-grotesk font-bold text-[30px] max-md:text-[20px] leading-none tracking-[-1.8px] text-scheme_two">VS</p>
               </div>
-              <div class="image-wrapper">
+              <div class="image-wrapper max-w-[325px] mx-auto max-md:px-[20px]">
                 {%- render 'image-element',
                   image: section.settings.compare_image,
                   widths: '240, 270, 300, 330, 360, 290',
                   sizes: '(max-width: 749px) 100vw, 50vw',
-                  class: 'w-full h-full h-auto'
+                  class: 'w-full h-full block object-contain'
                 -%}
               </div>
-              <div class="content-wrapper">
+              <div class="content-wrapper mt-[60px] max-md:mt-[30px]">
                 {% if section.settings.compare_heading != blank %}
-                  <h2 class="heading">{{ section.settings.compare_heading }}</h2>
+                  {% assign heart_svg = 'icon-heart-white-border.svg' | inline_asset_content %}
+                  {% assign compare_heading = section.settings.compare_heading | replace: '$heart', heart_svg %}
+                  <h2 class="heading text-[36px] max-md:text-[24px] text-[#909090] text-center [&_strong]:font-fkroman [&_strong]:font-normal tracking-[-1.8px] max-md:tracking-[-1.2px] mb-[30px] max-md:mb-[25px] flex items-center flex-wrap justify-center gap-[5px] [&_svg]:w-[28px] [&_svg]:h-[23px]">{{ compare_heading }}</h2>
                 {% endif %}
-                <div class="multiple-text-content">
+                <div class="multiple-text-content flex items-center justify-center gap-[10px] max-md:gap-[8px] flex-wrap text-[#909090]">
                   {{ other_compare_text }}
                 </div>
               </div>
             </div>
           {% endif %}
+
         </div>
-        <div class="swiper-navigation-block">
+        <div class="swiper-navigation-block md:hidden">
           <div class="swiper-pagination"></div>
         </div>
       </div>
@@ -94,7 +99,7 @@
       const mediaSwiperEle = theComparisonSlider.querySelector('.comparison-slider');
       if (mediaSwiperEle) {
         const mediaSwiper = new Swiper(mediaSwiperEle, {
-          slidesPerView: 1.2,
+          slidesPerView: 1.09,
           spaceBetween: 8,
           loop: false,
           centeredSlides: false,
@@ -103,7 +108,7 @@
             releaseOnEdges: true,
           },
           breakpoints: {
-            640: {
+            768: {
               slidesPerView: 2,
               spaceBetween: 24,
               centeredSlides: false,
@@ -139,7 +144,7 @@
       "label": "Image"
     },
     {
-      "type": "text",
+      "type": "inline_richtext",
       "id": "heading",
       "label": "Heading"
     },
@@ -153,7 +158,7 @@
       "label": "Image"
     },
     {
-      "type": "text",
+      "type": "inline_richtext",
       "id": "compare_heading",
       "label": "Heading"
     }

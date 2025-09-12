@@ -155,7 +155,7 @@ export default {
         scheme_one: {
           DEFAULT: '#6638B6',
           secondary: '#000000',
-          tertiary: '#fff',
+          tertiary: '#ffffff',
           white: '#FBFAF8'
         },
         scheme_two: {

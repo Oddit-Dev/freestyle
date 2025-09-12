@@ -1,44 +1,44 @@
 
 {% if section.settings.image != blank or section.settings.heading != blank or section.settings.button != blank %}
-  <div class="image-hero-banner">
+  <div class="image-hero-banner pt-[80px] pb-[100px] max-md:py-[40px]">
     <div class="container">
-      <div class="image-with-text-content">
+      <div class="image-with-text-content relative rounded-[30px] overflow-hidden">
         {% if section.settings.image != blank %}
           <div class="image-wrapper">
             {%- render 'image-element',
               image: section.settings.image,
               widths: '375, 550, 750, 950,1150, 1500, 1780, 2000, 2500',
               sizes: '(max-width: 749px) 100vw, 100vw',
-              class: 'mobile-hide w-full block object-cover h-full max-md:hidden h-auto'
+              class: 'mobile-hide w-full block object-cover h-full min-h-[360px]'
             -%}
             {% if section.settings.image_mobile != blank %}
               {%- render 'image-element',
                 image: section.settings.image_mobile,
                 widths: '375, 550, 750, 950,1150, 1500, 1780, 2000, 2500',
                 sizes: '(max-width: 749px) 100vw, 100vw',
-                class: 'desktop-hide w-full block object-cover h-full max-md:hidden h-auto'
+                class: 'desktop-hide w-full block object-cover h-full'
               -%}
             {% else %}
               {%- render 'image-element',
                 image: section.settings.image,
                 widths: '375, 550, 750, 950,1150, 1500, 1780, 2000, 2500',
                 sizes: '(max-width: 749px) 100vw, 100vw',
-                class: 'desktop-hide w-full block object-cover h-full max-md:hidden h-auto'
+                class: 'desktop-hide w-full block object-cover h-full'
               -%}
             {% endif %}
           </div>
         {% endif %}
         {% if section.settings.button != blank or section.settings.heading != blank %}
-          <div class="content-wrapper">
+          <div class="content-wrapper px-[60px] max-[1199px]:px-[40px] py-[30px] max-md:px-[16px] md:absolute md:left-0 md:top-1/2 md:-translate-y-1/2 w-full md:max-w-[570px] max-md:bg-[linear-gradient(180deg,rgba(238,239,234,0)6.15%,#EEEFEA_20.38%)] max-md:mt-[-38px]">
             {% if section.settings.heading != blank %}
               {% assign logo_svg = 'icon-logo.svg' | inline_asset_content %}
               {% assign main_heading = section.settings.heading | replace: '$logo', logo_svg %}
-              <h2 class="heading">{{ main_heading }}</h2>
+              <h2 class="heading flex items-center flex-wrap gap-x-[10px] text-scheme_one-secondary [&_svg]:max-md:w-[136px] [&_svg]:max-md:h-[30px]">{{ main_heading }}</h2>
             {% endif %}
             {% if section.settings.button != blank and section.settings.link %}
               {% assign walmart_svg = 'icon-walmart.svg' | inline_asset_content %}
               {% assign main_button = section.settings.button | replace: '$walmart', walmart_svg %}
-              <a class="button" href="{{ section.settings.link }}">{{ main_button }}</a>
+              <a class="button max-w-[300px] max-md:max-w-[330px] w-full mt-[40px] max-md:mt-[25px] [&_svg]:!w-[80px] [&_svg]:h-[18px] [&_svg]:!m-0 gap-x-[6px] hover:[&_svg_path]:fill-scheme_one" href="{{ section.settings.link }}">{{ main_button }}</a>
             {% endif %}
           </div>
         {% endif %}
@@ -63,7 +63,7 @@
       "label": "Image Mobile"
     },
     {
-      "type": "text",
+      "type": "inline_richtext",
       "id": "heading",
       "label": "Heading"
     },

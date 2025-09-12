@@ -24,5 +24,20 @@ h2,.h2{
 }
 
 .container{
-  @apply px-[40px] max-w-[1360px] mx-auto max-md:px-[16px] w-full
+  @apply px-[40px] max-w-[1440px] mx-auto max-md:px-[16px] w-full
 }
+
+.swiper-pagination {
+    @apply !static !flex justify-center flex-wrap items-center mt-[40px] gap-[5px] max-md:mt-[30px]
+}
+.swiper-pagination .swiper-pagination-bullet {
+  @apply !m-0 opacity-50 rounded-[4px] !bg-scheme_two-tertiary 
+}
+.swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+    @apply w-[15px] opacity-100
+}
+
+
+
+
+

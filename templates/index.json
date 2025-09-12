@@ -264,7 +264,7 @@
       ],
       "name": "Testimonial",
       "settings": {
-        "heading": "<strong>Trusted by</strong> Real Families",
+        "heading": "Trusted by <strong>Real Families</strong>",
         "button": "Shop Skin $heart Shield™ Diapers",
         "link": "shopify://collections"
       }
@@ -578,7 +578,7 @@
       "settings": {
         "main_heading": "A Better Diaper",
         "image": "shopify://shop_images/image_5303_1.png",
-        "heading": "Skin $heart Shield™ Diapers",
+        "heading": "Skin $heart Shield™ <strong>Diapers</strong>",
         "compare_image": "shopify://shop_images/Screenshot_2025-08-07_at_11.17.01_AM_2_1.png",
         "compare_heading": "Other Diapers"
       }
