@@ -29,17 +29,27 @@
     "copyright_text": "© 2024 All In Food",
     "show_cart_products_carousel": false,
     "cart_products": [
-      "baby-maker-uni-crop-black",
-      "adult-sweatsuit-purple",
-      "baby-maker-uni-t-shirt-black"
+      "soft-bamboo-wipes"
     ],
-    "activate_upsell_functionality": true,
+    "activate_upsell_functionality": false,
     "onetime_upsell_product": [
       "baby-maker-sport-tee"
     ],
     "subscription_upsell_product": [
       "soft-bamboo-wipes"
     ],
+    "custom_free_shipping_amount": 200,
+    "cart_btm_content": "This order ships FREE",
+    "custom_upsell_heading": "Add 99% Water Jumbo Wipes",
+    "custom_upsell_product": "soft-bamboo-wipes",
+    "empty_cart_title": "Your cart is empty",
+    "empty_cart_content": "<p>Stock up on comfort that keeps baby dry</p>",
+    "product_feature_image": "shopify://shop_images/image_5303_8e6fac27-d71a-428b-b919-5cebffb17173.png",
+    "product_feature_title": "<p>SkinShield™ $heart ShieldTM Diapers</p>",
+    "product_feature_content": "<p>14x better absorption, 7-layer skin protection, and Total Chlorine Free materials.</p>",
+    "product_feature_btn_txt": "Shop Skin $heart ShieldTM Diapers",
+    "product_feature_btn_url": "shopify://products/skinshield-diapers",
+    "empty_btm_walmart": "<p>Find a $walmart near you</p>",
     "main_menu": "main-menu",
     "bamboo_icon": "shopify://shop_images/BambooTek.png",
     "heart_icon": "shopify://shop_images/heart-violet.svg",

@@ -26,7 +26,11 @@
           {% render 'product-gallery', product: product %}
         </div>
         <div class="custom-pdp-store-locater">
-          {% render 'c-store-locator', title: "Find SkinShieldTM Diapers near you", text: "See nearby stores with SkinSkinShieldTM Diapers in stock." %}
+          {% assign walmartlogo = section.settings.store_main_logo %}
+          {% assign storetitle = section.settings.store_main_heading %} 
+          {% assign storesubtitle = section.settings.store_sub_heading %} 
+          {% assign rightlogo = section.settings.store_right_logo %}
+          {% render 'c-store-locator', title: storetitle , text: storesubtitle, walmartlogo: walmartlogo, rightlogo:rightlogo %}
         </div>
       </div>
       
@@ -273,7 +277,7 @@
                   {% if block.settings.heading != blank %}
                     <h2 class="heading">{{ block.settings.heading }}</h2>
                   {% endif %}
-                  <input type="checkbox" id="add-on-product-{{ forloop.index }}" data-variant-id="{{ add_on_product.selected_or_first_available_variant.id }}">
+                  <input type="checkbox" class="addonproduct" id="add-on-product-{{ forloop.index }}" data-variant-id="{{ add_on_product.selected_or_first_available_variant.id }}">
                   <label for="add-on-product-{{ forloop.index }}" class="add-on-label">
                     <div class="flex-add-on-details">
                       <div class="add-on-image">
@@ -350,6 +354,20 @@
             product: {{ productCurrent | json }},
             linkToShowSizeMOdal: false,
             showWeight: true,
+
+            addCheckedAddons() {
+              const checkedAddons = document.querySelectorAll('.addonproduct:checked');
+              checkedAddons.forEach((addon) => {
+                const variantId = addon.getAttribute('data-variant-id');
+                if (variantId) {
+                  console.log('variantId',variantId);
+                  Alpine.store('cart').addToCart({
+                    variantId: variantId,
+                    quantity: 1
+                  }, true, false);
+                }
+              });
+            },
 
             updateSellingPlan(id) {
                 this.sellingPlan = this.activeVariant.selling_plan_allocations.find(item => item.id == id);
@@ -467,6 +485,7 @@
                   }
                   console.log('this.BEFORE ADD TO CART');
                   Alpine.store('cart').addMultiplyToCart(itemsToAdd).then(() => {
+                    this.addCheckedAddons();
                     if (redirect) {
                       // window.location.href = '/checkout';
                     } else {
@@ -478,7 +497,9 @@
                   variantId: this.activeVariant.id,
                   quantity: 1,
                   sellingPlanId: this.sellingPlan?.id || null
-                }, true, redirect)
+                }, true, redirect).then(() => {
+                  this.addCheckedAddons();
+              });
               }
             },
             price(price) {
@@ -674,6 +695,30 @@
       "label": "Show Product Details",
       "info": "Show the 'Box Contains' and 'Pack Contains' information below variant options",
       "default": true
+    },
+    {
+     "type": "header",
+     "content": "Store Locator Detail" 
+    },
+    {
+      "type": "image_picker",
+      "id": "store_main_logo",
+      "label": "Main Logo"
+    },
+    {
+      "type": "text",
+      "id": "store_main_heading",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "store_sub_heading",
+      "label": "Heading"
+    },
+    {
+      "type": "image_picker",
+      "id": "store_right_logo",
+      "label": "Right Logo"
     }
   ],
   "blocks": [

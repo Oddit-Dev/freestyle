@@ -9,11 +9,31 @@
 
 <div class="storepoint py-16 md:py-34">
     <div class="container container-lg mx-auto">
+        {% if walmartlogo != blank %}
+            <div class="walmart-logo">
+                {% render 'image-element',
+                    image: walmartlogo,
+                    widths: '200, 300, 400',
+                    sizes: '(max-width: 989px) 100vw, 45vw',
+                    class: 'walmart-logo'
+                %}
+            </div>  
+        {% endif %}
         <h2 class="heading-3 font-grotesk mb-8 font-normal">{{ title }}</h2>
         <div class="mb-8 max-w-[360px]">{{ description | replace: 'skin_shield_tm', skin_shield | replace: 'bamboo_tek_tm', bamboo_tek }}</div>
         <!-- Storepoint Widget Embed Start -->
         <div id="storepoint-widget"></div>
     </div>
+    {% if rightlogo != blank %}
+        <div class="right-side-logo">
+            {% render 'image-element',
+                image: rightlogo,
+                widths: '200, 300, 400',
+                sizes: '(max-width: 989px) 100vw, 45vw',
+                class: 'walmart-logo'
+        %}
+        </div>
+    {% endif %}
 </div>
 <script>
 window.loadStorepoint=function(){

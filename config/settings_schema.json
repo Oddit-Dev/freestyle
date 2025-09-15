@@ -369,6 +369,77 @@
         "type": "product_list",
         "id": "subscription_upsell_product",
         "label": "Subscription Upsell Product"
+      },
+      {
+        "type": "header",
+        "content": "Cart Content"
+      },
+      {
+        "type": "text",
+        "id": "cart_btm_content",
+        "label": "Bottom Content"
+      },
+      {
+        "type": "text",
+        "id": "custom_upsell_heading",
+        "label": "Upsell Heading"
+      },
+      {
+        "type": "product",
+        "id": "custom_upsell_product",
+        "label": "Choose Product"
+      },
+      {
+        "type": "header",
+        "content": "Empty Cart"
+      },
+      {
+        "type": "text",
+        "id": "empty_cart_title",
+        "label": "Empty Cart Heading"
+      },
+      {
+        "type": "richtext",
+        "id": "empty_cart_content",
+        "label": "Sub Content"
+      },
+      {
+        "type": "header",
+        "content": "Product Featured"
+      },
+      {
+        "type": "image_picker",
+        "id": "product_feature_image",
+        "label": "Choose Image"
+      },
+      {
+        "type": "richtext",
+        "id": "product_feature_title",
+        "label": "Heading"
+      },
+      {
+        "type": "richtext",
+        "id": "product_feature_content",
+        "label": "Content"
+      },
+      {
+        "type": "text",
+        "id": "product_feature_btn_txt",
+        "label": "Button Text"
+      },
+      {
+        "type": "url",
+        "id": "product_feature_btn_url",
+        "label": "URL"
+      },
+      {
+        "type": "header",
+        "content": "Button Content"
+      },
+      {
+        "type": "richtext",
+        "id": "empty_btm_walmart",
+        "label": "Content"
       }
     ]
   },

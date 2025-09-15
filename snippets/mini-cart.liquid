@@ -15,7 +15,7 @@
       </path></svg>
     </span>
     <div class="b-mini_cart-header py-5">
-      <h3 class="b-mini_cart-title text-xl font-fkroman">Your Cart</h3>
+      <h3 class="b-mini_cart-title text-xl font-fkroman">Your Cart <span x-text="$store.cart.itemsCount > 0 ? '(' + $store.cart.itemsCount + ')' : '(0)'"></span></h3>
     </div>
 
     {% comment %} <template x-if="!$store.cart.shippingDiscount.isFreeShippingUnlocked">
@@ -37,9 +37,61 @@
     </div>
 
     <div class="b-mini_cart-empty flex grow justify-center items-center" x-show="$store.cart.items.length === 0">
-      <h2 class="text-center">Your cart is empty</h2>
+      {% if settings.empty_cart_title != blank %}
+          <h2 class="text-center">{{ settings.empty_cart_title }}</h2>  
+      {% endif %}
+      {% if settings.empty_cart_content != blank %}
+          <span class="empty-subheading">{{ settings.empty_cart_content }}</span>
+      {% endif %}
+      <div class="custom-product-feature">
+      <div class="product-feature-main">
+        {% assign pro_feature_image = settings.product_feature_image %}
+        {% if pro_feature_image != blank  %}
+          <div class="product-feature-image">
+            {% render 'image-element',
+              image: pro_feature_image,
+              widths: '100, 200, 300, 375, 550, 750, 1100, 1500, 1780',
+              sizes: '(max-width: 989px) 100vw, 45vw',
+              class: 'product-feature-image'
+            %}
+          </div>
+        {% endif %}
+        <div class="product-feature-content">
+          {% if settings.product_feature_title != blank %}
+            {% assign heart_svg = 'icon-heart.svg' | inline_asset_content %}
+            {% assign main_heading = settings.product_feature_title | replace: '$heart', heart_svg %}
+            <h3 class="product-feature-title">{{ main_heading }}</h3>
+          {% endif %}
+          {% if settings.product_feature_content != blank %}
+            <span class="product-feature-description">
+              {{ settings.product_feature_content }}
+            </span>
+          {% endif %}
+          {% if settings.product_feature_btn_url != blank and settings.product_feature_btn_txt != blank %}
+            <div class="mt-[50px] max-md:mt-[24px]">
+              {% assign heart_svg = 'icon-heart.svg' | inline_asset_content %}
+              {% assign main_btn = settings.product_feature_btn_txt | replace: '$heart', heart_svg %}
+              <a href="{{ settings.product_feature_btn_url }}" class="button button-primary !max-w-[390px] w-full max-md:mx-auto">
+                {{ main_btn }}
+              </a>
+            </div>
+          {% endif %}          
+        </div>
+      </div>
+    </div>
+    <div class="empty-footer-logo">
+        <div class="custom-walmart-logo">
+          {% assign walmart_svg = 'icon-walmart.svg' | inline_asset_content %}
+          {% assign main_button = settings.empty_btm_walmart | replace: '$walmart', walmart_svg %} 
+          {{ main_button }}
+        </div>
+      <span>
+        {{ "arrow-bottom-right.svg" | inline_asset_content }}
+      </span>
     </div>
 
+    </div>
+    
     <div
       class="b-mini_cart-list flex flex-col gap-6 grow max-h-[70vh] overflow-y-auto"
       x-show="$store.cart.items.length > 0"
@@ -60,7 +112,15 @@
           </figure>
           <div class="b-mini_cart-item__desc">
             <div class="mb-4">
-              <h4 x-html="item.title" class="w-full mb-4 pr-24 font-Inter"></h4>
+              <h4 x-html="item.product_title" class="w-full mb-4 pr-24 font-Inter"></h4>
+              <p class="text-gray-500 text-sm">
+                <template x-for="(opt, idx) in item.options_with_values" :key="idx">
+                  <span>
+                    <span x-text="opt.value"></span>
+                    <span x-show="idx !== item.options_with_values.length - 1"> | </span>
+                  </span>
+                </template>
+              </p>
               <p class="mt-2 text-sm font-grotesk font-normal">
                 <span
                   class="line-through opacity-50"
@@ -90,27 +150,53 @@
                 <span
                   @click="$store.cart.decrementQuantity(item.id, item.quantity)"
                   class="b-quantity-sign m-minus !text-black-content">
-                  -
+                  {{ "drawer-minus.svg" | inline_asset_content }}
                 </span>
                 <div x-text="item.quantity" class="b-quantity-input !text-black-content"></div>
                 <span
                   @click="$store.cart.updateCart(item.id, item.quantity + 1)"
                   class="b-quantity-sign m-plus !text-black-content">
-                  +
+                  {{ "drawer-plus.svg" | inline_asset_content }}
                 </span>
               </div>
 
               <button @click="$store.cart.removeFromCart(item.key)" class="text-color_4">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true" focusable="false" class="icon m-small icon-remove">
-                  <path d="M14 3h-3.53a3.07 3.07 0 00-.6-1.65C9.44.82 8.8.5 8 .5s-1.44.32-1.87.85A3.06 3.06 0 005.53 3H2a.5.5 0 000 1h1.25v10c0 .28.22.5.5.5h8.5a.5.5 0 00.5-.5V4H14a.5.5 0 000-1zM6.91 1.98c.23-.29.58-.48 1.09-.48s.85.19 1.09.48c.2.24.3.6.36 1.02h-2.9c.05-.42.17-.78.36-1.02zm4.84 11.52h-7.5V4h7.5v9.5z" fill="currentColor"></path>
-                  <path d="M6.55 5.25a.5.5 0 00-.5.5v6a.5.5 0 001 0v-6a.5.5 0 00-.5-.5zM9.45 5.25a.5.5 0 00-.5.5v6a.5.5 0 001 0v-6a.5.5 0 00-.5-.5z" fill="currentColor"></path>
-                </svg>
+                {{ "drawer-delete.svg" | inline_asset_content }}
+                <span class="item-remove">Remove</span>
               </button>
             </div>
           </div>
         </div>
       </template>
     </div>
+
+    {% comment %} <div class="custom-upsell-products" x-show="$store.cart.items.length != 0">
+      {% if settings.custom_upsell_product != blank %}
+          {% assign add_on_product = settings.custom_upsell_product %}
+            <div class="custom-upsell">
+              {% if settings.custom_upsell_heading != blank %}
+                <h2 class="heading">{{ settings.custom_upsell_heading }}</h2>
+              {% endif %}
+              <input type="checkbox" class="customupsell" id="custom-upsell-{{ forloop.index }}" data-variant-id="{{ add_on_product.selected_or_first_available_variant.id }}">
+              <label for="custom-upsell-{{ forloop.index }}" class="add-on-label">
+                <div class="flex-add-on-details">
+                  <div class="add-on-image">
+                    {%- render 'image-element',
+                      image: add_on_product.featured_image,
+                      widths: '400, 500, 600, 700, 800',
+                      sizes: '(max-width: 749px) 100vw, 45vw',
+                      class: 'custom-upsell-image'
+                    -%}
+                  </div>
+                  <div class="add-on-text">
+                    <h2 class="title">{{ add_on_product.title }}</h2>
+                    <p class="price">{{ add_on_product.selected_or_first_available_variant.price | money }}</p>
+                  </div>
+                </div>
+              </label>
+            </div>
+        {% endif %}
+    </div> {% endcomment %}
     
     {% if settings.show_cart_products_carousel %}
       <div class="b-mini_cart-carousel hidden">
@@ -177,7 +263,7 @@
     {% endif %}
 
     {% if upsell_functionality %}
-    <div class="b-mini_cart-upsell flex flex-col gap-4" x-data>
+    <div class="b-mini_cart-upsell flex flex-col gap-4" x-data x-show="$store.cart.items.length != 0">
         {% for item in subscription_upsell_products %}
             {% assign activeVariant = item.selected_or_first_available_variant %}
             {% assign sellingPlan = activeVariant.selling_plan_allocations[0].selling_plan %}
@@ -235,17 +321,73 @@
     </div>
     {% endif %}
     <!-- Total block -->
-    <div class="b-mini_cart-total flex flex-wrap justify-between">
+    <div class="b-mini_cart-total flex flex-wrap justify-between" x-data x-show="$store.cart.items.length != 0">
       <p class="font-Inter hidden">Total items: <span x-text="$store.cart.itemsCount"></span></p>
       <p class="flex items-center justify-between w-full pt-4 pb-2">
-        <span class="font-Inter">Total price:</span>
+        <span class="font-Inter">Subtotal</span>
         <span class="font-Inter font-bold text-xl"
           >$<span x-text="$store.cart.totalPrice"></span
         ></span>
       </p>
       <button @click="window.location.href='/checkout'" class="button min-w-full w-full mt-5">
-        Proceed to Checkout
+        {{ "checkout-lock.svg" | inline_asset_content }} Secure Checkout
       </button>
+      {% if settings.cart_btm_content != blank %}
+        <div class="cart-drawer-bottom">
+          <span class="bottom-content">{{ settings.cart_btm_content }}</span>
+        </div>
+      {% endif %}
     </div>
   </div>
 </section>
+
+<script>
+ document.addEventListener('DOMContentLoaded', () => {
+  const checkboxes = Array.from(document.querySelectorAll('.customupsell'));
+
+  checkboxes.forEach((checkbox) => {
+    checkbox.addEventListener('change', async (e) => {
+      const cb = e.currentTarget;
+      const variantId = cb.dataset.variantId;
+      if (!variantId) return;
+
+      if (cb.checked) {
+        Alpine.store('cart')
+          .addToCart({ variantId: Number(variantId), quantity: 1 }, true, false)
+          .catch(() => {
+            cb.checked = false;
+          });
+      } else {
+        const item = Alpine.store('cart').items.find(
+          (i) => Number(i.variant_id) === Number(variantId)
+        );
+
+        if (item) {
+          Alpine.store('cart').removeFromCart(item.key);
+        } else {
+          const res = await fetch('/cart.js');
+          const cart = await res.json();
+          const match = cart.items.find(
+            (i) => Number(i.variant_id) === Number(variantId)
+          );
+          if (match) {
+            Alpine.store('cart').removeFromCart(match.key);
+          }
+        }
+      }
+    });
+  });
+
+  (async function syncInitial() {
+    const res = await fetch('/cart.js');
+    const cart = await res.json();
+    checkboxes.forEach((cb) => {
+      const vid = cb.dataset.variantId;
+      if (!vid) return;
+      cb.checked = cart.items.some(
+        (i) => Number(i.variant_id) === Number(vid)
+      );
+    });
+  })();
+});
+</script>
