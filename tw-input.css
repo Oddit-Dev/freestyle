@@ -5,6 +5,56 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: 'Neufile Grotesk';
+    src: url('https://cdn.shopify.com/s/files/1/0616/2835/0723/files/NeufileGrotesk-Light.woff2?v=1758018383') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0616/2835/0723/files/NeufileGrotesk-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Neufile Grotesk';
+    src: url('https://cdn.shopify.com/s/files/1/0616/2835/0723/files/NeufileGrotesk-Regular.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0616/2835/0723/files/NeufileGrotesk-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Neufile Grotesk';
+    src: url('https://cdn.shopify.com/s/files/1/0616/2835/0723/files/NeufileGrotesk-Medium.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0616/2835/0723/files/NeufileGrotesk-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Neufile Grotesk';
+    src: url('https://cdn.shopify.com/s/files/1/0616/2835/0723/files/NeufileGrotesk-SemiBold.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0616/2835/0723/files/NeufileGrotesk-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Neufile Grotesk';
+    src: url('https://cdn.shopify.com/s/files/1/0616/2835/0723/files/NeufileGrotesk-Bold.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0616/2835/0723/files/NeufileGrotesk-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Neufile Grotesk';
+    src: url('https://cdn.shopify.com/s/files/1/0616/2835/0723/files/NeufileGrotesk-ExtBdIta.woff2') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0616/2835/0723/files/NeufileGrotesk-ExtBdIta.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+
 h2,.h2{
   @apply font-grotesk font-medium text-[52px] max-lg:text-[46px] leading-[120%] tracking-[-2.6px] text-scheme_one max-md:text-[32px] max-md:tracking-[-1.6px]
 }
