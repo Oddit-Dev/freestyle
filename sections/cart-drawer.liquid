@@ -1,5 +1,5 @@
 {{ 'cart-drawer.css' | asset_url | stylesheet_tag }}
-<cart-drawer class="cart-drawer test" data-id="{{ section.id }}">
+<cart-drawer class="cart-drawer" data-id="{{ section.id }}">
   <div class="cart-drawer__content">
     <div class="cart-drawer__loader hidden" id="CartDrawerLoader">
       <div class="spinner"></div>
@@ -7,7 +7,10 @@
     <header class="cart-drawer__header">
       <h2>Your Cart (<span id="CartCount">{{ cart.item_count }}</span>)</h2>
       <button class="cart-drawer__close">
-        {{ 'icon-close.svg' | inline_asset_content }}
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="icon icon-close" fill="currentColor" viewBox="0 0 18 17">
+          <path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor">
+          </path>
+        </svg>
       </button>
 
       {% assign free_shipping_threshold = section.settings.free_shipping_threshold | times: 100 | default: 15000 %}
@@ -19,65 +22,166 @@
     </header>
 
     <div class="cart-drawer__body" id="CartDrawerBody">
-      <div class="cart-drawer__progress">
-        {% if cart_total >= free_shipping_threshold %}
-          <p class="progress-message">🎉 You’ve unlocked free shipping!</p>
-        {% else %}
-          <p class="progress-message">
-            Spend {{ free_shipping_threshold | minus: cart_total | money }} more to unlock free shipping.
-          </p>
-        {% endif %}
+      {% if cart.item_count != 0 %}
+        <div class="cart-drawer__progress">
+          {% if cart_total >= free_shipping_threshold %}
+            <p class="progress-message">Congrats! You’ve unlocked FREE shipping!</p>
+          {% else %}
+            <p class="progress-message">
+              Spend {{ free_shipping_threshold | minus: cart_total | money }} more to unlock free shipping.
+            </p>
+          {% endif %}
 
-        <div class="progress-bar">
-          <div class="progress-fill" style="width: {{ progress }}%;"></div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: {{ progress }}%;"></div>
+          </div>
         </div>
-      </div>
+      {% endif %}
+
+      {% if cart.item_count == 0 %}
+      {% if section.settings.empty_cart_title != blank %}
+          <h2 class="text-center">{{ section.settings.empty_cart_title }}</h2>  
+      {% endif %}
+      {% if section.settings.empty_cart_content != blank %}
+          <span class="empty-subheading">{{ section.settings.empty_cart_content }}</span>
+      {% endif %}
+      <div class="custom-product-feature">
+        <div class="product-feature-main">
+          {% assign pro_feature_image = section.settings.product_feature_image %}
+          {% if pro_feature_image != blank  %}
+            <div class="product-feature-image">
+              {% render 'image-element',
+                image: pro_feature_image,
+                widths: '100, 200, 300, 375, 550, 750, 1100, 1500, 1780',
+                sizes: '(max-width: 989px) 100vw, 45vw',
+                class: 'product-feature-image'
+              %}
+            </div>
+          {% endif %}
+          <div class="product-feature-content">
+            {% if section.settings.product_feature_title != blank %}
+              {% assign heart_svg = 'icon-heart.svg' | inline_asset_content %}
+              {% assign main_heading = section.settings.product_feature_title | replace: '$heart', heart_svg %}
+              <h3 class="product-feature-title">{{ main_heading }}</h3>
+            {% endif %}
+            {% if section.settings.product_feature_content != blank %}
+              <span class="product-feature-description">
+                {{ section.settings.product_feature_content }}
+              </span>
+            {% endif %}
+            {% if section.settings.product_feature_btn_url != blank and section.settings.product_feature_btn_txt != blank %}
+              <div class="mt-[50px] max-md:mt-[24px]">
+                {% assign heart_svg = 'icon-heart.svg' | inline_asset_content %}
+                {% assign main_btn = section.settings.product_feature_btn_txt | replace: '$heart', heart_svg %}
+                <a href="{{ section.settings.product_feature_btn_url }}" class="button button-primary !max-w-[390px] w-full max-md:mx-auto">
+                  {{ main_btn }}
+                </a>
+              </div>
+            {% endif %}          
+          </div>
+        </div>
+    </div>
+    <div class="empty-footer-logo">
+        <div class="custom-walmart-logo">
+          {% assign walmart_svg = 'icon-walmart.svg' | inline_asset_content %}
+          {% assign main_button = section.settings.empty_btm_walmart | replace: '$walmart', walmart_svg %} 
+          {{ main_button }}
+        </div>
+      <span>
+        {{ "arrow-bottom-right.svg" | inline_asset_content }}
+      </span>
+    </div>
+
+      {% else %}
       {% for item in cart.items %}
         <div class="cart-drawer__item" data-key="{{ item.key }}">
           <img src="{{ item.image | image_url: width: 80 }}" alt="{{ item.title }}">
           <div class="cart-drawer__details">
             <p class="cart-drawer__title">{{ item.product.title }}</p>
-            <p class="cart-drawer__price">{{ item.final_line_price | money }}</p>
+
+            {% if item.variant.title != 'Default Title' %}
+              {% assign variant_title = item.variant.title %}
+              {% assign clean_title = variant_title | replace: '(', '' | replace: ')', '' %}
+
+              {% if clean_title contains 'lbs' and clean_title contains 'diapers' %}
+                {% assign parts = clean_title | split: ' - ' %}
+                {% assign left_part = parts[0] %}
+                {% assign right_part = parts[1] %}
+
+                {% assign left_parts = left_part | split: ' ' %}
+                {% assign size = left_parts[0] | append: ' ' | append: left_parts[1] %}
+                {% assign weight = left_parts[2] | replace: 'lbs', ' lbs' %}
+                {% assign diapers = right_part | replace: 'diapers', 'Diapers' %}
+
+                <p class="cart-drawer__variant">{{ size }} | {{ weight }} | {{ diapers }}</p>
+              {% else %}
+                <p class="cart-drawer__variant">{{ variant_title }}</p>
+              {% endif %}
+            {% endif %}
+
+
+            {% assign price = item.variant.price %}
+            {% assign compare_at = item.variant.compare_at_price %}
+
+            <p class="cart-drawer__price">
+              {{ price | money }}
+              {% if compare_at > price %}
+                <span class="compare-price">{{ compare_at | money }}</span>
+                {% assign discount = compare_at | minus: price | times: 100 | divided_by: compare_at %}
+                <span class="discount-badge">{{ discount }}% OFF</span>
+              {% endif %}
+            </p>
+
             <div class="cart-drawer__quantity">
-              <button class="qty-btn minus">-</button>
-              <input
-                type="number"
-                value="{{ item.quantity }}"
-                min="1">
-              <button class="qty-btn plus">+</button>
+              <div class="qty-box">
+                <button class="qty-btn minus">{{ "drawer-minus.svg" | inline_asset_content }}</button>
+                <input type="number" value="{{ item.quantity }}" min="1">
+                <button class="qty-btn plus">{{ "drawer-plus.svg" | inline_asset_content }}</button>
+              </div>
+              <button class="cart-drawer__remove">{{ "drawer-delete.svg" | inline_asset_content }}Remove</button>
             </div>
-            <button class="cart-drawer__remove">Remove</button>
+
+            <div class="subscription-main">
+              {% render 'subscription-form', item: item, forloop: forloop %}
+            </div>
+            
           </div>
         </div>
       {% endfor %}
+      {% endif %}
 
-      {% if cart.items.size > 0 %}
-        {% assign last_item = cart.items.last %}
-        {{ last_item.handle }}
-        <div class="cart-drawer__upsell cart-upsell-section !tw-hidden">
-          {% render 'cart-drawer-upsell'
-            , section: section
-            , product_id: 'clever-candy-3d-gummy-cupcakes' %}
-        </div>
+
+      {% if cart.item_count != 0 %}
+      <div class="custom-upsell-products"> 
+        {% if section.settings.custom_upsell_product != blank %}
+            {% assign add_on_product = section.settings.custom_upsell_product %}
+              <div class="custom-upsell">
+                {% if section.settings.custom_upsell_heading != blank %}
+                  <h4 class="heading">{{ section.settings.custom_upsell_heading }}</h4>
+                {% endif %}
+                  <add-variant-checkbox data-id="{{ add_on_product.selected_or_first_available_variant.id }}"></add-variant-checkbox>
+                <label for="custom-drawer-upsell" class="add-on-label">
+                  <div class="flex-add-on-details">
+                      <div class="cdp-img">
+                        <img
+                          src="{{ add_on_product.featured_image |  image_url: width: 32 }}"
+                          width="32"
+                          height="24"
+                          alt="{{ add_on_product.title }}"
+                          loading="lazy" />
+                      </div>
+                    <div class="add-on-text">
+                      <span class="title">{{ add_on_product.title }}</span>
+                      <p class="price">{{ add_on_product.selected_or_first_available_variant.price | money }}</p>
+                    </div>
+                  </div>
+                </label>
+              </div>
+          {% endif %}
+      </div> 
       {% endif %}
     </div>
-
     <footer class="cart-drawer__footer">
-      <div class="cart-drawer__note">
-        <div class="toggle-note" data-toggle-note>
-          <span class="note-icon">+</span>
-          <span>Add gift message or order note</span>
-        </div>
-        <div class="note-wrapper hidden">
-          <textarea
-            id="CartNote"
-            class="cart-note"
-            name="note"
-            form="cart-form"
-            placeholder="Special instructions for your order">{{ cart.note }}</textarea>
-          <button type="button" class="save-note">Save Note</button>
-        </div>
-      </div>
       <div class="cart-drawer-addon">
         {% assign addon_product = section.settings.addon_product %}
         {% if addon_product.available %}
@@ -119,10 +223,6 @@
         <span>Subtotal:</span>
         <span class="subtotal">{{ cart.total_price | money }}</span>
       </div>
-      <div class="cart-drawer-subtotal">
-        <span>Shipping:</span>
-        <span class="shipping">FREE</span>
-      </div>
       <div class="cart-drawer-buttons">
         <form
           method="post"
@@ -132,12 +232,9 @@
             type="submit"
             name="checkout"
             class="secure-checkout">
-            {{ 'icon-lock.svg' | inline_asset_content }}
+            {{ 'checkout-lock.svg' | inline_asset_content }}
             <span>Secure Checkout</span>
           </button>
-          <div class="additional-checkout-buttons">
-            {{ content_for_additional_checkout_buttons }}
-          </div>
         </form>
       </div>
       {% if section.settings.free_shipping_text != blank %}
@@ -153,6 +250,58 @@
   {
     "name": "Cart Drawer",
     "settings": [
+      {
+        "type": "header",
+        "content": "Empty Cart"
+      },
+      {
+        "type": "text",
+        "id": "empty_cart_title",
+        "label": "Empty Cart Heading"
+      },
+      {
+        "type": "richtext",
+        "id": "empty_cart_content",
+        "label": "Sub Content"
+      },
+      {
+        "type": "header",
+        "content": "Product Featured"
+      },
+      {
+        "type": "image_picker",
+        "id": "product_feature_image",
+        "label": "Choose Image"
+      },
+      {
+        "type": "richtext",
+        "id": "product_feature_title",
+        "label": "Heading"
+      },
+      {
+        "type": "richtext",
+        "id": "product_feature_content",
+        "label": "Content"
+      },
+      {
+        "type": "text",
+        "id": "product_feature_btn_txt",
+        "label": "Button Text"
+      },
+      {
+        "type": "url",
+        "id": "product_feature_btn_url",
+        "label": "URL"
+      },
+      {
+        "type": "header",
+        "content": "Button Content"
+      },
+      {
+        "type": "richtext",
+        "id": "empty_btm_walmart",
+        "label": "Content"
+      },
       {
         "type": "header",
         "content": "Free shipping content"
@@ -172,34 +321,55 @@
       {
         "type": "header",
         "content": "Cart note"
-      }, {
+      }, 
+      {
         "type": "checkbox",
         "id": "enable_note",
         "label": "Enable note"
-      }, {
+      }, 
+      {
         "type": "text",
         "id": "note_heading",
         "label": "Note title",
         "default": "Add gift message or order note"
-      }, {
+      }, 
+      {
         "type": "header",
         "content": "Addon Product"
-      }, {
+      }, 
+      {
         "type": "product",
         "id": "addon_product",
         "label": "Select Product"
-      }, {
+      }, 
+      {
         "type": "image_picker",
         "id": "addon_image",
         "label": "Addon Product Image"
-      }, {
+      }, 
+      {
         "type": "text",
         "id": "addon_title",
         "label": "Addon Product Title"
-      }, {
+      }, 
+      {
         "type": "richtext",
         "id": "addon_info",
         "label": "Addon Product Info"
+      },
+      {
+        "type": "header",
+        "content": "Addon with Checkbox"
+      },
+      {
+        "type": "text",
+        "id": "custom_upsell_heading",
+        "label": "Upsell Heading"
+      },
+      {
+        "type": "product",
+        "id": "custom_upsell_product",
+        "label": "Choose Product"
       }
     ]
   }

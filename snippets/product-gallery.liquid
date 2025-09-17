@@ -8,8 +8,37 @@
 </div>
 <div class="product__gallery" x-show="!loading" x-cloak>
    {% if product.images %}
-       <div class="product__gallery-thumbs swiper-container">
-          <div class="swiper-container swiper-vertical" x-ref="mainSwiperPagination">
+     <div class="product__gallery-main">
+          <div class="product__gallery-main__inner">
+            <div class="swiper-container" x-ref="mainSwiper">
+              <div class="swiper-wrapper">
+                {% assign slideIndex = 0 %}
+                {% for image in product.images %}
+                  {% unless image.attached_to_variant? %}
+                    <div class="swiper-slide" data-index="{{ slideIndex }}">
+                        {{ image | image_url: width: 800 | image_tag: width: 619, height: 619, class: "w-full h-full object-contain" }}
+                    </div>
+                    {% assign slideIndex = slideIndex | plus: 1 %}
+                  {% endunless %}
+                {% endfor %}
+                
+                {% for variant in product.variants %}
+                  {% if variant.featured_image %}
+                    <div class="swiper-slide  m-variant"
+                          data-index="{{ slideIndex }}"
+                          data-variant-id="{{ variant.id }}">
+                          <span class="m-badge" data-index="{{ slideIndex }}" >SELECTED VARIANT IMAGE</span>
+                      {{ variant.featured_image | image_url: width: 581 | image_tag: width: 581, height: 619, class: "w-full h-full object-contain" }}
+                    </div>
+                    {% assign slideIndex = slideIndex | plus: 1 %}
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+       </div>
+       <div class="product__gallery-thumbs">
+          <div class="swiper" x-ref="mainSwiperPagination" style="width:100%">
             <div class="swiper-wrapper">
               {% assign slideIndex = 0 %}
               {% for image in product.images %}
@@ -49,36 +78,7 @@
             </div>
            </div>
        </div>
-
-       <div class="product__gallery-main">
-          <div class="product__gallery-main__inner">
-            <div class="swiper-container" x-ref="mainSwiper">
-              <div class="swiper-wrapper">
-                {% assign slideIndex = 0 %}
-                {% for image in product.images %}
-                  {% unless image.attached_to_variant? %}
-                    <div class="swiper-slide" data-index="{{ slideIndex }}">
-                        {{ image | image_url: width: 800 | image_tag: width: 619, height: 619, class: "w-full h-full object-contain" }}
-                    </div>
-                    {% assign slideIndex = slideIndex | plus: 1 %}
-                  {% endunless %}
-                {% endfor %}
-                
-                {% for variant in product.variants %}
-                  {% if variant.featured_image %}
-                    <div class="swiper-slide  m-variant"
-                          data-index="{{ slideIndex }}"
-                          data-variant-id="{{ variant.id }}">
-                          <span class="m-badge" data-index="{{ slideIndex }}" >SELECTED VARIANT IMAGE</span>
-                      {{ variant.featured_image | image_url: width: 581 | image_tag: width: 581, height: 619, class: "w-full h-full object-contain" }}
-                    </div>
-                    {% assign slideIndex = slideIndex | plus: 1 %}
-                  {% endif %}
-                {% endfor %}
-              </div>
-            </div>
-          </div>
-       </div>
+      
    {% else %}
        <div class="product__gallery-main product__gallery-main--full flex-1">
            {{ product.featured_image | image_url: width: 581 | image_tag: width: 581, height: 619, class: "w-full h-full object-contain" }}

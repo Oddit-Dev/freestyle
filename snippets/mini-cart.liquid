@@ -141,11 +141,6 @@
                     x-text="'and save ' + item.selling_plan_allocation.selling_plan.price_adjustments[0].value + '%'"></span>
                 </div>
               </p>
-                test -  <span 
-                            x-show="item.compare_at_price && item.compare_at_price > item.price" 
-                            class="line-through"
-                            x-text="(item.compare_at_price / 100).toFixed(2)">
-                          </span>
             </div>
             {% comment %} <div class="absolute right-4 top-4 flex flex-col  font-grotesk font-normal">
               <span
@@ -354,52 +349,52 @@
 </section>
 
 <script>
- document.addEventListener('DOMContentLoaded', () => {
-  const checkboxes = Array.from(document.querySelectorAll('.customupsell'));
+//  document.addEventListener('DOMContentLoaded', () => {
+//   const checkboxes = Array.from(document.querySelectorAll('.customupsell'));
 
-  checkboxes.forEach((checkbox) => {
-    checkbox.addEventListener('change', async (e) => {
-      const cb = e.currentTarget;
-      const variantId = cb.dataset.variantId;
-      if (!variantId) return;
+//   checkboxes.forEach((checkbox) => {
+//     checkbox.addEventListener('change', async (e) => {
+//       const cb = e.currentTarget;
+//       const variantId = cb.dataset.variantId;
+//       if (!variantId) return;
 
-      if (cb.checked) {
-        Alpine.store('cart')
-          .addToCart({ variantId: Number(variantId), quantity: 1 }, true, false)
-          .catch(() => {
-            cb.checked = false;
-          });
-      } else {
-        const item = Alpine.store('cart').items.find(
-          (i) => Number(i.variant_id) === Number(variantId)
-        );
+//       if (cb.checked) {
+//         Alpine.store('cart')
+//           .addToCart({ variantId: Number(variantId), quantity: 1 }, true, false)
+//           .catch(() => {
+//             cb.checked = false;
+//           });
+//       } else {
+//         const item = Alpine.store('cart').items.find(
+//           (i) => Number(i.variant_id) === Number(variantId)
+//         );
 
-        if (item) {
-          Alpine.store('cart').removeFromCart(item.key);
-        } else {
-          const res = await fetch('/cart.js');
-          const cart = await res.json();
-          const match = cart.items.find(
-            (i) => Number(i.variant_id) === Number(variantId)
-          );
-          if (match) {
-            Alpine.store('cart').removeFromCart(match.key);
-          }
-        }
-      }
-    });
-  });
+//         if (item) {
+//           Alpine.store('cart').removeFromCart(item.key);
+//         } else {
+//           const res = await fetch('/cart.js');
+//           const cart = await res.json();
+//           const match = cart.items.find(
+//             (i) => Number(i.variant_id) === Number(variantId)
+//           );
+//           if (match) {
+//             Alpine.store('cart').removeFromCart(match.key);
+//           }
+//         }
+//       }
+//     });
+//   });
 
-  (async function syncInitial() {
-    const res = await fetch('/cart.js');
-    const cart = await res.json();
-    checkboxes.forEach((cb) => {
-      const vid = cb.dataset.variantId;
-      if (!vid) return;
-      cb.checked = cart.items.some(
-        (i) => Number(i.variant_id) === Number(vid)
-      );
-    });
-  })();
-});
+//   (async function syncInitial() {
+//     const res = await fetch('/cart.js');
+//     const cart = await res.json();
+//     checkboxes.forEach((cb) => {
+//       const vid = cb.dataset.variantId;
+//       if (!vid) return;
+//       cb.checked = cart.items.some(
+//         (i) => Number(i.variant_id) === Number(vid)
+//       );
+//     });
+//   })();
+// });
 </script>
