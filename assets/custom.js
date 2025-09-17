@@ -30,6 +30,7 @@ class CartDrawer extends HTMLElement {
 
   delegateEvents() {
     this.querySelectorAll('.qty-btn').forEach((btn) => btn.addEventListener('click', this.handleQtyClick));
+    
     this.querySelectorAll('.cart-drawer__quantity input').forEach((input) =>
       input.addEventListener('change', this.inputHandleQtyClick)
     );
@@ -156,20 +157,28 @@ class CartDrawer extends HTMLElement {
     if (headerCount) {
       headerCount.textContent = newCount.textContent;
     }
+    const footer = this.querySelector('.cart-drawer__footer');
+    if (footer) {
+      const count = parseInt(newCount.textContent, 10) || 0;
+      footer.style.display = count > 0 ? '' : 'none';
+    }
 
     this.delegateEvents(); // Re-delegate events after refresh
   }
 
   updateQuantity(e) {
+    const button = e.target.closest('.qty-btn');
+    if (!button) return;
+
     const item = e.target.closest('.cart-drawer__item');
     const input = item.querySelector('input');
     let qty = parseInt(input.value);
 
-    if (e.target.classList.contains('plus')) qty++;
-    if (e.target.classList.contains('minus') && qty > 1) qty--;
-
+    if (button.classList.contains('plus')) qty++;
+    if (button.classList.contains('minus') && qty > 1) qty--;
     this.changeQuantity(item.dataset.key, qty);
   }
+
 
   open() {
     this.classList.add('drawer-open');
@@ -254,3 +263,181 @@ class CartIcon extends HTMLElement {
   }
 }
 customElements.define('cart-icon', CartIcon);
+
+document.addEventListener("DOMContentLoaded", function () {
+  const addToCartBtn = document.querySelector(".js-add-to-cart");
+  const addonCheckbox = document.querySelector(".addonproduct");
+
+  if (addToCartBtn) {
+    addToCartBtn.addEventListener("click", function () {
+      const mainVariantId = this.dataset.variantId;
+      const sellingPlanId = this.dataset.sellingPlanId;
+
+      let mainItem = {
+        id: mainVariantId,
+        quantity: 1
+      };
+
+      if (sellingPlanId) {
+        mainItem.selling_plan = sellingPlanId;
+      }
+
+      let items = [mainItem];
+      if (addonCheckbox && addonCheckbox.checked) {
+        let addonItem = {
+          id: addonCheckbox.dataset.variantId,
+          quantity: 1
+        };
+        if (addonCheckbox.dataset.sellingPlanId) {
+          addonItem.selling_plan = addonCheckbox.dataset.sellingPlanId;
+        }
+        items.push(addonItem);
+      }
+
+      fetch("/cart/add.js", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({ items })
+      })
+      .then(response => response.json())
+      .then(data => {
+          const drawer = document.querySelector('cart-drawer');
+          if (drawer) {
+            drawer.refresh();
+            drawer.hideLoader();
+            drawer.open();
+          }
+      })
+      .catch(error => {
+        console.error("Error adding to cart:", error);
+      });
+    });
+  }
+});
+
+class AddVariantCheckbox extends HTMLElement {
+  constructor() {
+    super();
+    this.variantId = Number(this.dataset.id);
+    this.drawer = document.querySelector('cart-drawer');
+
+    this.checkbox = document.createElement('input');
+    this.checkbox.type = 'checkbox';
+    this.checkbox.classList.add('addon-checkbox');
+    this.appendChild(this.checkbox);
+    this.syncWithCart();
+    this.checkbox.addEventListener('change', () => this.onToggle());
+  }
+
+  async syncWithCart() {
+    try {
+      const cart = await fetch('/cart.js').then(res => res.json());
+      const exists = cart.items.some(item => item.variant_id === this.variantId && item.quantity > 0);
+      this.checkbox.checked = exists;
+    } catch (err) {
+      console.error('Error fetching cart for checkbox sync:', err);
+    }
+  }
+
+  async onToggle() {
+    if (!this.drawer) return;
+
+    this.drawer.showLoader();
+    const updates = {};
+    updates[this.variantId] = this.checkbox.checked ? 1 : 0;
+
+    try {
+      const cart = await fetch('/cart/update.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ updates })
+      }).then(res => res.json());
+
+      const exists = cart.items.some(item => item.variant_id === this.variantId && item.quantity > 0);
+      this.checkbox.checked = exists;
+
+      if (this.drawer) {
+        await this.drawer.refresh();
+        this.drawer.open();
+        this.drawer.hideLoader();
+      }
+    } catch (err) {
+      console.error('Error updating cart for checkbox:', err);
+      this.drawer.hideLoader();
+      this.checkbox.checked = !this.checkbox.checked;
+    }
+  }
+}
+customElements.define('add-variant-checkbox', AddVariantCheckbox);
+class ChangeCart extends HTMLElement {
+  constructor() {
+    super();
+    this.drawer = document.querySelector('cart-drawer');
+    this.toggleDropdown = this.toggleDropdown.bind(this);
+    this.selectPlan = this.selectPlan.bind(this);
+    this.handleOutsideClick = this.handleOutsideClick.bind(this);
+  }
+
+  connectedCallback() {
+    this.label = this.querySelector('.dropdown-label');
+    this.querySelector('.dropdown-label')?.addEventListener('click', this.toggleDropdown);
+    this.querySelectorAll('.option').forEach(opt => opt.addEventListener('click', this.selectPlan));
+    document.addEventListener('click', this.handleOutsideClick);
+  }
+
+  disconnectedCallback() {
+    this.querySelector('.dropdown-label')?.removeEventListener('click', this.toggleDropdown);
+    this.querySelectorAll('.option').forEach(opt => opt.removeEventListener('click', this.selectPlan));
+    document.removeEventListener('click', this.handleOutsideClick);
+  }
+
+  toggleDropdown(event) {
+    event.stopPropagation();
+    const dropdown = this.querySelector('.dropdown-options');
+    if (dropdown) dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+  }
+
+  handleOutsideClick(event) {
+    if (!this.contains(event.target)) {
+      const dropdown = this.querySelector('.dropdown-options');
+      if (dropdown) dropdown.style.display = 'none';
+    }
+  }
+
+  selectPlan(event) {
+    const selectedId = event.currentTarget.dataset.sellingId;
+    const qty = this.dataset.qty;
+    const line = this.dataset.line;
+    const selectedText = event.currentTarget.textContent;
+
+    this.classList.add('has-loading');
+    this.querySelector('.dropdown-options').style.display = 'none';
+    
+    // Update the label with the selected plan
+    if (this.label) this.label.textContent = selectedText;
+
+    fetch(`/cart/change.js`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        line: parseInt(line),
+        quantity: parseInt(qty),
+        selling_plan: selectedId,
+      }),
+    })
+    .then(res => res.json())
+    .then(() => {
+      if (this.drawer) this.drawer.refresh();
+      this.classList.remove('has-loading');
+    })
+    .catch(err => {
+      console.error('Error updating selling plan:', err);
+      this.classList.remove('has-loading');
+    });
+  }
+}
+
+customElements.define('item-change', ChangeCart);

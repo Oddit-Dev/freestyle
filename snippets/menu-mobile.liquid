@@ -93,7 +93,7 @@
                 {% assign main_btn = settings.mobile_product_feature_btn_txt | replace: '$heart', heart_svg %}
                 <a
                   href="{{ settings.mobile_product_feature_btn_url }}"
-                  class="button button-primary !max-w-[390px] w-full max-md:mx-auto !px-[28px]">
+                  class="button button-primary !max-w-[390px] w-full max-md:mx-auto !px-[20px]">
                   {{ main_btn }}
                 </a>
               </div>
@@ -104,8 +104,8 @@
       <nav
         role="navigation"
         aria-label="Mobile menu"
-        class="overflow-hidden overflow-y-auto grow min-h-full h-auto relative py-16 md:py-12 flex flex-col">
-        <div class="grow">
+        class="overflow-hidden overflow-y-auto relative flex flex-col">
+        <div class="grow p-[0_16px_51px_16px]">
           <ul
             class="flex flex-col lg:hidden">
             {% for link in menuItemsFirst %}
@@ -244,11 +244,11 @@
               | image_tag: class: 'w-[1.6rem] inline-block translate-y-[-0.2rem] mx-[0.1rem]'
             %}
             {% for link in menuItemsSecond %}
-              <li class="py-6 md:py-4 px-12 flex items-center">
+              <li class="flex items-center border-0 border-b border-solid border-[#E3E3E3]">
                 {% if link.links.size > 0 %}
                   <button
                     @click="openSubmenu('{{ link.handle }}')"
-                    class="flex justify-between text-color_1 hover:text-black-content text-base w-full">
+                    class="py-[10px] flex items-center gap-[10px] justify-between font-grotesk font-medium text-[20px] text-color_1 w-full">
                     <span>{{ link.title | replace: '[walmart]', walmart_icon }}</span>
                     {% comment %}
                       <svg
