@@ -199,19 +199,6 @@
       "name": "Marquee",
       "settings": {}
     },
-    "image_with_text_Dc79b8": {
-      "type": "image-with-text",
-      "name": "Image With Text",
-      "settings": {
-        "background_image": "shopify://shop_images/Freestyle_Full-product-family_1307_1_2.png",
-        "image": "shopify://shop_images/Freestyle_Full-product-family_1307_1_3.png",
-        "image_position": "right",
-        "sub_heading": "Skip the hassle",
-        "heading": "Get your diapers delivered monthly <strong>and save 10%</strong>",
-        "button": "Subscribe Now",
-        "link": "shopify://collections"
-      }
-    },
     "testimonial_KfHNHw": {
       "type": "testimonial",
       "blocks": {
@@ -668,8 +655,21 @@
       ],
       "name": "Media Slider",
       "settings": {
-        "heading": "For parents, by parents",
-        "description": "<p>Don’t just trust us. Hear from our community why they love and trust Freestyle.<br/><br/></p>"
+        "heading": "For parents, <strong>by parents</strong>",
+        "description": "<p>Don’t just trust us. Hear from our community why they love and trust Freestyle.</p>"
+      }
+    },
+    "image_with_text_Dc79b8": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "background_image": "shopify://shop_images/Freestyle_Full-product-family_1307_1_2.png",
+        "image": "shopify://shop_images/Freestyle_Full-product-family_1307_1_3.png",
+        "image_position": "right",
+        "sub_heading": "Skip the hassle",
+        "heading": "Get your diapers delivered monthly <strong>and save 10%</strong>",
+        "button": "Subscribe Now",
+        "link": "shopify://collections"
       }
     }
   },
@@ -678,7 +678,6 @@
     "multiple_marquee_NAAYw3",
     "image_banner_6JmcCC",
     "marquee_qcpmje",
-    "image_with_text_Dc79b8",
     "testimonial_KfHNHw",
     "logo-section",
     "product_features",
@@ -686,6 +685,7 @@
     "review_scroller_custom_CMUd3m",
     "comparison_W96rKh",
     "image_hero_banner_hWWaDf",
-    "media_slider_6dEPzQ"
+    "media_slider_6dEPzQ",
+    "image_with_text_Dc79b8"
   ]
 }

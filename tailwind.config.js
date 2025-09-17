@@ -30,6 +30,7 @@ export default {
       fontFamily: {
         grotesk: ['GroteskNeue', 'system-ui'],
         fkroman: ['FK Roman Standard', 'sans-serif'],
+        Neufile_Grotesk: ['Neufile Grotesk'],
         Inter: ['Inter', 'system-ui'],
       },
       container: {
