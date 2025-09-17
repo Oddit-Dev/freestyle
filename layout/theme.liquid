@@ -81,6 +81,7 @@
     :class="$store.shopMainStore.body_no_scroll ? 'no-scroll' : ''"
     class="template-{{ template.name }} m-{{ template | replace: '.', '-' }}">
     <div id="l-main">
+      {% section 'cart-drawer' %}
       <header
         id="id_header"
         class="
@@ -95,13 +96,14 @@
       </header>
       <main
         id="MainContent"
-        class="flex flex-col outline-none overflow-x-hidden max-w-full"
+        class="flex flex-col outline-none overflow-x-hidden max-w-full" 
         tabindex="-1"></main>
       {{ content_for_layout }}
       {% sections 'footer-group' %}
       <div class="l-overlay"></div>
       {% render 'mini-cart' %}
       {% render 'c-modal-window' %}
-    </div>
+    </div> 
+    <script src="{{ 'custom.js' | asset_url }}" defer></script>
   </body>
 </html>

@@ -12,8 +12,11 @@
     "header_logo": "shopify://shop_images/Vector_2.svg",
     "header_bg": "#FFFFFF",
     "header_menu_1": "",
-    "header_menu_2": "mein-menu-mobile",
-    "social_media_menu": "social",
+    "header_menu_2": "new-mobile-menu",
+    "header_mobile_secondary_menu": "mobile-secondary-menu",
+    "social_media_menu": "",
+    "header_walmart_text": "<p>Find it at $walmart</p>",
+    "is_enabled_featured_blocks_mobile": false,
     "footer_menu_1": "footer-contant",
     "footer_menu_2": "footer-about",
     "social_title": "",
@@ -38,7 +41,6 @@
     "subscription_upsell_product": [
       "soft-bamboo-wipes"
     ],
-    "custom_free_shipping_amount": 200,
     "cart_btm_content": "This order ships FREE",
     "custom_upsell_heading": "Add 99% Water Jumbo Wipes",
     "custom_upsell_product": "soft-bamboo-wipes",
@@ -50,7 +52,18 @@
     "product_feature_btn_txt": "Shop Skin $heart ShieldTM Diapers",
     "product_feature_btn_url": "shopify://products/skinshield-diapers",
     "empty_btm_walmart": "<p>Find a $walmart near you</p>",
-    "main_menu": "main-menu",
+    "milestone_1_amount": 400,
+    "milestone_1_text": "Spend [value] more to unlock FREE shipping!",
+    "success_text": "Congrats! You’ve unlocked FREE shipping!",
+    "mobile_product_feature_image": "shopify://shop_images/image_5303_8e6fac27-d71a-428b-b919-5cebffb17173.png",
+    "mobile_product_feature_title": "<p>SkinShield™ $heart ShieldTM Diapers</p>",
+    "mobile_product_feature_content": "<p>14x better absorption, 7-layer skin protection, and Total Chlorine Free materials</p>",
+    "mobile_product_feature_btn_txt": "Shop Skin $heart ShieldTM Diapers",
+    "mobile_product_feature_btn_url": "",
+    "announcement_text": "Free shipping  •  Same-day delivery | Shop Hyper Absorption Diapers",
+    "main_menu": "new-main-menu",
+    "secondary_main_menu": "new-secondary-menu",
+    "walmart_icon": "shopify://shop_images/Group_26353_1.png",
     "bamboo_icon": "shopify://shop_images/BambooTek.png",
     "heart_icon": "shopify://shop_images/heart-violet.svg",
     "heart_icon_white": "shopify://shop_images/Group_26613.svg",
@@ -60,6 +73,8 @@
     "menu_link_2": "shopify://products/diaper",
     "menu_image_3": "shopify://shop_images/Jumbo_Wipes.jpg",
     "menu_link_3": "shopify://products/freestyle-bamboo-wipes-72ct",
+    "milestone_2_amount": 0,
+    "custom_free_shipping_amount": 200,
     "upsell_functionality": "ON",
     "show_promo": true,
     "show_promo_link": "shopify://products/trial-kit",
@@ -123,6 +138,20 @@
           "color_primary": "#2b657c",
           "color_secondary": "#a8d9e6",
           "color_tertiary": "#ffffff"
+        }
+      }
+    },
+    "sections": {
+      "cart-drawer": {
+        "type": "cart-drawer",
+        "settings": {
+          "free_shipping_threshold": 300,
+          "free_shipping_text": "<p>Free Shipping on Orders Over $150</p>",
+          "enable_note": false,
+          "note_heading": "Add gift message or order note",
+          "addon_product": "",
+          "addon_title": "",
+          "addon_info": ""
         }
       }
     },

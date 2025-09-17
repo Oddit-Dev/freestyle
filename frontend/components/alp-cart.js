@@ -153,7 +153,7 @@ document.addEventListener('alpine:init', () => {
       } else {
         this.updateCart(itemId, 0);
       }
-    },
+    }, 
 
     clearCart() {
       this.isLoading = true;

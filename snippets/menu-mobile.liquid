@@ -39,7 +39,7 @@ class=""
   aria-modal="true"
   aria-label="Mobile menu">
   <div class="h-32 py-4 pl-12 flex items-center relative">
-    <div class="max-w-[150px]">
+    {% comment %} <div class="max-w-[150px]">
       <a href="{{ routes.root_url }}" class="flex items-center no-underline ">
         {% if settings.header_logo != blank %}
           <img src="{{ settings.header_logo | image_url }}" width="240" height="110" alt="{{ shop.name }}">
@@ -47,7 +47,7 @@ class=""
           Logo title
         {% endif %}
       </a>
-    </div>
+    </div> {% endcomment %}
     <button
       @click="closeMobileMenu"
       type="button"
@@ -56,6 +56,42 @@ class=""
     </button>
   </div>
   <div class="shrink grow overflow-y-auto">
+    <div class="custom-product-feature">
+        <div class="product-feature-main">
+          {% assign pro_feature_image = settings.mobile_product_feature_image %}
+          {% if pro_feature_image != blank  %}
+            <div class="product-feature-image">
+              {% render 'image-element',
+                image: pro_feature_image,
+                widths: '100, 200, 300, 375, 550, 750, 1100, 1500, 1780',
+                sizes: '(max-width: 989px) 100vw, 45vw',
+                class: 'product-feature-image'
+              %}
+            </div>
+          {% endif %}
+          <div class="product-feature-content">
+            {% if settings.mobile_product_feature_title != blank %}
+              {% assign heart_svg = 'icon-heart.svg' | inline_asset_content %}
+              {% assign main_heading = settings.mobile_product_feature_title | replace: '$heart', heart_svg %}
+              <h3 class="product-feature-title">{{ main_heading }}</h3>
+            {% endif %}
+            {% if settings.mobile_product_feature_content != blank %}
+              <span class="product-feature-description">
+                {{ settings.mobile_product_feature_content }}
+              </span>
+            {% endif %}
+            {% if settings.mobile_product_feature_btn_url != blank and settings.mobile_product_feature_btn_txt != blank %}
+              <div class="mt-[50px] max-md:mt-[24px]">
+                {% assign heart_svg = 'icon-heart.svg' | inline_asset_content %}
+                {% assign main_btn = settings.mobile_product_feature_btn_txt | replace: '$heart', heart_svg %}
+                <a href="{{ settings.mobile_product_feature_btn_url }}" class="button button-primary !max-w-[390px] w-full max-md:mx-auto">
+                  {{ main_btn }}
+                </a>
+              </div>
+            {% endif %}          
+          </div>
+        </div>
+    </div>
     <nav
       role="navigation"
       aria-label="Mobile menu"
@@ -63,13 +99,14 @@ class=""
       <div class="grow">
         <ul
           class="flex flex-col lg:hidden">
+          
           {% for link in menuItemsFirst %}
             <li class="py-4 px-12 flex items-center">
               {% if link.links.size > 0 %}
                 <button
                   @click="openSubmenu('{{ link.handle }}')"
                   class="flex justify-between text-color_1 hover:text-black-content text-base w-full">
-                  <span>{{ link.title }}</span>
+                  <span>{{ link.title  }}</span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -188,14 +225,15 @@ class=""
         </ul>
         <ul
           class="flex flex-col">
+          {% assign walmart_icon = settings['walmart_icon'] | image_url: width: 100 | image_tag: class: 'w-[1.6rem] inline-block translate-y-[-0.2rem] mx-[0.1rem]' %}
           {% for link in menuItemsSecond %}
             <li class="py-6 md:py-4 px-12 flex items-center">
               {% if link.links.size > 0 %}
                 <button
                   @click="openSubmenu('{{ link.handle }}')"
                   class="flex justify-between text-color_1 hover:text-black-content text-base w-full">
-                  <span>{{ link.title }}</span>
-                  <svg
+                  <span>{{ link.title | replace: '[walmart]', walmart_icon }}</span>
+                  {% comment %} <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -203,7 +241,8 @@ class=""
                     stroke="currentColor"
                     class="max-w-10">
                     <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                  </svg>
+                  </svg> {% endcomment %}
+                  {{ "arrow-bottom-right.svg" | inline_asset_content }}
                 </button>
                 <nav
                   x-show="activeSubmenu === '{{ link.handle }}'"
@@ -316,6 +355,17 @@ class=""
           {% endfor %}
         </ul>
       </div>
+    <div class="px-12 md:pb-2">
+      <ul class="flex space-x-8 b-header__inner-menu">
+        {% for link in settings.header_mobile_secondary_menu.links %}
+          <li class="menu-item flex items-center ">
+            <a href="{{ link.url }}" class="text-black font-grotesk font-normal">
+              {{ link.title }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
       <div class="px-12 md:pb-2">
         {% if settings.social_media_menu != blank %}
           <ul class="nav-social grid grid-cols-2 gap-8">

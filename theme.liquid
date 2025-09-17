@@ -5,7 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="canonical" href="{{ canonical_url }}">
-    <link rel="icon" href="{{ 'FREESTYLE_favicon_32x32.jpg' | file_url }}" type="image/jpg">
+    <link
+      rel="icon"
+      href="{{ 'FREESTYLE_favicon_32x32.jpg' | file_url }}"
+      type="image/jpg">
 
     <title>{{ page_title }}</title>
 
@@ -23,7 +26,7 @@
       //   predictive_search_url: '{{ routes.predictive_search_url }}',
       //   product_recommendations_url: '{{ routes.product_recommendations_url }}',
       // };
-
+      
       document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
     </script>
 
@@ -39,9 +42,7 @@
     </style>
   </head>
   <body class="grid min-h-svh">
-    <header
-      id="id_header"
-      class="
+    <header id="id_header" class="
             bg-white
         sticky
         top-0
@@ -56,6 +57,7 @@
       id="MainContent"
       class="flex flex-col outline-none overflow-x-hidden max-w-full"
       tabindex="-1">
+      t
       {{ content_for_layout }}
     </main>
 

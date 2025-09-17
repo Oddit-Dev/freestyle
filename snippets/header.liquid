@@ -2,8 +2,25 @@
 {% render 'entry' with '@/scripts/sections/header.js' %}
 {% render 'entry' with '@/styles/sections/header.scss' %}
 
-{% assign hide_elements = true %}
+<script>
+function updateHeaderHeight() {
+  const header = document.getElementById('id_header');
+  if (header) {
+    const headerHeight = Math.round(header.clientHeight);
+    document.documentElement.style.setProperty('--header-height', headerHeight + 'px');
+  }
+}
+document.addEventListener('DOMContentLoaded', updateHeaderHeight);
+window.addEventListener('resize', updateHeaderHeight);
+window.addEventListener('scroll', updateHeaderHeight);
+</script>
 
+{% assign hide_elements = true %}
+<div style="background-color: {{ settings.background_color }}; color: {{ settings.text_color }};" class="w-full py-2 text-center text-sm md:text-base">
+  <a href="{{ settings.link_url }}" class="">
+    {{ settings.announcement_text }}
+  </a>
+</div>
 <div class="relative b-header__wrapper py-8 px-10 bg-white" style="background-color: {{ settingsHeaderBg }};">
   <div class="b-header__inner mx-auto flex justify-between items-center">
     <div class="flex gap-8  md:w-1/4">
@@ -38,7 +55,43 @@
           </li>
         {% endfor %}
       </ul>
+      {% if settings.secondary_main_menu.links != blank %}
+        <span> | </span>
+      {% endif %} 
+       <ul class="flex space-x-8 b-header__inner-menu">
+        {% for main_link in settings.secondary_main_menu.links %}
+          <li class="relative" x-data="{ open: false }">
+            <button @click="open = !open" class="px-4 py-2 flex items-center space-x-1">
+              <span>{{ main_link.title }}</span>
+              {% if main_link.links.size > 0 %}
+                <span x-text="open ? '-' : '+'"></span>
+              {% endif %}
+            </button>
+            {% if main_link.links.size > 0 %}
+              <div 
+                x-show="open" 
+                @click.away="open = false" 
+                x-transition
+                class="absolute mt-2 w-48 bg-white rounded-xl shadow-lg ring-1 ring-black ring-opacity-5 z-50"
+              >
+                <ul class="py-2">
+                  {% for child_link in main_link.links %}
+                    <li class="menu-item flex items-center">
+                      <a href="{{ child_link.url }}" class="block px-4 py-2 text-gray-900 hover:bg-gray-100">
+                        {{ child_link.title | replace: '[bamboo]', bamboo_icon | replace: '[heart]', heart_icon }}
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
     </nav>
+     
+
+
 
     {% comment %} <div class="flex items-center gap-4 lg:hidden pl-4">
       <a href="{{ routes.cart_url }}" class="text-black uppercase text-sm hover:text-gray-600">
@@ -47,30 +100,37 @@
     </div> {% endcomment %}
 
     <div class="flex items-center justify-end space-x-8 md:w-1/4">
+      <div class="custom-walmart-logo">
+          {% assign walmart_svg = 'icon-walmart.svg' | inline_asset_content %}
+          {% assign main_button = settings.header_walmart_text | replace: '$walmart', walmart_svg %} 
+          {{ main_button }}
+        </div>
+        {% if main_button != blank %}
+          <span>|</span>
+        {% endif %}
       <a href="/apps/retextion/login" class="text-black hover:text-gray-600 flex items-center">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" role="presentation" style="width: 2.4rem; height: 2.4rem;"><path fill="#6638b7" fill-rule="evenodd" d="M10 8.75a2.917 2.917 0 1 0 0-5.833 2.917 2.917 0 0 0 0 5.833ZM10 10a4.167 4.167 0 1 0 0-8.333A4.167 4.167 0 0 0 10 10ZM7.5 13.125a3.542 3.542 0 0 0-3.542 3.542v.833a.625.625 0 1 1-1.25 0v-.833A4.792 4.792 0 0 1 7.5 11.875h5a4.792 4.792 0 0 1 4.792 4.792v.833a.625.625 0 1 1-1.25 0v-.833a3.542 3.542 0 0 0-3.542-3.542h-5Z" clip-rule="evenodd"></path></svg>
       </a>
-      <div class="b-header_cart" x-data>
+      {% comment %} <div class="b-header_cart" x-data>
         <span
           id="i-mini-cart"
           @click.stop="$store.cart.toggleCart()"
           class="b-header_cart-toggle text-color_1 relative cursor-pointer flex hover:scale-110">
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            id="cart"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg">
-            <path d="M4.00436 6.41686L0.761719 3.17422L2.17593 1.76001L5.41857 5.00265H20.6603C21.2126 5.00265 21.6603 5.45037 21.6603 6.00265C21.6603 6.09997 21.6461 6.19678 21.6182 6.29L19.2182 14.29C19.0913 14.713 18.7019 15.0027 18.2603 15.0027H6.00436V17.0027H17.0044V19.0027H5.00436C4.45207 19.0027 4.00436 18.5549 4.00436 18.0027V6.41686ZM5.50436 23.0027C4.67593 23.0027 4.00436 22.3311 4.00436 21.5027C4.00436 20.6742 4.67593 20.0027 5.50436 20.0027C6.33279 20.0027 7.00436 20.6742 7.00436 21.5027C7.00436 22.3311 6.33279 23.0027 5.50436 23.0027ZM17.5044 23.0027C16.6759 23.0027 16.0044 22.3311 16.0044 21.5027C16.0044 20.6742 16.6759 20.0027 17.5044 20.0027C18.3328 20.0027 19.0044 20.6742 19.0044 21.5027C19.0044 22.3311 18.3328 23.0027 17.5044 23.0027Z" fill="currentColor"/>
-          </svg>
-
+          {{ "header-shopping-cart.svg" | inline_asset_content }}
           <span
             class="b-header__cart-count"
             x-text="$store.cart.itemsCount"
             x-show="$store.cart.itemsCount > 0"></span>
         </span>
-      </div>
+      </div> {% endcomment %}
+          <cart-icon class="header-cart-icon tw-w-[24px] tw-h-[24px] !tw-flex tw-items-start tw-justify-center" href="javascript:void(0)" aria-label="Cart">
+                <span class="icon--header tw-w-[24px] tw-h-[24px] !tw-flex tw-items-start tw-justify-center tw-text-[#A843A2] [&_svg]:!tw-m-0 [&_svg]:!tw-h-[24px]">
+                  {{ "header-shopping-cart.svg" | inline_asset_content }}
+                </span>
+                {% if cart.item_count > 0 %}
+                <span class="header-cart__count">{{ cart.item_count }}</span>
+                {% endif %}
+            </cart-icon>
     </div>
   </div>
 

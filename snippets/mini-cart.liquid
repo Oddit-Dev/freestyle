@@ -32,9 +32,13 @@
         :style="{ width: `${$store.cart.shippingDiscount.shippingProgress}%` }"></div>
     </div> {% endcomment %}
 
-    <div class="drawer__header-row progress-bar-row hidden" x-show="$store.cart.items.length > 0">
+    <div class="drawer__header-row progress-bar-row" x-show="$store.cart.items.length > 0">
       {% comment %} {% render 'progress-bar' data: 'cart' %} {% endcomment %}
+      {% render 'custom-progress-bar' data: 'cart' %}
     </div>
+
+  
+
 
     <div class="b-mini_cart-empty flex grow justify-center items-center" x-show="$store.cart.items.length === 0">
       {% if settings.empty_cart_title != blank %}
@@ -44,40 +48,40 @@
           <span class="empty-subheading">{{ settings.empty_cart_content }}</span>
       {% endif %}
       <div class="custom-product-feature">
-      <div class="product-feature-main">
-        {% assign pro_feature_image = settings.product_feature_image %}
-        {% if pro_feature_image != blank  %}
-          <div class="product-feature-image">
-            {% render 'image-element',
-              image: pro_feature_image,
-              widths: '100, 200, 300, 375, 550, 750, 1100, 1500, 1780',
-              sizes: '(max-width: 989px) 100vw, 45vw',
-              class: 'product-feature-image'
-            %}
-          </div>
-        {% endif %}
-        <div class="product-feature-content">
-          {% if settings.product_feature_title != blank %}
-            {% assign heart_svg = 'icon-heart.svg' | inline_asset_content %}
-            {% assign main_heading = settings.product_feature_title | replace: '$heart', heart_svg %}
-            <h3 class="product-feature-title">{{ main_heading }}</h3>
-          {% endif %}
-          {% if settings.product_feature_content != blank %}
-            <span class="product-feature-description">
-              {{ settings.product_feature_content }}
-            </span>
-          {% endif %}
-          {% if settings.product_feature_btn_url != blank and settings.product_feature_btn_txt != blank %}
-            <div class="mt-[50px] max-md:mt-[24px]">
-              {% assign heart_svg = 'icon-heart.svg' | inline_asset_content %}
-              {% assign main_btn = settings.product_feature_btn_txt | replace: '$heart', heart_svg %}
-              <a href="{{ settings.product_feature_btn_url }}" class="button button-primary !max-w-[390px] w-full max-md:mx-auto">
-                {{ main_btn }}
-              </a>
+        <div class="product-feature-main">
+          {% assign pro_feature_image = settings.product_feature_image %}
+          {% if pro_feature_image != blank  %}
+            <div class="product-feature-image">
+              {% render 'image-element',
+                image: pro_feature_image,
+                widths: '100, 200, 300, 375, 550, 750, 1100, 1500, 1780',
+                sizes: '(max-width: 989px) 100vw, 45vw',
+                class: 'product-feature-image'
+              %}
             </div>
-          {% endif %}          
+          {% endif %}
+          <div class="product-feature-content">
+            {% if settings.product_feature_title != blank %}
+              {% assign heart_svg = 'icon-heart.svg' | inline_asset_content %}
+              {% assign main_heading = settings.product_feature_title | replace: '$heart', heart_svg %}
+              <h3 class="product-feature-title">{{ main_heading }}</h3>
+            {% endif %}
+            {% if settings.product_feature_content != blank %}
+              <span class="product-feature-description">
+                {{ settings.product_feature_content }}
+              </span>
+            {% endif %}
+            {% if settings.product_feature_btn_url != blank and settings.product_feature_btn_txt != blank %}
+              <div class="mt-[50px] max-md:mt-[24px]">
+                {% assign heart_svg = 'icon-heart.svg' | inline_asset_content %}
+                {% assign main_btn = settings.product_feature_btn_txt | replace: '$heart', heart_svg %}
+                <a href="{{ settings.product_feature_btn_url }}" class="button button-primary !max-w-[390px] w-full max-md:mx-auto">
+                  {{ main_btn }}
+                </a>
+              </div>
+            {% endif %}          
+          </div>
         </div>
-      </div>
     </div>
     <div class="empty-footer-logo">
         <div class="custom-walmart-logo">
@@ -97,10 +101,10 @@
       x-show="$store.cart.items.length > 0"
       :class="$store.cart.isLoading ? 'm-loading' : ''">
       {% comment %} <div x-show="$store.cart.errorMessage" x-text="$store.cart.errorMessage" class="text-red-500 text-center"></div> {% endcomment %}
-      <div class="flex justify-between uppercase opacity-50 border-b pb-4 text-xs font-Inter font-normal">
+      {% comment %} <div class="flex justify-between uppercase opacity-50 border-b pb-4 text-xs font-Inter font-normal">
         <span>Product</span>
         <span>Total</span>
-      </div>
+      </div> {% endcomment %}
       <template x-for="item in $store.cart.items" :key="`${item.id}-${index}`">
         <div class="b-mini_cart-item">
           <figure class="w-[100px] h-[100px] shrink-0 relative rounded-xl overflow-hidden">
@@ -137,14 +141,19 @@
                     x-text="'and save ' + item.selling_plan_allocation.selling_plan.price_adjustments[0].value + '%'"></span>
                 </div>
               </p>
+                test -  <span 
+                            x-show="item.compare_at_price && item.compare_at_price > item.price" 
+                            class="line-through"
+                            x-text="(item.compare_at_price / 100).toFixed(2)">
+                          </span>
             </div>
-            <div class="absolute right-4 top-4 flex flex-col  font-grotesk font-normal">
+            {% comment %} <div class="absolute right-4 top-4 flex flex-col  font-grotesk font-normal">
               <span
                 x-show="item.selling_plan_allocation.selling_plan && item.selling_plan_allocation.compare_at_price > item.price"
                 class="line-through opacity-50"
                 x-text="'$' + (item.selling_plan_allocation.compare_at_price / 100 * item.quantity).toFixed(2)"></span>
               <span x-text="'$' + (item.price / 100 * item.quantity).toFixed(2)"></span>
-            </div>
+            </div> {% endcomment %}
             <div class="flex">
               <div class="b-quantity !border-black mr-4">
                 <span
@@ -164,6 +173,9 @@
                 {{ "drawer-delete.svg" | inline_asset_content }}
                 <span class="item-remove">Remove</span>
               </button>
+            </div>
+            <div class="subscription-main" x-show="item.selling_plan_allocation.selling_plan && item.selling_plan_allocation.selling_plan.name" >
+              {% comment %} {% render 'subscrip tion-form' %} {% endcomment %}
             </div>
           </div>
         </div>
@@ -196,7 +208,7 @@
               </label>
             </div>
         {% endif %}
-    </div> {% endcomment %}
+    </div>   {% endcomment %}
     
     {% if settings.show_cart_products_carousel %}
       <div class="b-mini_cart-carousel hidden">

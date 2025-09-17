@@ -1,0 +1,206 @@
+{{ 'cart-drawer.css' | asset_url | stylesheet_tag }}
+<cart-drawer class="cart-drawer test" data-id="{{ section.id }}">
+  <div class="cart-drawer__content">
+    <div class="cart-drawer__loader hidden" id="CartDrawerLoader">
+      <div class="spinner"></div>
+    </div>
+    <header class="cart-drawer__header">
+      <h2>Your Cart (<span id="CartCount">{{ cart.item_count }}</span>)</h2>
+      <button class="cart-drawer__close">
+        {{ 'icon-close.svg' | inline_asset_content }}
+      </button>
+
+      {% assign free_shipping_threshold = section.settings.free_shipping_threshold | times: 100 | default: 15000 %}
+      {% assign cart_total = cart.total_price %}
+      {% assign progress = cart_total | times: 100 | divided_by: free_shipping_threshold %}
+      {% if progress > 100 %}
+        {% assign progress = 100 %}
+      {% endif %}
+    </header>
+
+    <div class="cart-drawer__body" id="CartDrawerBody">
+      <div class="cart-drawer__progress">
+        {% if cart_total >= free_shipping_threshold %}
+          <p class="progress-message">🎉 You’ve unlocked free shipping!</p>
+        {% else %}
+          <p class="progress-message">
+            Spend {{ free_shipping_threshold | minus: cart_total | money }} more to unlock free shipping.
+          </p>
+        {% endif %}
+
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: {{ progress }}%;"></div>
+        </div>
+      </div>
+      {% for item in cart.items %}
+        <div class="cart-drawer__item" data-key="{{ item.key }}">
+          <img src="{{ item.image | image_url: width: 80 }}" alt="{{ item.title }}">
+          <div class="cart-drawer__details">
+            <p class="cart-drawer__title">{{ item.product.title }}</p>
+            <p class="cart-drawer__price">{{ item.final_line_price | money }}</p>
+            <div class="cart-drawer__quantity">
+              <button class="qty-btn minus">-</button>
+              <input
+                type="number"
+                value="{{ item.quantity }}"
+                min="1">
+              <button class="qty-btn plus">+</button>
+            </div>
+            <button class="cart-drawer__remove">Remove</button>
+          </div>
+        </div>
+      {% endfor %}
+
+      {% if cart.items.size > 0 %}
+        {% assign last_item = cart.items.last %}
+        {{ last_item.handle }}
+        <div class="cart-drawer__upsell cart-upsell-section !tw-hidden">
+          {% render 'cart-drawer-upsell'
+            , section: section
+            , product_id: 'clever-candy-3d-gummy-cupcakes' %}
+        </div>
+      {% endif %}
+    </div>
+
+    <footer class="cart-drawer__footer">
+      <div class="cart-drawer__note">
+        <div class="toggle-note" data-toggle-note>
+          <span class="note-icon">+</span>
+          <span>Add gift message or order note</span>
+        </div>
+        <div class="note-wrapper hidden">
+          <textarea
+            id="CartNote"
+            class="cart-note"
+            name="note"
+            form="cart-form"
+            placeholder="Special instructions for your order">{{ cart.note }}</textarea>
+          <button type="button" class="save-note">Save Note</button>
+        </div>
+      </div>
+      <div class="cart-drawer-addon">
+        {% assign addon_product = section.settings.addon_product %}
+        {% if addon_product.available %}
+          <div class="cd-addon-product">
+            <div class="cdp-left">
+              {% assign addon_image = section.settings.addon_image | default: addon_product.featured_image %}
+              {% if addon_image %}
+                <div class="cdp-img">
+                  <img
+                    src="{{ addon_image |  image_url: width: 32 }}"
+                    width="32"
+                    height="24"
+                    alt="{{ addon_product.title }}"
+                    loading="lazy" />
+                </div>
+              {% endif %}
+              {% assign addon_title = section.settings.addon_title | default: addon_product.title %}
+              <div class="cdp-title">
+                <p>{{ addon_title }}
+                  <span>({{ addon_product.price | money }})</span>
+                </p>
+              </div>
+            </div>
+            <div class="">
+              <add-variant-item data-id="{{ addon_product.selected_or_first_available_variant.id }}">
+                + Add
+              </add-variant-item>
+            </div>
+          </div>
+        {% endif %}
+        {% assign addon_info = section.settings.addon_info %}
+        {% if addon_info %}
+          <div class="cd-addon-info">
+            {{ addon_info }}
+          </div>
+        {% endif %}
+      </div>
+      <div class="cart-drawer-subtotal">
+        <span>Subtotal:</span>
+        <span class="subtotal">{{ cart.total_price | money }}</span>
+      </div>
+      <div class="cart-drawer-subtotal">
+        <span>Shipping:</span>
+        <span class="shipping">FREE</span>
+      </div>
+      <div class="cart-drawer-buttons">
+        <form
+          method="post"
+          action="{{ routes.cart_url }}"
+          id="cart-form">
+          <button
+            type="submit"
+            name="checkout"
+            class="secure-checkout">
+            {{ 'icon-lock.svg' | inline_asset_content }}
+            <span>Secure Checkout</span>
+          </button>
+          <div class="additional-checkout-buttons">
+            {{ content_for_additional_checkout_buttons }}
+          </div>
+        </form>
+      </div>
+      {% if section.settings.free_shipping_text != blank %}
+        <div class="cart-drawer-shipping-text">
+          {{ section.settings.free_shipping_text }}
+        </div>
+      {% endif %}
+    </footer>
+  </div>
+</cart-drawer>
+<div class="cart-drawer__overlay"></div>
+{% schema %}
+  {
+    "name": "Cart Drawer",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Free shipping content"
+      },
+      {
+        "type": "number",
+        "id": "free_shipping_threshold",
+        "label": "Free shipping threshold",
+        "default": 150
+      },
+      {
+        "type": "richtext",
+        "id": "free_shipping_text",
+        "label": "Free shipping text",
+        "default": "<p>Free Shipping on Orders Over $150</p>"
+      },
+      {
+        "type": "header",
+        "content": "Cart note"
+      }, {
+        "type": "checkbox",
+        "id": "enable_note",
+        "label": "Enable note"
+      }, {
+        "type": "text",
+        "id": "note_heading",
+        "label": "Note title",
+        "default": "Add gift message or order note"
+      }, {
+        "type": "header",
+        "content": "Addon Product"
+      }, {
+        "type": "product",
+        "id": "addon_product",
+        "label": "Select Product"
+      }, {
+        "type": "image_picker",
+        "id": "addon_image",
+        "label": "Addon Product Image"
+      }, {
+        "type": "text",
+        "id": "addon_title",
+        "label": "Addon Product Title"
+      }, {
+        "type": "richtext",
+        "id": "addon_info",
+        "label": "Addon Product Info"
+      }
+    ]
+  }
+{% endschema %}

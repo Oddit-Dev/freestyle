@@ -1,72 +1,37 @@
-{%- assign matched = false -%}
-{%- assign next_selling_plane = null -%}
+{% for item in cart.items %}
+  {%- assign matched = false -%}
+  {%- assign next_selling_plan = null -%}
 
-{%- if item.variant.selling_plan_allocations.size > 0 -%}
-  {%- for allocation in item.variant.selling_plan_allocations -%}
-    {%- if item.selling_plan_allocation -%}
-      {%- assign matched = true -%}
-      {%- break -%}
-    {%- endif -%}
-    {%- assign next_selling_plane = allocation -%}
-  {%- endfor -%}
-{%- endif -%}
-{%- if matched == false -%}
-  <item-change
-    class="tw-relative"
-    data-qty="{{ item.quantity }}"
-    data-line="{{ forloop.index }}"
-    data-current-selling-plan="{{ item.selling_plan_allocation.selling_plan.id | default: '' }}"
-  >
-    <div class="change-label tw-cursor-pointer tw-inline-flex tw-items-center tw-gap-1 tw-text-[#C8432B] hover:tw-text-[#a33324]">
-      {{- 'icon-refresh.svg' | inline_asset_content -}}
-      <span class="tw-text-[12px] tw-text-[#C8432B] tw-font-normal tw-font-primary tw-leading-[1.6] !tw-ml-0 tw-underline tw-relative">
-        {%- for allocation in item.variant.selling_plan_allocations -%}
-          {%- assign plan = allocation.selling_plan -%}
-          {%- assign adjustment = plan.price_adjustments[0] -%}
-          {%- if adjustment.value_type == 'percentage' -%}
-            Subscribe & Save {{ adjustment.value }}% + Free Shipping
-          {%- elsif adjustment.value_type == 'amount' -%}
-            Subscribe & Save {{ adjustment.value | money }} + Free Shipping
-          {%- endif -%}
-          {%- break -%}
-        {%- endfor -%}
-      </span>
-    </div>
+  {%- if item.variant.selling_plan_allocations.size > 0 -%}
+    {%- for allocation in item.variant.selling_plan_allocations -%}
+      {%- if allocation == item.selling_plan_allocation -%}
+        {%- assign matched = true -%}
+        {%- break -%}
+      {%- endif -%}
+      {%- assign next_selling_plan = allocation -%}
+    {%- endfor -%}
+  {%- endif -%}
 
-    <div class="change-dropdown tw-absolute tw-z-50 tw-bg-white tw-border-gray-200 tw-rounded-lg tw-shadow-lg tw-mt-2 tw-hidden tw-min-w-[220px] tw-py-2 tw-transition-all  tw-border-[1px] tw-border-solid">
-      {%- assign current_plan_id = item.selling_plan_allocation.selling_plan.id | default: '' -%}
-      {%- for allocation in item.variant.selling_plan_allocations -%}
-        {%- assign plan = allocation.selling_plan -%}
-        {%- assign adjustment = plan.price_adjustments[0] -%}
-        {%- assign is_active = false -%}
-        {%- if plan.id == current_plan_id -%}
-          {%- assign is_active = true -%}
-        {%- endif -%}
-
-        <div
-          class="change-option tw-py-2 tw-px-4 tw-flex tw-items-center tw-justify-between tw-text-sm tw-cursor-pointer hover:tw-bg-gray-100 {% if is_active %}tw-bg-gray-100{% endif %}"
-          data-selling-id="{{ plan.id }}"
-        >
-          <div class="tw-text-gray-800 tw-text-[13px]">
-            {% if plan.name == 'Monthly' %}
-              Every 30 days
-            {% else %}
-              Every {{ plan.name }}
-            {% endif %}
-          </div>
-          {%- if is_active -%}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="tw-w-4 tw-h-4 tw-text-green-600"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
-            </svg>
-          {%- endif -%}
-        </div>
-      {%- endfor -%}
-    </div>
-  </item-change>
-{%- endif -%}
+  {%- if matched == false -%}
+    <item-change
+      class="tw-relative"
+      data-qty="{{ item.quantity }}"
+      data-line="{{ forloop.index }}"
+      data-current-selling-plan="{{ item.selling_plan_allocation.selling_plan.id | default: '' }}">
+      <div class="change-label tw-cursor-pointer">
+        <span class="tw-text-[12px]">
+          {%- for allocation in item.variant.selling_plan_allocations -%}
+            {%- assign plan = allocation.selling_plan -%}
+            {%- assign adjustment = plan.price_adjustments[0] -%}
+            {%- if adjustment.value_type == 'percentage' -%}
+              Subscribe & Save {{ adjustment.value }}% + Free Shipping
+            {%- elsif adjustment.value_type == 'amount' -%}
+              Subscribe & Save {{ adjustment.value | money }} + Free Shipping
+            {%- endif -%}
+            {%- break -%}
+          {%- endfor -%}
+        </span>
+      </div>
+    </item-change>
+  {%- endif -%}
+{% endfor %}

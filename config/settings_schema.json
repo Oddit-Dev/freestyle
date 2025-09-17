@@ -72,8 +72,18 @@
       },
       {
         "type": "link_list",
+        "id": "header_mobile_secondary_menu",
+        "label": "Secondary Mobile Menu"
+      },
+      {
+        "type": "link_list",
         "id": "social_media_menu",
         "label": "Social Media Menu"
+      },
+      {
+        "type": "richtext",
+        "id": "header_walmart_text",
+        "label": "Header Walmart Text"
       }
     ]
   },
@@ -444,8 +454,60 @@
     ]
   },
   {
+    "name": "Progress Bar",
+    "settings": [
+      {
+        "type": "number",
+        "id": "milestone_1_amount",
+        "label": "Amount",
+        "default": 50
+      },
+      {
+        "type": "text",
+        "id": "milestone_1_text",
+        "label": "Locked Text",
+        "default": "Spend [value] more to unlock first reward"
+      },
+      {
+        "type": "text",
+        "id": "success_text",
+        "label": "Final Success Text",
+        "default": "Congratulations! You unlocked all rewards 🎉"
+      }
+    ]
+  },
+  {
     "name": "Mobile Menu Bottom",
     "settings": [
+       {
+        "type": "header",
+        "content": "Mobile Product Featured"
+      },
+      {
+        "type": "image_picker",
+        "id": "mobile_product_feature_image",
+        "label": "Choose Image"
+      },
+      {
+        "type": "richtext",
+        "id": "mobile_product_feature_title",
+        "label": "Heading"
+      },
+      {
+        "type": "richtext",
+        "id": "mobile_product_feature_content",
+        "label": "Content"
+      },
+      {
+        "type": "text",
+        "id": "mobile_product_feature_btn_txt",
+        "label": "Button Text"
+      },
+      {
+        "type": "url",
+        "id": "mobile_product_feature_btn_url",
+        "label": "URL"
+      },
       {
         "type": "text",
         "id": "mobile_menu_button_text",
@@ -462,6 +524,34 @@
     ]
   },
   {
+  "name": "Announcement Bar",
+  "settings": [
+      {
+        "type": "text",
+        "id": "announcement_text",
+        "label": "Announcement Text",
+        "default": "Free shipping • Same-day delivery | Shop Hyper Absorption Diapers"
+      },
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background Color",
+        "default": "#6638B7"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "url",
+        "id": "link_url",
+        "label": "Link URL"
+      }
+    ]
+  },
+  {
     "name": "Main Menu",
     "settings": [
       {
@@ -472,6 +562,21 @@
         "type": "link_list",
         "id": "main_menu",
         "label": "Main Menu"
+      },
+      {
+        "type": "link_list",
+        "id": "secondary_main_menu",
+        "label": "Secondary Menu"
+      },
+      {
+        "type": "header",
+        "content": "Mobile Icon"
+      },
+      {
+        "type": "image_picker",
+        "id": "walmart_icon",
+        "label": "walmart Icon",
+        "info": "Use [walmart] to display the icon"
       },
       {
         "type": "header",
