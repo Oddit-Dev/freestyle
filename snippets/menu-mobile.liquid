@@ -4,68 +4,71 @@
     </span>
 {% endcapture %}
 <div
-x-data="menuMobile"
-class=""
-@resize.debounce.window="handleResize">
-<button
-  @click="toggleMobileMenu"
-  type="button"
-  aria-label="Toggle mobile menu"
-  :aria-expanded="isOpened">
-  <svg
-    class="h-10 w-10"
-    width="20"
-    height="16"
-    viewBox="0 0 20 16"
-    style="color: var(--color_1);"
-    xmlns="http://www.w3.org/2000/svg">
-    <path d="M19.375 8C19.375 8.29837 19.2565 8.58452 19.0455 8.79549C18.8345 9.00647 18.5484 9.125 18.25 9.125H1.75C1.45163 9.125 1.16548 9.00647 0.954505 8.79549C0.743526 8.58452 0.625 8.29837 0.625 8C0.625 7.70163 0.743526 7.41548 0.954505 7.2045C1.16548 6.99353 1.45163 6.875 1.75 6.875H18.25C18.5484 6.875 18.8345 6.99353 19.0455 7.2045C19.2565 7.41548 19.375 7.70163 19.375 8ZM1.75 3.125H18.25C18.5484 3.125 18.8345 3.00647 19.0455 2.7955C19.2565 2.58452 19.375 2.29837 19.375 2C19.375 1.70163 19.2565 1.41548 19.0455 1.2045C18.8345 0.993526 18.5484 0.875 18.25 0.875H1.75C1.45163 0.875 1.16548 0.993526 0.954505 1.2045C0.743526 1.41548 0.625 1.70163 0.625 2C0.625 2.29837 0.743526 2.58452 0.954505 2.7955C1.16548 3.00647 1.45163 3.125 1.75 3.125ZM18.25 12.875H1.75C1.45163 12.875 1.16548 12.9935 0.954505 13.2045C0.743526 13.4155 0.625 13.7016 0.625 14C0.625 14.2984 0.743526 14.5845 0.954505 14.7955C1.16548 15.0065 1.45163 15.125 1.75 15.125H18.25C18.5484 15.125 18.8345 15.0065 19.0455 14.7955C19.2565 14.5845 19.375 14.2984 19.375 14C19.375 13.7016 19.2565 13.4155 19.0455 13.2045C18.8345 12.9935 18.5484 12.875 18.25 12.875Z" fill="currentColor"/>
-  </svg>
-</button>
-<div
-  class="fixed bg-white z-50 flex flex-col b-header__mobile-menu"
-  :class="isOpened ? 'is-open' : ''"
-  x-cloak
-  x-show="isOpened"
-  @click.away="closeMobileMenu"
-  @keyup.escape.window="closeMobileMenu"
-  x-transition:enter="transition ease-out duration-200"
-  x-transition:enter-start="-translate-x-full"
-  x-transition:enter-end="translate-x-0"
-  x-transition:leave="transition ease-in duration-200"
-  x-transition:leave-start="translate-x-0"
-  x-transition:leave-end="-translate-x-full"
-  role="dialog"
-  aria-modal="true"
-  aria-label="Mobile menu">
-  <div class="h-32 py-4 pl-12 flex items-center relative">
-    {% comment %} <div class="max-w-[150px]">
-      <a href="{{ routes.root_url }}" class="flex items-center no-underline ">
-        {% if settings.header_logo != blank %}
-          <img src="{{ settings.header_logo | image_url }}" width="240" height="110" alt="{{ shop.name }}">
-        {% else %}
-          Logo title
-        {% endif %}
-      </a>
-    </div> {% endcomment %}
-    <button
-      @click="closeMobileMenu"
-      type="button"
-      class="absolute right-[2rem] flex items-center justify-center w-8 h-8 rounded-full  text-color_1 hover:text-white-content transition-colors">
-      {% render 'icon-close', color: '#1b4c62' %}
-    </button>
-  </div>
-  <div class="shrink grow overflow-y-auto">
-    <div class="custom-product-feature">
-        <div class="product-feature-main">
+  x-data="menuMobile"
+  class="lg:hidden flex"
+  @resize.debounce.window="handleResize">
+  <button
+    @click="toggleMobileMenu"
+    type="button"
+    class="w-[24px] min-w-[24px] h-[24px] flex items-center justify-center"
+    aria-label="Toggle mobile menu"
+    :aria-expanded="isOpened">
+    <svg
+      class="h-[14px] w-[17px]"
+      width="20"
+      height="16"
+      viewBox="0 0 20 16"
+      style="color: var(--color_1);"
+      xmlns="http://www.w3.org/2000/svg">
+      <path d="M19.375 8C19.375 8.29837 19.2565 8.58452 19.0455 8.79549C18.8345 9.00647 18.5484 9.125 18.25 9.125H1.75C1.45163 9.125 1.16548 9.00647 0.954505 8.79549C0.743526 8.58452 0.625 8.29837 0.625 8C0.625 7.70163 0.743526 7.41548 0.954505 7.2045C1.16548 6.99353 1.45163 6.875 1.75 6.875H18.25C18.5484 6.875 18.8345 6.99353 19.0455 7.2045C19.2565 7.41548 19.375 7.70163 19.375 8ZM1.75 3.125H18.25C18.5484 3.125 18.8345 3.00647 19.0455 2.7955C19.2565 2.58452 19.375 2.29837 19.375 2C19.375 1.70163 19.2565 1.41548 19.0455 1.2045C18.8345 0.993526 18.5484 0.875 18.25 0.875H1.75C1.45163 0.875 1.16548 0.993526 0.954505 1.2045C0.743526 1.41548 0.625 1.70163 0.625 2C0.625 2.29837 0.743526 2.58452 0.954505 2.7955C1.16548 3.00647 1.45163 3.125 1.75 3.125ZM18.25 12.875H1.75C1.45163 12.875 1.16548 12.9935 0.954505 13.2045C0.743526 13.4155 0.625 13.7016 0.625 14C0.625 14.2984 0.743526 14.5845 0.954505 14.7955C1.16548 15.0065 1.45163 15.125 1.75 15.125H18.25C18.5484 15.125 18.8345 15.0065 19.0455 14.7955C19.2565 14.5845 19.375 14.2984 19.375 14C19.375 13.7016 19.2565 13.4155 19.0455 13.2045C18.8345 12.9935 18.5484 12.875 18.25 12.875Z" fill="currentColor"/>
+    </svg>
+  </button>
+  <div
+    class="fixed bg-[#F1F2F5] z-50 flex flex-col b-header__mobile-menu left-0 top-[var(--header-height)] h-[calc(100%-var(--header-height))] w-full shadow-none"
+    :class="isOpened ? 'is-open' : ''"
+    x-cloak
+    x-show="isOpened"
+    @click.away="closeMobileMenu"
+    @keyup.escape.window="closeMobileMenu"
+    x-transition:enter="transition ease-out duration-200"
+    x-transition:enter-start="-translate-x-full"
+    x-transition:enter-end="translate-x-0"
+    x-transition:leave="transition ease-in duration-200"
+    x-transition:leave-start="translate-x-0"
+    x-transition:leave-end="-translate-x-full"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Mobile menu">
+    <div class="h-32 py-4 pl-12 items-center relative hidden">
+      {% comment %}
+        <div class="max-w-[150px]">
+          <a href="{{ routes.root_url }}" class="flex items-center no-underline ">
+            {% if settings.header_logo != blank %}
+              <img src="{{ settings.header_logo | image_url }}" width="240" height="110" alt="{{ shop.name }}">
+            {% else %}
+              Logo title
+            {% endif %}
+          </a>
+        </div>
+      {% endcomment %}
+      <button
+        @click="closeMobileMenu"
+        type="button"
+        class="absolute right-[2rem] flex items-center justify-center w-8 h-8 rounded-full  text-color_1 hover:text-white-content transition-colors">
+        {% render 'icon-close', color: '#1b4c62' %}
+      </button>
+    </div>
+    <div class="shrink grow overflow-y-auto">
+      <div class="custom-product-feature p-[85px_16px_24px_16px]">
+        <div class="product-feature-main bg-[#DADAFF] rounded-[16px] p-[0_20px_24px] flex flex-col">
           {% assign pro_feature_image = settings.mobile_product_feature_image %}
-          {% if pro_feature_image != blank  %}
-            <div class="product-feature-image">
+          {% if pro_feature_image != blank %}
+            <div class="product-feature-image mt-[-71px] w-[160px] h-[160px] mx-auto mb-[10px] flex items-center justify-center">
               {% render 'image-element',
                 image: pro_feature_image,
                 widths: '100, 200, 300, 375, 550, 750, 1100, 1500, 1780',
                 sizes: '(max-width: 989px) 100vw, 45vw',
-                class: 'product-feature-image'
+                class: 'product-feature-image max-w-full max-h-full h-auto object-contain'
               %}
             </div>
           {% endif %}
@@ -73,373 +76,394 @@ class=""
             {% if settings.mobile_product_feature_title != blank %}
               {% assign heart_svg = 'icon-heart.svg' | inline_asset_content %}
               {% assign main_heading = settings.mobile_product_feature_title | replace: '$heart', heart_svg %}
-              <h3 class="product-feature-title">{{ main_heading }}</h3>
+              <h3 class="product-feature-title [&_p]:flex [&_p]:flex-wrap [&_p]:items-center [&_p]:gap-x-[4px] [&_p]:justify-center [&_svg]:max-md:w-[17px] [&_svg]:max-md:h-auto text-scheme_one [&_strong]:font-fkroman [&_strong]:font-normal text-[20px] leading-[40px] tracking-[-0.05em]">
+                {{ main_heading }}
+              </h3>
             {% endif %}
             {% if settings.mobile_product_feature_content != blank %}
-              <span class="product-feature-description">
+              <span class="product-feature-description font-grotesk font-normal text-[13px] leading-[1.6] text-center text-black">
                 {{ settings.mobile_product_feature_content }}
               </span>
             {% endif %}
-            {% if settings.mobile_product_feature_btn_url != blank and settings.mobile_product_feature_btn_txt != blank %}
+            {% if settings.mobile_product_feature_btn_url != blank
+              and settings.mobile_product_feature_btn_txt != blank
+            %}
               <div class="mt-[50px] max-md:mt-[24px]">
                 {% assign heart_svg = 'icon-heart.svg' | inline_asset_content %}
                 {% assign main_btn = settings.mobile_product_feature_btn_txt | replace: '$heart', heart_svg %}
-                <a href="{{ settings.mobile_product_feature_btn_url }}" class="button button-primary !max-w-[390px] w-full max-md:mx-auto">
+                <a
+                  href="{{ settings.mobile_product_feature_btn_url }}"
+                  class="button button-primary !max-w-[390px] w-full max-md:mx-auto !px-[28px]">
                   {{ main_btn }}
                 </a>
               </div>
-            {% endif %}          
+            {% endif %}
           </div>
         </div>
-    </div>
-    <nav
-      role="navigation"
-      aria-label="Mobile menu"
-      class="overflow-hidden overflow-y-auto grow min-h-full h-auto relative py-16 md:py-12 flex flex-col">
-      <div class="grow">
-        <ul
-          class="flex flex-col lg:hidden">
-          
-          {% for link in menuItemsFirst %}
-            <li class="py-4 px-12 flex items-center">
-              {% if link.links.size > 0 %}
-                <button
-                  @click="openSubmenu('{{ link.handle }}')"
-                  class="flex justify-between text-color_1 hover:text-black-content text-base w-full">
-                  <span>{{ link.title  }}</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="{1.5}"
-                    stroke="currentColor"
-                    class="max-w-10">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                  </svg>
-                </button>
-                <nav
-                  x-show="activeSubmenu === '{{ link.handle }}'"
-                  x-transition:enter="transition ease-out duration-200"
-                  x-transition:enter-start="translate-x-full"
-                  x-transition:enter-end="translate-x-0"
-                  x-transition:leave="transition ease-in duration-200"
-                  x-transition:leave-start="translate-x-0"
-                  x-transition:leave-end="translate-x-full"
-                  class="absolute inset-0 bg-white h-full">
-                  <div class="py-4 px-8 flex items-center">
-                    <button
-                      @click="closeSubmenu"
-                      class="flex items-center text-black-content text-xl w-full">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokewidth="{1.5}"
-                        stroke="currentColor"
-                        class="max-w-10 translate-y-[0.1em]">
-                        <path strokelinecap="round" strokelinejoin="round" d="m15.75 4.5-7.5 7.5 7.5 7.5"></path>
-                      </svg>
-                      {{ link.title }}
-                    </button>
-                  </div>
-                  <ul class="flex flex-col">
-                    {% for child_link in link.links %}
-                      <li class="py-4 px-8 flex items-center {% if child_link.links.size > 0 %}border-b{% endif %}">
-                        {% if child_link.links.size > 0 %}
-                          <button
-                            @click="openSubmenu('{{ child_link.handle }}')"
-                            class="flex justify-between text-color_1 hover:text-black-content text-xl w-full">
-                            <span>{{ child_link.title }}</span>
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              strokeWidth="{1.5}"
-                              stroke="currentColor"
-                              class="max-w-10">
-                              <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                            </svg>
-                          </button>
-                          <nav
-                            x-show="activeSubmenu === '{{ child_link.handle }}'"
-                            x-transition:enter="transition ease-out duration-200"
-                            x-transition:enter-start="translate-x-full"
-                            x-transition:enter-end="translate-x-0"
-                            x-transition:leave="transition ease-in duration-200"
-                            x-transition:leave-start="translate-x-0"
-                            x-transition:leave-end="translate-x-full"
-                            class="absolute inset-0 bg-white h-full">
-                            <div class="py-4 px-8 flex items-center border-b">
-                              <button
-                                @click="closeSubmenu"
-                                class="flex items-center text-black-content text-xl w-full">
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  fill="none"
-                                  viewBox="0 0 24 24"
-                                  strokewidth="{1.5}"
-                                  stroke="currentColor"
-                                  class="max-w-10 translate-y-[0.1em]">
-                                  <path strokelinecap="round" strokelinejoin="round" d="m15.75 4.5-7.5 7.5 7.5 7.5"></path>
-                                </svg>
-                                {{ child_link.title }}
-                              </button>
-                            </div>
-                            <ul class="flex flex-col">
-                              {% for grandlink in child_link.links %}
-                                <li class="py-4 px-8 flex items-center">
-                                  <a
-                                    href="{{ grandlink.url }}"
-                                    class="text-color_1 hover:text-black-content text-xl">
-                                    {{ grandlink.title }}
-                                  </a>
-                                </li>
-                              {% endfor %}
-                            </ul>
-                          </nav>
-
-                        {% else %}
-                          <a href="{{ child_link.url }}" class="text-color_1 hover:text-black-content text-xl">
-                            {{ child_link.title }}
-                          </a>
-                        {% endif %}
-                      </li>
-                    {% endfor %}
-                  </ul>
-                  {% comment %} should display featured blocks in mobile menu {% endcomment %}
-                  {% if settings.is_enabled_featured_blocks_mobile %}
-                    {% render 'menu-mobile-featured', title: settings.featured_blocks_title %}
-                  {% endif %}
-                </nav>
-              {% else %}
-              {% assign bamboo_icon = settings['bamboo_icon'] | image_url: width: 100 | image_tag: class: 'w-[1.2rem] inline-block translate-y-[-0.2rem] mx-1' %}
-              {% assign heart_icon = settings['heart_icon'] | image_url: width: 100 | image_tag: class: 'w-[1.6rem] inline-block translate-y-[-0.2rem] mx-[0.1rem]' %}
-                <a
-                  href="{{ link.url }}"
-                  class="text-black-content hover:text-color_1 text-base font-normal">
-                  {{ link.title | replace: '[bamboo]', bamboo_icon | replace: '[heart]', heart_icon }}
-                </a>
-              {% endif %}
-            </li>
-          {% endfor %}
-        </ul>
-        <ul
-          class="flex flex-col">
-          {% assign walmart_icon = settings['walmart_icon'] | image_url: width: 100 | image_tag: class: 'w-[1.6rem] inline-block translate-y-[-0.2rem] mx-[0.1rem]' %}
-          {% for link in menuItemsSecond %}
-            <li class="py-6 md:py-4 px-12 flex items-center">
-              {% if link.links.size > 0 %}
-                <button
-                  @click="openSubmenu('{{ link.handle }}')"
-                  class="flex justify-between text-color_1 hover:text-black-content text-base w-full">
-                  <span>{{ link.title | replace: '[walmart]', walmart_icon }}</span>
-                  {% comment %} <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="{1.5}"
-                    stroke="currentColor"
-                    class="max-w-10">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                  </svg> {% endcomment %}
-                  {{ "arrow-bottom-right.svg" | inline_asset_content }}
-                </button>
-                <nav
-                  x-show="activeSubmenu === '{{ link.handle }}'"
-                  x-transition:enter="transition ease-out duration-200"
-                  x-transition:enter-start="translate-x-full"
-                  x-transition:enter-end="translate-x-0"
-                  x-transition:leave="transition ease-in duration-200"
-                  x-transition:leave-start="translate-x-0"
-                  x-transition:leave-end="translate-x-full"
-                  class="absolute inset-0 bg-white h-full">
-                  <div class="py-4 px-8 flex items-center">
-                    <button
-                      @click="closeSubmenu"
-                      class="flex items-center text-black-content text-xl w-full">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokewidth="{1.5}"
-                        stroke="currentColor"
-                        class="max-w-10 translate-y-[0.1em]">
-                        <path strokelinecap="round" strokelinejoin="round" d="m15.75 4.5-7.5 7.5 7.5 7.5"></path>
-                      </svg>
-                      {{ link.title }}
-                    </button>
-                  </div>
-                  <ul class="flex flex-col">
-                    {% for child_link in link.links %}
-                      <li class="py-8 px-8 flex items-center {% if child_link.links.size > 0 %}border-b{% endif %}">
-                        {% if child_link.links.size > 0 %}
-                          <button
-                            @click="openSubmenu('{{ child_link.handle }}')"
-                            class="flex justify-between text-color_1 hover:text-black-content text-xl w-full">
-                            <span>{{ child_link.title }}</span>
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              strokeWidth="{1.5}"
-                              stroke="currentColor"
-                              class="max-w-10">
-                              <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                            </svg>
-                          </button>
-                          <nav
-                            x-show="activeSubmenu === '{{ child_link.handle }}'"
-                            x-transition:enter="transition ease-out duration-200"
-                            x-transition:enter-start="translate-x-full"
-                            x-transition:enter-end="translate-x-0"
-                            x-transition:leave="transition ease-in duration-200"
-                            x-transition:leave-start="translate-x-0"
-                            x-transition:leave-end="translate-x-full"
-                            class="absolute inset-0 bg-white h-full">
-                            <div class="py-4 px-8 flex items-center border-b">
-                              <button
-                                @click="closeSubmenu"
-                                class="flex items-center text-black-content text-xl w-full">
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  fill="none"
-                                  viewBox="0 0 24 24"
-                                  strokewidth="{1.5}"
-                                  stroke="currentColor"
-                                  class="max-w-10 translate-y-[0.1em]">
-                                  <path strokelinecap="round" strokelinejoin="round" d="m15.75 4.5-7.5 7.5 7.5 7.5"></path>
-                                </svg>
-                                {{ child_link.title }}
-                              </button>
-                            </div>
-                            <ul class="flex flex-col">
-                              {% for grandlink in child_link.links %}
-                                <li class="py-4 px-8 flex items-center">
-                                  <a
-                                    href="{{ grandlink.url }}"
-                                    class="text-color_1 hover:text-black-content text-xl">
-                                    {{ grandlink.title }}
-                                  </a>
-                                </li>
-                              {% endfor %}
-                            </ul>
-                          </nav>
-
-                        {% else %}
-                          <a href="{{ child_link.url }}" class="text-color_1 hover:text-black-content text-xl">
-                            {{ child_link.title }}
-                          </a>
-                        {% endif %}
-                      </li>
-                    {% endfor %}
-                  </ul>
-                  {% comment %} should display featured blocks in mobile menu {% endcomment %}
-                  {% if settings.is_enabled_featured_blocks_mobile %}
-                    {% render 'menu-mobile-featured', title: settings.featured_blocks_title %}
-                  {% endif %}
-                </nav>
-              {% else %}
-              {% assign bamboo_icon = settings['bamboo_icon'] | image_url: width: 100 | image_tag: class: 'w-[1.2rem] inline-block translate-y-[-0.2rem] mx-1' %}
-              {% assign heart_icon = settings['heart_icon'] | image_url: width: 100 | image_tag: class: 'w-[1.6rem] inline-block translate-y-[-0.2rem] mx-[0.1rem]' %}
-                <a
-                  href="{{ link.url }}"
-                  class="text-black-content hover:text-color_1 text-[20px] md:text-[24px] font-normal">
-                  {% if link.title contains 'skin_shield' %}
-                    {{ skinShieldTM }}
-                  {% else %}
-                    {{ link.title | replace: '[bamboo]', bamboo_icon | replace: '[heart]', heart_icon }}
-                  {% endif %}
-                </a>
-              {% endif %}
-            </li>
-          {% endfor %}
-        </ul>
       </div>
-    <div class="px-12 md:pb-2">
-      <ul class="flex space-x-8 b-header__inner-menu">
-        {% for link in settings.header_mobile_secondary_menu.links %}
-          <li class="menu-item flex items-center ">
-            <a href="{{ link.url }}" class="text-black font-grotesk font-normal">
-              {{ link.title }}
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
-    </div>
-      <div class="px-12 md:pb-2">
-        {% if settings.social_media_menu != blank %}
-          <ul class="nav-social grid grid-cols-2 gap-8">
-            {% for link in settings.social_media_menu.links %}
-              <li>
-                <a href="{{ link.url }}" class="" target="_blank">
+      <nav
+        role="navigation"
+        aria-label="Mobile menu"
+        class="overflow-hidden overflow-y-auto grow min-h-full h-auto relative py-16 md:py-12 flex flex-col">
+        <div class="grow">
+          <ul
+            class="flex flex-col lg:hidden">
+            {% for link in menuItemsFirst %}
+              <li class="py-4 px-12 flex items-center">
+                {% if link.links.size > 0 %}
+                  <button
+                    @click="openSubmenu('{{ link.handle }}')"
+                    class="flex justify-between text-color_1 hover:text-black-content text-base w-full">
+                    <span>{{ link.title }}</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="{1.5}"
+                      stroke="currentColor"
+                      class="max-w-10">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                    </svg>
+                  </button>
+                  <nav
+                    x-show="activeSubmenu === '{{ link.handle }}'"
+                    x-transition:enter="transition ease-out duration-200"
+                    x-transition:enter-start="translate-x-full"
+                    x-transition:enter-end="translate-x-0"
+                    x-transition:leave="transition ease-in duration-200"
+                    x-transition:leave-start="translate-x-0"
+                    x-transition:leave-end="translate-x-full"
+                    class="absolute inset-0 bg-white h-full">
+                    <div class="py-4 px-8 flex items-center">
+                      <button
+                        @click="closeSubmenu"
+                        class="flex items-center text-black-content text-xl w-full">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokewidth="{1.5}"
+                          stroke="currentColor"
+                          class="max-w-10 translate-y-[0.1em]">
+                          <path strokelinecap="round" strokelinejoin="round" d="m15.75 4.5-7.5 7.5 7.5 7.5"></path>
+                        </svg>
+                        {{ link.title }}
+                      </button>
+                    </div>
+                    <ul class="flex flex-col">
+                      {% for child_link in link.links %}
+                        <li class="py-4 px-8 flex items-center {% if child_link.links.size > 0 %}border-b{% endif %}">
+                          {% if child_link.links.size > 0 %}
+                            <button
+                              @click="openSubmenu('{{ child_link.handle }}')"
+                              class="flex justify-between text-color_1 hover:text-black-content text-xl w-full">
+                              <span>{{ child_link.title }}</span>
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth="{1.5}"
+                                stroke="currentColor"
+                                class="max-w-10">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                              </svg>
+                            </button>
+                            <nav
+                              x-show="activeSubmenu === '{{ child_link.handle }}'"
+                              x-transition:enter="transition ease-out duration-200"
+                              x-transition:enter-start="translate-x-full"
+                              x-transition:enter-end="translate-x-0"
+                              x-transition:leave="transition ease-in duration-200"
+                              x-transition:leave-start="translate-x-0"
+                              x-transition:leave-end="translate-x-full"
+                              class="absolute inset-0 bg-white h-full">
+                              <div class="py-4 px-8 flex items-center border-b">
+                                <button
+                                  @click="closeSubmenu"
+                                  class="flex items-center text-black-content text-xl w-full">
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    strokewidth="{1.5}"
+                                    stroke="currentColor"
+                                    class="max-w-10 translate-y-[0.1em]">
+                                    <path strokelinecap="round" strokelinejoin="round" d="m15.75 4.5-7.5 7.5 7.5 7.5"></path>
+                                  </svg>
+                                  {{ child_link.title }}
+                                </button>
+                              </div>
+                              <ul class="flex flex-col">
+                                {% for grandlink in child_link.links %}
+                                  <li class="py-4 px-8 flex items-center">
+                                    <a
+                                      href="{{ grandlink.url }}"
+                                      class="text-color_1 hover:text-black-content text-xl">
+                                      {{ grandlink.title }}
+                                    </a>
+                                  </li>
+                                {% endfor %}
+                              </ul>
+                            </nav>
+
+                          {% else %}
+                            <a href="{{ child_link.url }}" class="text-color_1 hover:text-black-content text-xl">
+                              {{ child_link.title }}
+                            </a>
+                          {% endif %}
+                        </li>
+                      {% endfor %}
+                    </ul>
+                    {% comment %} should display featured blocks in mobile menu {% endcomment %}
+                    {% if settings.is_enabled_featured_blocks_mobile %}
+                      {% render 'menu-mobile-featured', title: settings.featured_blocks_title %}
+                    {% endif %}
+                  </nav>
+                {% else %}
+                  {% assign bamboo_icon = settings.bamboo_icon
+                    | image_url: width: 100
+                    | image_tag: class: 'w-[1.2rem] inline-block translate-y-[-0.2rem] mx-1'
+                  %}
+                  {% assign heart_icon = settings.heart_icon
+                    | image_url: width: 100
+                    | image_tag: class: 'w-[1.6rem] inline-block translate-y-[-0.2rem] mx-[0.1rem]'
+                  %}
+                  <a
+                    href="{{ link.url }}"
+                    class="text-black-content hover:text-color_1 text-base font-normal">
+                    {{ link.title | replace: '[bamboo]', bamboo_icon | replace: '[heart]', heart_icon }}
+                  </a>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+          <ul
+            class="flex flex-col">
+            {% assign walmart_icon = settings.walmart_icon
+              | image_url: width: 100
+              | image_tag: class: 'w-[1.6rem] inline-block translate-y-[-0.2rem] mx-[0.1rem]'
+            %}
+            {% for link in menuItemsSecond %}
+              <li class="py-6 md:py-4 px-12 flex items-center">
+                {% if link.links.size > 0 %}
+                  <button
+                    @click="openSubmenu('{{ link.handle }}')"
+                    class="flex justify-between text-color_1 hover:text-black-content text-base w-full">
+                    <span>{{ link.title | replace: '[walmart]', walmart_icon }}</span>
+                    {% comment %}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="{1.5}"
+                        stroke="currentColor"
+                        class="max-w-10">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                      </svg>
+                    {% endcomment %}
+                    {{ 'arrow-bottom-right.svg' | inline_asset_content }}
+                  </button>
+                  <nav
+                    x-show="activeSubmenu === '{{ link.handle }}'"
+                    x-transition:enter="transition ease-out duration-200"
+                    x-transition:enter-start="translate-x-full"
+                    x-transition:enter-end="translate-x-0"
+                    x-transition:leave="transition ease-in duration-200"
+                    x-transition:leave-start="translate-x-0"
+                    x-transition:leave-end="translate-x-full"
+                    class="absolute inset-0 bg-white h-full">
+                    <div class="py-4 px-8 flex items-center">
+                      <button
+                        @click="closeSubmenu"
+                        class="flex items-center text-black-content text-xl w-full">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokewidth="{1.5}"
+                          stroke="currentColor"
+                          class="max-w-10 translate-y-[0.1em]">
+                          <path strokelinecap="round" strokelinejoin="round" d="m15.75 4.5-7.5 7.5 7.5 7.5"></path>
+                        </svg>
+                        {{ link.title }}
+                      </button>
+                    </div>
+                    <ul class="flex flex-col">
+                      {% for child_link in link.links %}
+                        <li class="py-8 px-8 flex items-center {% if child_link.links.size > 0 %}border-b{% endif %}">
+                          {% if child_link.links.size > 0 %}
+                            <button
+                              @click="openSubmenu('{{ child_link.handle }}')"
+                              class="flex justify-between text-color_1 hover:text-black-content text-xl w-full">
+                              <span>{{ child_link.title }}</span>
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth="{1.5}"
+                                stroke="currentColor"
+                                class="max-w-10">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                              </svg>
+                            </button>
+                            <nav
+                              x-show="activeSubmenu === '{{ child_link.handle }}'"
+                              x-transition:enter="transition ease-out duration-200"
+                              x-transition:enter-start="translate-x-full"
+                              x-transition:enter-end="translate-x-0"
+                              x-transition:leave="transition ease-in duration-200"
+                              x-transition:leave-start="translate-x-0"
+                              x-transition:leave-end="translate-x-full"
+                              class="absolute inset-0 bg-white h-full">
+                              <div class="py-4 px-8 flex items-center border-b">
+                                <button
+                                  @click="closeSubmenu"
+                                  class="flex items-center text-black-content text-xl w-full">
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    strokewidth="{1.5}"
+                                    stroke="currentColor"
+                                    class="max-w-10 translate-y-[0.1em]">
+                                    <path strokelinecap="round" strokelinejoin="round" d="m15.75 4.5-7.5 7.5 7.5 7.5"></path>
+                                  </svg>
+                                  {{ child_link.title }}
+                                </button>
+                              </div>
+                              <ul class="flex flex-col">
+                                {% for grandlink in child_link.links %}
+                                  <li class="py-4 px-8 flex items-center">
+                                    <a
+                                      href="{{ grandlink.url }}"
+                                      class="text-color_1 hover:text-black-content text-xl">
+                                      {{ grandlink.title }}
+                                    </a>
+                                  </li>
+                                {% endfor %}
+                              </ul>
+                            </nav>
+
+                          {% else %}
+                            <a href="{{ child_link.url }}" class="text-color_1 hover:text-black-content text-xl">
+                              {{ child_link.title }}
+                            </a>
+                          {% endif %}
+                        </li>
+                      {% endfor %}
+                    </ul>
+                    {% comment %} should display featured blocks in mobile menu {% endcomment %}
+                    {% if settings.is_enabled_featured_blocks_mobile %}
+                      {% render 'menu-mobile-featured', title: settings.featured_blocks_title %}
+                    {% endif %}
+                  </nav>
+                {% else %}
+                  {% assign bamboo_icon = settings.bamboo_icon
+                    | image_url: width: 100
+                    | image_tag: class: 'w-[1.2rem] inline-block translate-y-[-0.2rem] mx-1'
+                  %}
+                  {% assign heart_icon = settings.heart_icon
+                    | image_url: width: 100
+                    | image_tag: class: 'w-[1.6rem] inline-block translate-y-[-0.2rem] mx-[0.1rem]'
+                  %}
+                  <a
+                    href="{{ link.url }}"
+                    class="text-black-content hover:text-color_1 text-[20px] md:text-[24px] font-normal">
+                    {% if link.title contains 'skin_shield' %}
+                      {{ skinShieldTM }}
+                    {% else %}
+                      {{ link.title | replace: '[bamboo]', bamboo_icon | replace: '[heart]', heart_icon }}
+                    {% endif %}
+                  </a>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="px-12 md:pb-2">
+          <ul class="flex space-x-8 b-header__inner-menu">
+            {% for link in settings.header_mobile_secondary_menu.links %}
+              <li class="menu-item flex items-center ">
+                <a href="{{ link.url }}" class="text-black font-grotesk font-normal">
                   {{ link.title }}
                 </a>
               </li>
             {% endfor %}
           </ul>
-        {% endif %}
-        <a
-          href="/apps/retextion#/login"
-          class="text-color_1 flex hover:scale-110 hidden"
-        >
-          <svg width="16" height="21" viewBox="0 0 16 21" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 21C0 16.5817 3.58172 13 8 13C12.4183 13 16 16.5817 16 21H0ZM8 12C4.685 12 2 9.315 2 6C2 2.685 4.685 0 8 0C11.315 0 14 2.685 14 6C14 9.315 11.315 12 8 12Z" fill="currentColor"/>
-          </svg>
-        </a>
-      </div>
-    </nav>
+        </div>
+        <div class="px-12 md:pb-2">
+          {% if settings.social_media_menu != blank %}
+            <ul class="nav-social grid grid-cols-2 gap-8">
+              {% for link in settings.social_media_menu.links %}
+                <li>
+                  <a href="{{ link.url }}" class="" target="_blank">
+                    {{ link.title }}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+          <a
+            href="/apps/retextion#/login"
+            class="text-color_1 flex hover:scale-110 hidden">
+            <svg width="16" height="21" viewBox="0 0 16 21" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 21C0 16.5817 3.58172 13 8 13C12.4183 13 16 16.5817 16 21H0ZM8 12C4.685 12 2 9.315 2 6C2 2.685 4.685 0 8 0C11.315 0 14 2.685 14 6C14 9.315 11.315 12 8 12Z" fill="currentColor"/>
+            </svg>
+          </a>
+        </div>
+      </nav>
+    </div>
   </div>
-</div>
 </div>
 
 <script>
-document.addEventListener('alpine:init', () => {
-  Alpine.data('menuMobile', () => ({
-    isOpened: false,
-    activeSubmenu: null,
-    isLoading: false,
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('menuMobile', () => ({
+      isOpened: false,
+      activeSubmenu: null,
+      isLoading: false,
 
-    handleResize() {
-      if (window.innerWidth >= 768) {
-        this.closeMobileMenu();
-      }
-    },
-
-    async toggleMobileMenu() {
-      try {
-        this.isLoading = true;
-        this.isOpened = !this.isOpened;
-
-        if (this.isOpened) {
-          this.openMobileMenu();
-        } else {
+      handleResize() {
+        if (window.innerWidth >= 768) {
           this.closeMobileMenu();
         }
-      } catch (error) {
-        console.error('Error toggling menu:', error);
-      } finally {
-        this.isLoading = false;
-      }
-    },
-    openMobileMenu() {
-      this.isOpened = true;
-      document.body.classList.add('overflow-hidden');
-    },
-    closeMobileMenu() {
-      this.isOpened = false;
-      document.body.classList.remove('overflow-hidden');
-      setTimeout(() => {
+      },
+
+      async toggleMobileMenu() {
+        try {
+          this.isLoading = true;
+          this.isOpened = !this.isOpened;
+
+          if (this.isOpened) {
+            this.openMobileMenu();
+          } else {
+            this.closeMobileMenu();
+          }
+        } catch (error) {
+          console.error('Error toggling menu:', error);
+        } finally {
+          this.isLoading = false;
+        }
+      },
+      openMobileMenu() {
+        this.isOpened = true;
+        document.body.classList.add('overflow-hidden');
+      },
+      closeMobileMenu() {
+        this.isOpened = false;
+        document.body.classList.remove('overflow-hidden');
+        setTimeout(() => {
+          this.activeSubmenu = null;
+        }, 200);
+      },
+
+      closeSubmenu() {
         this.activeSubmenu = null;
-      }, 200);
-    },
+      },
 
-    closeSubmenu() {
-      this.activeSubmenu = null;
-    },
-
-    openSubmenu(submenu) {
-      this.activeSubmenu = submenu;
-    },
-  }));
-});
+      openSubmenu(submenu) {
+        this.activeSubmenu = submenu;
+      },
+    }));
+  });
 </script>

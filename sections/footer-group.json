@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "type": "footer",
   "name": "Footer Group",
@@ -28,6 +37,7 @@
         },
         "footer_nav_W3Fgpf": {
           "type": "footer_nav",
+          "disabled": true,
           "settings": {
             "title": "Help",
             "menu": "footer-help-menu"
@@ -43,7 +53,7 @@
         "footer_bottom_nav_R3WzNG": {
           "type": "footer_bottom_nav",
           "settings": {
-            "title": "Freestyle World, Inc.",
+            "title": "© 2025 Freestyle World, Inc.",
             "menu": "footer-bottom-menu"
           }
         }
@@ -57,10 +67,14 @@
         "footer_bottom_nav_R3WzNG"
       ],
       "settings": {
-        "newsletter_title": "Product launches, community fun, VIP drops, and more",
-        "tagline": "Parenting is the [Ultimate Creative Act.]"
+        "newsletter_title": "Sign up & get a free jumbo wipes",
+        "newsletter_text": "Join our newsletter and get first access to product launches, updates, and surprises in your inbox.",
+        "image": "shopify://shop_images/Freestyle_1.svg",
+        "tagline": ""
       }
     }
   },
-  "order": ["footer_custom_fPQhVk"]
+  "order": [
+    "footer_custom_fPQhVk"
+  ]
 }

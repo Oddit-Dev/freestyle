@@ -1,72 +1,91 @@
 <div class="bg-[#F1F2F5] pt-8 lg:pt-0">
   <!-- Newsletter y Menús -->
-  <div class="grid grid-cols-12 lg:grid-cols-12">
-    <!-- Columna izquierda (30%) - Newsletter -->
-    <div class="px-8 md:px-20 border-b-[1px] border-transparent lg:p-6 pb-12 lg:py-24 flex flex-col items-center lg:items-start col-span-12 lg:col-span-5">
-      {% if section.settings.newsletter_title != blank %}
-        <h2 class="text-xl md:text-4xl font-grotesk text-center lg:text-left font-normal mb-8 md:mb-12">
-          {{ section.settings.newsletter_title }}
-        </h2>
-      {% endif %}
-      {% if section.settings.newsletter_text != blank %}
-        <p class="text">{{ section.settings.newsletter_text }}</p>
-      {% endif %}
-      <form class="flex flex-row w-full max-w-[42rem] mt-8">
-        <input
-          type="email"
-          class="flex-1 px-12 py-6 rounded-full border border-black bg-transparent"
-          placeholder="Enter email address">
-        <button
-          type="submit"
-          class="mt-0 -ml-36 px-6 py-3 rounded-full underline-none">
-          Sign Up
-        </button>
-      </form>
-    </div>
+  <div class="border-0 border-b border-black">
+    <div class="container">
+      <div class="flex max-md:flex-col gap-[50px] max-md:gap-0">
+        <!-- Columna izquierda (30%) - Newsletter -->
+        <div class="max-w-[420px] max-md:max-w-[calc(100%+32px)] w-full pr-[50px] max-md:px-[16px] py-[50px] max-md:py-[40px] border-0 border-r max-md:border-r-0 max-md:border-b border-solid border-black max-md:w-[calc(100%+32px)] max-md:ml-[-16px]">
+          {% if section.settings.newsletter_title != blank %}
+            <h2 class="font-fkroman font-medium text-[24px] max-md:text-[30px] leading-[1.3] capitalize mb-[24px] max-md:mb-[12px] tracking-[-0.05em] max-md:text-center">
+              {{ section.settings.newsletter_title }}
+            </h2>
+          {% endif %}
+          {% if section.settings.newsletter_text != blank %}
+            <p class="text font-grotesk font-normal text-[15px] leading-[1.7] text-black mb-[28px] max-md:text-center">
+              {{ section.settings.newsletter_text }}
+            </p>
+          {% endif %}
+          <form class="relative">
+            <input
+              type="email"
+              class="w-full bg-white border border-solid border-[#E3E3E3] rounded-[30px] font-grotesk font-normal text-[14px] leading-[1.6] placeholder:text-[#909090] p-[18px_133px_14px_19px]"
+              placeholder="Enter email address">
+            <button
+              type="submit"
+              class="button absolute top-[6px] right-[6px] !p-[0px_25px] !min-w-0">
+              Sign Up
+            </button>
+          </form>
+        </div>
 
-    <!-- Menus -->
-    <div class="mb-12 mt-12 lg:-mb-[1px] lg:mt-0 px-4 lg:border-l-[1px] lg:border-black lg:rounded-bl-3xl p-6 lg:pt-24 lg:pb-64 lg:px-28 col-span-12 lg:col-span-7">
-      <div class="grid grid-cols-2 px-8 md:px-0 md:grid-cols-5 gap-8 xl:gap-12 lg:flex lg:justify-between">
-        <!-- Shop -->
-        {% for block in section.blocks %}
-          {% case block.type %}
-            {% when 'footer_nav' %}
-              {% assign bamboo_icon = settings['bamboo_icon'] | image_url: width: 100 | image_tag: class: 'w-[1.2rem] inline-block translate-y-[-0.2rem] mx-1' %}
-              {% assign heart_icon = settings['heart_icon'] | image_url: width: 100 | image_tag: class: 'w-[1.6rem] inline-block translate-y-[-0.2rem] mx-[0.1rem]' %}
-              <div>
-                <h3 class="font-grotesk font-medium mb-10 md:mb-20">{{ block.settings.title }}</h3>
-                {% if block.settings.menu != blank %}
-                  <ul class="space-y-8">
-                    {% for link in block.settings.menu.links %}
-                      {% assign new_label = '<span class="font-normal text-[0.8rem] tracking-[0.02em] uppercase text-purple-700 -translate-y-[0.4rem] inline-block">New</span>' %}
-                      <li>
-                        <a
-                          href="{{ link.url }}"
-                          class="text-gray-600 font-grotesk font-normal hover:text-black text-[1.4rem] tracking-[0.02em]">
-                          {{ link.title | replace: '[bamboo]', bamboo_icon | replace: '[heart]', heart_icon | replace: '[new]', new_label }}
-                        </a>
-                      </li>
-                    {% endfor %}
-                  </ul>
-                {% endif %}
-              </div>
-          {% endcase %}
-        {% endfor %}
+        <!-- Menus -->
+        <div class="py-[50px] max-md:py-[30px] w-full">
+          <div class="grid grid-cols-4 max-[1200px]:grid-cols-2 gap-[30px] max-md:gap-x-[8px] max-md:gap-y-[40px]">
+            <!-- Shop -->
+            {% for block in section.blocks %}
+              {% case block.type %}
+                {% when 'footer_nav' %}
+                  {% assign bamboo_icon = settings.bamboo_icon
+                    | image_url: width: 100
+                    | image_tag: class: 'w-[1.2rem] inline-block translate-y-[-0.2rem] mx-1'
+                  %}
+                  {% assign heart_icon = settings.heart_icon
+                    | image_url: width: 100
+                    | image_tag: class: 'w-[1.6rem] inline-block translate-y-[-0.2rem] mx-[0.1rem]'
+                  %}
+                  <div>
+                    <h3 class="font-grotesk font-medium text-[15px] leading-[1] tracking-[-0.05em] capitalize text-black mb-[16px]">
+                      {{ block.settings.title }}
+                    </h3>
+                    {% if block.settings.menu != blank %}
+                      <ul class="flex flex-col gap-[12px]">
+                        {% for link in block.settings.menu.links %}
+                          {% assign new_label = '<span class="font-normal text-[0.8rem] tracking-[0.02em] uppercase text-purple-700 -translate-y-[0.4rem] inline-block">New</span>' %}
+                          <li>
+                            <a
+                              href="{{ link.url }}"
+                              class="font-grotesk font-normal text-black text-[15px] leading-[1.6] tracking-normal">
+                              {{
+                                link.title
+                                | replace: '[bamboo]', bamboo_icon
+                                | replace: '[heart]', heart_icon
+                                | replace: '[new]', new_label
+                              }}
+                            </a>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    {% endif %}
+                  </div>
+              {% endcase %}
+            {% endfor %}
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- Tagline -->
-   {% if section.settings.tagline != blank or section.settings.image != blank %}
-    <div class="border-t border-black py-16">
-      <div class="container mx-auto md:py-16 text-center">
+  {% if section.settings.tagline != blank or section.settings.image != blank %}
+    <div class="pt-[50px] max-md:pt-[30px]">
+      <div class="container mx-auto text-center">
         {% if section.settings.image != blank %}
           <div class="image-wrapper">
             {%- render 'image-element',
               image: section.settings.image,
               widths: '375, 550, 750, 950,1150, 1500, 1780, 2000, 2500',
               sizes: '(max-width: 749px) 100vw, 100vw',
-              class: 'footer-bottom-image w-full block object-cover h-full max-md:hidden h-auto'
+              class: 'footer-bottom-image w-full block object-cover h-full h-auto'
             -%}
           </div>
         {% endif %}
@@ -85,16 +104,21 @@
   {% endif %}
 
   <!-- Footer bottom -->
-  <div class="border-t border-gray-100">
-    <div class="mx-auto py-6 pb-12 px-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-600">
+  <div class="py-[30px] max-md:pt-[20px]">
+    <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
       {% if section.blocks.size > 0 %}
         {% for block in section.blocks %}
           {% case block.type %}
             {% when 'footer_bottom_nav' %}
-              <p>{{ block.settings.title }}</p>
-              <div class="flex gap-6 mt-4 md:mt-0">
+              <p class="text-[#909090] font-Inter font-normal text-[12px] leading-[1.6]">{{ block.settings.title }}</p>
+              <div class="flex items-center gap-[30px]">
                 {% for link in block.settings.menu.links %}
-                  <a href="{{ link.url }}" class="hover:text-black" target="_blank">{{ link.title }}</a>
+                  <a
+                    href="{{ link.url }}"
+                    class="text-[#909090] font-grotesk font-normal text-[12px] leading-[1.6]"
+                    target="_blank">
+                    {{- link.title -}}
+                  </a>
                 {% endfor %}
               </div>
           {% endcase %}
