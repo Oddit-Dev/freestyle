@@ -58,7 +58,7 @@
         {% render 'icon-close', color: '#1b4c62' %}
       </button>
     </div>
-    <div class="shrink grow overflow-y-auto">
+    <div class="shrink grow overflow-y-auto flex flex-col">
       <div class="custom-product-feature p-[85px_16px_24px_16px]">
         <div class="product-feature-main bg-[#DADAFF] rounded-[16px] p-[0_20px_24px] flex flex-col">
           {% assign pro_feature_image = settings.mobile_product_feature_image %}
@@ -104,7 +104,7 @@
       <nav
         role="navigation"
         aria-label="Mobile menu"
-        class="overflow-hidden overflow-y-auto relative flex flex-col">
+        class="flex flex-col flex-1">
         <div class="grow p-[0_16px_51px_16px]">
           <ul
             class="flex flex-col lg:hidden">
@@ -226,7 +226,7 @@
                   %}
                   {% assign heart_icon = settings.heart_icon
                     | image_url: width: 100
-                    | image_tag: class: 'w-[1.6rem] inline-block translate-y-[-0.2rem] mx-[0.1rem]'
+                    | image_tag: class: 'w-[76px] inline-block translate-y-[-0.2rem] mx-[0.1rem]'
                   %}
                   <a
                     href="{{ link.url }}"
@@ -241,7 +241,7 @@
             class="flex flex-col">
             {% assign walmart_icon = settings.walmart_icon
               | image_url: width: 100
-              | image_tag: class: 'w-[1.6rem] inline-block translate-y-[-0.2rem] mx-[0.1rem]'
+              | image_tag: class: 'w-[76px] inline-block translate-y-[-0.2rem] mx-[7px]'
             %}
             {% for link in menuItemsSecond %}
               <li class="flex items-center border-0 border-b border-solid border-[#E3E3E3]">
@@ -271,30 +271,30 @@
                     x-transition:leave="transition ease-in duration-200"
                     x-transition:leave-start="translate-x-0"
                     x-transition:leave-end="translate-x-full"
-                    class="absolute inset-0 bg-white h-full">
-                    <div class="py-4 px-8 flex items-center">
+                    class="absolute inset-0 bg-white h-full z-[1] flex flex-col">
+                    <div class="">
                       <button
                         @click="closeSubmenu"
-                        class="flex items-center text-black-content text-xl w-full">
+                        class="p-[16px] flex items-center gap-[10px] font-grotesk font-medium text-[20px] text-color_1 w-full leading-[1] bg-[#F1F2F5]">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
                           viewBox="0 0 24 24"
                           strokewidth="{1.5}"
                           stroke="currentColor"
-                          class="max-w-10 translate-y-[0.1em]">
+                          class="max-w-10">
                           <path strokelinecap="round" strokelinejoin="round" d="m15.75 4.5-7.5 7.5 7.5 7.5"></path>
                         </svg>
                         {{ link.title }}
                       </button>
                     </div>
-                    <ul class="flex flex-col">
+                    <ul class="flex flex-col p-[16px] overflow-auto">
                       {% for child_link in link.links %}
-                        <li class="py-8 px-8 flex items-center {% if child_link.links.size > 0 %}border-b{% endif %}">
+                        <li class="py-[8px] flex items-center {% if child_link.links.size > 0 %}border-b{% endif %}">
                           {% if child_link.links.size > 0 %}
                             <button
                               @click="openSubmenu('{{ child_link.handle }}')"
-                              class="flex justify-between text-color_1 hover:text-black-content text-xl w-full">
+                              class="flex justify-between text-color_1 font-normal text-[16px] text-xl w-full">
                               <span>{{ child_link.title }}</span>
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -345,7 +345,9 @@
                             </nav>
 
                           {% else %}
-                            <a href="{{ child_link.url }}" class="text-color_1 hover:text-black-content text-xl">
+                            <a
+                              href="{{ child_link.url }}"
+                              class="flex justify-between text-color_1 font-normal text-[16px] w-full">
                               {{ child_link.title }}
                             </a>
                           {% endif %}
@@ -380,11 +382,11 @@
             {% endfor %}
           </ul>
         </div>
-        <div class="px-12 md:pb-2">
-          <ul class="flex space-x-8 b-header__inner-menu">
+        <div class="p-[30px_26px] bg-white">
+          <ul class="grid grid-cols-2 gap-x-[8px] gap-y-[20px]">
             {% for link in settings.header_mobile_secondary_menu.links %}
-              <li class="menu-item flex items-center ">
-                <a href="{{ link.url }}" class="text-black font-grotesk font-normal">
+              <li class="menu-item flex items-center before:hidden">
+                <a href="{{ link.url }}" class="text-black font-grotesk font-normal text-[14px] leading-[1] capitalize">
                   {{ link.title }}
                 </a>
               </li>
