@@ -231,8 +231,8 @@
               {% endcomment %}
             {% when 'variants' %}
               <div class="product__sizes" x-show="variants.length > 1">
-                <h4 class="product__sizes-title mb-[14px] font-grotesk !font-medium text-[16px] leading-[1.5] text-black selected-size">
-                  {{ block.settings.title }} 
+                <h4 class="product__sizes-title mb-[14px] font-grotesk !font-medium text-[16px] leading-[1.5] text-black">
+                  {{ block.settings.title }} <span class="current-size"></span>
                 </h4>
 
                 <div class="product__sizes-list mb-10 !grid !grid-cols-3 !gap-[8px]">
@@ -498,8 +498,8 @@ if (id) {
  
                   if (matches) {
                     const size = matches[1];
-                    const selectedSize = document.querySelector('.selected-size').textContent;  // Current text
-                    document.querySelector('.selected-size').textContent = "Select size: " + size;    
+                    const currentSizeElement = document.querySelector('.current-size');
+                    currentSizeElement.innerText = size;    
                   }
  
                   this.slideToSlideByDataAttribute(this.activeVariant.id);
@@ -512,8 +512,8 @@ if (id) {
  
                   if (matches) {
                     const size = matches[1];
-                    const selectedSize = document.querySelector('.selected-size').textContent;  // Current text
-                    document.querySelector('.selected-size').textContent = "Select size: " + size;    
+                    const currentSizeElement = document.querySelector('.current-size');
+                    currentSizeElement.innerText = size;    
                   }
                   // this.slideToSlideByDataAttribute(this.activeVariant.id);
               }
@@ -634,8 +634,6 @@ if (id) {
                       mainDiv.appendChild(sizeDiv);
                       mainDiv.appendChild(weightDiv);
                       mainDiv.appendChild(countDiv);
-                      
-                      console.log("mainDiv", mainDiv);
                      
                       variant.size = mainDiv.outerHTML;      
                   } 
