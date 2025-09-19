@@ -20,7 +20,7 @@
   {% endif %}>
   <div class="container container-lg">
     <div class="product__inner">
-      <div class="main-image-gallery-with-location">
+      <div class="main-image-gallery-with-location overflow-auto">
         <div class="custom-gallery">
           {% render 'product-gallery', product: product %}
         </div>
@@ -231,8 +231,8 @@
               {% endcomment %}
             {% when 'variants' %}
               <div class="product__sizes" x-show="variants.length > 1">
-                <h4 class="product__sizes-title mb-[14px] font-grotesk !font-medium text-[16px] leading-[1.5] text-black">
-                  {{ block.settings.title }}
+                <h4 class="product__sizes-title mb-[14px] font-grotesk !font-medium text-[16px] leading-[1.5] text-black selected-size">
+                  {{ block.settings.title }} 
                 </h4>
 
                 <div class="product__sizes-list mb-10 !grid !grid-cols-3 !gap-[8px]">
@@ -253,7 +253,8 @@
                           <div
                             class="product__size-title"
                             x-show="item.size"
-                            x-text="item.size"></div>
+                            x-text="item.size"
+                            x-html="item.size"></div>
                           <div
                             class="product__size-title m-small"
                             x-show="!item.size && item.title"
@@ -487,14 +488,33 @@
                     },
                 {% endfor %}
             ],
-            updateActiveVariant(id) {
-              if (id) {
+           updateActiveVariant(id) {
+if (id) {
                   this.activeVariant = this.variants.find(item => item.id == id);
                   console.log('Updated active variant:', this.activeVariant);
+                  const mainVariantTitle = this.activeVariant.title;
+                  const regex = /Size\s(\d+)\s\(([\w-]+)\)\s-\s(\d+\s\w+)/;
+                  const matches = mainVariantTitle.match(regex);
+ 
+                  if (matches) {
+                    const size = matches[1];
+                    const selectedSize = document.querySelector('.selected-size').textContent;  // Current text
+                    document.querySelector('.selected-size').textContent = "Select size: " + size;    
+                  }
+ 
                   this.slideToSlideByDataAttribute(this.activeVariant.id);
               } else {
                   this.activeVariant = this.variants[0];
                   console.log('Set default variant:', this.activeVariant);
+                  const mainVariantTitle = this.activeVariant.title;
+                  const regex = /Size\s(\d+)\s\(([\w-]+)\)\s-\s(\d+\s\w+)/;
+                  const matches = mainVariantTitle.match(regex);
+ 
+                  if (matches) {
+                    const size = matches[1];
+                    const selectedSize = document.querySelector('.selected-size').textContent;  // Current text
+                    document.querySelector('.selected-size').textContent = "Select size: " + size;    
+                  }
                   // this.slideToSlideByDataAttribute(this.activeVariant.id);
               }
               
@@ -586,6 +606,40 @@
                   variant.diapersQty = '345';
                   variant.wipesQty = '567';
                   variant.type = '789';
+                  
+                  const mainVariantTitle = variant.title;
+                  const regex = /Size\s(\d+)\s\(([\w-]+)\)\s-\s(\d+\s\w+)/;
+                  const matches = mainVariantTitle.match(regex);
+
+                  if (matches) {
+                      const size = matches[1];
+                      const weight = matches[2];
+                      const count = matches[3];
+                      
+                      const mainDiv = document.createElement("div");
+                      mainDiv.classList.add("main-div");
+
+                      const sizeDiv = document.createElement("div");
+                      sizeDiv.textContent = size;
+                      sizeDiv.classList.add("size-div");
+
+                      const weightDiv = document.createElement("div");
+                      weightDiv.textContent = weight;
+                      weightDiv.classList.add("weight-div");
+
+                      const countDiv = document.createElement("div");
+                      countDiv.textContent = count;
+                      countDiv.classList.add("count-div");
+
+                      mainDiv.appendChild(sizeDiv);
+                      mainDiv.appendChild(weightDiv);
+                      mainDiv.appendChild(countDiv);
+                      
+                      console.log("mainDiv", mainDiv);
+                     
+                      variant.size = mainDiv.outerHTML;      
+                  } 
+                
                   variant.accentTop = this.sizesAccentColors.find(item => item.size == variant.size)?.accentTop;
                   variant.accentBottom = this.sizesAccentColors.find(item => item.size == variant.size)?.accentBottom;
                 });

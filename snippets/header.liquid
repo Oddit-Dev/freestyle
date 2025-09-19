@@ -138,9 +138,8 @@ window.addEventListener('scroll', updateHeaderHeight);
                   <span class="icon--header tw-w-[24px] tw-h-[24px] !tw-flex tw-items-start tw-justify-center tw-text-[#A843A2] [&_svg]:!tw-m-0 [&_svg]:!tw-h-[24px]">
                     {{ "header-shopping-cart.svg" | inline_asset_content }}
                   </span>
-                  {% if cart.item_count > 0 %}
                   <span class="header-cart__count">{{ cart.item_count }}</span>
-                  {% endif %}
+                  
               </cart-icon>
       </div>
     </div>

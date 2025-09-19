@@ -230,7 +230,7 @@
         </div>
       {% endif %}
     </div>
-    {% if cart.item_count != 0 %}
+    {% if cart.item_count != blank %}
       <footer class="cart-drawer__footer p-[20px_16px_25px] border-0 border-t border-solid border-[#E3E3E3]">
         <div class="cart-drawer-addon">
           {% assign addon_product = section.settings.addon_product %}
