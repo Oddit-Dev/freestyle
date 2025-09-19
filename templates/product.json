@@ -105,7 +105,7 @@
         "product_features_jDgQVM": {
           "type": "product_features",
           "settings": {
-            "note": "<p>*up to 14x better absorption than leading brands</p>"
+            "note": ""
           }
         },
         "product_feature_eA7tTG": {
@@ -205,7 +205,9 @@
         "review_numbers": "4.8 out of 5 (1000+ reviews)",
         "extra_product_for_bambootek": "",
         "extra_product_quantity": 4,
-        "show_product_details": false
+        "show_product_details": false,
+        "store_main_heading": "",
+        "store_sub_heading": ""
       }
     },
     "multiple_marquee_pUJj6y": {
