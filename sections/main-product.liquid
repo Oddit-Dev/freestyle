@@ -253,7 +253,8 @@
                           <div
                             class="product__size-title"
                             x-show="item.size"
-                            x-text="item.size"></div>
+                            x-text="item.size" x-html="item.size">
+                            </div>
                           <div
                             class="product__size-title m-small"
                             x-show="!item.size && item.title"
@@ -586,6 +587,40 @@
                   variant.diapersQty = '345';
                   variant.wipesQty = '567';
                   variant.type = '789';
+                  
+                  const mainVariantTitle = variant.title;
+                  const regex = /Size\s(\d+)\s\(([\w-]+)\)\s-\s(\d+\s\w+)/;
+                  const matches = mainVariantTitle.match(regex);
+
+                  if (matches) {
+                      const size = matches[1];
+                      const weight = matches[2];
+                      const count = matches[3];
+                      
+                      const mainDiv = document.createElement("div");
+                      mainDiv.classList.add("main-div");
+
+                      const sizeDiv = document.createElement("div");
+                      sizeDiv.textContent = size;
+                      sizeDiv.classList.add("size-div");
+
+                      const weightDiv = document.createElement("div");
+                      weightDiv.textContent = weight;
+                      weightDiv.classList.add("weight-div");
+
+                      const countDiv = document.createElement("div");
+                      countDiv.textContent = count;
+                      countDiv.classList.add("count-div");
+
+                      mainDiv.appendChild(sizeDiv);
+                      mainDiv.appendChild(weightDiv);
+                      mainDiv.appendChild(countDiv);
+                      
+                      console.log("mainDiv", mainDiv);
+                     
+                      variant.size = mainDiv.outerHTML;      
+                  } 
+                
                   variant.accentTop = this.sizesAccentColors.find(item => item.size == variant.size)?.accentTop;
                   variant.accentBottom = this.sizesAccentColors.find(item => item.size == variant.size)?.accentBottom;
                 });
