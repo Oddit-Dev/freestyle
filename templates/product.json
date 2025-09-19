@@ -369,7 +369,7 @@
       "name": "Perfect Info",
       "settings": {
         "image": "shopify://shop_images/Freestyle_Loose-Diapers_Wipes_1426_3.png",
-        "heading": "<strong>Your baby is perfect,</strong> now their diaper is too."
+        "heading": "<strong>Your baby is perfect, </strong>now their diaper is too."
       }
     },
     "icon_with_text_Tirzyn": {
@@ -416,7 +416,8 @@
       ],
       "name": "Icon With Text",
       "settings": {
-        "background_image": "shopify://shop_images/Rectangle_1902.png",
+        "background_image": "shopify://shop_images/Rectangle_1902_04eb555e-fac7-428e-bdef-7324f544b74a.png",
+        "background_image_mobile": "shopify://shop_images/Rectangle_1902_1.png",
         "heading": "Our Safety Standards",
         "text": "Freestyle delivers safe, sustainable diapers that keep your baby protected and you worry-free."
       }
