@@ -6,7 +6,7 @@
   </div>
   <div class="skeleton product__gallery-main"></div>
 </div>
-<div class="product__gallery flex flex-col gap-[16px]" x-show="!loading" x-cloak>
+<div class="product__gallery flex flex-col gap-[16px] !p-0 mb-[40px]" x-show="!loading" x-cloak>
   {% if product.images %}
     <div class="product__gallery-main !static !w-full">
       <div class="product__gallery-main__inner !pb-0">
@@ -53,7 +53,7 @@
           {% for image in product.images %}
             {% unless image.attached_to_variant? %}
               <div
-                class="swiper-slide"
+                class="swiper-slide opacity-45 after:hidden"
                 :class="activeSlideNum === {{ slideIndex }} ? 'm-active' : ''"
                 data-index="{{ slideIndex }}"
                 @click="slideToSlide(event, {{ slideIndex }})">
@@ -62,7 +62,7 @@
                   alt="{{ image.alt }}"
                   width="120"
                   height="120"
-                  class="w-full h-full object-cover rounded">
+                  class="w-full h-full object-cover rounded-[12px]">
               </div>
               {% assign slideIndex = slideIndex | plus: 1 %}
             {% endunless %}

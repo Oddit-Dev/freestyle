@@ -18,9 +18,9 @@
     data-extra-product="{{ all_products[section.settings.extra_product_for_bambootek].first_available_variant.id }}"
     data-extra-product-qty="{{ section.settings.extra_product_quantity }}"
   {% endif %}>
-  <div class="container container-lg">
-    <div class="product__inner">
-      <div class="main-image-gallery-with-location overflow-auto">
+  <div class="container !max-w-[1360px]">
+    <div class="product__inner !gap-0">
+      <div class="main-image-gallery-with-location overflow-auto max-md:mb-[20px]">
         <div class="custom-gallery">
           {% render 'product-gallery', product: product %}
         </div>
@@ -38,7 +38,7 @@
         </div>
       </div>
 
-      <div class="product__content">
+      <div class="product__content lg:!pl-[50px] md:!pl-[30px]">
         {% for block in blocks %}
           {% case block.type %}
             {% when 'text_line' %}
@@ -231,8 +231,9 @@
               {% endcomment %}
             {% when 'variants' %}
               <div class="product__sizes" x-show="variants.length > 1">
-                <h4 class="product__sizes-title mb-[14px] font-grotesk !font-medium text-[16px] leading-[1.5] text-black">
-                  {{ block.settings.title }} <span class="current-size"></span>
+                <h4 class="product__sizes-title mb-[14px] font-grotesk !font-medium text-[16px] leading-[1.5] text-black flex items-center gap-[8px]">
+                  {{ block.settings.title }}
+                  <span class="current-size text-[#7A7A7A]"></span>
                 </h4>
 
                 <div class="product__sizes-list mb-10 !grid !grid-cols-3 !gap-[8px]">
@@ -676,10 +677,15 @@ if (id) {
               const swiperPagination = new Swiper(swiper, {
                   // loop: true,
                   direction: "horizontal",
-                  slidesPerView: 6.5,
-                  spaceBetween: 10,
+                  slidesPerView: 5.5,
+                  spaceBetween: 8,
                   draggable: true,
                   mousewheel: true,
+                  breakpoints: {
+                      1024: {
+                          slidesPerView: 6.7,
+                      }
+                  }
               });
               this.$nextTick(() => {
                 this.mainSwiperPagination = swiperPagination;

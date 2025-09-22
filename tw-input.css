@@ -166,4 +166,80 @@ h2,
   height: 24px;
 }
 
+.product .product__content .product__sizes-list .product__size-content {
+  border-radius: 8px;
+  border: 1px solid #E3E3E3;
+}
+
+.product .product__content .product__sizes-list .product__size-content .product__size-info {
+  padding: 14px 12px 10px;
+}
+
+.product .product__content .product__sizes-list .product__size input[checked="checked"]+.product__size-content {
+  background-color: #6638B614;
+  outline: 2px solid #6638B6;
+}
+
+.product .product__content .product__sizes-list .product__size-content .main-div {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+  font-family: GroteskNeue, system-ui;
+}
+
+.product .product__content .product__sizes-list .product__size-content .main-div .size-div {
+  color: #000000;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
+.product .product__content .product__sizes-list .product__size-content .main-div .weight-div {
+  color: #909090;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+.product .product__content .product__sizes-list .product__size-content .main-div .count-div {
+  color: #000000;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+.product .product__gallery .product__gallery-thumbs .swiper-slide.swiper-slide-active {
+  opacity: 1;
+}
+
+.product .product__inner .storepoint-container.storepoint-layout-default .storepoint-results {
+  grid-column: 1 / span 2;
+  grid-row: auto;
+}
+
+.product .product__inner .storepoint-container.storepoint-layout-default .storepoint-map {
+  grid-column: 1 / span 2;
+  height: 300px;
+  grid-row: unset;
+}
+
+@media(max-width: 767px) {
+
+  .product .product__inner .storepoint-container.storepoint-layout-default .storepoint-results,
+  .product .product__inner .storepoint-container.storepoint-layout-default .storepoint-map {
+    grid-column: 1;
+  }
+
+  .product .product__inner .storepoint-container.storepoint-layout-default {
+    grid-template-columns: 1fr;
+  }
+
+}
+
 /* product page */

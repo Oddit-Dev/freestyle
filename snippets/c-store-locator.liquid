@@ -7,84 +7,89 @@
     Bamboo<img src="/cdn/shop/files/BambooTek.png?v=1744292276&amp;width=100" alt="" srcset="/cdn/shop/files/BambooTek.png?v=1744292276&amp;width=100 100w" width="100" height="121" class="w-[1.2rem] inline-block translate-y-[-0.2rem] mx-1">Tek™
 {% endcapture %}
 
-<div class="storepoint py-16 md:py-34">
-    <div class="container container-lg mx-auto">
-        {% if walmartlogo != blank %}
-            <div class="walmart-logo">
-                {% render 'image-element',
-                    image: walmartlogo,
-                    widths: '200, 300, 400',
-                    sizes: '(max-width: 989px) 100vw, 45vw',
-                    class: 'walmart-logo'
-                %}
-            </div>  
-        {% endif %}
-        <h2 class="heading-3 font-grotesk mb-8 font-normal">{{ title }}</h2>
-        <div class="mb-8 max-w-[360px]">{{ description | replace: 'skin_shield_tm', skin_shield | replace: 'bamboo_tek_tm', bamboo_tek }}</div>
-        <!-- Storepoint Widget Embed Start -->
-        <div id="storepoint-widget"></div>
-    </div>
-    {% if rightlogo != blank %}
-        <div class="right-side-logo">
-            {% render 'image-element',
-                image: rightlogo,
-                widths: '200, 300, 400',
-                sizes: '(max-width: 989px) 100vw, 45vw',
-                class: 'walmart-logo'
+<div class="storepoint p-[20px] max-md:p-[20px_16px] bg-[#F1F2F5] rounded-[12px]">
+  <div class="">
+    {% if walmartlogo != blank %}
+      <div class="walmart-logo h-[23px] flex mb-[14px]">
+        {% render 'image-element',
+          image: walmartlogo,
+          widths: '200, 300, 400',
+          sizes: '(max-width: 989px) 100vw, 45vw',
+          class: 'walmart-logo max-w-full w-auto max-h-full object-contain'
         %}
-        </div>
+      </div>
     {% endif %}
+    <h2 class="font-grotesk font-medium text-[20px] leading-[1.4] tracking-normal text-black mb-[20px]">{{ title }}</h2>
+    <div class="mb-8 max-w-[360px]">
+      {{ description | replace: 'skin_shield_tm', skin_shield | replace: 'bamboo_tek_tm', bamboo_tek }}
+    </div>
+    <!-- Storepoint Widget Embed Start -->
+    <div id="storepoint-widget"></div>
+  </div>
+  {% if rightlogo != blank %}
+    <div class="right-side-logo">
+      {% render 'image-element',
+        image: rightlogo,
+        widths: '200, 300, 400',
+        sizes: '(max-width: 989px) 100vw, 45vw',
+        class: 'walmart-logo'
+      %}
+    </div>
+  {% endif %}
 </div>
 <script>
-window.loadStorepoint=function(){
-    var storepoint = new StorepointWidget(
-        '168147ffdccf38',
-        '#storepoint-widget',
-        {}
-    );
-};!function(){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://widget.storepoint.co/embed.js";t.onload=function(){"function"==typeof window.loadStorepoint&&window.loadStorepoint()};document.head.appendChild(t);}();
+  window.loadStorepoint = function () {
+    var storepoint = new StorepointWidget('168147ffdccf38', '#storepoint-widget', {});
+  };
+  !(function () {
+    var t = document.createElement('script');
+    t.type = 'text/javascript';
+    t.async = !0;
+    t.src = 'https://widget.storepoint.co/embed.js';
+    t.onload = function () {
+      'function' == typeof window.loadStorepoint && window.loadStorepoint();
+    };
+    document.head.appendChild(t);
+  })();
 </script>
 <!-- Storepoint Widget Embed End -->
 
 <style>
+  .storepoint-container.storepoint-layout-default {
+    grid-gap: 20px;
+  }
 
-    .storepoint-container.storepoint-layout-default    {
-        grid-gap: 20px;
-    }
+  .storepoint-container.storepoint-layout-default .storepoint-search {
+    border: 0;
+    padding: 0;
+  }
 
-    .storepoint-container.storepoint-layout-default .storepoint-search {
-        border: 0;
-        padding: 0;
-    }
+  .storepoint-container {
+    background-color: transparent;
+    box-shadow: none;
+    border: 0;
+  }
 
-    .storepoint-container {
-        background-color: transparent;
-        box-shadow: none;
-        border: 0;
-    }
+  .storepoint-search-bar {
+    background-color: #fff;
+    border-radius: 25px;
+    border: 1px solid #262626;
+  }
 
-    .storepoint-search-bar {
-        background-color: #fff;
-        border-radius: 25px;
-        border: 1px solid #262626;
-    }
+  .storepoint-results,
+  .storepoint-results.storepoint-location-detail-panel-visible,
+  .storepoint-location-detail-panel.storepoint-location-detail-panel-visible,
+  .storepoint-container.storepoint-layout-default .storepoint-map {
+    border-radius: 25px !important;
+    border: 1px solid #262626 !important;
+    overflow: hidden !important;
+  }
 
-    .storepoint-results,
-    .storepoint-results.storepoint-location-detail-panel-visible,
-    .storepoint-location-detail-panel.storepoint-location-detail-panel-visible,
-    .storepoint-container.storepoint-layout-default .storepoint-map{
-        border-radius: 25px !important;
-        border: 1px solid #262626 !important;
-        overflow: hidden !important;
-    }
+  .storepoint-container.storepoint-layout-default .storepoint-map {
+    overflow: hidden;
+  }
 
-    .storepoint-container.storepoint-layout-default .storepoint-map {
-        overflow: hidden;
-    }
-
-    .storepoint-brand   {
-        display: none !important;
-    }
-    
-    
+  .storepoint-brand {
+    display: none !important;
+  }
 </style>

@@ -206,7 +206,8 @@
         "extra_product_for_bambootek": "",
         "extra_product_quantity": 4,
         "show_product_details": false,
-        "store_main_heading": "",
+        "store_main_logo": "shopify://shop_images/Group_26353_1.png",
+        "store_main_heading": "Find SkinShieldTM Diapers near you",
         "store_sub_heading": ""
       }
     },
