@@ -231,18 +231,22 @@
               {% endcomment %}
             {% when 'variants' %}
               <div class="product__sizes" x-show="variants.length > 1">
-                <div class="title-with-size-chart">
+                <div class="title-with-size-chart flex items-center justify-between gap-[20px]">
                   <h4 class="product__sizes-title mb-[14px] font-grotesk !font-medium text-[16px] leading-[1.5] text-black-text flex items-center gap-[8px]">
                     {{ block.settings.title }}
                     <span class="current-size text-[#7A7A7A]"></span>
                   </h4>
                   {% if product.metafields.custom.size_chart != blank %}
-                    <div class="sizeChartBtn">Size Chart</div>
+                    <div class="sizeChartBtn font-grotesk font-medium text-[16px] leading-[1.5] underline text-scheme_one cursor-pointer">
+                      Size Chart
+                    </div>
 
                     <div class="sizeChartModal hidden">
-                      <div class="container-main">
-                        <button class="closeSizeChart">✕</button>
-                        <div class="image-main">
+                      <div class="container-main fixed top-0 left-0 w-full h-full flex items-center justify-center p-[30px] max-md:p-[20px] bg-black/80 z-[99]">
+                        <div class="image-main relative">
+                          <button class="closeSizeChart absolute top-[-15px] right-[-15px] w-[30px] h-[30px] flex items-center justify-center bg-scheme_one text-white rounded-full">
+                            ✕
+                          </button>
                           {% render 'image-element',
                             image: product.metafields.custom.size_chart,
                             widths: '100, 200, 300, 375, 550, 750, 1100, 1500, 1780',
