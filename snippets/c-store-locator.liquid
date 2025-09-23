@@ -10,7 +10,7 @@
 <div class="storepoint p-[20px] max-md:p-[20px_16px] bg-[#F1F2F5] rounded-[12px]">
   <div class="">
     {% if walmartlogo != blank %}
-      <div class="walmart-logo h-[23px] flex mb-[14px]">
+      <div class="walmart-logo h-[23px] flex mb-[14px] max-md:mb-[10px]">
         {% render 'image-element',
           image: walmartlogo,
           widths: '200, 300, 400',
@@ -19,7 +19,9 @@
         %}
       </div>
     {% endif %}
-    <h2 class="font-grotesk font-medium text-[20px] leading-[1.4] tracking-normal text-black mb-[20px]">{{ title }}</h2>
+    <h2 class="font-grotesk font-medium text-[20px] max-md:text-[17px] leading-[1.4] tracking-normal text-black-text mb-[20px] max-md:mb-[15px]">
+      {{ title }}
+    </h2>
     <div class="mb-8 max-w-[360px]">
       {{ description | replace: 'skin_shield_tm', skin_shield | replace: 'bamboo_tek_tm', bamboo_tek }}
     </div>

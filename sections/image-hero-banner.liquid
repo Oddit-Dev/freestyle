@@ -1,6 +1,10 @@
-
 {% if section.settings.image != blank or section.settings.heading != blank or section.settings.button != blank %}
-  <div class="image-hero-banner pt-[80px] pb-[100px] max-md:py-[40px]">
+  {% style %}
+    .image-hero--{{ section.id }} .image-with-text-content .button:hover svg path {
+      fill: #6638B6;
+    }
+  {% endstyle %}
+  <div class="image-hero-banner image-hero--{{ section.id }} pt-[80px] pb-[100px] max-md:py-[40px]">
     <div class="container">
       <div class="image-with-text-content relative rounded-[30px] overflow-hidden">
         {% if section.settings.image != blank %}
@@ -33,12 +37,18 @@
             {% if section.settings.heading != blank %}
               {% assign logo_svg = 'icon-logo.svg' | inline_asset_content %}
               {% assign main_heading = section.settings.heading | replace: '$logo', logo_svg %}
-              <h2 class="heading flex items-center flex-wrap gap-x-[10px] text-scheme_one-secondary [&_svg]:max-md:w-[136px] [&_svg]:max-md:h-[30px]">{{ main_heading }}</h2>
+              <h2 class="heading flex items-center flex-wrap gap-x-[10px] text-scheme_one-secondary [&_svg]:max-md:w-[136px] [&_svg]:max-md:h-[30px]">
+                {{ main_heading }}
+              </h2>
             {% endif %}
             {% if section.settings.button != blank and section.settings.link %}
-              {% assign walmart_svg = 'icon-walmart.svg' | inline_asset_content %}
+              {% assign walmart_svg = 'icon-walmart-white.svg' | inline_asset_content %}
               {% assign main_button = section.settings.button | replace: '$walmart', walmart_svg %}
-              <a class="button max-w-[300px] max-md:max-w-[330px] w-full mt-[40px] max-md:mt-[25px] [&_svg]:!w-[80px] [&_svg]:h-[18px] [&_svg]:!m-0 gap-x-[6px] hover:[&_svg_path]:fill-scheme_one" href="{{ section.settings.link }}">{{ main_button }}</a>
+              <a
+                class="button max-w-[300px] max-md:max-w-[330px] w-full mt-[40px] max-md:mt-[25px] [&_svg]:!w-[80px] [&_svg]:h-[18px] [&_svg]:!m-0 gap-x-[6px] [&_svg]:transition-all [&_svg]:duration-300"
+                href="{{ section.settings.link }}">
+                {{- main_button -}}
+              </a>
             {% endif %}
           </div>
         {% endif %}
@@ -46,7 +56,6 @@
     </div>
   </div>
 {% endif %}
-
 
 {% schema %}
 {

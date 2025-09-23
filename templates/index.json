@@ -18,7 +18,7 @@
         "heading": "Ultra Soft Skin $heart  Shield™ <strong>Diapers</strong>",
         "text": "14x Better Absorption  <strong>•</strong>  7-Layer Skin Protection  <strong>•</strong>  Total Chlorine Free",
         "button_text": "Shop Skin $heart Shield™ Diapers",
-        "button_link": "shopify://collections",
+        "button_link": "shopify://collections/skinshield-monthly-bundle",
         "text_alignment": "align-left"
       }
     },
@@ -253,7 +253,7 @@
       "settings": {
         "heading": "Trusted by <strong>Real Families</strong>",
         "button": "Shop Skin $heart Shield™ Diapers",
-        "link": "shopify://collections"
+        "link": "shopify://collections/skinshield-monthly-bundle"
       }
     },
     "logo-section": {
@@ -578,7 +578,7 @@
         "image_mobile": "shopify://shop_images/Freestyle-Boxes-345-0676_1_1.png",
         "heading": "Find $logo at a Walmart near you.",
         "button": "Shop at $walmart",
-        "link": "shopify://collections"
+        "link": "shopify://collections/skinshield-monthly-bundle"
       }
     },
     "media_slider_6dEPzQ": {
@@ -664,6 +664,7 @@
       "name": "Image With Text",
       "settings": {
         "background_image": "shopify://shop_images/Freestyle_Full-product-family_1307_1_2.png",
+        "mobile_background_image": "shopify://shop_images/Freestyle_Full-product-family_1307_1_1_003666b7-7b16-400f-8e64-4c54f92d9b09.png",
         "image": "shopify://shop_images/Freestyle_Full-product-family_1307_1_3.png",
         "image_position": "right",
         "sub_heading": "Skip the hassle",

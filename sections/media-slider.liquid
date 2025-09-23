@@ -2,102 +2,107 @@
   .media-container .swiper-slide.swiper-slide-prev .media-item-info,
   .media-container .swiper-slide.swiper-slide-active .media-item-info,
   .media-container .swiper-slide.swiper-slide-next .media-item-info {
-      display: block;
+    display: block;
   }
 
   .media-container .swiper-slide.swiper-slide-prev,
   .media-container .swiper-slide.swiper-slide-active,
   .media-container .swiper-slide.swiper-slide-next {
-      opacity: 1 !important;
+    opacity: 1 !important;
   }
 </style>
 
 {% if section.blocks.size > 0 %}
   <div class="media-slider-section section--{{section.id}} py-[100px] max-md:py-[40px] bg-scheme_one overflow-hidden">
-    <div class="container">
+    <div class="container-full">
       <div class="media-slider-main">
         {% if section.settings.heading != blank or section.settings.description != blank %}
-          <div class="section-header mb-[60px] max-md:mb-[40px]">
-            {% if section.settings.heading != blank %}
-              <h2 class="section-heading mb-[25px] max-md:mb-[15px] text-center mt-0 text-scheme_one-tertiary [&_strong]:font-fkroman [&_strong]:font-normal">
-                {{ section.settings.heading }}
-              </h2>
-            {% endif %}
-            {% if section.settings.description != blank %}
-              <div class="section-description text-center text-scheme_one-tertiary !font-grotesk font-normal text-[16px] leading-[1.6] max-w-[341px] mx-auto">
-                {{ section.settings.description }}
-              </div>
-            {% endif %}
+          <div class="container">
+            <div class="section-header mb-[60px] max-md:mb-[40px]">
+              {% if section.settings.heading != blank %}
+                <h2 class="section-heading mb-[25px] max-md:mb-[15px] text-center mt-0 text-scheme_one-tertiary [&_strong]:font-fkroman [&_strong]:font-normal">
+                  {{ section.settings.heading }}
+                </h2>
+              {% endif %}
+              {% if section.settings.description != blank %}
+                <div class="section-description text-center text-scheme_one-tertiary !font-grotesk font-normal text-[16px] leading-[1.6] max-w-[341px] mx-auto">
+                  {{ section.settings.description }}
+                </div>
+              {% endif %}
+            </div>
           </div>
         {% endif %}
         {% if section.blocks.size > 0 %}
-          <div class="section-content w-full mx-auto max-w-[1080px]">
+          <div class="section-content w-full">
             <div class="media-container">
-              <div class="swiper media-swiper !overflow-visible">
+              <div class="swiper media-swiper !overflow-visible max-md:px-[16px]">
                 <div class="swiper-wrapper flex">
-                    {% for block in section.blocks %}
-                      {% case block.type %}
-                        {% when 'media' %}
-                          {% if block.settings.thumbanil != blank or block.settings.video != blank %}
-                            <div class="swiper-slide h-auto md:opacity-50">
-                              <div class="media-item-block">
-                                <div class="media-block relative h-0 pb-[520px] rounded-[20px] border-[1px] border-solid border-scheme_one-tertiary overflow-hidden">
-                                  {% if block.settings.video != blank %}
-                                    <div class="media-video overflow-hidden">
-                                      {% if block.settings.thumbanil != blank %}
-                                        {% assign video_poster = block.settings.thumbanil
-                                          | image_url: width: block.settings.thumbanil.width
-                                        %}
-                                        {{
-                                          block.settings.video
-                                          | video_tag:
-                                            poster: video_poster,
-                                            class: 'video w-full h-full object-cover rounded-[12px] absolute top-0 left-0'
-                                        }}
-                                      {% else %}
-                                        {{
-                                          block.settings.video
-                                          | video_tag:
-                                            class: 'video w-full h-full object-cover absolute top-0 left-0'
-                                        }}
-                                      {% endif %}
-                                      <div class="video-overly absolute top-0 left-0 w-full h-full bg-[#00000033]">
-                                        <span class="play-icon absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[48px] min-w-[48px] h-[48px] flex items-center justify-center cursor-pointer">
-                                          {{ 'play-button-icon.svg' | inline_asset_content }}
-                                        </span>
-                                      </div>
-                                    </div>
-                                  {% else %}
-                                    <div class="media-image w-full h-full absolute top-0 left-0 overflow-hidden">
-                                      {% if block.settings.thumbanil != blank %}
-                                        {% render 'image-element',
-                                          image: block.settings.thumbanil,
-                                          class: 'thumbnail-image w-full h-full object-cover',
-                                          widths: '250,350,450,550,650,750,850',
-                                          sizes: '(max-width:749px),25vw,95vw'
-                                        %}
-                                      {% endif %}
-                                    </div>
-                                  {% endif %}
-                                </div>
-                                {% if block.settings.text != blank or block.settings.button != blank %}
-                                  <div class="media-item-info md:hidden mt-[20px] border-[1px] border-solid border-scheme_two-tertiary rounded-[20px] p-[24px]">
-                                    {% if block.settings.text != blank %}
-                                      <p class="text font-Neufile_Grotesk font-normal text-[14px] leading-[1.6] my-0 text-scheme_two-secondary tracking-normal">{{ block.settings.text }}</p>
+                  {% for block in section.blocks %}
+                    {% case block.type %}
+                      {% when 'media' %}
+                        {% if block.settings.thumbanil != blank or block.settings.video != blank %}
+                          <div class="swiper-slide h-auto md:opacity-50">
+                            <div class="media-item-block">
+                              <div class="media-block relative h-0 pb-[520px] rounded-[20px] border-[1px] border-solid border-scheme_one-tertiary overflow-hidden">
+                                {% if block.settings.video != blank %}
+                                  <div class="media-video overflow-hidden">
+                                    {% if block.settings.thumbanil != blank %}
+                                      {% assign video_poster = block.settings.thumbanil
+                                        | image_url: width: block.settings.thumbanil.width
+                                      %}
+                                      {{
+                                        block.settings.video
+                                        | video_tag:
+                                          poster: video_poster,
+                                          class: 'video w-full h-full object-cover rounded-[12px] absolute top-0 left-0'
+                                      }}
+                                    {% else %}
+                                      {{
+                                        block.settings.video
+                                        | video_tag: class: 'video w-full h-full object-cover absolute top-0 left-0'
+                                      }}
                                     {% endif %}
-                                    {% if block.settings.button != blank and block.settings.link != blank %}
-                                      <a class="link-button !mt-[16px] text-scheme_two-secondary flex items-center gap-[6px] [&_svg]:w-[14px] [&_svg]:h-auto [&_svg]:block font-Neufile_Grotesk font-medium leading-[1] tracking-normal text-[15px]" href="{{ block.settings.link }}">
-                                        {{ 'icon-instagram.svg' | inline_asset_content }}
-                                        {{ block.settings.button }}
-                                      </a>
+                                    <div class="video-overly absolute top-0 left-0 w-full h-full bg-[#00000033]">
+                                      <span class="play-icon absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[48px] min-w-[48px] h-[48px] flex items-center justify-center cursor-pointer">
+                                        {{ 'play-button-icon.svg' | inline_asset_content }}
+                                      </span>
+                                    </div>
+                                  </div>
+                                {% else %}
+                                  <div class="media-image w-full h-full absolute top-0 left-0 overflow-hidden">
+                                    {% if block.settings.thumbanil != blank %}
+                                      {% render 'image-element',
+                                        image: block.settings.thumbanil,
+                                        class: 'thumbnail-image w-full h-full object-cover',
+                                        widths: '250,350,450,550,650,750,850',
+                                        sizes: '(max-width:749px),25vw,95vw'
+                                      %}
                                     {% endif %}
                                   </div>
                                 {% endif %}
                               </div>
+                              {% if block.settings.text != blank or block.settings.button != blank %}
+                                <div class="media-item-info md:hidden mt-[20px] border-[1px] border-solid border-scheme_two-tertiary rounded-[20px] p-[24px]">
+                                  {% if block.settings.text != blank %}
+                                    <p class="text font-Neufile_Grotesk font-normal text-[14px] leading-[1.6] my-0 text-scheme_two-secondary tracking-normal">
+                                      {{ block.settings.text }}
+                                    </p>
+                                  {% endif %}
+                                  {% if block.settings.button != blank and block.settings.link != blank %}
+                                    <a
+                                      class="link-button !mt-[16px] text-scheme_two-secondary flex items-center gap-[6px] [&_svg]:w-[14px] [&_svg]:h-auto [&_svg]:block font-Neufile_Grotesk font-medium leading-[1] tracking-normal text-[15px]"
+                                      href="{{ block.settings.link }}">
+                                      {{ 'icon-instagram.svg' | inline_asset_content }}
+                                      {{ block.settings.button }}
+                                    </a>
+                                  {% endif %}
+                                </div>
+                              {% endif %}
                             </div>
-                          {% endif %}
-                      {% endcase %}
-                    {% endfor %}
+                          </div>
+                        {% endif %}
+                    {% endcase %}
+                  {% endfor %}
                 </div>
               </div>
             </div>
@@ -106,7 +111,6 @@
       </div>
     </div>
   </div>
-
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -124,20 +128,20 @@
           },
           breakpoints: {
             640: {
-              slidesPerView: 2,
+              slidesPerView: 3,
               spaceBetween: 16,
               centeredSlides: true,
             },
             976: {
-              slidesPerView: 3,
+              slidesPerView: 4,
               spaceBetween: 20,
-              centeredSlides: true
+              centeredSlides: true,
             },
             1200: {
-              slidesPerView: 3,
+              slidesPerView: 4,
               spaceBetween: 30,
               centeredSlides: true,
-            }
+            },
           },
         });
       }
@@ -175,7 +179,6 @@
     });
   </script>
 {% endif %}
-
 
 {% schema %}
 {

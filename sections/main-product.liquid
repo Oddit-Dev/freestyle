@@ -149,7 +149,7 @@
                   </a>
                 {% endif %}
                 {% if block.settings.text != blank %}
-                  <div class="bottom-text mt-[12px] [&_ul]:flex [&_ul]:flex-wrap [&_ul]:justify-center [&_ul]:gap-[12px] [&_ul]:max-md:gap-[9px] [&_li]:flex [&_li]:items-center [&_li]:gap-[6px] [&_li]:font-grotesk [&_li]:font-normal [&_li]:text-[14px] [&_li]:max-md:text-[12px] [&_li]:leading-[1.6] [&_li]:text-black">
+                  <div class="bottom-text mt-[12px] [&_ul]:flex [&_ul]:flex-wrap [&_ul]:justify-center [&_ul]:gap-[12px] [&_ul]:max-md:gap-[9px] [&_li]:flex [&_li]:items-center [&_li]:gap-[6px] [&_li]:font-grotesk [&_li]:font-normal [&_li]:text-[14px] [&_li]:max-md:text-[12px] [&_li]:leading-[1.6] [&_li]:text-black-text">
                     {{ block.settings.text }}
                   </div>
                 {% endif %}
@@ -231,7 +231,7 @@
               {% endcomment %}
             {% when 'variants' %}
               <div class="product__sizes" x-show="variants.length > 1">
-                <h4 class="product__sizes-title mb-[14px] font-grotesk !font-medium text-[16px] leading-[1.5] text-black flex items-center gap-[8px]">
+                <h4 class="product__sizes-title mb-[14px] font-grotesk !font-medium text-[16px] leading-[1.5] text-black-text flex items-center gap-[8px]">
                   {{ block.settings.title }}
                   <span class="current-size text-[#7A7A7A]"></span>
                 </h4>
@@ -301,7 +301,7 @@
                       <span class="w-[12px] min-w-[12px] h-[12px] flex items-center justify-center">
                         {{ 'icon-right.svg' | inline_asset_content }}
                       </span>
-                      <span class="text font-grotesk font-normal text-[16px] max-md:text-[13px] leading-[1.6] text-black">
+                      <span class="text font-grotesk font-normal text-[16px] max-md:text-[13px] leading-[1.6] text-black-text">
                         {{- item.settings.text -}}
                       </span>
                     </div>
@@ -314,7 +314,7 @@
                 {% assign add_on_product = block.settings.product %}
                 <div class="add-on-product mb-[40px] max-md:mb-[30px]">
                   {% if block.settings.heading != blank %}
-                    <h2 class="heading font-grotesk !font-medium text-[16px] tracking-normal leading-[1.5] text-black mb-[12px]">
+                    <h2 class="heading font-grotesk !font-medium text-[16px] tracking-normal leading-[1.5] text-black-text mb-[12px]">
                       {{ block.settings.heading }}
                     </h2>
                   {% endif %}
@@ -332,10 +332,10 @@
                       </div>
                       <div class="add-on-text w-full flex items-center gap-[18px] justify-between">
                         <div class="flex flex-col gap-[4px] w-full">
-                          <h2 class="title font-grotesk font-normal text-[16px] max-md:text-[13px] leading-[1.6] text-black !tracking-normal">
+                          <h2 class="title font-grotesk font-normal text-[16px] max-md:text-[13px] leading-[1.6] text-black-text !tracking-normal">
                             {{ add_on_product.title }}
                           </h2>
-                          <p class="price font-grotesk font-medium text-[15px] leading-[1.6] text-black">
+                          <p class="price font-grotesk font-medium text-[15px] leading-[1.6] text-black-text">
                             {{ add_on_product.selected_or_first_available_variant.price | money }}
                           </p>
                         </div>
@@ -360,7 +360,7 @@
                     class="product__accordion-item last:!border-b first:border-t !py-0 !px-[10px]"
                     x-data="{ open: false }">
                     <div
-                      class="product__accordion-title py-[16px] font-grotesk !font-medium !text-[18px] !leading-[1.3] text-black pr-[34px]"
+                      class="product__accordion-title py-[16px] font-grotesk !font-medium !text-[18px] !leading-[1.3] text-black-text pr-[34px]"
                       :class="{ 'product__accordion-title--active': open }"
                       @click="open = !open">
                       {{ item.settings.title }}

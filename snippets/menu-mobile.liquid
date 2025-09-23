@@ -386,7 +386,9 @@
           <ul class="grid grid-cols-2 gap-x-[8px] gap-y-[20px]">
             {% for link in settings.header_mobile_secondary_menu.links %}
               <li class="menu-item flex items-center before:hidden">
-                <a href="{{ link.url }}" class="text-black font-grotesk font-normal text-[14px] leading-[1] capitalize">
+                <a
+                  href="{{ link.url }}"
+                  class="text-black-text font-grotesk font-normal text-[14px] leading-[1] capitalize">
                   {{ link.title }}
                 </a>
               </li>

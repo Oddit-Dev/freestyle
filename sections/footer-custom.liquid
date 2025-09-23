@@ -6,12 +6,12 @@
         <!-- Columna izquierda (30%) - Newsletter -->
         <div class="max-w-[420px] max-md:max-w-[calc(100%+32px)] w-full pr-[50px] max-md:px-[16px] py-[50px] max-md:py-[40px] border-0 border-r max-md:border-r-0 max-md:border-b border-solid border-black max-md:w-[calc(100%+32px)] max-md:ml-[-16px]">
           {% if section.settings.newsletter_title != blank %}
-            <h2 class="font-fkroman font-medium text-[24px] max-md:text-[30px] leading-[1.3] capitalize mb-[24px] max-md:mb-[12px] tracking-[-0.05em] max-md:text-center">
+            <h2 class="font-fkroman font-medium text-[24px] max-md:text-[30px] leading-[1.3] capitalize mb-[24px] max-md:mb-[12px] tracking-[-0.05em] max-md:text-center [&_strong]:font-grotesk [&_strong]:font-medium">
               {{ section.settings.newsletter_title }}
             </h2>
           {% endif %}
           {% if section.settings.newsletter_text != blank %}
-            <p class="text font-grotesk font-normal text-[15px] leading-[1.7] text-black mb-[28px] max-md:text-center">
+            <p class="text font-grotesk font-normal text-[15px] leading-[1.7] text-black-text mb-[28px] max-md:text-center">
               {{ section.settings.newsletter_text }}
             </p>
           {% endif %}
@@ -44,7 +44,7 @@
                     | image_tag: class: 'w-[1.6rem] inline-block translate-y-[-0.2rem] mx-[0.1rem]'
                   %}
                   <div>
-                    <h3 class="font-grotesk font-medium text-[15px] leading-[1] tracking-[-0.05em] capitalize text-black mb-[16px]">
+                    <h3 class="font-grotesk font-medium text-[15px] leading-[1] tracking-[-0.05em] capitalize text-black-text mb-[16px]">
                       {{ block.settings.title }}
                     </h3>
                     {% if block.settings.menu != blank %}
@@ -54,7 +54,7 @@
                           <li>
                             <a
                               href="{{ link.url }}"
-                              class="font-grotesk font-normal text-black text-[15px] leading-[1.6] tracking-normal">
+                              class="font-grotesk font-normal text-black-text text-[15px] leading-[1.6] tracking-normal">
                               {{
                                 link.title
                                 | replace: '[bamboo]', bamboo_icon
@@ -133,10 +133,10 @@
   "name": "Footer custom",
   "settings": [
     {
-      "type": "text",
+      "type": "richtext",
       "id": "newsletter_title",
       "label": "Newsletter Title",
-      "default": "Product launches, community fun, VIP drops, and more"
+      "default": "<p>Product launches, community fun, VIP drops, and more</p>"
     },
     {
       "type": "inline_richtext",

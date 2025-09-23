@@ -137,12 +137,14 @@ export default {
           bg: '#ffffff',
           content: '#ffffff',
           bd: '#ffffff',
+          text: '#F1F2F5',
         },
         black: {
           DEFAULT: '#020617',
           bg: '#000000',
           content: '#262626',
           inactive: 'rgba(0, 0, 0, 0.5)',
+          text: '#000000',
         },
         lightBlue: {
           DEFAULT: '#c3e6fa',

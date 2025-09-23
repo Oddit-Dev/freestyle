@@ -42,12 +42,12 @@ window.addEventListener('scroll', updateHeaderHeight);
             {%- endif -%}
           </a>
         </div>
-        <cart-icon class="lg:hidden header-cart-icon lg:ml-[20px] tw-w-[24px] tw-h-[24px] !tw-flex tw-items-start tw-justify-center" href="javascript:void(0)" aria-label="Cart">
+        <cart-icon class="lg:hidden header-cart-icon lg:ml-[20px] tw-w-[24px] tw-h-[24px] !tw-flex tw-items-start tw-justify-center relative" href="javascript:void(0)" aria-label="Cart">
             <span class="icon--header tw-w-[24px] tw-h-[24px] !tw-flex tw-items-start tw-justify-center tw-text-[#A843A2] [&_svg]:!tw-m-0 [&_svg]:!tw-h-[24px]">
               {{ "header-shopping-cart.svg" | inline_asset_content }}
             </span>
             {% if cart.item_count > 0 %}
-            <span class="header-cart__count">{{ cart.item_count }}</span>
+            <span class="header-cart__count absolute top-[-3px] right-[-6px] w-[16px] h-[16px] rounded-full bg-scheme_one text-[8px] text-white flex items-center justify-center text-center pt-[3px]">{{ cart.item_count }}</span>
             {% endif %}
         </cart-icon>
       </div>
@@ -58,7 +58,7 @@ window.addEventListener('scroll', updateHeaderHeight);
           {% assign heart_icon = settings['heart_icon'] | image_url: width: 100 | image_tag: class: 'w-[1.6rem] inline-block translate-y-[-0.2rem] mx-[0.1rem]' %}
           {% for link in settings.main_menu.links %}
             <li class="menu-item flex items-center before:hidden">
-              <a href="{{ link.url }}" class="text-black font-grotesk font-medium px-[15px] max-[1200px]:px-[10px] leading-[1] capitalize">
+              <a href="{{ link.url }}" class="text-black-text font-grotesk font-medium px-[15px] max-[1200px]:px-[10px] leading-[1] capitalize">
                 {{ link.title | replace: '[bamboo]', bamboo_icon | replace: '[heart]', heart_icon }}
               </a>
             </li>
@@ -71,7 +71,7 @@ window.addEventListener('scroll', updateHeaderHeight);
           {% for main_link in settings.secondary_main_menu.links %}
             <li class="relative before:hidden" x-data="{ open: false }">
               <button @click="open = !open" class="flex items-center gap-[5px] px-[15px] max-[1200px]:px-[10px]">
-                <span class="text-black font-grotesk font-medium leading-[1] capitalize">{{ main_link.title }}</span>
+                <span class="text-black-text font-grotesk font-medium leading-[1] capitalize">{{ main_link.title }}</span>
                 {% if main_link.links.size > 0 %}
                   <span class="w-[14px] min-w-[14px] h-[14px] flex items-center justify-center">
                       {{ 'icon-add.svg' | inline_asset_content }}
@@ -88,7 +88,7 @@ window.addEventListener('scroll', updateHeaderHeight);
                   <ul class="p-[32px_30px] w-[261px] bg-white rounded-[16px] flex flex-col gap-[16px]">
                     {% for child_link in main_link.links %}
                       <li class="menu-item flex items-center before:hidden">
-                        <a href="{{ child_link.url }}" class="block font-grotesk font-normal text-[16px] leading-[1.6] text-black">
+                        <a href="{{ child_link.url }}" class="block font-grotesk font-normal text-[16px] leading-[1.6] text-black-text">
                           {{ child_link.title | replace: '[bamboo]', bamboo_icon | replace: '[heart]', heart_icon }}
                         </a>
                       </li>
@@ -119,7 +119,7 @@ window.addEventListener('scroll', updateHeaderHeight);
         {% if main_button != blank %}
           <span class="mx-[30px] max-[1200px]:mx-[20px] block font-Inter font-normal text-[14px] leading-[1.2] text-[#909090]">|</span>
         {% endif %}
-        <a href="/apps/retextion/login" class="text-black hover:text-gray-600 flex items-center w-[20px] h-[20px] justify-center">
+        <a href="/apps/retextion/login" class="text-black-text hover:text-gray-600 flex items-center w-[20px] h-[20px] justify-center">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" role="presentation" style="width: 2.4rem; height: 2.4rem;"><path fill="#6638b7" fill-rule="evenodd" d="M10 8.75a2.917 2.917 0 1 0 0-5.833 2.917 2.917 0 0 0 0 5.833ZM10 10a4.167 4.167 0 1 0 0-8.333A4.167 4.167 0 0 0 10 10ZM7.5 13.125a3.542 3.542 0 0 0-3.542 3.542v.833a.625.625 0 1 1-1.25 0v-.833A4.792 4.792 0 0 1 7.5 11.875h5a4.792 4.792 0 0 1 4.792 4.792v.833a.625.625 0 1 1-1.25 0v-.833a3.542 3.542 0 0 0-3.542-3.542h-5Z" clip-rule="evenodd"></path></svg>
         </a>
         {% comment %} <div class="b-header_cart" x-data>
@@ -134,11 +134,11 @@ window.addEventListener('scroll', updateHeaderHeight);
               x-show="$store.cart.itemsCount > 0"></span>
           </span>
         </div> {% endcomment %}
-            <cart-icon class="header-cart-icon ml-[20px] tw-w-[24px] tw-h-[24px] !tw-flex tw-items-start tw-justify-center cursor-pointer" href="javascript:void(0)" aria-label="Cart">
+            <cart-icon class="header-cart-icon ml-[20px] tw-w-[24px] tw-h-[24px] !tw-flex tw-items-start tw-justify-center cursor-pointer relative" href="javascript:void(0)" aria-label="Cart">
                   <span class="icon--header tw-w-[24px] tw-h-[24px] !tw-flex tw-items-start tw-justify-center tw-text-[#A843A2] [&_svg]:!tw-m-0 [&_svg]:!tw-h-[24px]">
                     {{ "header-shopping-cart.svg" | inline_asset_content }}
                   </span>
-                  <span class="header-cart__count">{{ cart.item_count }}</span>
+                  <span class="header-cart__count absolute top-[-3px] right-[-6px] w-[16px] h-[16px] rounded-full bg-scheme_one text-[8px] text-white flex items-center justify-center text-center pt-[3px]">{{ cart.item_count }}</span>
                   
               </cart-icon>
       </div>
@@ -161,12 +161,12 @@ window.addEventListener('scroll', updateHeaderHeight);
           </div>
 
       <div class="hidden lg:flex items-center space-x-8">
-        <a href="/account" class="text-black hover:text-gray-600 flex items-center">
+        <a href="/account" class="text-black-text hover:text-gray-600 flex items-center">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="black">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
           </svg>
         </a>
-        <a href="{{ routes.cart_url }}" class="text-black text-sm hover:text-gray-600 flex items-center gap-2">
+        <a href="{{ routes.cart_url }}" class="text-black-text text-sm hover:text-gray-600 flex items-center gap-2">
           <span class="flex items-center text-baseLarge font-normal">Cart</span>
           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="black">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
