@@ -125,7 +125,7 @@
                       </span>
                     {% endcomment %}
                     <button
-                      class="button js-add-to-cart w-full gap-[6px]"
+                      class="button js-add-to-cart w-full gap-[6px] capitalize"
                       data-selling-plan-id="{{ product.selected_or_first_available_variant.selling_plan_allocations.first.selling_plan.id }}"
                       data-variant-id="{{ product.selected_or_first_available_variant.id }}">
                       {{ block.settings.cta_label }}
@@ -166,7 +166,7 @@
               </div>
 
             {% when 'product_features' %}
-              <div class="product__features grid grid-cols-4 max-[1200px]:grid-cols-2 max-lg:grid-cols-4 gap-[8px] mb-[50px]">
+              <div class="product__features grid grid-cols-4 max-[1200px]:grid-cols-2 max-lg:grid-cols-4 max-md:grid-cols-2 gap-[8px] mb-[50px]">
                 {% for feature in features %}
                   <div class="product__feature flex flex-col items-center gap-[20px]">
                     <div class="product__feature-icon !w-[70px] min-w-[70px] h-[70px] flex items-center justify-center">
@@ -232,27 +232,27 @@
             {% when 'variants' %}
               <div class="product__sizes" x-show="variants.length > 1">
                 <div class="title-with-size-chart">
-                <h4 class="product__sizes-title mb-[14px] font-grotesk !font-medium text-[16px] leading-[1.5] text-black-text flex items-center gap-[8px]">
-                  {{ block.settings.title }}
-                  <span class="current-size text-[#7A7A7A]"></span>
-                </h4>
-                {% if product.metafields.custom.size_chart != blank %}
-                  <div class="sizeChartBtn">Size Chart</div>
+                  <h4 class="product__sizes-title mb-[14px] font-grotesk !font-medium text-[16px] leading-[1.5] text-black-text flex items-center gap-[8px]">
+                    {{ block.settings.title }}
+                    <span class="current-size text-[#7A7A7A]"></span>
+                  </h4>
+                  {% if product.metafields.custom.size_chart != blank %}
+                    <div class="sizeChartBtn">Size Chart</div>
 
-                  <div class="sizeChartModal hidden">
-                    <div class="container-main">
-                      <button class="closeSizeChart">✕</button>
-                      <div class="image-main">
-                        {% render 'image-element',
-                          image: product.metafields.custom.size_chart,
-                          widths: '100, 200, 300, 375, 550, 750, 1100, 1500, 1780',
-                          sizes: '(max-width: 989px) 100vw, 45vw',
-                          class: 'product-feature-image max-w-full max-h-full h-auto object-contain'
-                        %}  
+                    <div class="sizeChartModal hidden">
+                      <div class="container-main">
+                        <button class="closeSizeChart">✕</button>
+                        <div class="image-main">
+                          {% render 'image-element',
+                            image: product.metafields.custom.size_chart,
+                            widths: '100, 200, 300, 375, 550, 750, 1100, 1500, 1780',
+                            sizes: '(max-width: 989px) 100vw, 45vw',
+                            class: 'product-feature-image max-w-full max-h-full h-auto object-contain'
+                          %}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                {% endif %}
+                  {% endif %}
                 </div>
                 <div class="product__sizes-list mb-10 !grid !grid-cols-3 !gap-[8px]">
                   <template x-for="item in variants" x-key="item.id">

@@ -672,6 +672,51 @@
         "button": "Subscribe Now",
         "link": "shopify://collections"
       }
+    },
+    "marquee_v2_hCBKbi": {
+      "type": "marquee-v2",
+      "blocks": {
+        "text_ThgDfk": {
+          "type": "text",
+          "settings": {
+            "big_text": "14x",
+            "small_text": "Better absorption"
+          }
+        },
+        "text_wNFBz3": {
+          "type": "text",
+          "settings": {
+            "icon": "shopify://shop_images/image_5303_60ebc00c-481c-4864-8ee1-c9af36761554.png",
+            "big_text": "100%",
+            "small_text": "Chlorine Free"
+          }
+        },
+        "text_eqeR4a": {
+          "type": "text",
+          "settings": {
+            "icon": "shopify://shop_images/image_5303_60ebc00c-481c-4864-8ee1-c9af36761554.png",
+            "big_text": "5,000",
+            "small_text": "Stores nationwide"
+          }
+        },
+        "text_RNdX9M": {
+          "type": "text",
+          "settings": {
+            "icon": "shopify://shop_images/Freestyle_Wipes_Club_Bag_1130_160c4ba7-1e78-4d98-be5f-d8186c31226e.png",
+            "big_text": "7",
+            "small_text": "Layer protection"
+          }
+        }
+      },
+      "block_order": [
+        "text_ThgDfk",
+        "text_wNFBz3",
+        "text_eqeR4a",
+        "text_RNdX9M"
+      ],
+      "name": "Marquee v2",
+      "settings": {
+      }
     }
   },
   "order": [
@@ -687,6 +732,7 @@
     "comparison_W96rKh",
     "image_hero_banner_hWWaDf",
     "media_slider_6dEPzQ",
-    "image_with_text_Dc79b8"
+    "image_with_text_Dc79b8",
+    "marquee_v2_hCBKbi"
   ]
 }

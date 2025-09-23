@@ -530,7 +530,17 @@
         "type": "text",
         "id": "announcement_text",
         "label": "Announcement Text",
-        "default": "Free shipping • Same-day delivery | Shop Hyper Absorption Diapers"
+        "default": "Free shipping"
+      },
+      {
+        "type": "text",
+        "id": "announcement2_text",
+        "label": "Announcement2 Text"
+      },
+      {
+        "type": "text",
+        "id": "announcement3_text",
+        "label": "Announcement3 Text"
       },
       {
         "type": "color",

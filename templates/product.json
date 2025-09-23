@@ -112,7 +112,7 @@
           "type": "product_feature",
           "settings": {
             "icon": "<svg width=\"71\" height=\"36\" viewbox=\"0 0 71 36\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M0 10V6.775H3.45518C7.30524 6.775 8.712 5.325 8.712 2.1V0H12.9076V36H8.4652V10H0Z\" fill=\"#262626\"></path>\n<path d=\"M16.8407 26.675V23.475L34.5855 0H40.1385V23.1H46.0863V26.675H40.1385V36H35.7455V26.675H16.8407ZM21.4064 23.1H35.7455V4.85H35.2519L21.4064 23.1Z\" fill=\"#262626\"></path>\n<path d=\"M47.3567 10.525H51.7744L58.7094 20H59.203L66.1627 10.525H70.5558V11.275L61.6957 23.025L71 35.25V36H66.5576L59.1783 26.075H58.6847L51.3301 36H46.9124V35.25L56.1921 23.025L47.3567 11.275V10.525Z\" fill=\"#262626\"></path>\n</svg>",
-            "icon_image": "shopify://shop_images/Vector_1_f4a354ca-d74d-4399-b8d2-54cc5379bc1b.png",
+            "icon_image": "shopify://shop_images/Works_Overnight_916294d8-c264-4574-b312-dad17f6a2734.png",
             "title": "<p>Better absorption</p>"
           }
         },

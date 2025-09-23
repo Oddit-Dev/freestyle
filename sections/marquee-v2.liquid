@@ -1,0 +1,147 @@
+{%- if section.blocks.size > 0 -%}
+  <div class="marquee-v2-section section-{{ section.id }} py-[50px] bg-scheme_two-secondary">
+    <div
+      class="marquee-v2-container overflow-hidden whitespace-nowrap"
+      data-marquee-v2-container="marquee-{{ section.id }}">
+      <div
+        class="marquee-v2-track inline-flex will-change-transform marquee-track-{{ section.id }}"
+        data-marquee-v2-track>
+        {%- capture marqee_content -%}
+          {% for block in section.blocks %}
+            {% if block.settings.icon != blank or block.settings.big_text != blank or block.settings.small_text != blank %}
+              <div class="marquee-v2-item flex gap-[60px] items-center relative px-[30px]">
+                {% if block.settings.icon != blank %}
+                  <div class="v2-icon h-[85px] w-auto min-w-max flex">
+                    {%- render 'image-element',
+                      image: block.settings.icon,
+                      widths: '375, 550, 750, 950',
+                    sizes: '(max-width: 749px) 100vw, 100vw',
+                    class: 'w-full h-full object-contain block max-h-[85px]'
+                    -%}
+                  </div>
+                {% endif %}
+                <div class="flex gap-[20px] items-end">
+                    {% if block.settings.big_text != blank %}
+                <div class="v2-big-text whitespace-nowrap font-grotesk font-medium text-[100px] leading-[1] tracking-[-0.05em] text-scheme_one">{{ block.settings.big_text }}</div>
+                    {% endif %}
+                    {% if block.settings.small_text != blank %}
+                    <div class="v2-small-text whitespace-nowrap font-grotesk font-normal text-[30px] leading-[1] tracking-[-0.05em] text-scheme_one">{{ block.settings.small_text }}</div>
+                    {% endif %}
+                </div>
+              </div>  
+            {% endif %}
+          {% endfor %}
+        {%- endcapture -%}
+        {{ marqee_content }}
+        {{ marqee_content }}
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const marquees = document.querySelectorAll('.section-{{ section.id }} [data-marquee-v2-container]');
+
+      marquees.forEach((container) => {
+        const track = container.querySelector('.section-{{ section.id }} [data-marquee-v2-track]');
+        if (!track) return;
+
+        let direction = -1;
+        let position = 0;
+        let speed = 60;
+
+        track.innerHTML += track.innerHTML;
+        const trackWidth = track.scrollWidth / 2;
+
+        track.style.willChange = 'transform';
+        track.style.transform = `translate3d(0,0,0)`;
+
+        function animate(lastTime) {
+          return function frame(time) {
+            if (!lastTime) lastTime = time;
+            const delta = (time - lastTime) / 1000;
+            lastTime = time;
+
+            position += direction * speed * delta;
+
+            if (direction === -1) {
+              if (position <= -trackWidth) position += trackWidth;
+            } else {
+              if (position >= 0) position -= trackWidth;
+            }
+
+            track.style.transform = `translate3d(${position}px, 0, 0)`;
+            requestAnimationFrame(frame);
+          };
+        }
+
+        requestAnimationFrame(() => {
+          requestAnimationFrame(animate());
+        });
+
+        /* Drag to change direction */
+        let startX = null;
+        container.addEventListener('mousedown', (e) => (startX = e.clientX));
+        container.addEventListener('mouseup', (e) => {
+          if (startX !== null) {
+            const deltaX = e.clientX - startX;
+            direction = deltaX < 0 ? -1 : 1;
+            startX = null;
+          }
+        });
+      });
+    });
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Marquee v2",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "big_text",
+          "label": "Big text"
+        },
+        {
+          "type": "text",
+          "id": "small_text",
+          "label": "Small Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Marquee v2",
+      "blocks": [
+        {
+          "type": "text"
+        },
+        {
+          "type": "text"
+        },
+        {
+          "type": "text"
+        },
+        {
+          "type": "text"
+        },
+        {
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -42,7 +42,7 @@
                         {% if block.settings.description != blank %}
                           {% assign heart_svg = 'icon-heart.svg' | inline_asset_content %}
                           {% assign main_description = block.settings.description | replace: '$heart', heart_svg %}
-                          <p class="description [&_svg]:inline-block [&_svg]:h-[11px] [&_svg]:w-auto font-grotesk font-normal text-[14px] leading-[1.5] text-scheme_one">
+                          <p class="description [&_svg]:inline-block [&_svg]:h-[11px] [&_svg]:w-auto font-grotesk font-normal text-[16px] leading-[1.5] text-scheme_one">
                             {{ main_description }}
                           </p>
                         {% endif %}

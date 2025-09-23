@@ -45,7 +45,7 @@
               {% assign walmart_svg = 'icon-walmart-white.svg' | inline_asset_content %}
               {% assign main_button = section.settings.button | replace: '$walmart', walmart_svg %}
               <a
-                class="button max-w-[300px] max-md:max-w-[330px] w-full mt-[40px] max-md:mt-[25px] [&_svg]:!w-[80px] [&_svg]:h-[18px] [&_svg]:!m-0 gap-x-[6px] [&_svg]:transition-all [&_svg]:duration-300"
+                class="button max-w-[300px] max-md:max-w-[330px] w-full mt-[40px] max-md:mt-[25px] [&_svg]:!w-auto [&_svg]:!h-[19px] [&_svg]:!m-0 gap-x-[6px] [&_svg]:transition-all [&_svg]:duration-300"
                 href="{{ section.settings.link }}">
                 {{- main_button -}}
               </a>

@@ -212,6 +212,7 @@ h2,
   line-height: 24px;
   letter-spacing: 0;
   text-align: left;
+  text-transform: lowercase;
 }
 
 .product .product__gallery .product__gallery-thumbs .swiper-slide.swiper-slide-active {
