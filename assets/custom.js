@@ -160,7 +160,12 @@ class CartDrawer extends HTMLElement {
     const footer = this.querySelector('.cart-drawer__footer');
     if (footer) {
       const count = parseInt(newCount.textContent, 10) || 0;
-      footer.style.display = count > 0 ? '' : 'none';
+      console.log(count,"count");
+      if (count > 0) {
+        footer.classList.remove("hidden");
+      } else {
+        footer.classList.add("hidden");
+      }
     }
 
     this.delegateEvents(); // Re-delegate events after refresh
@@ -258,6 +263,7 @@ class CartIcon extends HTMLElement {
   handleClick(event) {
     const CartDrawer = document.querySelector('cart-drawer');
     if (CartDrawer) {
+      CartDrawer.refresh();
       CartDrawer.open();
     }
   }

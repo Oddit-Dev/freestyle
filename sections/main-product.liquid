@@ -231,11 +231,29 @@
               {% endcomment %}
             {% when 'variants' %}
               <div class="product__sizes" x-show="variants.length > 1">
+                <div class="title-with-size-chart">
                 <h4 class="product__sizes-title mb-[14px] font-grotesk !font-medium text-[16px] leading-[1.5] text-black-text flex items-center gap-[8px]">
                   {{ block.settings.title }}
                   <span class="current-size text-[#7A7A7A]"></span>
                 </h4>
+                {% if product.metafields.custom.size_chart != blank %}
+                  <div class="sizeChartBtn">Size Chart</div>
 
+                  <div class="sizeChartModal hidden">
+                    <div class="container-main">
+                      <button class="closeSizeChart">✕</button>
+                      <div class="image-main">
+                        {% render 'image-element',
+                          image: product.metafields.custom.size_chart,
+                          widths: '100, 200, 300, 375, 550, 750, 1100, 1500, 1780',
+                          sizes: '(max-width: 989px) 100vw, 45vw',
+                          class: 'product-feature-image max-w-full max-h-full h-auto object-contain'
+                        %}  
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+                </div>
                 <div class="product__sizes-list mb-10 !grid !grid-cols-3 !gap-[8px]">
                   <template x-for="item in variants" x-key="item.id">
                     <label class="product__size">
@@ -502,7 +520,11 @@ if (id) {
                     const currentSizeElement = document.querySelector('.current-size');
                     currentSizeElement.innerText = size;    
                   }
- 
+
+                  const addToCartBtn = document.querySelector(".js-add-to-cart");
+                  addToCartBtn.setAttribute("data-variant-id", this.activeVariant.id);
+                  
+                  console.log(this.activeVariant.id,"this.activeVariant.id");
                   this.slideToSlideByDataAttribute(this.activeVariant.id);
               } else {
                   this.activeVariant = this.variants[0];
@@ -763,6 +785,26 @@ if (id) {
             }
         }))
     })
+
+    document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.querySelector(".sizeChartBtn");
+  const modal = document.querySelector(".sizeChartModal");
+  const close = document.querySelector(".closeSizeChart");
+
+  if (btn && modal && close) {
+    btn.addEventListener("click", () => {
+      modal.classList.remove("hidden");
+    });
+    close.addEventListener("click", () => {
+      modal.classList.add("hidden");
+    });
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.classList.add("hidden");
+      }
+    });
+  }
+});
 </script>
 <style></style>
 

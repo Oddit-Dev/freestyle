@@ -230,73 +230,71 @@
         </div>
       {% endif %}
     </div>
-    {% if cart.item_count != blank %}
-      <footer class="cart-drawer__footer p-[20px_16px_25px] border-0 border-t border-solid border-[#E3E3E3]">
-        <div class="cart-drawer-addon">
-          {% assign addon_product = section.settings.addon_product %}
-          {% if addon_product.available %}
-            <div class="cd-addon-product">
-              <div class="cdp-left">
-                {% assign addon_image = section.settings.addon_image | default: addon_product.featured_image %}
-                {% if addon_image %}
-                  <div class="cdp-img">
-                    <img
-                      src="{{ addon_image |  image_url: width: 32 }}"
-                      width="32"
-                      height="24"
-                      alt="{{ addon_product.title }}"
-                      loading="lazy">
-                  </div>
-                {% endif %}
-                {% assign addon_title = section.settings.addon_title | default: addon_product.title %}
-                <div class="cdp-title">
-                  <p>
-                    {{ addon_title }}
-                    <span>({{ addon_product.price | money }})</span>
-                  </p>
+    <footer class="cart-drawer__footer hidden p-[20px_16px_25px] border-0 border-t border-solid border-[#E3E3E3]">
+      <div class="cart-drawer-addon">
+        {% assign addon_product = section.settings.addon_product %}
+        {% if addon_product.available %}
+          <div class="cd-addon-product">
+            <div class="cdp-left">
+              {% assign addon_image = section.settings.addon_image | default: addon_product.featured_image %}
+              {% if addon_image %}
+                <div class="cdp-img">
+                  <img
+                    src="{{ addon_image |  image_url: width: 32 }}"
+                    width="32"
+                    height="24"
+                    alt="{{ addon_product.title }}"
+                    loading="lazy">
                 </div>
-              </div>
-              <div class="">
-                <add-variant-item data-id="{{ addon_product.selected_or_first_available_variant.id }}">
-                  + Add
-                </add-variant-item>
+              {% endif %}
+              {% assign addon_title = section.settings.addon_title | default: addon_product.title %}
+              <div class="cdp-title">
+                <p>
+                  {{ addon_title }}
+                  <span>({{ addon_product.price | money }})</span>
+                </p>
               </div>
             </div>
-          {% endif %}
-          {% assign addon_info = section.settings.addon_info %}
-          {% if addon_info %}
-            <div class="cd-addon-info">
-              {{ addon_info }}
+            <div class="">
+              <add-variant-item data-id="{{ addon_product.selected_or_first_available_variant.id }}">
+                + Add
+              </add-variant-item>
             </div>
-          {% endif %}
-        </div>
-        <div class="cart-drawer-subtotal mb-[16px] flex items-center justify-between gap-[10px]">
-          <span class="font-grotesk font-normal text-[16px] leading-[1] text-[#212121]">Subtotal:</span>
-          <span class="subtotal font-grotesk font-medium text-[16px] leading-[1] text-[#212121]">
-            {{- cart.total_price | money -}}
-          </span>
-        </div>
-        <div class="cart-drawer-buttons mb-[10px]">
-          <form
-            method="post"
-            action="{{ routes.cart_url }}"
-            id="cart-form">
-            <button
-              type="submit"
-              name="checkout"
-              class="secure-checkout button flex items-center gap-[8px] [&_svg]:!m-0 w-full">
-              {{ 'checkout-lock.svg' | inline_asset_content }}
-              <span>Secure Checkout</span>
-            </button>
-          </form>
-        </div>
-        {% if section.settings.free_shipping_text != blank %}
-          <div class="cart-drawer-shipping-text text-center font-grotesk font-normal text-[14px] leading-[1.6] text-black">
-            {{ section.settings.free_shipping_text }}
           </div>
         {% endif %}
-      </footer>
-    {% endif %}
+        {% assign addon_info = section.settings.addon_info %}
+        {% if addon_info %}
+          <div class="cd-addon-info">
+            {{ addon_info }}
+          </div>
+        {% endif %}
+      </div>
+      <div class="cart-drawer-subtotal mb-[16px] flex items-center justify-between gap-[10px]">
+        <span class="font-grotesk font-normal text-[16px] leading-[1] text-[#212121]">Subtotal:</span>
+        <span class="subtotal font-grotesk font-medium text-[16px] leading-[1] text-[#212121]">
+          {{- cart.total_price | money -}}
+        </span>
+      </div>
+      <div class="cart-drawer-buttons mb-[10px]">
+        <form
+          method="post"
+          action="{{ routes.cart_url }}"
+          id="cart-form">
+          <button
+            type="submit"
+            name="checkout"
+            class="secure-checkout button flex items-center gap-[8px] [&_svg]:!m-0 w-full">
+            {{ 'checkout-lock.svg' | inline_asset_content }}
+            <span>Secure Checkout</span>
+          </button>
+        </form>
+      </div>
+      {% if section.settings.free_shipping_text != blank %}
+        <div class="cart-drawer-shipping-text text-center font-grotesk font-normal text-[14px] leading-[1.6] text-black">
+          {{ section.settings.free_shipping_text }}
+        </div>
+      {% endif %}
+    </footer>
   </div>
 </cart-drawer>
 <div class="cart-drawer__overlay"></div>
