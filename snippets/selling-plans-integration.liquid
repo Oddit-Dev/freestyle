@@ -1,0 +1,187 @@
+{%- assign current_variant = product.selected_or_first_available_variant | default: product.variants.first -%}
+{% if product.selling_plan_groups.size > 0 %}
+  <div class="selling_plan_app_container" data-section-id="{{ section.id }}">
+    {% for variant in product.variants %}
+      {% liquid
+        assign variantPrice = variant.price | money_without_trailing_zeros | escape
+        assign variantComparedAtPrice = variant.compare_at_price | money_without_trailing_zeros | escape
+      %}
+      {% if variant.selling_plan_allocations.size > 0 %}
+        <section
+          data-variant-id="{{ variant.id }}"
+          class="selling_plan_theme_integration {% if variant.id != current_variant.id %}!tw-hidden{% endif %}"
+        >
+          <fieldset class=" tw-p-0 !tw-border-0 tw-m-0">
+            <div>
+              {% assign group_ids = variant.selling_plan_allocations | map: 'selling_plan_group_id' | uniq %}
+              {% for group_id in group_ids %}
+                {% liquid
+                  assign group = product | map: 'selling_plan_groups' | where: 'id', group_id | first
+                  assign allocations = variant | map: 'selling_plan_allocations' | where: 'selling_plan_group_id', group_id
+
+                  if forloop.first
+                    assign first_selling_plan_group = true
+                  else
+                    assign first_selling_plan_group = false
+                  endif
+                %}
+                <div>
+                  <ul class="tw-p-0 tw-m-0">
+                    {% for allocation in allocations limit: 1 %}
+                      
+                      {% liquid
+                        if forloop.first and product.requires_selling_plan and first_selling_plan_group
+                          assign plan_checked = 'checked'
+                        else
+                          assign plan_checked = null
+                        endif
+
+                        assign allocationPrice = allocation.price | money_without_trailing_zeros | escape
+                        assign allocationComparedAtPrice = allocation.compare_at_price | money_without_trailing_zeros | escape
+                      %}
+
+                      <li class="subscription-list tw-list-none">
+                        <label
+                          class="tw-block tw-relative !tw-p-[16px] tw-cursor-pointer"
+                          for="{{ section.id }}_selling_plan_{{ allocation.selling_plan.id }}_{{ forloop.index }}_{{ variant.id }}"
+                        >
+                          <input
+                            class="tw-m-0 tw-absolute tw-opacity-0 tw-w-[2rem] tw-h-[2rem] tw-top-[0.2rem] max-md:tw-w-[1.6rem] max-md:tw-h-[1.6rem]"
+                            type="radio"
+                            id="{{ section.id }}_selling_plan_{{ allocation.selling_plan.id }}_{{ forloop.index }}_{{ variant.id }}"
+                            {% if variant.available == false %}
+                              disabled
+                            {% endif %}
+                            aria-label="{{ allocation.selling_plan.name }}. Product price {{ allocationPrice }}"
+                            name="purchaseOption_{{ section.id }}_{{ variant.id }}"
+                            data-radio-type="selling_plan"
+                            data-selling-plan-id="{{ allocation.selling_plan.id }}"
+                            data-selling-plan-group-id="{{ section.id }}_{{ group_id }}_{{ variant.id }}"
+                            data-selling-plan-adjustment="{{ allocation.selling_plan.price_adjustments.size }}"
+                            data-variant-price="{{ allocationPrice }}"
+                            data-variant-compare-at-price="{{ allocationComparedAtPrice }}"
+                            checked
+                          >
+                          <div class="title-price tw-items-center tw-relative tw-pl-[36px] tw-flex tw-justify-between tw-gap-[1.6rem] max-md:tw-pl-[28px]">
+                            <p class="title-text tw-tracking-normal tw-text-[18px] max-md:tw-text-[16px] tw-font-normal tw-m-0 tw-text-[rgb(var(--color-foreground))] tw-flex tw-items-center tw-gap-[5px] tw-whitespace-nowrap">
+                              Subscribe &
+                              <span class="tw-p-0 tw-text-[rgb(var(--color-foreground))] tw-font-semibold tw-leading-none"
+                                >Save {{ allocation.selling_plan.price_adjustments[0].value }}%</span
+                              >
+                            </p>
+                            <div class="selling-price-box tw-flex tw-flex-col tw-justify-end tw-text-right">
+                              <div class="selling-price tw-flex tw-items-center tw-gap-[8px]">
+                                <span class="allocation-price tw-text-[18px] max-md:tw-text-[16px] tw-text-[#C8432B] tw-font-normal tw-font-primary tw-leading-[1.6]">
+                                  {{- allocation.price | money_without_trailing_zeros -}}
+                                </span>
+                                <span class="tw-line-through tw-text-[18px] max-md:tw-text-[16px] tw-font-normal tw-font-primary tw-text-[rgb(var(--color-foreground))] tw-opacity-50">
+                                  {{- variant.price | money_without_trailing_zeros -}}
+                                </span>
+                              </div>
+                              {% assign serving_text = product.selected_or_first_available_variant.metafields.custom.serving_text %}
+                              {% if serving_text != blank %}
+                                <span class="serving-price tw-text-[14px] max-md:tw-text-[12px] tw-text-[rgb(var(--color-secondary-text))] tw-font-normal tw-font-primary tw-leading-[1.6] tw-opacity-75">
+                                  {{ serving_text }}
+                                </span>
+                              {% endif %}
+                            </div>
+                          </div>
+
+                          <div class="plan-detail-text tw-flex tw-flex-col tw-list-none tw-p-0 tw-pl-[36px] max-md:tw-pl-[8px]">
+                            {% if block.settings.free_shipping != blank %}
+                              <div class="plan-detail-item tw-text-[18px] max-md:tw-text-[14px] tw-font-normal tw-font-primary tw-leading-[1.6] tw-text-[rgb(var(--color-foreground))] tw-flex tw-items-center tw-gap-[12px] before:tw-content-[''] before:tw-w-[4px] before:tw-h-[4px] before:tw-bg-[rgb(var(--color-foreground))]">
+                                <span>{{ block.settings.free_shipping }}</span>
+                              </div>
+                            {% endif %}
+                            {% if block.settings.cancel_text != blank %}
+                              <div class="plan-detail-item tw-text-[18px] max-md:tw-text-[14px] tw-font-normal tw-font-primary tw-leading-[1.6] tw-text-[rgb(var(--color-foreground))] tw-flex tw-items-center tw-gap-[12px] before:tw-content-[''] before:tw-w-[4px] before:tw-h-[4px] before:tw-bg-[rgb(var(--color-foreground))]">
+                                <span>{{ block.settings.cancel_text }}</span>
+                              </div>
+                            {% endif %}
+                            {% if product.selected_or_first_available_variant.selling_plan_allocations.size < 2 %}
+                              <div class="plan-detail-item tw-text-[18px] max-md:tw-text-[14px] tw-font-normal tw-font-primary tw-leading-[1.6] tw-text-[rgb(var(--color-foreground))] tw-flex tw-items-center tw-gap-[12px] before:tw-content-[''] before:tw-w-[4px] before:tw-h-[4px] before:tw-bg-[rgb(var(--color-foreground))]">
+                                <span>{{ allocation.selling_plan.name }}</span>
+                              </div>
+                            {% else %}
+                              <div class="plan-detail-item tw-flex tw-items-center tw-gap-0 tw-text-[18px] max-md:tw-text-[14px] tw-font-normal tw-font-primary tw-leading-[1.6] tw-text-[rgb(var(--color-foreground))] before:tw-content-[''] before:tw-w-[4px] before:tw-h-[4px] before:tw-bg-[rgb(var(--color-foreground))] before:tw-mr-[12px]">
+                                {% if block.settings.plan_text != blank %}
+                                  <span>{{ block.settings.plan_text }}</span>
+                                {% endif %}
+                                <div class="plan-detail-select">
+                                  <select
+                                    class="tw-appearance-none tw-border-none tw-outline-none tw-text-[18px] max-md:tw-text-[14px] tw-font-normal tw-bg-[transparent] tw-font-primary tw-leading-[1.6] tw-text-[rgb(var(--color-foreground))] tw-pr-[18px] tw-shadow-none tw-px-[5px] tw-underline {% if product.selected_or_first_available_variant.selling_plan_allocations.size < 2 %} !tw-hidden{% endif %}"
+                                    name="selling-plan"
+                                    data-line="{{ forloop.index }}"
+                                    data-quantity="{{ item.quantity }}"
+                                  >
+                                    {% for selling_plan_allocation in product.selected_or_first_available_variant.selling_plan_allocations %}
+                                      <option
+                                        value="{{ selling_plan_allocation.selling_plan.id }}"
+                                        {% if item.selling_plan_allocation.selling_plan.id
+                                            == selling_plan_allocation.selling_plan.id
+                                        %}
+                                          selected="selected"
+                                        {% endif %}
+                                      >
+                                        {% if selling_plan_allocation.selling_plan.name == 'Monthly' %}
+                                          every 30 days
+                                        {% else %}
+                                          every {{ selling_plan_allocation.selling_plan.name }}
+                                        {% endif %}
+                                      </option>
+                                    {% endfor %}
+                                  </select>
+                                </div>
+                              </div>
+                            {% endif %}
+                          </div>
+                        </label>
+                      </li>
+                    {% endfor %}
+                    <li class="subscription-list tw-list-none otp-subscription-list">
+                      <label
+                        class="tw-block tw-relative !tw-p-[16px] tw-cursor-pointer"
+                        for="{{ section.id }}_one_time_purchase_{{ variant.id }}"
+                      >
+                        <input
+                          class="tw-m-0 tw-absolute tw-opacity-0 tw-w-[2rem] tw-h-[2rem] tw-top-[0.2rem] max-md:tw-w-[1.6rem] max-md:tw-h-[1.6rem]"
+                          aria-label="One-time purchase. Product price {{ variantPrice }}"
+                          type="radio"
+                          id="{{ section.id }}_one_time_purchase_{{ variant.id }}"
+                          name="purchaseOption_{{ section.id }}_{{ variant.id }}"
+                          {% if variant.available == false %}
+                            disabled
+                          {% endif %}
+                          id="{{ section.id }}_one_time_purchase"
+                          data-radio-type="one_time_purchase"
+                          data-variant-id="{{ variant.id }}"
+                          data-variant-price="{{ variantPrice }}"
+                          data-variant-compare-at-price="{{ variantComparedAtPrice }}"
+                        >
+                        <div class="title-price tw-items-center tw-relative tw-pl-[36px] tw-flex tw-justify-between tw-gap-[1.6rem] max-md:tw-pl-[28px]">
+                          <p class="title-text tw-tracking-normal tw-text-[18px] max-md:tw-text-[16px] tw-font-normal tw-m-0 tw-text-[rgb(var(--color-foreground))] tw-flex tw-items-center tw-gap-[5px]">
+                            One-Time Purchase
+                          </p>
+                          <div class="selling-price-box tw-flex tw-flex-col tw-justify-end tw-text-right">
+                            <div class="selling-price tw-flex tw-items-center tw-justify-end tw-gap-[8px]">
+                              <span class="allocation-price tw-text-[18px] max-md:tw-text-[16px] tw-text-[rgb(var(--color-foreground))] tw-font-normal tw-font-primary tw-leading-[1.6]">
+                                {{- variant.price | money_without_trailing_zeros -}}
+                              </span>
+                            </div>
+                            <span class="serving-price tw-text-[14px] max-md:tw-text-[12px] tw-text-[rgb(var(--color-secondary-text))] tw-font-normal tw-font-primary tw-leading-[1.6] tw-opacity-75"
+                              >$2.63/serving</span
+                            >
+                          </div>
+                        </div>
+                      </label>
+                    </li>
+                  </ul>
+                </div>
+              {% endfor %}
+            </div>
+          </fieldset>
+        </section>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endif %}

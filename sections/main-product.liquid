@@ -94,8 +94,7 @@
                 </div>
               </div>
             {% when 'variant_text' %}
-              <div class="variant-text-main">
-              </div>    
+              <div class="variant-text-main"></div>    
             {% when 'cta' %}
               <div class="product__cta mb-[50px]">
                 {% if block.settings.cta_type == 'add_to_cart' %}
@@ -200,7 +199,12 @@
 
             {% when 'separator' %}
               <hr class="product__separator">
-
+            {%- when 'subscription-form' -%}
+                {% if product.selling_plan_groups.size > 0 %}
+                  <div class="subscription-form tw-mt-0 !tw-mb-[24px]">
+                    {% render 'selling-plans-integration', product: product, block: block %}
+                  </div>
+                {% endif %}  
             {% when 'tags' %}
               {% if product_attributes.value and template.suffix != blank %}
                 <div class="product__tags flex flex-wrap gap-4 mb-4">
@@ -1105,6 +1109,31 @@ if (id) {
         }
       ],
       "limit": 1
+    },
+    {
+      "type": "subscription-form",
+      "name": "Subscription Form",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "free_shipping",
+          "label": "Free Shipping text",
+          "default": "Free shipping on every order"
+        },
+        {
+          "type": "text",
+          "id": "cancel_text",
+          "label": "Cancellation Text",
+          "default": "Modify or cancel any time."
+        },
+        {
+          "type": "text",
+          "id": "plan_text",
+          "label": "Plan text",
+          "default": "Delivery"
+        }
+      ]
     }
   ]
 }

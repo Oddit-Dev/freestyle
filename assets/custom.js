@@ -447,3 +447,78 @@ class ChangeCart extends HTMLElement {
 }
 
 customElements.define('item-change', ChangeCart);
+
+ /* custom selling plan start */
+  const radioButtons = document.querySelectorAll('.selling_plan_app_container input[type="radio"]');
+  radioButtons.forEach((radioButton) => {
+    radioButton.addEventListener('change', (event) => {
+      const subscriptionList = event.target.closest('.subscription-list');
+      const selectElement = subscriptionList?.querySelector('select');
+      const selectedValue = selectElement?.value;
+
+      const productCard = event.target.closest('.product__info-wrapper');
+      if (selectedValue && selectedValue !== '') {
+        if (productCard) {
+          productCard.querySelector('product-form [name="selling_plan"]').value = selectedValue;
+        }
+      } else {
+        if (productCard) {
+          productCard.querySelector('product-form [name="selling_plan"]').value = '';
+        }
+      }
+
+      const variantPrice = productCard.querySelector(
+        '.selling_plan_theme_integration:not(.has-hidden) [type="radio"]:checked'
+      ).dataset.variantPrice;
+      productCard.querySelector('product-form .button-price').textContent = variantPrice;
+      if (document.querySelector('.current-variant-price')) {
+        document.querySelector('.current-variant-price').textContent = variantPrice;
+      }
+
+      let selectedVal = '';
+      if (selectElement) {
+        selectedVal = selectElement.options[selectElement.selectedIndex].text;
+      } else if (subscriptionList.querySelector('.title-text')) {
+        selectedVal = subscriptionList.querySelector('.title-text').textContent;
+      }
+      if (document.querySelector('.sticky-add-to-cart .selling-label')) {
+        document.querySelector('.sticky-add-to-cart .selling-label').textContent = selectedVal;
+      }
+    });
+  });
+
+  const selectElements = document.querySelectorAll('.selling_plan_theme_integration select[name="selling-plan"]');
+  selectElements.forEach((selectElement) => {
+    selectElement.addEventListener('change', (event) => {
+      const selectedValue = event.target.value;
+
+      if (event.target?.closest('.subscription-list')?.querySelectorAll('input:checked').length == 0) {
+        return false;
+      }
+
+      if (event.target?.closest('.subscription-list')?.querySelector('label input:checked')) {
+        event.target.closest('.product__info-wrapper').querySelector('[name="selling_plan"]').value = selectedValue;
+      }
+      const variantPrice = event.target
+        .closest('.product__info-wrapper')
+        .querySelector('.selling_plan_theme_integration [type="radio"]:checked').dataset.variantPrice;
+      event.target.closest('.product__info-wrapper').querySelector('product-form .button-price').textContent =
+        variantPrice;
+
+      const currentOptionText = event.target.options[event.target.selectedIndex].text;
+      if (document.querySelector('.sticky-add-to-cart .selling-label')) {
+        document.querySelector('.sticky-add-to-cart .selling-label').textContent = currentOptionText;
+      }
+
+      if (document.querySelector('.current-variant-price')) {
+        document.querySelector('.current-variant-price').textContent = variantPrice;
+      }
+    });
+  });
+
+  if (document.querySelectorAll('.product__info-wrapper select[name="selling-plan"]')) {
+    document.querySelectorAll('.product__info-wrapper select[name="selling-plan"]').forEach((select) => {
+      select.dispatchEvent(new Event('change'));
+    });
+  }
+  /* custom selling plan end */

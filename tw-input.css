@@ -281,4 +281,9 @@ h2,
 }
 
 
+.variant-text-main:empty {
+  display: none !important;
+}
+
+
 /* product page */
