@@ -670,7 +670,7 @@
         "sub_heading": "Skip the hassle",
         "heading": "Get your diapers delivered monthly <strong>and save 10%</strong>",
         "button": "Subscribe Now",
-        "link": "shopify://collections"
+        "link": "#"
       }
     },
     "marquee_v2_hCBKbi": {
@@ -715,8 +715,7 @@
         "text_RNdX9M"
       ],
       "name": "Marquee v2",
-      "settings": {
-      }
+      "settings": {}
     }
   },
   "order": [

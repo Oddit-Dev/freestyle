@@ -93,7 +93,9 @@
                   {% endcomment %}
                 </div>
               </div>
-
+            {% when 'variant_text' %}
+              <div class="variant-text-main">
+              </div>    
             {% when 'cta' %}
               <div class="product__cta mb-[50px]">
                 {% if block.settings.cta_type == 'add_to_cart' %}
@@ -521,9 +523,30 @@ if (id) {
  
                   if (matches) {
                     const size = matches[1];
+                    const count = matches[3];
                     const currentSizeElement = document.querySelector('.current-size');
-                    currentSizeElement.innerText = size;    
+                    currentSizeElement.innerText = size;
+                    
+                    const sizeDiv = document.createElement("div");
+                    sizeDiv.textContent = size + ' month supply';
+                    sizeDiv.classList.add("month-supply");
+
+                    const countDiv = document.createElement("div");
+                    countDiv.textContent = count;
+                    countDiv.classList.add("count-main");
+
+                    const variantTextMain = document.querySelector('.variant-text-main');
+                    const oldCount = variantTextMain.querySelector('.count-main');
+                    const oldSize = variantTextMain.querySelector('.month-supply');
+
+                    if (oldCount) oldCount.remove();
+                    if (oldSize) oldSize.remove();
+
+                    variantTextMain.appendChild(countDiv);
+                    variantTextMain.appendChild(sizeDiv);
+                    
                   }
+                  
 
                   const addToCartBtn = document.querySelector(".js-add-to-cart");
                   addToCartBtn.setAttribute("data-variant-id", this.activeVariant.id);
@@ -539,8 +562,27 @@ if (id) {
  
                   if (matches) {
                     const size = matches[1];
+                    const count = matches[3];
                     const currentSizeElement = document.querySelector('.current-size');
-                    currentSizeElement.innerText = size;    
+                    currentSizeElement.innerText = size;
+                    
+                    const sizeDiv = document.createElement("div");
+                    sizeDiv.textContent = size + ' month supply';
+                    sizeDiv.classList.add("month-supply");
+
+                    const countDiv = document.createElement("div");
+                    countDiv.textContent = count;
+                    countDiv.classList.add("count-main");
+
+                    const variantTextMain = document.querySelector('.variant-text-main');
+                    const oldCount = variantTextMain.querySelector('.count-main');
+                    const oldSize = variantTextMain.querySelector('.month-supply');
+
+                    if (oldCount) oldCount.remove();
+                    if (oldSize) oldSize.remove();
+
+                    variantTextMain.appendChild(countDiv);
+                    variantTextMain.appendChild(sizeDiv);                    
                   }
                   // this.slideToSlideByDataAttribute(this.activeVariant.id);
               }
@@ -973,6 +1015,11 @@ if (id) {
     {
       "type": "description",
       "name": "Description",
+      "limit": 1
+    },
+    {
+      "type": "variant_text",
+      "name": "Variant Text",
       "limit": 1
     },
     {

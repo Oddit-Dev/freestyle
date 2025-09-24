@@ -243,4 +243,42 @@ h2,
 
 }
 
+.variant-text-main {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 12px;
+  border: 1px solid #6638B6;
+  border-radius: 12px;
+  margin-bottom: 24px;
+}
+
+.variant-text-main .count-main {
+  font-size: 16px;
+  line-height: 1;
+  color: #6638B6;
+  font-family: GroteskNeue, system-ui;
+}
+
+.variant-text-main .month-supply {
+  font-size: 16px;
+  line-height: 1;
+  color: #6638B6;
+  font-family: GroteskNeue, system-ui;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.variant-text-main .month-supply::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 100%;
+  background-color: #6638B6;
+  display: block;
+  margin-top: 2px;
+}
+
+
 /* product page */

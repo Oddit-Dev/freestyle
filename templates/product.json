@@ -18,6 +18,10 @@
             "alternate_title": ""
           }
         },
+        "variant_text_JnAzJ8": {
+          "type": "variant_text",
+          "settings": {}
+        },
         "separator_NF3Aqz": {
           "type": "separator",
           "disabled": true,
@@ -175,6 +179,7 @@
       },
       "block_order": [
         "title_hijtjK",
+        "variant_text_JnAzJ8",
         "separator_NF3Aqz",
         "specification_Ge8xVj",
         "specification_item_dV6Phj",
