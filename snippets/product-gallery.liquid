@@ -29,7 +29,7 @@
             {% for variant in product.variants %}
               {% if variant.featured_image %}
                 <div
-                  class="swiper-slide  m-variant"
+                  class="swiper-slide opacity-45 after:hidden m-variant"
                   data-index="{{ slideIndex }}"
                   data-variant-id="{{ variant.id }}">
                   <span class="m-badge" data-index="{{ slideIndex }}">SELECTED VARIANT IMAGE</span>
@@ -70,7 +70,7 @@
           {% for variant in product.variants %}
             {% if variant.featured_image %}
               <div
-                class="swiper-slide m-variant"
+                class="swiper-slide opacity-45 after:hidden m-variant"
                 :class="activeSlideNum === {{ slideIndex }} ? 'm-active' : ''"
                 data-index="{{ slideIndex }}"
                 data-variant-id="{{ variant.id }}"

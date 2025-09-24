@@ -215,7 +215,7 @@ h2,
   text-transform: lowercase;
 }
 
-.product .product__gallery .product__gallery-thumbs .swiper-slide.swiper-slide-active {
+.product .product__gallery .product__gallery-thumbs .swiper-slide.m-active {
   opacity: 1;
 }
 

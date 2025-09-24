@@ -18,21 +18,21 @@
           "type": "footer_nav",
           "settings": {
             "title": "Shop",
-            "menu": "footer-shop-menu"
+            "menu": "footer-shop"
           }
         },
         "footer_nav_nGyqKW": {
           "type": "footer_nav",
           "settings": {
             "title": "Retail",
-            "menu": "footer-retail-menu"
+            "menu": "footer-retail"
           }
         },
         "footer_nav_LLLTWU": {
           "type": "footer_nav",
           "settings": {
             "title": "About",
-            "menu": "footer-about-menu"
+            "menu": "footer-about"
           }
         },
         "footer_nav_W3Fgpf": {
@@ -46,7 +46,7 @@
         "footer_nav_NH9Xmf": {
           "type": "footer_nav",
           "settings": {
-            "title": "Social",
+            "title": "Socials",
             "menu": "footer-social-menu"
           }
         },
@@ -54,7 +54,7 @@
           "type": "footer_bottom_nav",
           "settings": {
             "title": "© 2025 Freestyle World, Inc.",
-            "menu": "footer-bottom-menu"
+            "menu": "footer-bottom"
           }
         }
       },
@@ -67,7 +67,7 @@
         "footer_bottom_nav_R3WzNG"
       ],
       "settings": {
-        "newsletter_title": "Sign up & get a free jumbo wipes",
+        "newsletter_title": "<p>Sign up & get a free jumbo wipes</p>",
         "newsletter_text": "Join our newsletter and get first access to product launches, updates, and surprises in your inbox.",
         "image": "shopify://shop_images/Freestyle_1.svg",
         "tagline": ""

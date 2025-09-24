@@ -117,9 +117,9 @@
                 class="object-contain max-h-full">
             </span>
             <div class="cart-drawer__details w-full">
-              <p class="cart-drawer__title font-grotesk font-medium text-[16px] leading-[1.2] tracking-[0.05em] text-scheme_two mb-[10px]">
+              <a  href="{{ item.product.url }}" class="cart-drawer__title font-grotesk font-medium text-[16px] leading-[1.2] tracking-[0.05em] text-scheme_two mb-[10px]">
                 {{ item.product.title }}
-              </p>
+              </a>
 
               {% if item.variant.title != 'Default Title' %}
                 {% assign variant_title = item.variant.title %}
