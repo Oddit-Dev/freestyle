@@ -565,6 +565,26 @@
                   addToCartBtn.setAttribute("data-variant-id", this.activeVariant.id);
                   
                   console.log(this.activeVariant.id,"this.activeVariant.id");
+
+                  if(document.querySelectorAll('.selling_plan_app_container .selling_plan_theme_integration').length > 0){
+                    document.querySelectorAll('.selling_plan_app_container .selling_plan_theme_integration').forEach((section) => {
+                      section.classList.add('hidden', 'has-hidden');
+                    });
+                    document.querySelector(`.selling_plan_app_container .selling_plan_theme_integration[data-variant-id="${this.activeVariant.id}"]`).classList.remove('hidden', 'has-hidden');
+
+                    const variantPrice = document.querySelector(`.selling_plan_theme_integration:not(.has-hidden) [type="radio"]:checked`).dataset.variantPrice;
+                   
+                    document.querySelector('.product__cta .sale-price').textContent = variantPrice;
+
+                    if (document.querySelector('.current-variant-price')) {
+                      document.querySelector('.current-variant-price').textContent = variantPrice;
+                    }
+
+                    setTimeout(() => {
+                      document.querySelector(`.selling_plan_theme_integration:not(.has-hidden) [type="radio"]:checked`).dispatchEvent(new Event('change'));
+                    }, 300);
+                  }
+
                   this.slideToSlideByDataAttribute(this.activeVariant.id);
               } else {
                   this.activeVariant = this.variants[0];
