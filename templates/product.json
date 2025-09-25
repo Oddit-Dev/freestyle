@@ -92,11 +92,10 @@
         },
         "subscription_form_z4dV3d": {
           "type": "subscription-form",
-          "disabled": true,
           "settings": {
             "free_shipping": "Free shipping on every order",
             "cancel_text": "Pause or cancel anytime",
-            "plan_text": "Delivery"
+            "plan_text": ""
           }
         },
         "add_on_product_KMz7qM": {
@@ -373,7 +372,6 @@
       "block_order": [
         "stay_ai_subscription_buy_box_extended_GbKhrL"
       ],
-      "disabled": true,
       "settings": {}
     },
     "perfect_info_mgPXdV": {

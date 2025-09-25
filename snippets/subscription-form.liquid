@@ -10,91 +10,38 @@
     {%- assign next_selling_plane = allocation -%}
   {%- endfor -%}
 {%- endif -%}
-{%- if matched == true -%}
+{%- if matched == false
+-%}
+
   <item-change
+    class="tw-relative"
     data-qty="{{ item.quantity }}"
     data-line="{{ forloop.index }}"
-  >
-    {%- assign current_plan_id = item.selling_plan_allocation.selling_plan.id | default: '' -%}
-    {%- assign current_plan = '' -%}
-    {%- for allocation in item.variant.selling_plan_allocations -%}
-      {%- assign plan = allocation.selling_plan -%}
-      {%- if plan.id == current_plan_id -%}
-        {%- assign adjustment = plan.price_adjustments[0] -%}
-        {%- if adjustment.value_type == 'percentage' -%}
-          {%- assign current_plan = "Subscribe & Save " | append: adjustment.value | append: "% + Free Shipping" -%}
-        {%- elsif adjustment.value_type == 'amount' -%}
-          {%- assign current_plan = "Subscribe & Save " | append: adjustment.value | money | append: " + Free Shipping" -%}
-        {%- endif -%}
-      {%- endif -%}
-    {%- endfor -%}
+    data-current-selling-plan="{{ item.selling_plan_allocation.selling_plan.id | default: '' }}">
 
-    <div class="selling-plan-dropdown">
-      <div class="dropdown-label">
-        {{ current_plan }}
-        <span>{{ "subscription-down-arrow.svg" | inline_asset_content }}</span>
-      </div>
-      <div class="subheading">Change or cancel anytime</div>
-      <div class="dropdown-options">
-        {%- for allocation in item.variant.selling_plan_allocations -%}
-          {%- assign plan = allocation.selling_plan -%}
-          {%- assign adjustment = plan.price_adjustments[0] -%}
-          <div 
-            class="option {% if plan.id == current_plan_id %}active{% endif %}" 
-            data-selling-id="{{ plan.id }}"
-          >
-            {% if adjustment.value_type == 'percentage' %}
-              Subscribe & Save {{ adjustment.value }}% + Free Shipping
-            {% elsif adjustment.value_type == 'amount' %}
-              Subscribe & Save {{ adjustment.value | money }} + Free Shipping
-            {% endif %}
-          </div>
-        {%- endfor -%}
-      </div>
+    {%- capture first_plan_id -%}
+      {%- for allocation in item.variant.selling_plan_allocations limit:1 -%}
+        {{ allocation.selling_plan.id }}
+      {%- endfor -%}
+    {%- endcapture -%}
+    {% if item.variant.selling_plan_allocations != blank %}
+    <div class="button-main">
+      <div class="top-text">{{ section.settings.subscription_button_top_text }}</div>
+      <div class="change-label tw-cursor-pointer tw-inline-flex tw-items-center tw-gap-1 tw-text-[#C8432B] hover:tw-text-[#a33324]" data-selling-id="{{ first_plan_id | strip }}"> 
+        <span class="tw-text-[12px] tw-text-[#C8432B] tw-font-normal tw-font-primary tw-leading-[1.6] !tw-ml-0 tw-underline tw-relative">
+          {%- for allocation in item.variant.selling_plan_allocations -%}
+            {%- assign plan = allocation.selling_plan -%}
+            {%- assign adjustment = plan.price_adjustments[0] -%}
+            {%- if adjustment.value_type == 'percentage' -%}
+              {{ section.settings.subscription_button_label }} & Save {{ adjustment.value }}%
+            {%- elsif adjustment.value_type == 'amount' -%}
+              {{ section.settings.subscription_button_label }} & Save {{ adjustment.value | money }}
+            {%- endif -%}
+            {%- break -%}
+          {%- endfor -%}
+        </span>
+      </div> 
     </div>
+    {% endif %}
   </item-change>
 {%- endif -%}
-
-
-<style>
-  .selling-plan-dropdown {
-  position: relative;
-  display: inline-block;
-  width: 220px;
-}
-.dropdown-label {
-  border: 1px solid #ccc;
-  padding: 8px 12px;
-  cursor: pointer;
-  background-color: #fff;
-  border-radius: 6px;
-}
-.dropdown-options {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  margin-top: 4px;
-  display: none;
-  z-index: 50;
-}
-.option {
-  padding: 8px 12px;
-  cursor: pointer;
-}
-.option:hover {
-  background-color: #f0f0f0;
-}
-.option.active {
-  background-color: #e0e0e0;
-}
-.has-loading .dropdown-label {
-  opacity: 0.5;
-  pointer-events: none;
-}
-
-</style>

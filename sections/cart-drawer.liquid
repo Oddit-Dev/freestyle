@@ -146,7 +146,11 @@
                   </p>
                 {% endif %}
               {% endif %}
-
+              {% if item.selling_plan_allocation.selling_plan.name != blank %}
+              <p class="product-selling-plan font-grotesk font-normal text-[13px] leading-[1] text-[#707070] mb-[10px]">
+                {{ item.selling_plan_allocation.selling_plan.name }} 
+              </p>
+              {% endif %}
               {% assign price = item.variant.price %}
               {% assign compare_at = item.variant.compare_at_price %}
 
@@ -344,6 +348,15 @@
       "type": "url",
       "id": "product_feature_btn_url",
       "label": "URL"
+    },
+    {
+      "type": "header",
+      "content": "Subscription Product"
+    },
+    {
+      "type": "text",
+      "id": "subscription_button_label",
+      "label": "Subscription Button Label"
     },
     {
       "type": "header",

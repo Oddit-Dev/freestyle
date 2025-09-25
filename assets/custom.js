@@ -381,50 +381,25 @@ customElements.define('add-variant-checkbox', AddVariantCheckbox);
 class ChangeCart extends HTMLElement {
   constructor() {
     super();
-    this.drawer = document.querySelector('cart-drawer');
-    this.toggleDropdown = this.toggleDropdown.bind(this);
     this.selectPlan = this.selectPlan.bind(this);
-    this.handleOutsideClick = this.handleOutsideClick.bind(this);
   }
 
   connectedCallback() {
-    this.label = this.querySelector('.dropdown-label');
-    this.querySelector('.dropdown-label')?.addEventListener('click', this.toggleDropdown);
-    this.querySelectorAll('.option').forEach(opt => opt.addEventListener('click', this.selectPlan));
-    document.addEventListener('click', this.handleOutsideClick);
+    this.querySelector('.change-label')?.addEventListener('click', this.selectPlan);
   }
 
   disconnectedCallback() {
-    this.querySelector('.dropdown-label')?.removeEventListener('click', this.toggleDropdown);
-    this.querySelectorAll('.option').forEach(opt => opt.removeEventListener('click', this.selectPlan));
-    document.removeEventListener('click', this.handleOutsideClick);
-  }
-
-  toggleDropdown(event) {
-    event.stopPropagation();
-    const dropdown = this.querySelector('.dropdown-options');
-    if (dropdown) dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-  }
-
-  handleOutsideClick(event) {
-    if (!this.contains(event.target)) {
-      const dropdown = this.querySelector('.dropdown-options');
-      if (dropdown) dropdown.style.display = 'none';
-    }
+    this.querySelector('.change-label')?.removeEventListener('click', this.selectPlan);
   }
 
   selectPlan(event) {
+   
     const selectedId = event.currentTarget.dataset.sellingId;
     const qty = this.dataset.qty;
     const line = this.dataset.line;
-    const selectedText = event.currentTarget.textContent;
 
     this.classList.add('has-loading');
-    this.querySelector('.dropdown-options').style.display = 'none';
     
-    // Update the label with the selected plan
-    if (this.label) this.label.textContent = selectedText;
-
     fetch(`/cart/change.js`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -434,43 +409,81 @@ class ChangeCart extends HTMLElement {
         selling_plan: selectedId,
       }),
     })
-    .then(res => res.json())
-    .then(() => {
-      if (this.drawer) this.drawer.refresh();
-      this.classList.remove('has-loading');
-    })
-    .catch(err => {
-      console.error('Error updating selling plan:', err);
-      this.classList.remove('has-loading');
-    });
+      .then((res) => res.json())
+      .then(() => {
+        const drawerSectionId = document.querySelector('cart-drawer')?.dataset.id;
+        if (!drawerSectionId) return;
+        
+        return fetch(`/cart?section_id=${drawerSectionId}`);
+      })
+      .then((response) => response?.text())
+      .then((responseText) => {
+        const html = new DOMParser().parseFromString(responseText, 'text/html');
+        const newInner = html.querySelector('cart-drawer .drawer__inner');
+        if (newInner) {
+          document.querySelector('cart-drawer .drawer__inner').innerHTML = newInner.innerHTML;
+        }
+        this.classList.remove('has-loading');
+        const drawer = document.querySelector('cart-drawer');
+        if (drawer) {
+          drawer.refresh();
+          drawer.hideLoader();
+          drawer.open();
+        }
+      })
+      .catch((err) => {
+        console.error('Error updating selling plan:', err);
+        this.classList.remove('has-loading');
+      });
   }
 }
 
 customElements.define('item-change', ChangeCart);
 
  /* custom selling plan start */
+  document.addEventListener("DOMContentLoaded", () => {
+    const checked = document.querySelector('.selling_plan_app_container input[type="radio"]:checked');
+    if (checked) updateSelectedPlan(checked);
+  });
+  function updateSelectedPlan(radio) {
+    const subscriptionList = radio.closest('.subscription-list');
+    const titleText = subscriptionList?.querySelector(".title-text");
+    const mergedText = titleText?.innerText.trim();
+    const selectedPlanSpan = document.querySelector(".selected-plan");
+
+    if (mergedText && selectedPlanSpan) {
+      selectedPlanSpan.textContent = mergedText;
+    }
+  }
+
   const radioButtons = document.querySelectorAll('.selling_plan_app_container input[type="radio"]');
+
   radioButtons.forEach((radioButton) => {
     radioButton.addEventListener('change', (event) => {
       const subscriptionList = event.target.closest('.subscription-list');
       const selectElement = subscriptionList?.querySelector('select');
       const selectedValue = selectElement?.value;
+      const productCard = event.target.closest('.product__content');
+      const titleText = subscriptionList?.querySelector(".title-text");
+      const mergedText = titleText.innerText.trim();
+      const selectedPlanSpan = document.querySelector(".selected-plan");
+      selectedPlanSpan.textContent = mergedText;
 
-      const productCard = event.target.closest('.product__info-wrapper');
       if (selectedValue && selectedValue !== '') {
         if (productCard) {
-          productCard.querySelector('product-form [name="selling_plan"]').value = selectedValue;
+          productCard.querySelector('.product__cta [name="selling_plan"]').value = selectedValue;
+          productCard.querySelector('.product__cta .js-add-to-cart').setAttribute("data-selling-plan-id", selectedValue);
         }
       } else {
         if (productCard) {
-          productCard.querySelector('product-form [name="selling_plan"]').value = '';
+          productCard.querySelector('.product__cta [name="selling_plan"]').value = '';
+          productCard.querySelector('.product__cta .js-add-to-cart').setAttribute("data-selling-plan-id", '');
         }
       }
 
-      const variantPrice = productCard.querySelector(
-        '.selling_plan_theme_integration:not(.has-hidden) [type="radio"]:checked'
-      ).dataset.variantPrice;
-      productCard.querySelector('product-form .button-price').textContent = variantPrice;
+      const variantPrice = productCard.querySelector('.selling_plan_theme_integration:not(.has-hidden) [type="radio"]:checked').dataset.variantPrice;
+      productCard.querySelector('.product__cta .sale-price').textContent = variantPrice;
+      
       if (document.querySelector('.current-variant-price')) {
         document.querySelector('.current-variant-price').textContent = variantPrice;
       }
@@ -497,13 +510,10 @@ customElements.define('item-change', ChangeCart);
       }
 
       if (event.target?.closest('.subscription-list')?.querySelector('label input:checked')) {
-        event.target.closest('.product__info-wrapper').querySelector('[name="selling_plan"]').value = selectedValue;
+        event.target.closest('.product__content').querySelector('[name="selling_plan"]').value = selectedValue;
       }
-      const variantPrice = event.target
-        .closest('.product__info-wrapper')
-        .querySelector('.selling_plan_theme_integration [type="radio"]:checked').dataset.variantPrice;
-      event.target.closest('.product__info-wrapper').querySelector('product-form .button-price').textContent =
-        variantPrice;
+      const variantPrice = event.target.closest('.product__content').querySelector('.selling_plan_theme_integration [type="radio"]:checked').dataset.variantPrice;
+      event.target.closest('.product__content').querySelector('.product__cta .sale-price').textContent = variantPrice;
 
       const currentOptionText = event.target.options[event.target.selectedIndex].text;
       if (document.querySelector('.sticky-add-to-cart .selling-label')) {
@@ -516,8 +526,8 @@ customElements.define('item-change', ChangeCart);
     });
   });
 
-  if (document.querySelectorAll('.product__info-wrapper select[name="selling-plan"]')) {
-    document.querySelectorAll('.product__info-wrapper select[name="selling-plan"]').forEach((select) => {
+  if (document.querySelectorAll('.product__content select[name="selling-plan"]')) {
+    document.querySelectorAll('.product__content select[name="selling-plan"]').forEach((select) => {
       select.dispatchEvent(new Event('change'));
     });
   }
