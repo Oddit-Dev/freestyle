@@ -335,45 +335,6 @@
         "third_marquee_direction": "-1"
       }
     },
-    "1758716743dd8ef785": {
-      "type": "apps",
-      "blocks": {
-        "stay_ai_subscription_buy_box_extended_GbKhrL": {
-          "type": "shopify://apps/stay-ai-subscription/blocks/buy-box-extended/896a3134-375a-4df4-8274-d37b95eafdee",
-          "settings": {
-            "product_form_id": "",
-            "one_time_purchase_label": "One-Time Purchase",
-            "subscription_label": "Subscribe & Save",
-            "subscription_tag": "Popular",
-            "subscription_details_type": "one-line",
-            "subscription_details": "<ul><li>Recurring savings on each order</li><li>Free shipping in the US</li><li>Cancel / pause anytime</li></ul>",
-            "icon_path_1": "",
-            "icon_path_2": "",
-            "icon_path_3": "",
-            "default_to_subscription": true,
-            "subscription_label_first": false,
-            "compare_at_price_first": true,
-            "widget_layout": "standard",
-            "include_custom_font": false,
-            "font_family": "work_sans_n6",
-            "text_color": "#000000",
-            "font_size": 15,
-            "border_color": "#e0e0e0",
-            "bg_color": "#ffffff",
-            "selected_bg_color": "#e0e0e0",
-            "selected_text_color": "#121212",
-            "accent_color": "#121212",
-            "border_width": 1,
-            "border_radius": 10,
-            "css_code": ""
-          }
-        }
-      },
-      "block_order": [
-        "stay_ai_subscription_buy_box_extended_GbKhrL"
-      ],
-      "settings": {}
-    },
     "perfect_info_mgPXdV": {
       "type": "perfect-info",
       "blocks": {
@@ -575,7 +536,6 @@
   "order": [
     "main",
     "multiple_marquee_pUJj6y",
-    "1758716743dd8ef785",
     "perfect_info_mgPXdV",
     "icon_with_text_Tirzyn",
     "174411240666086477",
