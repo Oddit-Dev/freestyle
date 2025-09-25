@@ -285,5 +285,25 @@ h2,
   display: none !important;
 }
 
-
+.subscription-form .subscription-list.check-active .plan-label{
+  @apply border-scheme_two border-2 bg-[#6638B614] rounded-tr-none
+}
+.subscription-form .subscription-list.check-active .subscription-label{
+  @apply border-scheme_two border-2 bg-[#6638B614]
+}
+.subscription-form .subscription-list.check-active .plan-label input{
+  @apply border-scheme_two
+}
+.subscription-form .subscription-list.check-active .subscription-label input{
+  @apply border-scheme_two
+}
+.subscription-form .subscription-list.check-active .plan-label .bes-value{
+  @apply -right-[2px] bottom-[99%]
+}
+.subscription-form .subscription-list.check-active .plan-label input::before{
+  @apply bg-scheme_two
+}
+.subscription-form .subscription-list.check-active .subscription-label input::before{
+  @apply bg-scheme_two
+}
 /* product page */

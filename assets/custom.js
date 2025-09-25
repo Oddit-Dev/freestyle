@@ -468,6 +468,12 @@ customElements.define('item-change', ChangeCart);
       const mergedText = titleText.innerText.trim();
       const selectedPlanSpan = document.querySelector(".selected-plan");
       selectedPlanSpan.textContent = mergedText;
+      if (subscriptionList) {
+        document.querySelectorAll('.subscription-list').forEach(list => {
+          list.classList.remove('check-active');
+        });
+        subscriptionList.classList.add('check-active');
+      }
 
       if (selectedValue && selectedValue !== '') {
         if (productCard) {
