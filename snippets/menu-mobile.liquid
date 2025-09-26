@@ -373,11 +373,11 @@
                   %}
                   <a
                     href="{{ link.url }}"
-                    class="text-black-content hover:text-color_1 text-[20px] md:text-[24px] font-normal">
+                    class="py-[10px] flex items-center gap-[8px] font-grotesk font-medium text-[20px] text-color_1 w-full [&_img]:mx-0">
                     {% if link.title contains 'skin_shield' %}
                       {{ skinShieldTM }}
                     {% else %}
-                      {{ link.title | replace: '[bamboo]', bamboo_icon | replace: '[heart]', heart_icon }}
+                      {{ link.title | replace: '[bamboo]', bamboo_icon | replace: '[heart]', heart_icon | replace: '[walmart]', walmart_icon }}
                     {% endif %}
                   </a>
                 {% endif %}
