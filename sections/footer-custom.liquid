@@ -6,7 +6,7 @@
         <!-- Columna izquierda (30%) - Newsletter -->
         <div class="max-w-[420px] max-md:max-w-[calc(100%+32px)] w-full pr-[50px] max-md:px-[16px] py-[50px] max-md:py-[40px] border-0 border-r max-md:border-r-0 max-md:border-b border-solid border-black max-md:w-[calc(100%+32px)] max-md:ml-[-16px]">
           {% if section.settings.newsletter_title != blank %}
-            <h2 class="font-fkroman font-medium text-[24px] max-md:text-[30px] leading-[1.3] capitalize mb-[24px] max-md:mb-[12px] tracking-[-0.05em] max-md:text-center [&_strong]:font-grotesk [&_strong]:font-medium">
+            <h2 class="font-fkroman font-medium max-md:font-normal text-[24px] max-md:text-[30px] leading-[1.3] capitalize mb-[24px] max-md:mb-[12px] tracking-[-0.05em] max-md:text-center [&_strong]:font-grotesk [&_strong]:font-medium">
               {{ section.settings.newsletter_title }}
             </h2>
           {% endif %}
@@ -105,17 +105,17 @@
 
   <!-- Footer bottom -->
   <div class="py-[30px] max-md:pt-[20px]">
-    <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+    <div class="container mx-auto gap-x-[30px] max-md:gap-x-[24px] flex flex-wrap justify-center md:flex-row md:justify-between items-center">
       {% if section.blocks.size > 0 %}
         {% for block in section.blocks %}
           {% case block.type %}
             {% when 'footer_bottom_nav' %}
               <p class="text-[#909090] font-Inter font-normal text-[12px] leading-[1.6]">{{ block.settings.title }}</p>
-              <div class="flex items-center gap-[30px]">
+              <div class="flex items-center gap-[30px] max-md:gap-[24px] flex-wrap">
                 {% for link in block.settings.menu.links %}
                   <a
                     href="{{ link.url }}"
-                    class="text-[#909090] font-grotesk font-normal text-[12px] leading-[1.6]"
+                    class="text-[#909090] font-grotesk font-normal text-[12px] leading-[1.6] relative md:before:hidden before:content-[''] before:w-[1px] before:h-[16px] before:bg-[#909090] before:absolute before:left-[-12px] before:top-[1px] "
                     target="_blank">
                     {{- link.title -}}
                   </a>

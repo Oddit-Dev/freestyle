@@ -27,20 +27,20 @@
     {% else %}text-center justify-center{% endif %}
   {% endcapture %}
 
-  <div class="hero-banner-content bg-[linear-gradient(180deg,rgba(241,242,245,0)9.16%,rgba(241,242,245,0.8)36.44%,#F1F2F5_100%);] md:bg-[linear-gradient(270deg,rgba(241,242,245,0)7.25%,rgba(241,242,245,0.8)49.26%,#F1F2F5_76.11%)] md:max-w-[830px] w-full md:w-[57.5%] absolute left-0 md:top-0 bottom-0 flex items-center md:h-full pl-[120px] pr-[150px] max-[1199px]:pl-[60px] max-[1199px]:pr-[60px] max-md:px-[13px] max-md:pt-[160px] max-md:pb-[30px] py-[60px] {{ caption_alignment }}">
-    <div class="hero-banner-inner w-full">
+  <div class="hero-banner-content bg-[linear-gradient(180deg,rgba(241,242,245,0)9.16%,rgba(241,242,245,0.8)36.44%,#F1F2F5_100%);] md:bg-[linear-gradient(270deg,rgba(241,242,245,0)7.25%,rgba(241,242,245,0.8)49.26%,#F1F2F5_76.11%)] w-full md:w-[57.5%] absolute left-0 md:top-0 bottom-0 flex items-center md:h-full min-[1440px]:pl-[calc((100%-1200px)/2+0px)] pl-[120px] pr-[150px] max-[1199px]:pl-[60px] max-[1199px]:pr-[60px] max-md:px-[13px] max-md:pt-[160px] max-md:pb-[30px] py-[60px] {{ caption_alignment }}">
+    <div class="hero-banner-inner w-full lg:max-w-[558px]">
       <div class="hero-banner-text max-md:text-center">
         {%- if section.settings.heading != blank -%}
           {% assign heart_svg = 'icon-heart.svg' | inline_asset_content %}
           {% assign main_heading = section.settings.heading | replace: '$heart', heart_svg %}
-          <h2 class="flex flex-wrap items-center gap-x-[10px] max-md:justify-center text-scheme_one [&_strong]:font-fkroman [&_strong]:font-normal text-[52px] max-lg:text-[46px] leading-[120%] tracking-[-2.6px] max-md:tracking-[-1.8px] mb-[30px] max-md:mb-[24px] max-md:text-[36px] [&_strong]:items-center [&_strong]:flex-wrap 
+          <h2 class="flex flex-wrap items-center gap-x-[10px] max-md:justify-center text-scheme_one [&_strong]:font-fkroman [&_strong]:font-normal text-[52px] max-lg:text-[46px] leading-[120%] tracking-[-2.6px] max-md:tracking-[-1.8px] mb-[12px] max-md:mb-[12px] max-md:text-[36px] [&_strong]:items-center [&_strong]:flex-wrap 
           [&_svg]:max-md:w-[30px] [&_svg]:max-md:h-[26px]">
             {{ main_heading }}
           </h2>
 
         {%- endif -%}
         {%- if section.settings.text != blank -%}
-          <div class="hero-banner-rte text-scheme_one-secondary [&_strong]:text-[8px] [&_strong]:px-[6px]">
+          <div class="hero-banner-rte text-scheme_one-secondary [&_strong]:align-middle [&_strong]:text-[8px] [&_strong]:px-[6px]">
             {{ section.settings.text }}
           </div>
         {%- endif -%}

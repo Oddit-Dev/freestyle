@@ -84,10 +84,11 @@
         spaceBetween: 6,
         centeredSlides: true,
         slidesPerView: 1.02,
-        loop: true,
+        loop: false,
         pagination: {
           el: '.testimonial--{{ section.id }} .swiper-pagination',
         },
+        initialSlide: 1,
         breakpoints: {
           768: {
             freemode: true,
@@ -112,6 +113,7 @@
     });
   </script>
 {% endif %}
+
 
 {% schema %}
 {

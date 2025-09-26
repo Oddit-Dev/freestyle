@@ -38,7 +38,7 @@
             {% if section.settings.sub_heading != blank %}
               {% assign heart_svg = 'icon-heart.svg' | inline_asset_content %}
               {% assign main_sub_heading = section.settings.sub_heading | replace: '$heart', heart_svg %}
-              <h2 class="sub-heading !text-[46px] max-lg:!text-[42px] !tracking-[-2.3px] max-md:!text-[24px] max-md:!tracking-[-1.2px] flex flex-wrap items-center max-md:justify-center gap-x-[10px] max-md:gap-x-[6px] [&_strong]:font-fkroman [&_strong]:!font-normal mb-[35px] max-md:mb-[20px] [&_svg]:max-md:w-[28px] [&_svg]:max-md:h-[23px]">{{ main_sub_heading }}</h2>
+              <h2 class="sub-heading !text-[46px] max-lg:!text-[42px] !tracking-[-2.3px] max-md:!text-[24px] max-md:!tracking-[-1.2px] flex flex-wrap items-center max-md:justify-center gap-x-[5px] max-md:gap-x-[4px] [&_strong]:font-fkroman [&_strong]:!font-normal mb-[18px] max-md:mb-[16px] [&_svg]:w-[28px] [&_svg]:h-[23px]">{{ main_sub_heading }}</h2>
             {% endif %}
             {% if section.settings.text != blank %}
               <p class="text text-scheme_two mb-[35px] max-md:mb-[20px] max-md:text-center">{{ section.settings.text }}</p>
