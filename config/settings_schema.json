@@ -84,6 +84,11 @@
         "type": "richtext",
         "id": "header_walmart_text",
         "label": "Header Walmart Text"
+      },
+      {
+        "type": "url",
+        "id": "header_walmart_text_url",
+        "label": "Header Walmart URL"
       }
     ]
   },

@@ -127,7 +127,9 @@ window.addEventListener('scroll', updateHeaderHeight);
         <div class="custom-walmart-logo [&_p]:flex [&_p]:items-center [&_p]:gap-[8px] [&_svg]:w-auto [&_svg]:h-[18px] [&_svg]:mb-[2px]">
           {% assign walmart_svg = 'icon-walmart.svg' | inline_asset_content %}
           {% assign main_button = settings.header_walmart_text | replace: '$walmart', walmart_svg %} 
-          {{ main_button }}
+          {% if settings.header_walmart_text_url != blank and main_button != blank %}
+            <a href="{{ settings.header_walmart_text_url }}">{{ main_button }}</a>
+          {% endif %}
         </div>
         {% if main_button != blank %}
           <span class="mx-[30px] max-[1200px]:mx-[20px] block font-Inter font-normal text-[14px] leading-[1.2] text-[#909090]">|</span>
