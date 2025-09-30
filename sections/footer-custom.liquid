@@ -115,7 +115,7 @@
                 {% for link in block.settings.menu.links %}
                   <a
                     href="{{ link.url }}"
-                    class="text-[#909090] font-grotesk font-normal text-[12px] leading-[1.6] relative md:before:hidden before:content-[''] before:w-[1px] before:h-[16px] before:bg-[#909090] before:absolute before:left-[-12px] before:top-[1px] "
+                    class="text-[#909090] font-grotesk font-normal text-[12px] leading-[1.6] relative md:before:hidden {% unless forloop.first %} before:content-[''] before:w-[1px] before:h-[16px] before:bg-[#909090] before:absolute before:left-[-12px] before:top-[1px] {% endunless %}"
                     target="_blank">
                     {{- link.title -}}
                   </a>

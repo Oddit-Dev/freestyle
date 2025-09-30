@@ -59,9 +59,7 @@ window.addEventListener('scroll', updateHeaderHeight);
             <span class="icon--header tw-w-[24px] tw-h-[24px] !tw-flex tw-items-start tw-justify-center tw-text-[#A843A2] [&_svg]:!tw-m-0 [&_svg]:!tw-h-[24px]">
               {{ "header-shopping-cart.svg" | inline_asset_content }}
             </span>
-            {% if cart.item_count > 0 %}
-            <span class="header-cart__count absolute top-[-3px] right-[-6px] w-[17px] h-[17px] rounded-full bg-scheme_one text-[8px] text-white flex items-center justify-center text-center pt-[3px]"><span class="relative leading-none">{{ cart.item_count }}</span></span>
-            {% endif %}
+            <span class="header-icon-is-hidden header-cart__count absolute top-[-3px] right-[-6px] w-[17px] h-[17px] rounded-full bg-scheme_one text-[8px] text-white flex items-center justify-center text-center pt-[3px]"><span class="relative leading-none">{{ cart.item_count }}</span></span>
         </cart-icon>
       </div>
 
@@ -152,9 +150,8 @@ window.addEventListener('scroll', updateHeaderHeight);
             <cart-icon class="header-cart-icon ml-[20px] tw-w-[24px] tw-h-[24px] !tw-flex tw-items-start tw-justify-center cursor-pointer relative" href="javascript:void(0)" aria-label="Cart">
                   <span class="icon--header tw-w-[24px] tw-h-[24px] !tw-flex tw-items-start tw-justify-center tw-text-[#A843A2] [&_svg]:!tw-m-0 [&_svg]:!tw-h-[24px]">
                     {{ "header-shopping-cart.svg" | inline_asset_content }}
-                  </span>
-                  <span class="header-cart__count absolute top-[-3px] right-[-6px] w-[17px] h-[17px] rounded-full bg-scheme_one text-[8px] text-white flex items-center justify-center text-center pt-[3px] "><span class="relative leading-none">{{ cart.item_count }}</span></span>
-                  
+                  </span>                  
+                  <span class="header-icon-is-hidden header-cart__count absolute top-[-3px] right-[-6px] w-[17px] h-[17px] rounded-full bg-scheme_one text-[8px] text-white flex items-center justify-center text-center pt-[3px] "><span class="relative leading-none" class="header-cart-count">{{ cart.item_count }}</span></span>
               </cart-icon>
       </div>
     </div>
@@ -266,3 +263,7 @@ window.addEventListener('scroll', updateHeaderHeight);
     </div>
   </div> {% endcomment %}
 </div>
+
+<style>
+  .header-icon-is-hidden {display: none;}
+</style>

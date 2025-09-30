@@ -153,10 +153,20 @@ class CartDrawer extends HTMLElement {
     this.querySelector('.subtotal').textContent = newSubtotal.textContent;
     this.querySelector('#CartCount').textContent = newCount.textContent;
 
-    const headerCount = document.querySelector('.header-cart__count');
-    if (headerCount) {
-      headerCount.textContent = newCount.textContent;
-    }
+    const headerCounts = document.querySelectorAll('.header-cart__count');
+    const countValue = newCount.textContent.trim();
+
+    headerCounts.forEach((el) => {
+      el.textContent = countValue;
+
+      if (countValue === '0') {
+        el.classList.add('header-icon-is-hidden');
+      } else {
+        el.classList.remove('header-icon-is-hidden');
+      }
+    });
+
+
     const footer = this.querySelector('.cart-drawer__footer');
     if (footer) {
       const count = parseInt(newCount.textContent, 10) || 0;
@@ -271,6 +281,11 @@ class CartIcon extends HTMLElement {
 customElements.define('cart-icon', CartIcon);
 
 document.addEventListener("DOMContentLoaded", function () {
+   const drawer = document.querySelector('cart-drawer');
+    if (drawer) {
+      drawer.refresh();
+    }
+
   const addToCartBtn = document.querySelector(".js-add-to-cart");
   const addonCheckbox = document.querySelector(".addonproduct");
 
@@ -538,3 +553,6 @@ customElements.define('item-change', ChangeCart);
     });
   }
   /* custom selling plan end */
+
+
+  document

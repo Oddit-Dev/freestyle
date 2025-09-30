@@ -416,3 +416,7 @@ h2,
     display: block;
   }
 }
+
+.header-icon-is-hidden {
+  display: none;
+}
