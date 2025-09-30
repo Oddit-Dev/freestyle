@@ -27,7 +27,7 @@
       {{ description | replace: 'skin_shield_tm', skin_shield | replace: 'bamboo_tek_tm', bamboo_tek }}
     </div>
     <!-- Storepoint Widget Embed Start -->
-    <div id="storepoint-widget" class="storepoint-widget hidden"></div>
+    <div id="storepoint-widget" class="storepoint-widget"></div>
 
     {% if walmartlogo != blank %}
       <div class="walmart-logo h-[23px] flex mb-0 max-md:mt-[15px] md:!hidden">
@@ -65,6 +65,18 @@
     };
     document.head.appendChild(t);
   })();
+
+  document.addEventListener('DOMContentLoaded', function() {
+  const appHeading = document.querySelector('.app-heading');
+  const storepointWidget = document.getElementById('storepoint-widget');
+
+  if (appHeading && storepointWidget) {
+    appHeading.addEventListener('click', function() {
+      appHeading.classList.toggle('active');
+      storepointWidget.classList.toggle('active');
+    });
+  }
+});
 </script>
 <!-- Storepoint Widget Embed End -->
 

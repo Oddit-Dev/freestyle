@@ -543,7 +543,7 @@
         "label": "Announcement2 Text"
       },
       {
-        "type": "text",
+        "type": "richtext",
         "id": "announcement3_text",
         "label": "Announcement3 Text"
       },
