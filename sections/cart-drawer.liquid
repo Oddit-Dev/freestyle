@@ -117,7 +117,7 @@
                 class="object-contain max-h-full">
             </span>
             <div class="cart-drawer__details w-full">
-              <a  href="{{ item.product.url }}" class="cart-drawer__title font-grotesk font-medium text-[16px] leading-[1.2] tracking-[0.05em] text-scheme_two mb-[10px]">
+              <a  href="{{ item.product.url }}" class="cart-drawer__title font-grotesk font-medium text-[16px] leading-[1.2] tracking-[0.05em] text-scheme_two !mb-[8px] block">
                 {{ item.product.title }}
               </a>
 
@@ -135,13 +135,14 @@
                   {% assign weight = left_parts[2] | replace: 'lbs', ' lbs' %}
                   {% assign diapers = right_part | replace: 'diapers', 'Diapers' %}
 
-                  <p class="cart-drawer__variant font-grotesk font-normal text-[13px] leading-[1] text-[#707070] mb-[10px]">
+                  <p class="cart-drawer__variant font-grotesk font-normal text-[13px] leading-[1] text-[#707070] mb-[10px] [&_span]:px-[6px] [&_span]:text-[#E3E3E3]">
                     {{ size }}
                     <span>|</span> {{ weight }}
                     <span>|</span> {{ diapers }}
                   </p>
+
                 {% else %}
-                  <p class="cart-drawer__variant font-grotesk font-normal text-[13px] leading-[1] text-[#707070] mb-[10px]">
+                  <p class="cart-drawer__variant font-grotesk font-normal text-[13px] leading-[1] text-[#707070] mb-[10px] [&_span]:px-[6px] [&_span]:text-[#E3E3E3]">
                     {{ variant_title }}
                   </p>
                 {% endif %}

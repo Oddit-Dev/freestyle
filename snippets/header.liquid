@@ -60,7 +60,7 @@ window.addEventListener('scroll', updateHeaderHeight);
               {{ "header-shopping-cart.svg" | inline_asset_content }}
             </span>
             {% if cart.item_count > 0 %}
-            <span class="header-cart__count absolute top-[-3px] right-[-6px] w-[16px] h-[16px] rounded-full bg-scheme_one text-[8px] text-white flex items-center justify-center text-center pt-[3px]">{{ cart.item_count }}</span>
+            <span class="header-cart__count absolute top-[-3px] right-[-6px] w-[17px] h-[17px] rounded-full bg-scheme_one text-[8px] text-white flex items-center justify-center text-center pt-[3px]"><span class="relative leading-none">{{ cart.item_count }}</span></span>
             {% endif %}
         </cart-icon>
       </div>
@@ -153,7 +153,7 @@ window.addEventListener('scroll', updateHeaderHeight);
                   <span class="icon--header tw-w-[24px] tw-h-[24px] !tw-flex tw-items-start tw-justify-center tw-text-[#A843A2] [&_svg]:!tw-m-0 [&_svg]:!tw-h-[24px]">
                     {{ "header-shopping-cart.svg" | inline_asset_content }}
                   </span>
-                  <span class="header-cart__count absolute top-[-3px] right-[-6px] w-[16px] h-[16px] rounded-full bg-scheme_one text-[8px] text-white flex items-center justify-center text-center pt-[3px]">{{ cart.item_count }}</span>
+                  <span class="header-cart__count absolute top-[-3px] right-[-6px] w-[17px] h-[17px] rounded-full bg-scheme_one text-[8px] text-white flex items-center justify-center text-center pt-[3px] "><span class="relative leading-none">{{ cart.item_count }}</span></span>
                   
               </cart-icon>
       </div>
