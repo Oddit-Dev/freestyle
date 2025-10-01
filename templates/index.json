@@ -576,7 +576,8 @@
       "settings": {
         "image": "shopify://shop_images/Freestyle-Boxes-345-0676_1.png",
         "image_mobile": "shopify://shop_images/Freestyle-Boxes-345-0676_1_1.png",
-        "heading": "Find $logo at a Walmart near you.",
+        "heading": "Find $logo at a",
+        "heading2": "Walmart near you.",
         "button": "Shop at $walmart",
         "link": "shopify://collections/skinshield-monthly-bundle"
       }

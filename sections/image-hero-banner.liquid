@@ -1,4 +1,4 @@
-{% if section.settings.image != blank or section.settings.heading != blank or section.settings.button != blank %}
+{% if section.settings.image != blank or section.settings.heading != blank or section.settings.heading2 != blank or section.settings.button != blank %}
   {% style %}
     .image-hero--{{ section.id }} .image-with-text-content .button:hover svg path {
       fill: #6638B6;
@@ -32,13 +32,18 @@
             {% endif %}
           </div>
         {% endif %}
-        {% if section.settings.button != blank or section.settings.heading != blank %}
+        {% if section.settings.button != blank or section.settings.heading != blank or section.settings.heading2 != blank %}
           <div class="content-wrapper px-[60px] max-[1199px]:px-[40px] py-[30px] max-md:px-[16px] md:absolute md:left-0 md:top-1/2 md:-translate-y-1/2 w-full md:max-w-[622px] max-md:bg-[linear-gradient(180deg,rgba(238,239,234,0)6.15%,#EEEFEA_20.38%)] max-md:mt-[-38px] ">
             {% if section.settings.heading != blank %}
               {% assign logo_svg = 'icon-logo.svg' | inline_asset_content %}
               {% assign main_heading = section.settings.heading | replace: '$logo', logo_svg %}
               <h2 class="heading flex items-center flex-wrap gap-x-[10px] text-scheme_one-secondary [&_svg]:max-md:w-[136px] [&_svg]:max-md:h-[30px]">
                 {{ main_heading }}
+              </h2>
+            {% endif %}
+            {% if section.settings.heading2 != blank %}
+              <h2 class="heading flex items-center flex-wrap gap-x-[10px] text-scheme_one-secondary [&_svg]:max-md:w-[136px] [&_svg]:max-md:h-[30px]">
+                {{ section.settings.heading2 }}
               </h2>
             {% endif %}
             {% if section.settings.button != blank and section.settings.link %}
@@ -75,6 +80,11 @@
       "type": "inline_richtext",
       "id": "heading",
       "label": "Heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading2",
+      "label": "Heading2"
     },
     {
       "type": "text",
