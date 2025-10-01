@@ -553,6 +553,23 @@ customElements.define('item-change', ChangeCart);
     });
   }
   /* custom selling plan end */
+document.addEventListener("DOMContentLoaded", () => {
+  const link = document.querySelector('a[href="#pdp-reviews"]');
+  const target = document.querySelector(".junip-product-review");
 
+  if (link && target) {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
 
-  document
+      const offset = 50;
+      const elementPosition = target.getBoundingClientRect().top + window.scrollY;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    });
+  }
+});
+
