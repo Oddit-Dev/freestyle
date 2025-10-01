@@ -416,7 +416,9 @@ h2,
     display: block;
   }
 }
-
+ .storepoint-widget .storepoint-location-detail-panel.storepoint-location-detail-panel-visible{
+  overflow: auto !important;
+ }
 .header-icon-is-hidden {
   display: none;
 }
