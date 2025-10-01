@@ -18,8 +18,9 @@ window.addEventListener('scroll', updateHeaderHeight);
 {% assign hide_elements = true %}
 <div style="background-color: {{ settings.background_color }}; color: {{ settings.text_color }};" class="w-full">
   <div class="container">
+    <div class="flex items-center gap-[16px] max-md:gap-[10px] justify-center py-[10px]">
     {% if settings.announcement_text != blank or settings.announcement2_text != blank %} 
-      <a href="{{ settings.link_url }}" class=" flex items-center gap-[16px] max-md:gap-[10px] justify-center py-[10px]">
+      <a href="{{ settings.link_url }}" class="flex">
         <div class="flex items-center gap-[6px] md:pr-[16px] md:border-0 md:border-r md:border-solid md:border-white-text">
           {% if settings.announcement_text != blank %}      
             <span class="font-grotesk font-medium text-[13px] max-md:text-[12px] leading-[1] text-white-text">{{ settings.announcement_text }}</span>
@@ -34,6 +35,7 @@ window.addEventListener('scroll', updateHeaderHeight);
     {% if settings.announcement3_text != blank %}      
       <span class="font-grotesk font-medium text-[13px] max-md:text-[12px] leading-[1] text-white-text underline underline-offset-2">{{ settings.announcement3_text }}</span>
     {% endif %}
+    </div>
   </div>
 </div>
 <div class="relative b-header__wrapper py-[16px] max-lg:py-[19px] bg-white" style="background-color: {{ settingsHeaderBg }};">
