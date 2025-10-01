@@ -416,9 +416,15 @@ h2,
     display: block;
   }
 }
- .storepoint-widget .storepoint-location-detail-panel.storepoint-location-detail-panel-visible{
+
+.storepoint-widget .storepoint-location-detail-panel.storepoint-location-detail-panel-visible {
   overflow: auto !important;
- }
-.header-icon-is-hidden {
+}
+
+.header-icon-is-hidden,
+.custom-pdp-store-locater-desktop:empty,
+.custom-pdp-store-locater-mobile:empty {
   display: none;
 }
+
+@media screen and (max-width: 749px) {}

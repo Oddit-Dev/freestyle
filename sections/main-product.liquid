@@ -25,21 +25,20 @@
           {% render 'product-gallery'
             , product: product %}
         </div>
+        <div class="custom-pdp-store-locater-desktop">
         <div class="custom-pdp-store-locater">
           {% assign walmartlogo = section.settings.store_main_logo %}
           {% assign storetitle = section.settings.store_main_heading %}
           {% assign storesubtitle = section.settings.store_sub_heading %}
           {% assign rightlogo = section.settings.store_right_logo %}
-          {% render 'c-store-locator'
-            ,
- title: storetitle
-            ,
+          {% render 'c-store-locator',title: storetitle,
  text: storesubtitle
             ,
  walmartlogo: walmartlogo
             ,
  rightlogo: rightlogo
           %}
+        </div>
         </div>
       </div>
 
@@ -101,7 +100,7 @@
             {% when 'variant_text' %}
               <div class="variant-text-main"></div>
             {% when 'cta' %}
-              <div class="product__cta mb-[50px]">
+              <div class="product__cta mb-[50px] max-md:mb-[30px]">
                 {% if block.settings.cta_type == 'add_to_cart' %}
                   <div x-show="activeVariant.available">
                     {% form 'product'
@@ -163,6 +162,7 @@
                 {% endif %}
               </div>
 
+<div class="custom-pdp-store-locater-mobile"></div>
             {% when 'description' %}
               <div class="product__description">
                 <h4 class="mb-6">
