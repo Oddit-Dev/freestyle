@@ -370,7 +370,7 @@
       "settings": {
         "heading": "Trusted by <strong>Real Families</strong>",
         "button": "Shop Skin $heart Shield™ Diapers",
-        "link": "shopify://collections/skinshield-monthly-bundle"
+        "link": "shopify://products/skinshield-diapers"
       }
     },
     "logo-section": {
@@ -675,7 +675,7 @@
         "sub_heading": "NEVER RUN OUT OF DIAPERS AGAIN",
         "heading": "Get your diapers delivered monthly <strong>and save</strong>",
         "button": "Subscribe & Save",
-        "link": "#"
+        "link": "shopify://products/skinshield-diapers"
       }
     },
     "marquee_v2_hCBKbi": {
