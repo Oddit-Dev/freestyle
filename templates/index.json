@@ -661,7 +661,7 @@
       "name": "Media Slider",
       "settings": {
         "heading": "For parents, <strong>by parents</strong>",
-        "description": "<p>Don’t just trust us. Hear from our community why they love and trust Freestyle.</p>"
+        "description": "<p>Hear from our community why they love and trust Freestyle. Then try it for youself. </p>"
       }
     },
     "image_with_text_Dc79b8": {
@@ -692,16 +692,23 @@
           "type": "text",
           "settings": {
             "icon": "shopify://shop_images/image_5303_60ebc00c-481c-4864-8ee1-c9af36761554.png",
-            "big_text": "100%",
-            "small_text": "Chlorine Free"
+            "big_text": "TCF",
+            "small_text": "Total Chlorine Free"
           }
         },
         "text_eqeR4a": {
           "type": "text",
           "settings": {
             "icon": "shopify://shop_images/image_5303_60ebc00c-481c-4864-8ee1-c9af36761554.png",
-            "big_text": "5,000",
-            "small_text": "Stores nationwide"
+            "big_text": "7",
+            "small_text": "Layer Skin Protection"
+          }
+        },
+        "text_3kjeRh": {
+          "type": "text",
+          "settings": {
+            "big_text": "EWG",
+            "small_text": "EWG Verified®"
           }
         },
         "text_RNdX9M": {
@@ -709,7 +716,7 @@
           "settings": {
             "icon": "shopify://shop_images/Freestyle_Wipes_Club_Bag_1130_160c4ba7-1e78-4d98-be5f-d8186c31226e.png",
             "big_text": "7",
-            "small_text": "Layer protection"
+            "small_text": "Layer Skin Protection"
           }
         }
       },
@@ -717,8 +724,10 @@
         "text_ThgDfk",
         "text_wNFBz3",
         "text_eqeR4a",
+        "text_3kjeRh",
         "text_RNdX9M"
       ],
+      "custom_css": [],
       "name": "Marquee v2",
       "settings": {}
     }
