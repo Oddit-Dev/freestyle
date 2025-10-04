@@ -37,8 +37,8 @@
           "type": "first_marquee",
           "settings": {
             "image": "shopify://shop_images/Screenshot_2025-09-01_at_3.29.27_PM_1.png",
-            "heading": "\"Proving that you don't need to sacrifice quality to go green\"",
-            "sub_heading": "@freestyle.fan"
+            "heading": "\"Freestyle is THAT girl. I'll never use anything else\"",
+            "sub_heading": "@user2296160136252"
           }
         },
         "first_marquee_J6yMrM": {
@@ -111,14 +111,14 @@
       ],
       "name": "Multiple Marquee",
       "settings": {
-        "heading": "Millions $heart FreeStyle",
+        "heading": "Millions $heart Freestyle",
         "first_marquee_hide_desktop": false,
         "first_marquee_hide_mobile": false,
         "first_marquee_direction": "-1",
         "second_marquee_hide_desktop": false,
         "second_marquee_hide_mobile": false,
         "second_marquee_direction": "1",
-        "third_marquee_hide_desktop": true,
+        "third_marquee_hide_desktop": false,
         "third_marquee_hide_mobile": false,
         "third_marquee_direction": "-1"
       }
