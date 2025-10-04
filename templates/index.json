@@ -581,9 +581,9 @@
         "image": "shopify://shop_images/Freestyle-Boxes-345-0676_1.png",
         "image_mobile": "shopify://shop_images/Freestyle-Boxes-345-0676_1_1.png",
         "heading": "Find $logo at a",
-        "heading2": "Walmart near you.",
-        "button": "Shop at $walmart",
-        "link": "shopify://collections/skinshield-monthly-bundle"
+        "heading2": "store near you.",
+        "button": "Shop in store",
+        "link": "https://freestyle.world/pages/about-us?view=store-locator"
       }
     },
     "media_slider_6dEPzQ": {
@@ -672,9 +672,9 @@
         "mobile_background_image": "shopify://shop_images/Freestyle_Full-product-family_1307_1_1_003666b7-7b16-400f-8e64-4c54f92d9b09.png",
         "image": "shopify://shop_images/Freestyle_Full-product-family_1307_1_3.png",
         "image_position": "right",
-        "sub_heading": "Skip the hassle",
-        "heading": "Get your diapers delivered monthly <strong>and save 10%</strong>",
-        "button": "Subscribe Now",
+        "sub_heading": "NEVER RUN OUT OF DIAPERS AGAIN",
+        "heading": "Get your diapers delivered monthly <strong>and save</strong>",
+        "button": "Subscribe & Save",
         "link": "#"
       }
     },
