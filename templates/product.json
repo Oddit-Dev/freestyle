@@ -342,7 +342,7 @@
           "settings": {
             "image": "shopify://shop_images/Frame.png",
             "heading": "14x better absorption",
-            "description": "Better protection and fewer changes. Skin $heart Shield™ ‘s unique 7-layer  keeps your baby’s skin dry.",
+            "description": "Better protection and fewer changes. Skin $heart Shield™ ‘s superior absorption technology keeps your baby’s skin dry.",
             "text": "*Up to 14x better absorption as measured by rewet testing compared to a leading brand"
           }
         },
@@ -350,8 +350,8 @@
           "type": "text",
           "settings": {
             "image": "shopify://shop_images/Frame_1_b8e23f19-0f7c-4c95-b179-9237cf84dc71.png",
-            "heading": "7-layer protection means fewer leaks and longer nights",
-            "description": "Best-in-class absorbent material draws away moisture quickly and locks it in to protect against rash or discomfort.",
+            "heading": "7-layer skin protection",
+            "description": "Comfort starts with healthy skin. A unique 7-layer design supports healthy skin and helps prevent things like rash and irritation.",
             "text": ""
           }
         },
@@ -382,7 +382,7 @@
       ],
       "name": "Perfect Info",
       "settings": {
-        "image": "shopify://shop_images/Freestyle_Loose-Diapers_Wipes_1426_3.png",
+        "image": "shopify://shop_images/Group_26714_2x_3576ab57-560c-434f-8d5f-4a47caacdc01.png",
         "heading": "<strong>Your baby is perfect, </strong>now their diaper is too."
       }
     },
