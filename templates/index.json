@@ -583,8 +583,8 @@
         "image": "shopify://shop_images/Freestyle-Boxes-345-0676_1.png",
         "image_mobile": "shopify://shop_images/Freestyle-Boxes-345-0676_1_1.png",
         "heading": "Find $logo at a",
-        "heading2": "store near you.",
-        "button": "Find on Shelves",
+        "heading2": "store near you",
+        "button": "Find a Store",
         "link": "https://freestyle.world/pages/about-us?view=store-locator"
       }
     },
