@@ -203,6 +203,119 @@
         "padding_bottom_mobile": 70
       }
     },
+    "comparison_W96rKh": {
+      "type": "comparison",
+      "blocks": {
+        "text_HRaCKH": {
+          "type": "text",
+          "settings": {
+            "text": "14x better protection"
+          }
+        },
+        "text_3NTQVL": {
+          "type": "text",
+          "settings": {
+            "text": "7-LAYER SKIN PROTECTION"
+          }
+        },
+        "text_YgiTMi": {
+          "type": "text",
+          "settings": {
+            "text": "total chlorine-free"
+          }
+        },
+        "text_U7yeed": {
+          "type": "text",
+          "settings": {
+            "text": "skin-safe"
+          }
+        },
+        "text_WxKh7K": {
+          "type": "text",
+          "settings": {
+            "text": "affordable"
+          }
+        },
+        "text_BRDpix": {
+          "type": "text",
+          "settings": {
+            "text": "cloud-like softness"
+          }
+        },
+        "text_rQk9KN": {
+          "type": "text",
+          "settings": {
+            "text": "EWG VERIFIED®"
+          }
+        },
+        "compare_text_QGKtzY": {
+          "type": "compare_text",
+          "settings": {
+            "text": "late night leaks"
+          }
+        },
+        "compare_text_cMjGM6": {
+          "type": "compare_text",
+          "settings": {
+            "text": "blowouts"
+          }
+        },
+        "compare_text_bCMGGX": {
+          "type": "compare_text",
+          "settings": {
+            "text": "plasticky feel"
+          }
+        },
+        "compare_text_meJbNB": {
+          "type": "compare_text",
+          "settings": {
+            "text": "cost prohibitive"
+          }
+        },
+        "compare_text_NLHCrL": {
+          "type": "compare_text",
+          "settings": {
+            "text": "toxic chemicals"
+          }
+        },
+        "compare_text_BHgBci": {
+          "type": "compare_text",
+          "settings": {
+            "text": "chlorine bleaching"
+          }
+        },
+        "compare_text_4cVQGi": {
+          "type": "compare_text",
+          "settings": {
+            "text": "no testing"
+          }
+        }
+      },
+      "block_order": [
+        "text_HRaCKH",
+        "text_3NTQVL",
+        "text_YgiTMi",
+        "text_U7yeed",
+        "text_WxKh7K",
+        "text_BRDpix",
+        "text_rQk9KN",
+        "compare_text_QGKtzY",
+        "compare_text_cMjGM6",
+        "compare_text_bCMGGX",
+        "compare_text_meJbNB",
+        "compare_text_NLHCrL",
+        "compare_text_BHgBci",
+        "compare_text_4cVQGi"
+      ],
+      "name": "Comparison",
+      "settings": {
+        "main_heading": "A better diaper",
+        "image": "shopify://shop_images/image_5303_1.png",
+        "heading": "Skin $heart Shield™ <strong>Diapers</strong>",
+        "compare_image": "shopify://shop_images/Screenshot_2025-08-07_at_11.17.01_AM_2_1.png",
+        "compare_heading": "Other Diapers"
+      }
+    },
     "testimonial_KfHNHw": {
       "type": "testimonial",
       "blocks": {
@@ -461,119 +574,6 @@
         "subtitle": "Don’t just trust us. Hear from our community  why they love and trust Freestyle."
       }
     },
-    "comparison_W96rKh": {
-      "type": "comparison",
-      "blocks": {
-        "text_HRaCKH": {
-          "type": "text",
-          "settings": {
-            "text": "14x better protection"
-          }
-        },
-        "text_3NTQVL": {
-          "type": "text",
-          "settings": {
-            "text": "7-LAYER SKIN PROTECTION"
-          }
-        },
-        "text_YgiTMi": {
-          "type": "text",
-          "settings": {
-            "text": "total chlorine-free"
-          }
-        },
-        "text_U7yeed": {
-          "type": "text",
-          "settings": {
-            "text": "skin-safe"
-          }
-        },
-        "text_WxKh7K": {
-          "type": "text",
-          "settings": {
-            "text": "affordable"
-          }
-        },
-        "text_BRDpix": {
-          "type": "text",
-          "settings": {
-            "text": "cloud-like softness"
-          }
-        },
-        "text_rQk9KN": {
-          "type": "text",
-          "settings": {
-            "text": "EWG VERIFIED®"
-          }
-        },
-        "compare_text_QGKtzY": {
-          "type": "compare_text",
-          "settings": {
-            "text": "late night leaks"
-          }
-        },
-        "compare_text_cMjGM6": {
-          "type": "compare_text",
-          "settings": {
-            "text": "blowouts"
-          }
-        },
-        "compare_text_bCMGGX": {
-          "type": "compare_text",
-          "settings": {
-            "text": "plasticky feel"
-          }
-        },
-        "compare_text_meJbNB": {
-          "type": "compare_text",
-          "settings": {
-            "text": "cost prohibitive"
-          }
-        },
-        "compare_text_NLHCrL": {
-          "type": "compare_text",
-          "settings": {
-            "text": "toxic chemicals"
-          }
-        },
-        "compare_text_BHgBci": {
-          "type": "compare_text",
-          "settings": {
-            "text": "chlorine bleaching"
-          }
-        },
-        "compare_text_4cVQGi": {
-          "type": "compare_text",
-          "settings": {
-            "text": "no testing"
-          }
-        }
-      },
-      "block_order": [
-        "text_HRaCKH",
-        "text_3NTQVL",
-        "text_YgiTMi",
-        "text_U7yeed",
-        "text_WxKh7K",
-        "text_BRDpix",
-        "text_rQk9KN",
-        "compare_text_QGKtzY",
-        "compare_text_cMjGM6",
-        "compare_text_bCMGGX",
-        "compare_text_meJbNB",
-        "compare_text_NLHCrL",
-        "compare_text_BHgBci",
-        "compare_text_4cVQGi"
-      ],
-      "name": "Comparison",
-      "settings": {
-        "main_heading": "A Better Diaper",
-        "image": "shopify://shop_images/image_5303_1.png",
-        "heading": "Skin $heart Shield™ <strong>Diapers</strong>",
-        "compare_image": "shopify://shop_images/Screenshot_2025-08-07_at_11.17.01_AM_2_1.png",
-        "compare_heading": "Other Diapers"
-      }
-    },
     "image_hero_banner_hWWaDf": {
       "type": "image-hero-banner",
       "name": "Image Hero Banner",
@@ -728,12 +728,12 @@
     "multiple_marquee_NAAYw3",
     "image_banner_6JmcCC",
     "marquee_qcpmje",
+    "comparison_W96rKh",
     "testimonial_KfHNHw",
     "logo-section",
     "product_features",
     "diaper_custom_section_R8nRxJ",
     "review_scroller_custom_CMUd3m",
-    "comparison_W96rKh",
     "image_hero_banner_hWWaDf",
     "media_slider_6dEPzQ",
     "image_with_text_Dc79b8",
