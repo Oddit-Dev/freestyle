@@ -329,8 +329,8 @@
         "second_marquee_hide_desktop": false,
         "second_marquee_hide_mobile": false,
         "second_marquee_direction": "1",
-        "third_marquee_hide_desktop": true,
-        "third_marquee_hide_mobile": true,
+        "third_marquee_hide_desktop": false,
+        "third_marquee_hide_mobile": false,
         "third_marquee_direction": "-1"
       }
     },
