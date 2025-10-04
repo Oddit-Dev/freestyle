@@ -360,8 +360,8 @@
           "settings": {
             "image": "shopify://shop_images/EWGV_black_480x480_1.png",
             "heading": "Safer, for longer, than leading brands",
-            "description": "The first accessibly priced EWG Verified® diaper made from Total Chlorine Free, lab-tested non-toxic materials. Read more <a href=\"https://freestyle.world/pages/safety-and-testing\" target=\"_blank\" title=\"https://freestyle.world/pages/safety-and-testing\">here</a>.",
-            "text": ""
+            "description": "The first accessibly priced EWG Verified® diaper made from Total Chlorine Free, lab-tested non-toxic materials.",
+            "text": "Read more about our ingredients and see testing results <a href=\"https://freestyle.world/pages/safety-and-testing\" target=\"_blank\" title=\"https://freestyle.world/pages/safety-and-testing\">here</a>"
           }
         },
         "text_gPi7eD": {
