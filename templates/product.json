@@ -393,7 +393,7 @@
           "type": "icon",
           "settings": {
             "image": "shopify://shop_images/Vector_e70b4c88-8309-486e-abd3-84fa4cb5271e.png",
-            "heading": "SkinSafe™ Materials",
+            "heading": "Skin Safe Materials",
             "text": "Hypoallergenic, fragrance- and lotion-free materials free from PFAS, BPAs, and phthalates."
           }
         },
@@ -430,10 +430,8 @@
       ],
       "name": "Icon With Text",
       "settings": {
-        "background_image": "shopify://shop_images/Rectangle_1902_04eb555e-fac7-428e-bdef-7324f544b74a.png",
-        "background_image_mobile": "shopify://shop_images/Rectangle_1902_1.png",
-        "heading": "Our Safety Standards",
-        "text": "Freestyle delivers safe, sustainable diapers that keep your baby protected and you worry-free."
+        "heading": "Safe & Soft Protection",
+        "text": "SkinShield™ diapers use non-toxic, lab-tested, clean materials that keep your baby protected and you worry-free."
       }
     },
     "174411240666086477": {
