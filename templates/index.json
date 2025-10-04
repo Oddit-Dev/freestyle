@@ -589,44 +589,14 @@
     "media_slider_6dEPzQ": {
       "type": "media-slider",
       "blocks": {
-        "media_LyRtXq": {
-          "type": "media",
-          "settings": {
-            "thumbanil": "shopify://shop_images/image_5311_1.png",
-            "video": "shopify://files/videos/video-compress-1.mov",
-            "text": "\"I am literally so excited about these. They are so nice. If you are looking for a new TCF diaper and you want something more affordable, definitely check out Freestyle from Walmart.\"",
-            "button": "@taylor.dyne",
-            "link": "shopify://collections"
-          }
-        },
         "media_wd9mNd": {
           "type": "media",
           "settings": {
-            "thumbanil": "shopify://shop_images/image_5310_1.png",
+            "thumbanil": "shopify://shop_images/Capture_d_ecran_2025-10-04_a_12.03.38.png",
             "video": "shopify://files/videos/freestyle absorbancy test final(1).mp4",
-            "text": "\"I am literally so excited about these. They are so nice. If you are looking for a new TCF diaper and you want something more affordable, definitely check out Freestyle from Walmart.\"",
-            "button": "@taylor.dyne",
-            "link": "shopify://collections"
-          }
-        },
-        "media_KjX6MX": {
-          "type": "media",
-          "settings": {
-            "thumbanil": "shopify://shop_images/image_5312_1.png",
-            "video": "shopify://files/videos/KennedyAd2.mp4",
-            "text": "\"I am literally so excited about these. They are so nice. If you are looking for a new TCF diaper and you want something more affordable, definitely check out Freestyle from Walmart.\"",
-            "button": "@taylor.dyne",
-            "link": "shopify://collections"
-          }
-        },
-        "media_knHJnP": {
-          "type": "media",
-          "settings": {
-            "thumbanil": "shopify://shop_images/image_5311_1.png",
-            "video": "shopify://files/videos/copy_9479F2B8-C285-4D6C-A2DA-48DEE54C16B8.MOV",
-            "text": "\"I am literally so excited about these. They are so nice. If you are looking for a new TCF diaper and you want something more affordable, definitely check out Freestyle from Walmart.\"",
-            "button": "@taylor.dyne",
-            "link": "shopify://collections"
+            "text": "\"I still don't understand how the paper towel was completely dry!!! If you're looking for a super soft & very absorbent diaper, you need to try these Freestyle diapers!\"",
+            "button": "@cathrinmanningg",
+            "link": "https://www.tiktok.com/@cathrinmanningg"
           }
         },
         "media_tY7aWM": {
@@ -636,26 +606,56 @@
             "video": "shopify://files/videos/Video.mov",
             "text": "\"I am literally so excited about these. They are so nice. If you are looking for a new TCF diaper and you want something more affordable, definitely check out Freestyle from Walmart.\"",
             "button": "@taylor.dyne",
-            "link": "shopify://collections"
+            "link": "https://www.tiktok.com/@taylor.dyne"
+          }
+        },
+        "media_LyRtXq": {
+          "type": "media",
+          "settings": {
+            "thumbanil": "shopify://shop_images/Capture_d_ecran_2025-10-04_a_12.05.23.png",
+            "video": "shopify://files/videos/video-compress-1.mov",
+            "text": "\"This is so crazy. I see a clear winner here. Go grab a pack and try it for yourself.\"",
+            "button": "@madipcurtis",
+            "link": "https://www.tiktok.com/@madipcurtis?lang=fr"
+          }
+        },
+        "media_KjX6MX": {
+          "type": "media",
+          "settings": {
+            "thumbanil": "shopify://shop_images/Capture_d_ecran_2025-10-04_a_12.07.21.png",
+            "video": "shopify://files/videos/KennedyAd2.mp4",
+            "text": "“It's the obvious choice– Freestyle diapers. No leaks, no mess, no stress. Just diapers.\"",
+            "button": "@frowzyy",
+            "link": "https://www.instagram.com/frowzyy/"
+          }
+        },
+        "media_knHJnP": {
+          "type": "media",
+          "settings": {
+            "thumbanil": "shopify://shop_images/image_5311_1.png",
+            "video": "shopify://files/videos/copy_9479F2B8-C285-4D6C-A2DA-48DEE54C16B8.MOV",
+            "text": "\"That's amazing. Wow.\"",
+            "button": "@emmsab",
+            "link": "https://www.instagram.com/emmsab/"
           }
         },
         "media_UmjNED": {
           "type": "media",
           "settings": {
-            "thumbanil": "shopify://shop_images/image_5312_1.png",
+            "thumbanil": "shopify://shop_images/Capture_d_ecran_2025-10-04_a_12.08.48.png",
             "video": "shopify://files/videos/f638ab6e9897459186a252843e0004d2.mov",
-            "text": "\"I am literally so excited about these. They are so nice. If you are looking for a new TCF diaper and you want something more affordable, definitely check out Freestyle from Walmart.\"",
-            "button": "@taylor.dyne",
-            "link": "shopify://collections"
+            "text": "\"If you are not using Freestyle diapers, you need to\"",
+            "button": "@megtimmons",
+            "link": "https://www.tiktok.com/@megtimmons"
           }
         }
       },
       "block_order": [
-        "media_LyRtXq",
         "media_wd9mNd",
+        "media_tY7aWM",
+        "media_LyRtXq",
         "media_KjX6MX",
         "media_knHJnP",
-        "media_tY7aWM",
         "media_UmjNED"
       ],
       "name": "Media Slider",
