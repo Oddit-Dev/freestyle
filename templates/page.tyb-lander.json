@@ -60,103 +60,17 @@
         "banner_height_mobile": "450"
       }
     },
-    "c_3column_blocks_kprbKX": {
-      "type": "c-3column-blocks",
-      "blocks": {
-        "block_BcdaVe": {
-          "type": "block",
-          "settings": {
-            "image": "shopify://shop_images/242A6894_5.jpg",
-            "title": "Performance Meets Design",
-            "text": "Everything in our diaper bags was due for an upgrade, so we chose innovation—rethinking how diapers should function instead of just accepting the status quo. This means the highest performing, best-in-class, thoughtful products you can rely on every time.",
-            "enable_button": false,
-            "button_text": "Learn More",
-            "button_url": ""
-          }
-        },
-        "block_TyQWMC": {
-          "type": "block",
-          "settings": {
-            "image": "shopify://shop_images/242A6894_6_2e79ba51-aa31-46ee-8a8b-3ea623ffb5c8.jpg",
-            "title": "Safety First",
-            "text": "When it comes to our products, safety is always our number one priority. We would never sell you anything we wouldn’t feel 100% comfortable using on our kids, from clean, non-toxic, and lab tested materials to superior construction and production.",
-            "enable_button": false,
-            "button_text": "Learn More",
-            "button_url": ""
-          }
-        },
-        "block_UhixCp": {
-          "type": "block",
-          "settings": {
-            "image": "shopify://shop_images/242A6894_7.jpg",
-            "title": "By Parents, For Parents",
-            "text": "Before we were parents, we were just, well, people. And though parenthood changes you forever, we also believe in holding onto our original senses of self. Freestyle is all about being free to parent and exist entirely in your own style.",
-            "enable_button": false,
-            "button_text": "Learn More",
-            "button_url": ""
-          }
-        }
-      },
-      "block_order": [
-        "block_BcdaVe",
-        "block_TyQWMC",
-        "block_UhixCp"
-      ],
-      "settings": {
-        "title": "Ethos and core values"
-      }
-    },
-    "c_image_aside_about_us_QpyCzL": {
-      "type": "c-image-aside-about-us",
-      "settings": {
-        "desktop_image": "shopify://shop_images/Freestyle_Mike_Russ.png",
-        "bg_color": "#dfffda",
-        "title": "Meet the team",
-        "content": "Freestyle® was founded by two dads, Mike and Russ, who wanted better, cleaner, more practical kids products without the pandering, baby talk, and blowouts. Our journey started out with lots of research followed by innovation, testing, and insight-gathering. Along the way, we’ve built a community of creative parents who are also freestyling this whole parenting thing and trying to make the world a better place for the generations to come. We can’t wait for you to be part of it.",
-        "show_button": false,
-        "button_text": "",
-        "button_link": ""
-      }
-    },
-    "c_hero_banner_8zCmDY": {
-      "type": "c-hero-banner",
-      "settings": {
-        "title": "Imagined by parents, designed by experts.",
-        "subtitle": "Freestyle® reimagines diapers and baby care through high-performance innovation, clean materials, and thoughtful design.",
-        "baner_button": "",
-        "baner_button_link": "",
-        "bg_color": "#fcfcfc",
-        "bg_size": "cover",
-        "image_alignment_x": "center",
-        "image_alignment_y": "middle",
-        "text_position-x": "center",
-        "text_position-y": "center",
-        "text_alignment": "center",
-        "title_font_size": 48,
-        "title_font_size_mobile": 36,
-        "title_color": "#262626",
-        "subtitle_font_size": 18,
-        "subtitle_font_size_mobile": 16,
-        "text_color": "#262626",
-        "padding_desktop": 40,
-        "padding_mobile": 20,
-        "banner_text_width": "550",
-        "banner_height_desktop": "572",
-        "banner_height_mobile": "350"
-      }
-    },
     "c_hero_img_3b8kXN": {
       "type": "c-hero-img",
       "settings": {
         "image": "shopify://shop_images/242A6894_6.jpg",
-        "heading": "Shop Skin Shield™ <br> at Walmart",
+        "heading": "Shop Skin Shield™",
         "heading_color": "#ffffff",
         "heading_icon": "shopify://shop_images/hear-icon-2-light.svg",
         "heading_weight": "normal",
         "heading_icon_size": 94,
         "description": "",
         "description_color": "#ffffff",
-        "button_icon": "shopify://shop_images/wallmart-icon.svg",
         "button_icon_size": 16,
         "button_text_icon": "shopify://shop_images/heart-icon-text.svg",
         "button_text_icon_size": 16,
@@ -165,102 +79,15 @@
         "description_icon": "shopify://shop_images/heart-icon-violet.svg",
         "description_icon_size": 36,
         "button_label": "Shop Skin Shield™",
-        "button_link": "https://www.walmart.com/ip/Freestyle-Diaper-Size-5-44CT/13920570352",
+        "button_link": "https://freestyle.world/products/skinshield-diapers",
         "show_popup": false,
         "popup__trigger": ""
-      }
-    },
-    "review_scroller_custom_CMUd3m": {
-      "type": "review-scroller-custom",
-      "blocks": {
-        "review_Aw7wkC": {
-          "type": "review",
-          "settings": {
-            "author_name": "@taylor.dyne",
-            "author_url": "https://www.instagram.com/taylor.dyne/",
-            "is_verified": false,
-            "author_handle": "",
-            "review_text": "\"I am literally so excited about these. They are so nice. If you are looking for a new TCF diaper and you want something more affordable...definitely check out Freestyle from Walmart.\"",
-            "review_video": "shopify://files/videos/Video.mov"
-          }
-        },
-        "review_3Briaz": {
-          "type": "review",
-          "settings": {
-            "author_name": "@cathrinmanningg",
-            "author_url": "https://www.instagram.com/cathrinmanningg/",
-            "is_verified": false,
-            "author_handle": "",
-            "review_text": "\"I still don't understand how the paper towel was completely dry!!! If you're looking for a super soft & very absorbent diaper, you need to try these Freestyle diapers!\"",
-            "review_video": "shopify://files/videos/Download(2).mp4"
-          }
-        },
-        "review_UGacVf": {
-          "type": "review",
-          "settings": {
-            "author_name": "@megtimmons",
-            "author_url": "https://www.instagram.com/megtimmons/",
-            "is_verified": false,
-            "author_handle": "",
-            "review_text": "\"If you are not using Freestyle diapers, you need to\"",
-            "review_video": "shopify://files/videos/f638ab6e9897459186a252843e0004d2.mov"
-          }
-        },
-        "review_Pw4aDj": {
-          "type": "review",
-          "settings": {
-            "author_name": "@nicolewebz",
-            "author_url": "https://www.instagram.com/nicolewebz/",
-            "is_verified": false,
-            "author_handle": "",
-            "review_text": "\"It is so absorbent you can use it as an overnight diaper. It is so soft. The best thing about the diaper is it is TCF...these are actually really cost effective and very comparable to some non-TCF diapers.\"",
-            "review_video": "shopify://files/videos/Download.mp4"
-          }
-        },
-        "review_hWVwfN": {
-          "type": "review",
-          "settings": {
-            "author_name": "@cathrinmanningg",
-            "author_url": "https://www.instagram.com/cathrinmanningg/",
-            "is_verified": false,
-            "author_handle": "",
-            "review_text": "\"These diapers are so dang soft...the price point is actually reasonable....I love them so much\"",
-            "review_video": "shopify://files/videos/Download (1).mp4"
-          }
-        },
-        "review_GAyDCY": {
-          "type": "review",
-          "settings": {
-            "author_name": "@emmsab",
-            "author_url": "https://www.instagram.com/emmsab/",
-            "is_verified": false,
-            "author_handle": "",
-            "review_text": "\"That's amazing. Wow.\"",
-            "review_video": "shopify://files/videos/copy_9479F2B8-C285-4D6C-A2DA-48DEE54C16B8.MOV"
-          }
-        }
-      },
-      "block_order": [
-        "review_Aw7wkC",
-        "review_3Briaz",
-        "review_UGacVf",
-        "review_Pw4aDj",
-        "review_hWVwfN",
-        "review_GAyDCY"
-      ],
-      "settings": {
-        "title": "For parents, by parents",
-        "subtitle": "Don’t just trust us. Hear from our community  why they love and trust Freestyle."
       }
     }
   },
   "order": [
     "c_hero_img_3b7kXN",
     "c_hero_banner_9rR8e6",
-    "c_3column_blocks_kprbKX",
-    "c_image_aside_about_us_QpyCzL",
-    "c_hero_banner_8zCmDY",
-    "c_hero_img_3b8kXN",
-    "review_scroller_custom_CMUd3m"
+    "c_hero_img_3b8kXN"
   ]
 }
