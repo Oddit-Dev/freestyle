@@ -37,9 +37,9 @@
       "type": "c-hero-banner",
       "settings": {
         "title": "Join us on TYB",
-        "subtitle": "We started Freestyle® for you – and, in a (sort of selfish) way, for us. As parents ourselves, we wanted to create kids products that every generation could feel great about. So, we reimagined diapers from the inside out, prioritizing performance, safety, and comfort. Because you deserve one less thing to keep you up at night.",
-        "baner_button": "",
-        "baner_button_link": "",
+        "subtitle": "Introducing community, early access, and content rewards, open to everyone. We’re on a mission to grow the Freestyle Fam and want to say thank you to our community along the way.",
+        "baner_button": "Freestyle on TYB",
+        "baner_button_link": "https://freestyle.tyb.xyz/",
         "bg_color": "#4d337a",
         "bg_size": "cover",
         "image_alignment_x": "center",
@@ -56,7 +56,7 @@
         "padding_desktop": 40,
         "padding_mobile": 20,
         "banner_text_width": "760",
-        "banner_height_desktop": "572",
+        "banner_height_desktop": "500",
         "banner_height_mobile": "450"
       }
     },
