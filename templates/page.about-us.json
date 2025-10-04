@@ -12,11 +12,11 @@
     "c_hero_img_3b7kXN": {
       "type": "c-hero-img",
       "settings": {
-        "image": "shopify://shop_images/HEADER.jpg",
-        "heading": "Parenting is the <br>\nultimate creative act",
+        "image": "shopify://shop_images/TYB_HEADER_2.png",
+        "heading": "",
         "heading_color": "#ffffff",
         "heading_weight": "normal",
-        "heading_icon_size": 94,
+        "heading_icon_size": 50,
         "description": "",
         "description_color": "#ffffff",
         "button_icon": "shopify://shop_images/wallmart-icon.svg",
@@ -36,11 +36,11 @@
     "c_hero_banner_9rR8e6": {
       "type": "c-hero-banner",
       "settings": {
-        "title": "About us",
+        "title": "Join us on TYB",
         "subtitle": "We started Freestyle® for you – and, in a (sort of selfish) way, for us. As parents ourselves, we wanted to create kids products that every generation could feel great about. So, we reimagined diapers from the inside out, prioritizing performance, safety, and comfort. Because you deserve one less thing to keep you up at night.",
         "baner_button": "",
         "baner_button_link": "",
-        "bg_color": "#6638b7",
+        "bg_color": "#4d337a",
         "bg_size": "cover",
         "image_alignment_x": "center",
         "image_alignment_y": "middle",
