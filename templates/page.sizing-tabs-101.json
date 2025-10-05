@@ -12,18 +12,18 @@
     "c_hero_img_3b7kXN": {
       "type": "c-hero-img",
       "settings": {
-        "image": "shopify://shop_images/HEADER.jpg",
-        "heading": "Parenting is the ultimate creative act.",
+        "image": "shopify://shop_images/Group_26716.jpg",
+        "heading": "",
         "heading_color": "#ffffff",
         "heading_weight": "normal",
-        "heading_icon_size": 50,
+        "heading_icon_size": 12,
         "description": "",
         "description_color": "#ffffff",
         "button_icon": "shopify://shop_images/wallmart-icon.svg",
         "button_icon_size": 16,
         "button_text_icon": "shopify://shop_images/heart-icon-text.svg",
         "button_text_icon_size": 16,
-        "banner_height_desktop": "818",
+        "banner_height_desktop": "500",
         "banner_height_mobile": "300",
         "description_icon": "shopify://shop_images/heart-icon-violet.svg",
         "description_icon_size": 36,
@@ -33,103 +33,41 @@
         "popup__trigger": ""
       }
     },
-    "c_hero_banner_9rR8e6": {
-      "type": "c-hero-banner",
+    "c_hero_img_tV4cdU": {
+      "type": "c-hero-img",
       "settings": {
-        "title": "About us",
-        "subtitle": "We started Freestyle® for you – and, in a (sort of selfish) way, for us. As parents ourselves, we wanted to create kids products that every generation could feel great about. So, we reimagined diapers from the inside out, prioritizing performance, safety, and comfort. Because you deserve one less thing to keep you up at night.",
-        "baner_button": "",
-        "baner_button_link": "",
-        "bg_color": "#6638b6",
-        "bg_size": "cover",
-        "image_alignment_x": "center",
-        "image_alignment_y": "middle",
-        "text_position-x": "center",
-        "text_position-y": "center",
-        "text_alignment": "center",
-        "title_font_size": 48,
-        "title_font_size_mobile": 36,
-        "title_color": "#ffffff",
-        "subtitle_font_size": 18,
-        "subtitle_font_size_mobile": 16,
-        "text_color": "#ffffff",
-        "padding_desktop": 40,
-        "padding_mobile": 20,
-        "banner_text_width": "760",
-        "banner_height_desktop": "572",
-        "banner_height_mobile": "450"
-      }
-    },
-    "c_3column_blocks_kprbKX": {
-      "type": "c-3column-blocks",
-      "blocks": {
-        "block_BcdaVe": {
-          "type": "block",
-          "settings": {
-            "image": "shopify://shop_images/242A6894_5.jpg",
-            "title": "Performance Meets Design",
-            "text": "Everything in our diaper bags was due for an upgrade, so we chose innovation—rethinking how diapers should function instead of just accepting the status quo. This means the highest performing, best-in-class, thoughtful products you can rely on every time.",
-            "enable_button": false,
-            "button_text": "Learn More",
-            "button_url": ""
-          }
-        },
-        "block_TyQWMC": {
-          "type": "block",
-          "settings": {
-            "image": "shopify://shop_images/242A6894_6_2e79ba51-aa31-46ee-8a8b-3ea623ffb5c8.jpg",
-            "title": "Safety First",
-            "text": "When it comes to our products, safety is always our number one priority. We would never sell you anything we wouldn’t feel 100% comfortable using on our kids, from clean, non-toxic, and lab tested materials to superior construction and production.",
-            "enable_button": false,
-            "button_text": "Learn More",
-            "button_url": ""
-          }
-        },
-        "block_UhixCp": {
-          "type": "block",
-          "settings": {
-            "image": "shopify://shop_images/242A6894_7.jpg",
-            "title": "By Parents, For Parents",
-            "text": "Before we were parents, we were just, well, people. And though parenthood changes you forever, we also believe in holding onto our original senses of self. Freestyle is all about being free to parent and exist entirely in your own style.",
-            "enable_button": false,
-            "button_text": "Learn More",
-            "button_url": ""
-          }
-        }
-      },
-      "block_order": [
-        "block_BcdaVe",
-        "block_TyQWMC",
-        "block_UhixCp"
-      ],
-      "settings": {
-        "title": "Ethos and core values"
-      }
-    },
-    "c_image_aside_about_us_QpyCzL": {
-      "type": "c-image-aside-about-us",
-      "settings": {
-        "desktop_image": "shopify://shop_images/Freestyle_Mike_Russ.png",
-        "bg_color": "#dfffda",
-        "title": "Meet the team",
-        "content": "Freestyle® was founded by two dads, Mike and Russ, who wanted better, cleaner, more practical kids products without the pandering, baby talk, and blowouts. Our journey started out with lots of research followed by innovation, testing, and insight-gathering. Along the way, we’ve built a community of creative parents who are also freestyling this whole parenting thing and trying to make the world a better place for the generations to come. We can’t wait for you to be part of it.",
-        "show_button": false,
-        "button_text": "",
-        "button_link": ""
+        "image": "shopify://shop_images/Group_26715.jpg",
+        "heading": "",
+        "heading_color": "#ffffff",
+        "heading_weight": "normal",
+        "heading_icon_size": 12,
+        "description": "",
+        "description_color": "#ffffff",
+        "button_icon": "shopify://shop_images/wallmart-icon.svg",
+        "button_icon_size": 16,
+        "button_text_icon": "shopify://shop_images/heart-icon-text.svg",
+        "button_text_icon_size": 16,
+        "banner_height_desktop": "400",
+        "banner_height_mobile": "300",
+        "description_icon": "shopify://shop_images/heart-icon-violet.svg",
+        "description_icon_size": 36,
+        "button_label": "",
+        "button_link": "https://www.walmart.com/ip/Freestyle-Diaper-Size-5-44CT/13920570352",
+        "show_popup": false,
+        "popup__trigger": ""
       }
     },
     "c_hero_img_3b8kXN": {
       "type": "c-hero-img",
       "settings": {
         "image": "shopify://shop_images/242A6894_6.jpg",
-        "heading": "Shop Skin Shield™ <br> at Walmart",
+        "heading": "Shop Skin Shield™",
         "heading_color": "#ffffff",
         "heading_icon": "shopify://shop_images/hear-icon-2-light.svg",
         "heading_weight": "normal",
         "heading_icon_size": 94,
         "description": "",
         "description_color": "#ffffff",
-        "button_icon": "shopify://shop_images/wallmart-icon.svg",
         "button_icon_size": 16,
         "button_text_icon": "shopify://shop_images/heart-icon-text.svg",
         "button_text_icon_size": 16,
@@ -138,7 +76,7 @@
         "description_icon": "shopify://shop_images/heart-icon-violet.svg",
         "description_icon_size": 36,
         "button_label": "Shop Skin Shield™",
-        "button_link": "https://www.walmart.com/ip/Freestyle-Diaper-Size-5-44CT/13920570352",
+        "button_link": "https://freestyle.world/products/skinshield-diapers",
         "show_popup": false,
         "popup__trigger": ""
       }
@@ -229,9 +167,7 @@
   },
   "order": [
     "c_hero_img_3b7kXN",
-    "c_hero_banner_9rR8e6",
-    "c_3column_blocks_kprbKX",
-    "c_image_aside_about_us_QpyCzL",
+    "c_hero_img_tV4cdU",
     "c_hero_img_3b8kXN",
     "review_scroller_custom_CMUd3m"
   ]
