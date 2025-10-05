@@ -34,18 +34,18 @@
     "cart_type": "page",
     "show_cart_products_carousel": false,
     "cart_products": [
-      "soft-bamboo-wipes"
+      "wipes"
     ],
     "activate_upsell_functionality": false,
     "onetime_upsell_product": [
       "baby-maker-sport-tee"
     ],
     "subscription_upsell_product": [
-      "soft-bamboo-wipes"
+      "wipes"
     ],
     "cart_btm_content": "This order ships FREE",
     "custom_upsell_heading": "Add 99% Water Sensitive Wipes",
-    "custom_upsell_product": "soft-bamboo-wipes",
+    "custom_upsell_product": "wipes",
     "empty_cart_title": "Your cart is empty",
     "empty_cart_content": "<p>Stock up on Ultra Premium TCF diapers</p>",
     "product_feature_image": "shopify://shop_images/image_5303_8e6fac27-d71a-428b-b919-5cebffb17173.png",
@@ -168,7 +168,7 @@
           "addon_title": "",
           "addon_info": "",
           "custom_upsell_heading": "Add 99% Water Sensitive Wipes",
-          "custom_upsell_product": "soft-bamboo-wipes"
+          "custom_upsell_product": "wipes"
         }
       }
     },
