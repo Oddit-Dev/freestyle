@@ -28,7 +28,6 @@
         "heading_icon_size": 36,
         "description": "",
         "description_color": "#ffffff",
-        "button_icon": "shopify://shop_images/Vector_3.png",
         "button_icon_size": 24,
         "button_text_icon": "shopify://shop_images/Group_26613.svg",
         "button_text_icon_size": 24,
@@ -36,7 +35,7 @@
         "banner_height_mobile": "300",
         "description_icon_size": 36,
         "button_label": "Shop Skin Shield™",
-        "button_link": "https://www.walmart.com/ip/Freestyle-Diaper-Size-4-48CT/13932710597",
+        "button_link": "https://freestyle.world/products/skinshield-diapers",
         "show_popup": false,
         "popup__trigger": ""
       }
@@ -331,14 +330,13 @@
       "type": "c-hero-img",
       "settings": {
         "image": "shopify://shop_images/hero-2-freestyle_V2_EWG.webp",
-        "heading": "Shop Skin Shield™ <br> at Walmart",
+        "heading": "Shop Skin Shield™",
         "heading_color": "#ffffff",
         "heading_icon": "shopify://shop_images/Vector_3_ad6f0543-bcfe-467a-8de3-60f5813853ff.png",
         "heading_weight": "normal",
         "heading_icon_size": 94,
         "description": "",
         "description_color": "#ffffff",
-        "button_icon": "shopify://shop_images/wallmart-icon.svg",
         "button_icon_size": 16,
         "button_text_icon": "shopify://shop_images/Vector_3_ad6f0543-bcfe-467a-8de3-60f5813853ff.png",
         "button_text_icon_size": 16,
@@ -346,7 +344,7 @@
         "banner_height_mobile": "400",
         "description_icon_size": 36,
         "button_label": "Shop Skin Shield™",
-        "button_link": "https://www.walmart.com/ip/Freestyle-Diaper-Size-4-48CT/13932710597",
+        "button_link": "https://freestyle.world/products/skinshield-diapers",
         "show_popup": false,
         "popup__trigger": ""
       }
