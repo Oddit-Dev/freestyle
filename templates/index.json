@@ -111,7 +111,7 @@
       ],
       "name": "Multiple Marquee",
       "settings": {
-        "heading": "Millions $heart Freestyle",
+        "heading": "Thousands $heart Freestyle",
         "first_marquee_hide_desktop": false,
         "first_marquee_hide_mobile": false,
         "first_marquee_direction": "-1",
