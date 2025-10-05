@@ -118,33 +118,6 @@
         "button_link": ""
       }
     },
-    "c_hero_banner_8zCmDY": {
-      "type": "c-hero-banner",
-      "settings": {
-        "title": "Imagined by parents, designed by experts.",
-        "subtitle": "Freestyle® reimagines diapers and baby care through high-performance innovation, clean materials, and thoughtful design.",
-        "baner_button": "",
-        "baner_button_link": "",
-        "bg_color": "#fcfcfc",
-        "bg_size": "cover",
-        "image_alignment_x": "center",
-        "image_alignment_y": "middle",
-        "text_position-x": "center",
-        "text_position-y": "center",
-        "text_alignment": "center",
-        "title_font_size": 48,
-        "title_font_size_mobile": 36,
-        "title_color": "#262626",
-        "subtitle_font_size": 18,
-        "subtitle_font_size_mobile": 16,
-        "text_color": "#262626",
-        "padding_desktop": 40,
-        "padding_mobile": 20,
-        "banner_text_width": "550",
-        "banner_height_desktop": "572",
-        "banner_height_mobile": "350"
-      }
-    },
     "c_hero_img_3b8kXN": {
       "type": "c-hero-img",
       "settings": {
@@ -259,7 +232,6 @@
     "c_hero_banner_9rR8e6",
     "c_3column_blocks_kprbKX",
     "c_image_aside_about_us_QpyCzL",
-    "c_hero_banner_8zCmDY",
     "c_hero_img_3b8kXN",
     "review_scroller_custom_CMUd3m"
   ]
