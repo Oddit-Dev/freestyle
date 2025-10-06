@@ -528,6 +528,63 @@
         "heading": "For parents, by parents",
         "description": "<p>Hear from our community why they love and trust Freestyle. Then try it for youself. </p>"
       }
+    },
+    "testimonial_zwc8TV": {
+      "type": "testimonial",
+      "blocks": {
+        "testimonial_VRz3Hc": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_1901.png",
+            "rating_image": "shopify://shop_images/Stars.png",
+            "text": "<p>\"I just tried these diapers, and they are so soft and comfortable. My baby loves them! It gives me piece of mind to know she's in diapers that are gentle on her skin and you can't beat the price!\"</p>",
+            "title": "Avery",
+            "verified_buyer": true
+          }
+        },
+        "testimonial_ctrxmw": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/Flores_family.png",
+            "rating_image": "shopify://shop_images/Stars.png",
+            "text": "<p>\"We just tried the new SkinShield™ diapers and we LOVE them! We've tried almost every TCF diaper out there and these are definitely a new favorite!\"</p>",
+            "title": "McKenna",
+            "verified_buyer": true
+          }
+        },
+        "testimonial_eQ6ABT": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/Sabio_family.png",
+            "rating_image": "shopify://shop_images/Stars.png",
+            "text": "<p>“If I were a first time mom looking for a diaper that I could access easily and be confident in that choice about the safety and efficacy of the diaper, I would choose Freestyle”</p>",
+            "title": "Mary",
+            "verified_buyer": true
+          }
+        },
+        "testimonial_L7Fr7P": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/Image.png",
+            "rating_image": "shopify://shop_images/Stars.png",
+            "text": "<p>\"Best diapers ever! He slept like a baby (lol) and woke up with ZERO leaks! And it meant that WE FINALLY SLEPT!\"</p>",
+            "title": "Leah",
+            "verified_buyer": true
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_VRz3Hc",
+        "testimonial_ctrxmw",
+        "testimonial_eQ6ABT",
+        "testimonial_L7Fr7P"
+      ],
+      "name": "Testimonial",
+      "settings": {
+        "heading": "Trusted by <strong>Real Families</strong>",
+        "button": "Shop Skin $heart Shield™ Diapers",
+        "link": "shopify://products/skinshield-diapers"
+      }
     }
   },
   "order": [
@@ -536,6 +593,7 @@
     "perfect_info_mgPXdV",
     "icon_with_text_Tirzyn",
     "174411240666086477",
-    "media_slider_CJgbn8"
+    "media_slider_CJgbn8",
+    "testimonial_zwc8TV"
   ]
 }
