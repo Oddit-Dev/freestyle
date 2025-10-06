@@ -152,9 +152,9 @@
                 {{ item.selling_plan_allocation.selling_plan.name }} 
               </p>
               {% endif %}
-              {% assign price = item.variant.price %}
-              {% assign compare_at = item.variant.compare_at_price %}
-
+              {% assign price = item.final_line_price %}
+              {% assign compare_at = item.original_line_price %}
+              
               <p class="cart-drawer__price flex items-center gap-[4px] font-Inter font-medium text-[15px] leading-[1] text-[#212121] mb-[16px]">
                 {{ price | money }}
                 {% if compare_at > price %}

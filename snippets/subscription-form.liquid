@@ -33,9 +33,11 @@
               {%- assign plan = allocation.selling_plan -%}
               {%- assign adjustment = plan.price_adjustments[0] -%}
               {%- if adjustment.value_type == 'percentage' -%}
-                {{ section.settings.subscription_button_label }} & Save {{ adjustment.value }}%
+                {{ section.settings.subscription_button_label }} & Save
               {%- elsif adjustment.value_type == 'amount' -%}
-                {{ section.settings.subscription_button_label }} & Save {{ adjustment.value | money }}
+                {{ section.settings.subscription_button_label }} & Save
+              {%- else -%}
+                {{ section.settings.subscription_button_label }} & Save
               {%- endif -%}
               {%- break -%}
             {%- endfor -%}

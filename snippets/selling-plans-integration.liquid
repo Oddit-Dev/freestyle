@@ -59,18 +59,18 @@
                           data-variant-price="{{ allocationPrice }}"
                           data-variant-compare-at-price="{{ allocationComparedAtPrice }}"
                           checked>
-                        <div class="title-price w-[calc(100%-20px)] pl-[16px] flex items-center justify-between gap-[10px]">
+                        <div class="title-price w-[calc(100%-20px)] pl-[16px] flex items-center justify-between gap-[10px]"> 
                           <p class="title-text text-[18px] max-md:text-[15px] text-black-bg font-medium font-grotesk leading-none">
                             Subscribe &
-                            <span class="save-text">Save {{ allocation.selling_plan.price_adjustments[0].value }}%</span>
+                            <span class="save-text">Save {{ allocation.selling_plan.price_adjustments[0].value | divided_by: 100 | round: 2 }}%</span>
                           </p>
                           <div class="selling-price-box">
                             <div class="selling-price flex items-center gap-[6px]">
-                              <span class="allocation-price text-scheme_two/50 line-through text-[14px] max-md:text-[13px] font-normal font-grotesk leading-none">
-                                {{- allocation.price | money_without_trailing_zeros -}}
-                              </span>
-                              <span class="variant-price text-[18px] max-md:text-[16px] text-black-bg font-medium font-grotesk leading-none">
+                              <span class="variant-price text-scheme_two/50 line-through text-[14px] max-md:text-[13px] font-normal font-grotesk leading-none">
                                 {{- variant.price | money_without_trailing_zeros -}}
+                              </span>
+                              <span class="allocation-price text-[18px] max-md:text-[16px] text-black-bg font-medium font-grotesk leading-none">
+                                {{- allocation.price | money_without_trailing_zeros -}}
                               </span>
                             </div>
                             {% assign serving_text = product.selected_or_first_available_variant.metafields.custom.serving_text %}
