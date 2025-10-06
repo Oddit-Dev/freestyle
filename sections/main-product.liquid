@@ -383,7 +383,7 @@
                             type="checkbox"
                             class="addonproduct"
                             id="add-on-product-{{ forloop.index }}"
-                            data-variant-id="{{ add_on_product.selected_or_first_available_variant.id }}">
+                            data-variant-id="{{ add_on_product.selected_or_first_available_variant.id }}" data-variant-price="{{ add_on_product.selected_or_first_available_variant.price | money }}">
                           <span class="controls"></span>
                         </div>
                       </div>
@@ -448,8 +448,10 @@
   
             addCheckedAddons() {
               const checkedAddons = document.querySelectorAll('.addonproduct:checked');
+              console.log(checkedAddons,"checkedAddons");  
               checkedAddons.forEach((addon) => {
                 const variantId = addon.getAttribute('data-variant-id');
+                 console.log(variantId,"variantId2");  
                 if (variantId) {
                   console.log('variantId',variantId);
                   Alpine.store('cart').addToCart({
@@ -885,6 +887,23 @@
     });
   }
   });
+
+  document.addEventListener("change", (e) => {
+  if (e.target && e.target.classList.contains("addonproduct")) {
+    const checkbox = e.target;
+    const addonPrice = parseFloat(checkbox.dataset.variantPrice.replace(/[^0-9.]/g, "")) || 0;
+    const planPrice = parseFloat(checkbox.dataset.planPrice.replace(/[^0-9.]/g, "")) || 0;
+    const priceElement = document.querySelector(".product__cta .sale-price");
+    if (checkbox.checked) {
+      const newPrice = addonPrice + planPrice;  
+      priceElement.textContent = `$${newPrice.toFixed(2)}`;
+    } else {
+      const newPrice = planPrice;  
+      priceElement.textContent = `$${newPrice.toFixed(2)}`;
+    }
+  }
+});
+
 </script>
 <style></style>
 

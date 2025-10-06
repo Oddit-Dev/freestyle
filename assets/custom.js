@@ -465,7 +465,9 @@ customElements.define('item-change', ChangeCart);
     const titleText = subscriptionList?.querySelector(".title-text");
     const mergedText = titleText?.innerText.trim();
     const selectedPlanSpan = document.querySelector(".selected-plan");
-
+    const allocationPrice = radio.dataset.variantPrice;
+    const checkbox = document.querySelector(".addonproduct");
+    checkbox.setAttribute("data-plan-price", allocationPrice);
     if (mergedText && selectedPlanSpan) {
       selectedPlanSpan.textContent = mergedText;
     }
@@ -518,6 +520,19 @@ customElements.define('item-change', ChangeCart);
       if (document.querySelector('.sticky-add-to-cart .selling-label')) {
         document.querySelector('.sticky-add-to-cart .selling-label').textContent = selectedVal;
       }
+
+      const checkbox = document.querySelector(".addonproduct");
+      checkbox.setAttribute("data-plan-price", variantPrice);
+      const addonPrice = parseFloat(checkbox.dataset.variantPrice.replace(/[^0-9.]/g, "")) || 0;
+      const planPrice = parseFloat(checkbox.dataset.planPrice.replace(/[^0-9.]/g, "")) || 0;
+     
+      if (checkbox.checked) {
+        const newPrice = addonPrice + planPrice;  
+        productCard.querySelector('.product__cta .sale-price').textContent = `$${newPrice.toFixed(2)}`;
+      } else {
+        const newPrice = planPrice;
+        productCard.querySelector('.product__cta .sale-price').textContent = `$${newPrice.toFixed(2)}`;
+      }
     });
   });
 
@@ -532,6 +547,7 @@ customElements.define('item-change', ChangeCart);
 
       if (event.target?.closest('.subscription-list')?.querySelector('label input:checked')) {
         event.target.closest('.product__content').querySelector('[name="selling_plan"]').value = selectedValue;
+        
       }
       const variantPrice = event.target.closest('.product__content').querySelector('.selling_plan_theme_integration [type="radio"]:checked').dataset.variantPrice;
       event.target.closest('.product__content').querySelector('.product__cta .sale-price').textContent = variantPrice;
