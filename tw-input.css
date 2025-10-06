@@ -135,10 +135,10 @@ h2,
   display: block;
   content: "";
   position: absolute;
-  top: 50%;
+  top: 1.5px;
   left: 2px;
   transition: all .2s ease-in-out;
-  transform: translatey(-50%);
+  z-index: 1;
 }
 
 .add-on-product .add-on-label .add-on-control:has(input:checked) .controls::before {

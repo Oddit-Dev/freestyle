@@ -378,11 +378,13 @@
                             {{ add_on_product.selected_or_first_available_variant.price | money }}
                           </p>
                         </div>
+                       
                         <div class="add-on-control cursor-pointer">
                           <input
                             type="checkbox"
                             class="addonproduct"
                             id="add-on-product-{{ forloop.index }}"
+                            data-selling-plan-id="{{ add_on_product.selected_or_first_available_variant.selling_plan_allocations.first.selling_plan.id }}"
                             data-variant-id="{{ add_on_product.selected_or_first_available_variant.id }}" data-variant-price="{{ add_on_product.selected_or_first_available_variant.price | money }}">
                           <span class="controls"></span>
                         </div>

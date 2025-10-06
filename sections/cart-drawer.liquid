@@ -225,8 +225,9 @@
                         {{ add_on_product.selected_or_first_available_variant.price | money }}
                       </p>
                     </div>
+                    
                     <add-variant-checkbox
-                      data-id="{{ add_on_product.selected_or_first_available_variant.id }}"></add-variant-checkbox>
+                      data-id="{{ add_on_product.selected_or_first_available_variant.id }}" data-selling-plan-id="{{ add_on_product.selected_or_first_available_variant.selling_plan_allocations.first.selling_plan.id }}"></add-variant-checkbox>
                   </div>
                 </div>
               </label>

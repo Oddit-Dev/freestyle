@@ -343,6 +343,7 @@ class AddVariantCheckbox extends HTMLElement {
   constructor() {
     super();
     this.variantId = Number(this.dataset.id);
+    this.sellingPlanId = Number(this.dataset.sellingPlanId);
     this.drawer = document.querySelector('cart-drawer');
 
     this.checkbox = document.createElement('input');
@@ -367,15 +368,30 @@ class AddVariantCheckbox extends HTMLElement {
     if (!this.drawer) return;
 
     this.drawer.showLoader();
-    const updates = {};
-    updates[this.variantId] = this.checkbox.checked ? 1 : 0;
+    //const updates = {};
+   // updates[this.variantId] = this.checkbox.checked ? 1 : 0;
 
     try {
-      const cart = await fetch('/cart/update.js', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ updates })
-      }).then(res => res.json());
+
+      let mainItem = {
+        id: this.variantId,
+        quantity: 1
+      };
+
+      if (this.sellingPlanId) {
+        mainItem.selling_plan = this.sellingPlanId;
+      }
+
+      let items = [mainItem];
+
+      const cart = await fetch("/cart/add.js", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify({ items })
+        }).then(res => res.json());
 
       const exists = cart.items.some(item => item.variant_id === this.variantId && item.quantity > 0);
       this.checkbox.checked = exists;
