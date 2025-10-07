@@ -12,8 +12,12 @@
     "header_logo": "shopify://shop_images/Vector_2.svg",
     "header_bg": "#FFFFFF",
     "header_menu_1": "",
-    "header_menu_2": "mein-menu-mobile",
-    "social_media_menu": "social",
+    "header_menu_2": "new-mobile-menu",
+    "header_mobile_secondary_menu": "mobile-secondary-menu",
+    "social_media_menu": "",
+    "header_walmart_text": "<p>Find a store</p>",
+    "header_walmart_text_url": "https://freestyle.world/pages/about-us?view=store-locator",
+    "is_enabled_featured_blocks_mobile": false,
     "footer_menu_1": "footer-contant",
     "footer_menu_2": "footer-about",
     "social_title": "",
@@ -27,20 +31,45 @@
     "social_youtube_icon": "shopify://shop_images/Frame_3.svg",
     "footer_menu_3": "",
     "copyright_text": "© 2024 All In Food",
+    "cart_type": "page",
     "show_cart_products_carousel": false,
     "cart_products": [
-      "baby-maker-uni-crop-black",
-      "adult-sweatsuit-purple",
-      "baby-maker-uni-t-shirt-black"
+      "wipes"
     ],
-    "activate_upsell_functionality": true,
+    "activate_upsell_functionality": false,
     "onetime_upsell_product": [
       "baby-maker-sport-tee"
     ],
     "subscription_upsell_product": [
-      "soft-bamboo-wipes"
+      "wipes"
     ],
-    "main_menu": "main-menu",
+    "cart_btm_content": "This order ships FREE",
+    "custom_upsell_heading": "Add 99% Water Sensitive Wipes",
+    "custom_upsell_product": "wipes",
+    "empty_cart_title": "Your cart is empty",
+    "empty_cart_content": "<p>Stock up on Ultra Premium TCF diapers</p>",
+    "product_feature_image": "shopify://shop_images/image_5303_8e6fac27-d71a-428b-b919-5cebffb17173.png",
+    "product_feature_title": "<p>SkinShield™ $heart Shield™ Diapers</p>",
+    "product_feature_content": "<p>14x better absorption, 7-layer skin protection, and Total Chlorine Free materials.</p>",
+    "product_feature_btn_txt": "Shop Skin $heart Shield™ Diapers",
+    "product_feature_btn_url": "shopify://products/skinshield-diapers",
+    "empty_btm_walmart": "<p>Find a store <a href=\"https://freestyle.world/pages/about-us?view=store-locator\" title=\"https://freestyle.world/pages/about-us?view=store-locator\">here</a></p>",
+    "milestone_1_amount": 80,
+    "milestone_1_text": "Spend [value] more to unlock FREE shipping!",
+    "success_text": "Congrats! You’ve unlocked FREE shipping!",
+    "mobile_product_feature_image": "shopify://shop_images/image_5303_8e6fac27-d71a-428b-b919-5cebffb17173.png",
+    "mobile_product_feature_title": "<p>Skin $heart Shield™ <strong>Diapers</strong></p>",
+    "mobile_product_feature_content": "<p>14x better absorption, 7-layer skin protection, and Total Chlorine Free materials</p>",
+    "mobile_product_feature_btn_txt": "Shop Skin $heart Shield™ Diapers",
+    "mobile_product_feature_btn_url": "https://freestyle.world/products/skinshield-diapers",
+    "mobile_menu_shipping_text": "FREE SHIPPING ON ALL SUBSCRIPTION ORDERS",
+    "announcement_text": "Free shipping",
+    "announcement2_text": "Fast delivery",
+    "announcement3_text": "<p><a href=\"/products/skinshield-diapers\" title=\"Skin❤️Shield™ Diapers\">Shop Ultra Premium TCF Diapers</a></p>",
+    "link_url": "",
+    "main_menu": "new-main-menu",
+    "secondary_main_menu": "new-secondary-menu",
+    "walmart_icon": "shopify://shop_images/Group_26353_1.png",
     "bamboo_icon": "shopify://shop_images/BambooTek.png",
     "heart_icon": "shopify://shop_images/heart-violet.svg",
     "heart_icon_white": "shopify://shop_images/Group_26613.svg",
@@ -50,6 +79,8 @@
     "menu_link_2": "shopify://products/diaper",
     "menu_image_3": "shopify://shop_images/Jumbo_Wipes.jpg",
     "menu_link_3": "shopify://products/freestyle-bamboo-wipes-72ct",
+    "milestone_2_amount": 0,
+    "custom_free_shipping_amount": 200,
     "upsell_functionality": "ON",
     "show_promo": true,
     "show_promo_link": "shopify://products/trial-kit",
@@ -113,6 +144,32 @@
           "color_primary": "#2b657c",
           "color_secondary": "#a8d9e6",
           "color_tertiary": "#ffffff"
+        }
+      }
+    },
+    "sections": {
+      "cart-drawer": {
+        "type": "cart-drawer",
+        "settings": {
+          "empty_cart_title": "Your cart is empty",
+          "empty_cart_content": "<p>Stock up on Ultra Premium TCF diapers</p>",
+          "product_feature_image": "shopify://shop_images/image_5303_8e6fac27-d71a-428b-b919-5cebffb17173.png",
+          "product_feature_title": "<p>Skin $heart Shield™ <strong>Diapers</strong></p>",
+          "product_feature_content": "<p>14x better absorption, 7-layer skin protection, and Total Chlorine Free materials</p>",
+          "product_feature_btn_txt": "Shop Skin $heart Shield™ Diapers",
+          "product_feature_btn_url": "shopify://products/skinshield-diapers",
+          "subscription_button_label": "Subscribe",
+          "empty_btm_walmart": "<p>Find a store <a href=\"https://freestyle.world/pages/about-us?view=store-locator\" title=\"https://freestyle.world/pages/about-us?view=store-locator\">here</a></p>",
+          "free_shipping_threshold": 95,
+          "free_shipping_text": "<p>This order ships FREE</p>",
+          "enable_note": false,
+          "note_heading": "Add gift message or order note",
+          "addon_product": "",
+          "addon_title": "",
+          "addon_info": "",
+          "enable_onetime_purchase": true,
+          "custom_upsell_heading": "Add 99% Water Sensitive Wipes",
+          "custom_upsell_product": "wipes"
         }
       }
     },

@@ -1,0 +1,248 @@
+<style>
+  .media-container .swiper-slide.swiper-slide-prev .media-item-info,
+  .media-container .swiper-slide.swiper-slide-active .media-item-info,
+  .media-container .swiper-slide.swiper-slide-next .media-item-info {
+    display: block;
+  }
+
+  .media-container .swiper-slide.swiper-slide-prev,
+  .media-container .swiper-slide.swiper-slide-active,
+  .media-container .swiper-slide.swiper-slide-next {
+    opacity: 1 !important;
+  }
+
+  .section--{{ section.id }} .media-item-block.playing .video-overly {
+    display: none;
+  }
+  .section--{{ section.id }} .media-item-block:not(.playing) video::-webkit-media-controls{
+    display: none !important;
+  } 
+</style>
+
+{% if section.blocks.size > 0 %}
+  <div class="media-slider-section section--{{ section.id }} py-[100px] max-md:py-[40px] bg-scheme_one overflow-hidden">
+    <div class="container-full">
+      <div class="media-slider-main">
+        {% if section.settings.heading != blank or section.settings.description != blank %}
+          <div class="container">
+            <div class="section-header mb-[60px] max-md:mb-[40px]">
+              {% if section.settings.heading != blank %}
+                <h2 class="section-heading mb-[25px] max-md:mb-[15px] text-center mt-0 text-scheme_one-tertiary [&_strong]:font-fkroman [&_strong]:font-normal">
+                  {{ section.settings.heading }}
+                </h2>
+              {% endif %}
+              {% if section.settings.description != blank %}
+                <div class="section-description text-center text-scheme_one-tertiary !font-grotesk font-normal text-[16px] leading-[1.6] max-w-[341px] mx-auto">
+                  {{ section.settings.description }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+        {% if section.blocks.size > 0 %}
+          <div class="section-content w-full">
+            <div class="media-container">
+              <div class="swiper media-swiper !overflow-visible max-md:px-[16px]">
+                <div class="swiper-wrapper flex">
+                  {% for block in section.blocks %}
+                    {% case block.type %}
+                      {% when 'media' %}
+                        {% if block.settings.thumbanil != blank or block.settings.video != blank %}
+                          <div class="swiper-slide h-auto md:opacity-50">
+                            <div class="media-item-block">
+                              <div class="media-block relative h-0 pb-[520px] rounded-[20px] border-[1px] border-solid border-scheme_one-tertiary overflow-hidden">
+                                {% if block.settings.video != blank %}
+                                  <div class="media-video overflow-hidden">
+                                    {% if block.settings.thumbanil != blank %}
+                                      {% assign video_poster = block.settings.thumbanil
+                                        | image_url: width: block.settings.thumbanil.width
+                                      %}
+                                      {{
+                                        block.settings.video
+                                        | video_tag:
+                                          poster: video_poster,
+                                          class: 'video w-full h-full object-cover rounded-[12px] absolute top-0 left-0',
+                                          controls: true
+                                      }}
+                                    {% else %}
+                                      {{
+                                        block.settings.video
+                                        | video_tag: class: 'video w-full h-full object-cover absolute top-0 left-0',
+                                        controls: true
+                                      }}
+                                    {% endif %}
+                                    <div class="video-overly absolute top-0 left-0 w-full h-full bg-[#00000033]">
+                                      <span class="play-icon absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[48px] min-w-[48px] h-[48px] flex items-center justify-center cursor-pointer">
+                                        {{ 'play-button-icon.svg' | inline_asset_content }}
+                                      </span>
+                                    </div>
+                                  </div>
+                                {% else %}
+                                  <div class="media-image w-full h-full absolute top-0 left-0 overflow-hidden">
+                                    {% if block.settings.thumbanil != blank %}
+                                      {% render 'image-element',
+                                        image: block.settings.thumbanil,
+                                        class: 'thumbnail-image w-full h-full object-cover',
+                                        widths: '250,350,450,550,650,750,850',
+                                        sizes: '(max-width:749px),25vw,95vw'
+                                      %}
+                                    {% endif %}
+                                  </div>
+                                {% endif %}
+                              </div>
+                              {% if block.settings.text != blank or block.settings.button != blank %}
+                                <div class="media-item-info md:hidden mt-[20px] border-[1px] border-solid border-scheme_two-tertiary rounded-[20px] p-[24px]">
+                                  {% if block.settings.text != blank %}
+                                    <p class="text font-Neufile_Grotesk font-normal text-[14px] leading-[1.6] my-0 text-scheme_two-secondary tracking-normal">
+                                      {{ block.settings.text }}
+                                    </p>
+                                  {% endif %}
+                                  {% if block.settings.button != blank and block.settings.link != blank %}
+                                    <a
+                                      class="link-button !mt-[16px] !text-[#B5B5F5] flex items-center gap-[6px] [&_svg]:w-[14px] [&_svg]:h-auto [&_svg]:block font-Neufile_Grotesk font-medium leading-[1] tracking-normal text-[15px] [&_svg]:relative [&_svg]:top-[-1px]"
+                                      href="{{ block.settings.link }}">
+                                      {{ 'icon-instagram.svg' | inline_asset_content }}
+                                      {{ block.settings.button }}
+                                    </a>
+                                  {% endif %}
+                                </div>
+                              {% endif %}
+                            </div>
+                          </div>
+                        {% endif %}
+                    {% endcase %}
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const thisMediaSliderSecEle = document.querySelector('.media-slider-section.section--{{section.id}}');
+      const mediaSwiperEle = thisMediaSliderSecEle.querySelector('.media-container .media-swiper');
+      if (mediaSwiperEle) {
+        const mediaSwiper = new Swiper(mediaSwiperEle, {
+          slidesPerView: 1.02,
+          spaceBetween: 8,
+          loop: true,
+          centeredSlides: true,
+          mousewheel: {
+            forceToAxis: true,
+            releaseOnEdges: true,
+          },
+          breakpoints: {
+            640: {
+              slidesPerView: 3,
+              spaceBetween: 16,
+              centeredSlides: true,
+            },
+            976: {
+              slidesPerView: 4,
+              spaceBetween: 20,
+              centeredSlides: true,
+            },
+            1200: {
+              slidesPerView: 4,
+              spaceBetween: 30,
+              centeredSlides: true,
+            },
+          },
+        });
+      }
+
+      const mediaVideoBlocks = thisMediaSliderSecEle.querySelectorAll('.media-container .media-block .media-video');
+      mediaVideoBlocks.forEach((mediaVideoBlock) => {
+        const mediaVideo = mediaVideoBlock.querySelector('video');
+        const videoOverly = mediaVideoBlock.querySelector('.video-overly');
+        const playIcon = videoOverly.querySelector('.play-icon');
+
+        videoOverly.addEventListener('click', function () {
+          if (!mediaVideo.paused) {
+            mediaVideo.pause();
+          } else {
+            mediaVideo.play();
+          }
+        });
+        mediaVideo.addEventListener('pause', function () {
+          playIcon.classList.remove('hidden');
+          mediaVideo.closest('.media-item-block').classList.remove('playing');          
+          mediaVideo.currentTime = 0;
+          mediaVideo.load();
+          //mediaVideo.controls = false;
+        });
+        mediaVideo.addEventListener('play', function () {
+          playIcon.classList.add('hidden');
+          mediaVideo.closest('.media-item-block').classList.add('playing');
+          //mediaVideo.controls = true;
+          mediaVideoBlocks.forEach((block) => {
+            if (block != mediaVideoBlock) {
+              const videoEle = block.querySelector('video');
+              videoEle.pause();
+            }
+          });
+        });
+      });
+    });
+  </script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Media Slider",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "media",
+      "name": "Media",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "thumbanil",
+          "label": "Thumbnail"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "text",
+          "id": "button",
+          "label": "Button"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Media Slider"
+    }
+  ]
+}
+{% endschema %}

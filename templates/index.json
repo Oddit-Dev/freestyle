@@ -9,29 +9,370 @@
  */
 {
   "sections": {
-    "c_hero_img_9HYJYd": {
-      "type": "c-hero-img",
-      "custom_css": [],
+    "image_with_overlay_banner_RDda4e": {
+      "type": "image-with-overlay-banner",
+      "name": "Image With Overlay Banner",
       "settings": {
-        "image": "shopify://shop_images/image-hero-freestyle_V2_EWG.webp",
-        "heading": "Safe & Soft Protection.",
-        "heading_color": "#ffffff",
-        "heading_weight": "normal",
-        "heading_icon_size": 36,
-        "description": "Meet Skin Shield™– the future of diapers",
-        "description_color": "#ffffff",
-        "button_icon": "shopify://shop_images/wallmart-icon.svg",
-        "button_icon_size": 16,
-        "button_text_icon": "shopify://shop_images/heart-icon-text.svg",
-        "button_text_icon_size": 16,
-        "banner_height_desktop": "818",
-        "banner_height_mobile": "500",
-        "description_icon": "shopify://shop_images/Group_26613.svg",
-        "description_icon_size": 36,
-        "button_label": "Shop Skin  Shield™",
-        "button_link": "https://www.walmart.com/ip/Freestyle-Diaper-Size-5-44CT/13920570352",
-        "show_popup": false,
-        "popup__trigger": ""
+        "image": "shopify://shop_images/Hero.jpg",
+        "mobile_image": "shopify://shop_images/Freestyle_Full-product-family_1307_1_1.png",
+        "heading": "Ultra Soft Skin $heart  Shield™ <strong>Diapers</strong>",
+        "text": "14x Better Absorption  <strong>•</strong>  7-Layer Skin Protection  <strong>•</strong>  Total Chlorine Free",
+        "button_text": "Shop Skin $heart Shield™ Diapers",
+        "button_link": "shopify://products/skinshield-diapers",
+        "text_alignment": "align-left"
+      }
+    },
+    "multiple_marquee_NAAYw3": {
+      "type": "multiple-marquee",
+      "blocks": {
+        "first_marquee_n9RnWt": {
+          "type": "first_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Reviews_TCF_check.png",
+            "heading": "\"Best diapers ever\"",
+            "sub_heading": "@megcannette"
+          }
+        },
+        "first_marquee_GLpbbU": {
+          "type": "first_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Group_26713.png",
+            "heading": "\"Freestyle is THAT girl. I'll never use anything else\"",
+            "sub_heading": "@user2296160136252"
+          }
+        },
+        "first_marquee_J6yMrM": {
+          "type": "first_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Works_Overnight_8f001b9c-e0a9-48aa-9698-30b0f7bb474d.png",
+            "heading": "\"I swapped and am 🤯 changed to Freestyle for less than 24 hours and redness completely gone. Hope this helps someone\"",
+            "sub_heading": "@brooklyn_barton"
+          }
+        },
+        "second_marquee_GRJKQ4": {
+          "type": "second_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Group_26713.png",
+            "heading": "\"Switched and LOVE\"",
+            "sub_heading": "@emiley.childers"
+          }
+        },
+        "second_marquee_Jhbbqd": {
+          "type": "second_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Works_Overnight_8f001b9c-e0a9-48aa-9698-30b0f7bb474d.png",
+            "heading": "\"Freestyle is literally amazing 😭\"",
+            "sub_heading": "@sarahemeck"
+          }
+        },
+        "second_marquee_Xe48QW": {
+          "type": "second_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Reviews_TCF_check.png",
+            "heading": "\"I'm obsessed with them, I challenge any diaper to compare to Freestyle, they are so good\"",
+            "sub_heading": "@balancedbycass"
+          }
+        },
+        "third_marquee_8HiaHg": {
+          "type": "third_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Works_Overnight_8f001b9c-e0a9-48aa-9698-30b0f7bb474d.png",
+            "heading": "\"I started using Freestyle diapers and ever since I switched, my baby hasn't had a diaper rash. Thank you thank you thank you\"",
+            "sub_heading": "@bd2033"
+          }
+        },
+        "third_marquee_LBrKp7": {
+          "type": "third_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Reviews_TCF_check.png",
+            "heading": "\"I refuse to buy any other diaper now.\"",
+            "sub_heading": "@darbysmith8"
+          }
+        },
+        "third_marquee_KKDGrx": {
+          "type": "third_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Group_26713.png",
+            "heading": "\"They have outperformed every diaper, TCF or not, that I have ever tried\"",
+            "sub_heading": "@eliserivera0422"
+          }
+        }
+      },
+      "block_order": [
+        "first_marquee_n9RnWt",
+        "first_marquee_GLpbbU",
+        "first_marquee_J6yMrM",
+        "second_marquee_GRJKQ4",
+        "second_marquee_Jhbbqd",
+        "second_marquee_Xe48QW",
+        "third_marquee_8HiaHg",
+        "third_marquee_LBrKp7",
+        "third_marquee_KKDGrx"
+      ],
+      "name": "Multiple Marquee",
+      "settings": {
+        "heading": "Thousands $heart Freestyle",
+        "first_marquee_hide_desktop": false,
+        "first_marquee_hide_mobile": false,
+        "first_marquee_direction": "-1",
+        "second_marquee_hide_desktop": false,
+        "second_marquee_hide_mobile": false,
+        "second_marquee_direction": "1",
+        "third_marquee_hide_desktop": false,
+        "third_marquee_hide_mobile": false,
+        "third_marquee_direction": "-1"
+      }
+    },
+    "image_banner_6JmcCC": {
+      "type": "image-banner",
+      "blocks": {
+        "text_NxaLb6": {
+          "type": "text",
+          "settings": {
+            "text": "14x better absorption"
+          }
+        },
+        "text_3JHpwi": {
+          "type": "text",
+          "settings": {
+            "text": "TOTAL CHLORINE FREE"
+          }
+        },
+        "text_bwDgBB": {
+          "type": "text",
+          "settings": {
+            "text": "7-LAYER SKIN PROTECTION"
+          }
+        }
+      },
+      "block_order": [
+        "text_NxaLb6",
+        "text_3JHpwi",
+        "text_bwDgBB"
+      ],
+      "name": "Image Banner",
+      "settings": {
+        "heading": "Safe & Soft Protection",
+        "image": "shopify://shop_images/image_5303.png",
+        "sub_heading": "Skin $heart Shield™ <strong>Diapers</strong>",
+        "text": "7-layer protection with superior absorbency and clean, non-toxic materials.",
+        "button_label": "Shop Skin $heart Shield™ Diapers",
+        "button_link": "shopify://products/skinshield-diapers",
+        "image_1": "shopify://shop_images/FREESTYLE_Cloud_Like.png",
+        "image_2": "shopify://shop_images/FREESTYLE_Overnight.png",
+        "image_4": "shopify://shop_images/FREESTYLE_Dry.png"
+      }
+    },
+    "marquee_qcpmje": {
+      "type": "marquee",
+      "blocks": {
+        "image_eBmMme": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/SkinShield_Size_04_1873_1.png"
+          }
+        },
+        "image_XaJKpH": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Freestyle_Wipes_Club_Bag_1130.png"
+          }
+        },
+        "image_6LjkH6": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/image_5305.png"
+          }
+        },
+        "image_aieGcc": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/image_5306.png"
+          }
+        }
+      },
+      "block_order": [
+        "image_eBmMme",
+        "image_XaJKpH",
+        "image_6LjkH6",
+        "image_aieGcc"
+      ],
+      "name": "Marquee",
+      "settings": {
+        "padding_top_desktop": 60,
+        "padding_bottom_desktop": 140,
+        "padding_top_mobile": 30,
+        "padding_bottom_mobile": 70
+      }
+    },
+    "comparison_W96rKh": {
+      "type": "comparison",
+      "blocks": {
+        "text_HRaCKH": {
+          "type": "text",
+          "settings": {
+            "text": "14x better protection"
+          }
+        },
+        "text_3NTQVL": {
+          "type": "text",
+          "settings": {
+            "text": "7-LAYER SKIN PROTECTION"
+          }
+        },
+        "text_YgiTMi": {
+          "type": "text",
+          "settings": {
+            "text": "total chlorine free"
+          }
+        },
+        "text_U7yeed": {
+          "type": "text",
+          "settings": {
+            "text": "skin-safe"
+          }
+        },
+        "text_WxKh7K": {
+          "type": "text",
+          "settings": {
+            "text": "affordable"
+          }
+        },
+        "text_BRDpix": {
+          "type": "text",
+          "settings": {
+            "text": "cloud-like softness"
+          }
+        },
+        "text_rQk9KN": {
+          "type": "text",
+          "settings": {
+            "text": "EWG VERIFIED®"
+          }
+        },
+        "compare_text_QGKtzY": {
+          "type": "compare_text",
+          "settings": {
+            "text": "late night leaks"
+          }
+        },
+        "compare_text_cMjGM6": {
+          "type": "compare_text",
+          "settings": {
+            "text": "blowouts"
+          }
+        },
+        "compare_text_bCMGGX": {
+          "type": "compare_text",
+          "settings": {
+            "text": "plasticky feel"
+          }
+        },
+        "compare_text_meJbNB": {
+          "type": "compare_text",
+          "settings": {
+            "text": "cost prohibitive"
+          }
+        },
+        "compare_text_NLHCrL": {
+          "type": "compare_text",
+          "settings": {
+            "text": "toxic chemicals"
+          }
+        },
+        "compare_text_BHgBci": {
+          "type": "compare_text",
+          "settings": {
+            "text": "chlorine bleaching"
+          }
+        },
+        "compare_text_4cVQGi": {
+          "type": "compare_text",
+          "settings": {
+            "text": "no testing"
+          }
+        }
+      },
+      "block_order": [
+        "text_HRaCKH",
+        "text_3NTQVL",
+        "text_YgiTMi",
+        "text_U7yeed",
+        "text_WxKh7K",
+        "text_BRDpix",
+        "text_rQk9KN",
+        "compare_text_QGKtzY",
+        "compare_text_cMjGM6",
+        "compare_text_bCMGGX",
+        "compare_text_meJbNB",
+        "compare_text_NLHCrL",
+        "compare_text_BHgBci",
+        "compare_text_4cVQGi"
+      ],
+      "name": "Comparison",
+      "settings": {
+        "main_heading": "A better diaper",
+        "image": "shopify://shop_images/image_5303_1.png",
+        "heading": "Skin $heart Shield™ <strong>Diapers</strong>",
+        "compare_image": "shopify://shop_images/Screenshot_2025-08-07_at_11.17.01_AM_2_1.png",
+        "compare_heading": "Other Diapers"
+      }
+    },
+    "testimonial_KfHNHw": {
+      "type": "testimonial",
+      "blocks": {
+        "testimonial_KrPV97": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_1901.png",
+            "rating_image": "shopify://shop_images/Stars.png",
+            "text": "<p>\"I just tried these diapers, and they are so soft and comfortable. My baby loves them! It gives me piece of mind to know she's in diapers that are gentle on her skin and you can't beat the price!\"</p>",
+            "title": "Avery",
+            "verified_buyer": true
+          }
+        },
+        "testimonial_dkCqrc": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/Flores_family.png",
+            "rating_image": "shopify://shop_images/Stars.png",
+            "text": "<p>\"We just tried the new SkinShield™ diapers and we LOVE them! We've tried almost every TCF diaper out there and these are definitely a new favorite!\"</p>",
+            "title": "McKenna",
+            "verified_buyer": true
+          }
+        },
+        "testimonial_3QYzKn": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/Sabio_family.png",
+            "rating_image": "shopify://shop_images/Stars.png",
+            "text": "<p>“If I were a first time mom looking for a diaper that I could access easily and be confident in that choice about the safety and efficacy of the diaper, I would choose Freestyle”</p>",
+            "title": "Mary",
+            "verified_buyer": true
+          }
+        },
+        "testimonial_Gp9pUQ": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/Image.png",
+            "rating_image": "shopify://shop_images/Stars.png",
+            "text": "<p>\"Best diapers ever! He slept like a baby (lol) and woke up with ZERO leaks! And it meant that WE FINALLY SLEPT!\"</p>",
+            "title": "Leah",
+            "verified_buyer": true
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_KrPV97",
+        "testimonial_dkCqrc",
+        "testimonial_3QYzKn",
+        "testimonial_Gp9pUQ"
+      ],
+      "name": "Testimonial",
+      "settings": {
+        "heading": "Trusted by <strong>Real Families</strong>",
+        "button": "Shop Skin $heart Shield™ Diapers",
+        "link": "shopify://products/skinshield-diapers"
       }
     },
     "logo-section": {
@@ -85,6 +426,7 @@
         "testimonial_6xcadw",
         "testimonial_tyLFUV"
       ],
+      "disabled": true,
       "custom_css": [
         "span {font-weight: 400;}"
       ],
@@ -136,6 +478,7 @@
         "logo_block_XaYNnR",
         "logo_block_7B6MRn"
       ],
+      "disabled": true,
       "settings": {
         "logo_1": "shopify://shop_images/skin-shield-logo.png",
         "logo_2": "shopify://shop_images/7-Layer_Protection.svg",
@@ -143,197 +486,11 @@
         "additional_text": "*up to 14x better absorption than a leading brand"
       }
     },
-    "c_scrub_scrolling_dke3Md": {
-      "type": "c-scrub-scrolling",
-      "blocks": {
-        "video_bMmbGT": {
-          "type": "video",
-          "settings": {
-            "video_url": "https://cdn.shopify.com/videos/c/o/v/9d50381e47f141b28d1ad4b13fdd158d.mp4",
-            "video_url_mobile": "https://cdn.shopify.com/videos/c/o/v/96c0b079076843b5ab93ebd1ef4bc1b5.mp4",
-            "use_keyframes": false,
-            "keyframe_prefix": "/assets/keyframe-",
-            "keyframe_count": 60
-          }
-        },
-        "text_zBpedE": {
-          "type": "text",
-          "settings": {
-            "padding": 80,
-            "text_vertical": "start",
-            "horizontal_position": "start",
-            "text_color": "#020617",
-            "title": "Up to 14x more absorbent than leading brands",
-            "text": "<p>Thanks to its 7-layer design, Skin <em>1</em> Shield™ starts dry and stays dry. </p><p>Better protection for them and fewer changes for you. </p>",
-            "button_text": "Meet the future of diapers",
-            "button_url": "https://www.walmart.com/ip/Freestyle-Diaper-Size-4-48CT/13932710597"
-          }
-        },
-        "text_XAFeQB": {
-          "type": "text",
-          "settings": {
-            "padding": 80,
-            "text_vertical": "start",
-            "horizontal_position": "start",
-            "text_color": "#020617",
-            "title": "7-layer protection means fewer leaks and longer nights",
-            "text": "<p>Best-in-class absorbent material draws away moisture quickly</p><p>and locks it in to protect against rash or discomfort.</p>",
-            "button_text": "Level up bedtime",
-            "button_url": "https://www.walmart.com/ip/Freestyle-Diaper-Size-4-48CT/13932710597"
-          }
-        },
-        "text_Mgmdew": {
-          "type": "text",
-          "settings": {
-            "padding": 80,
-            "text_vertical": "start",
-            "horizontal_position": "start",
-            "text_color": "#020617",
-            "title": "Safer, for longer, than leading brands",
-            "text": "<p>Our lab-tested diapers are made from clean, </p><p>non-toxic, Total Chlorine Free materials.</p>",
-            "button_text": "Our safety standards",
-            "button_url": "https://freestyle.world/pages/safety-and-testing"
-          }
-        },
-        "text_wTUQNR": {
-          "type": "text",
-          "settings": {
-            "padding": 80,
-            "text_vertical": "start",
-            "horizontal_position": "start",
-            "text_color": "#020617",
-            "title": "Cloud-like softness engineered for delicate skin",
-            "text": "<p>We found the softest materials available to keep them comfortable</p><p> round the clock.</p>",
-            "button_text": "Shop Skin [heart_white] Shield™",
-            "button_icon": "shopify://shop_images/Group_26613.svg",
-            "button_url": "https://www.walmart.com/ip/Freestyle-Diaper-Size-4-48CT/13932710597"
-          }
-        }
-      },
-      "block_order": [
-        "video_bMmbGT",
-        "text_zBpedE",
-        "text_XAFeQB",
-        "text_Mgmdew",
-        "text_wTUQNR"
-      ],
-      "disabled": true,
-      "custom_css": [
-        "h3 {font-weight: 400;}"
-      ],
-      "settings": {
-        "enable_smooth_scroll": true,
-        "promo_text": "Your baby is perfect, now their diaper is too.",
-        "button_text": "Shop Skin [heart_white] Shield™",
-        "button_url": "https://www.walmart.com/ip/Freestyle-Diaper-Size-4-48CT/13932710597"
-      }
-    },
     "diaper_custom_section_R8nRxJ": {
       "type": "diaper-custom-section",
-      "blocks": {
-        "video_jziLBY": {
-          "type": "video",
-          "settings": {
-            "video_url": "https://cdn.shopify.com/videos/c/o/v/9d50381e47f141b28d1ad4b13fdd158d.mp4",
-            "video_url_mobile": "https://cdn.shopify.com/videos/c/o/v/96c0b079076843b5ab93ebd1ef4bc1b5.mp4",
-            "use_keyframes": false,
-            "keyframe_prefix": "/assets/keyframe-",
-            "keyframe_count": 60
-          }
-        },
-        "text_b6awLd": {
-          "type": "text",
-          "settings": {
-            "padding": 80,
-            "text_vertical": "start",
-            "horizontal_position": "start",
-            "text_color": "#020617",
-            "title": "Up to 14x more absorbent than a leading brand",
-            "text": "<p>Thanks to its 7-layer design, Skin <em>1</em> Shield™ starts dry and stays dry. </p><p>Better protection for them and fewer changes for you. </p>",
-            "button_text": "Meet the future of diapers",
-            "button_url": "https://www.walmart.com/ip/Freestyle-Diaper-Size-4-48CT/13932710597"
-          }
-        },
-        "text_6n8yGL": {
-          "type": "text",
-          "settings": {
-            "padding": 80,
-            "text_vertical": "start",
-            "horizontal_position": "start",
-            "text_color": "#020617",
-            "title": "7-layer protection means fewer leaks and longer nights",
-            "text": "<p>Best-in-class absorbent material draws away moisture quickly</p><p>and locks it in to protect against rash or discomfort.</p>",
-            "button_text": "Level up bedtime",
-            "button_url": "https://www.walmart.com/ip/Freestyle-Diaper-Size-4-48CT/13932710597"
-          }
-        },
-        "text_jhXUeG": {
-          "type": "text",
-          "settings": {
-            "padding": 80,
-            "text_vertical": "start",
-            "horizontal_position": "start",
-            "text_color": "#020617",
-            "title": "Safer, for longer, than leading brands",
-            "text": "<p>Our lab-tested diapers are EWG Verified® and made from clean, </p><p>non-toxic, Total Chlorine Free materials.</p>",
-            "button_text": "Our safety standards",
-            "button_url": "https://freestyle.world/pages/safety-and-testing"
-          }
-        },
-        "text_bbgHTL": {
-          "type": "text",
-          "settings": {
-            "padding": 80,
-            "text_vertical": "start",
-            "horizontal_position": "start",
-            "text_color": "#020617",
-            "title": "Cloud-like softness engineered for delicate skin",
-            "text": "<p>We found the softest materials available to keep them comfortable</p><p> round the clock.</p>",
-            "button_text": "Shop Skin [heart_white] Shield™",
-            "button_icon": "shopify://shop_images/Group_26613.svg",
-            "button_url": "https://www.walmart.com/ip/Freestyle-Diaper-Size-4-48CT/13932710597"
-          }
-        }
-      },
-      "block_order": [
-        "video_jziLBY",
-        "text_b6awLd",
-        "text_6n8yGL",
-        "text_jhXUeG",
-        "text_bbgHTL"
-      ],
+      "disabled": true,
       "name": "Diaper Custom Section",
-      "settings": {
-        "enable_smooth_scroll": true,
-        "promo_text": "Your baby is perfect, now their diaper is too.",
-        "button_text": "Shop Skin [heart_white] Shield™",
-        "button_url": "https://www.walmart.com/ip/Freestyle-Diaper-Size-4-48CT/13932710597"
-      }
-    },
-    "c_hero_img_3b7kXN": {
-      "type": "c-hero-img",
-      "settings": {
-        "image": "shopify://shop_images/hero-2-freestyle_V2_EWG.webp",
-        "heading": "Shop Skin Shield™ <br> at Walmart",
-        "heading_color": "#ffffff",
-        "heading_icon": "shopify://shop_images/Vector_3_ad6f0543-bcfe-467a-8de3-60f5813853ff.png",
-        "heading_weight": "normal",
-        "heading_icon_size": 94,
-        "description": "",
-        "description_color": "#ffffff",
-        "button_icon": "shopify://shop_images/wallmart-icon.svg",
-        "button_icon_size": 16,
-        "button_text_icon": "shopify://shop_images/Vector_6.svg",
-        "button_text_icon_size": 16,
-        "banner_height_desktop": "818",
-        "banner_height_mobile": "500",
-        "description_icon": "shopify://shop_images/heart-icon-violet.svg",
-        "description_icon_size": 36,
-        "button_label": "Shop Skin Shield™",
-        "button_link": "https://www.walmart.com/ip/Freestyle-Diaper-Size-5-44CT/13920570352",
-        "show_popup": false,
-        "popup__trigger": ""
-      }
+      "settings": {}
     },
     "review_scroller_custom_CMUd3m": {
       "type": "review-scroller-custom",
@@ -413,19 +570,173 @@
         "review_hWVwfN",
         "review_GAyDCY"
       ],
+      "disabled": true,
       "settings": {
         "title": "For parents, by parents",
         "subtitle": "Don’t just trust us. Hear from our community  why they love and trust Freestyle."
       }
+    },
+    "image_hero_banner_hWWaDf": {
+      "type": "image-hero-banner",
+      "name": "Image Hero Banner",
+      "settings": {
+        "image": "shopify://shop_images/Freestyle-Boxes-345-0676_1.png",
+        "image_mobile": "shopify://shop_images/Freestyle-Boxes-345-0676_1_1.png",
+        "heading": "Find $logo at a",
+        "heading2": "store near you",
+        "button": "Find a Store",
+        "link": "https://freestyle.world/pages/about-us?view=store-locator"
+      }
+    },
+    "media_slider_6dEPzQ": {
+      "type": "media-slider",
+      "blocks": {
+        "media_wd9mNd": {
+          "type": "media",
+          "settings": {
+            "thumbanil": "shopify://shop_images/Capture_d_ecran_2025-10-04_a_12.03.38.png",
+            "video": "shopify://files/videos/freestyle absorbancy test final(1).mp4",
+            "text": "\"I still don't understand how the paper towel was completely dry!!! If you're looking for a super soft & very absorbent diaper, you need to try these Freestyle diapers!\"",
+            "button": "@cathrinmanningg",
+            "link": "https://www.tiktok.com/@cathrinmanningg"
+          }
+        },
+        "media_tY7aWM": {
+          "type": "media",
+          "settings": {
+            "thumbanil": "shopify://shop_images/image_5310_1.png",
+            "video": "shopify://files/videos/Video.mov",
+            "text": "\"I am literally so excited about these. They are so nice. If you are looking for a new TCF diaper and you want something more affordable, definitely check out Freestyle from Walmart.\"",
+            "button": "@taylor.dyne",
+            "link": "https://www.tiktok.com/@taylor.dyne"
+          }
+        },
+        "media_LyRtXq": {
+          "type": "media",
+          "settings": {
+            "thumbanil": "shopify://shop_images/Capture_d_ecran_2025-10-04_a_12.05.23.png",
+            "video": "shopify://files/videos/video-compress-1.mov",
+            "text": "\"This is so crazy. I see a clear winner here. Go grab a pack and try it for yourself.\"",
+            "button": "@madipcurtis",
+            "link": "https://www.tiktok.com/@madipcurtis?lang=fr"
+          }
+        },
+        "media_KjX6MX": {
+          "type": "media",
+          "settings": {
+            "thumbanil": "shopify://shop_images/Capture_d_ecran_2025-10-04_a_12.07.21.png",
+            "video": "shopify://files/videos/KennedyAd2.mp4",
+            "text": "“It's the obvious choice– Freestyle diapers. No leaks, no mess, no stress. Just diapers.\"",
+            "button": "@frowzyy",
+            "link": "https://www.instagram.com/frowzyy/"
+          }
+        },
+        "media_knHJnP": {
+          "type": "media",
+          "settings": {
+            "thumbanil": "shopify://shop_images/image_5311_1.png",
+            "video": "shopify://files/videos/copy_9479F2B8-C285-4D6C-A2DA-48DEE54C16B8.MOV",
+            "text": "\"That's amazing. Wow.\"",
+            "button": "@emmsab",
+            "link": "https://www.instagram.com/emmsab/"
+          }
+        },
+        "media_UmjNED": {
+          "type": "media",
+          "settings": {
+            "thumbanil": "shopify://shop_images/Capture_d_ecran_2025-10-04_a_12.08.48.png",
+            "video": "shopify://files/videos/f638ab6e9897459186a252843e0004d2.mov",
+            "text": "\"If you are not using Freestyle diapers, you need to\"",
+            "button": "@megtimmons",
+            "link": "https://www.tiktok.com/@megtimmons"
+          }
+        }
+      },
+      "block_order": [
+        "media_wd9mNd",
+        "media_tY7aWM",
+        "media_LyRtXq",
+        "media_KjX6MX",
+        "media_knHJnP",
+        "media_UmjNED"
+      ],
+      "name": "Media Slider",
+      "settings": {
+        "heading": "For parents, <strong>by parents</strong>",
+        "description": "<p>Hear from our community why they love and trust Freestyle. Then try it for youself. </p>"
+      }
+    },
+    "image_with_text_Dc79b8": {
+      "type": "image-with-text",
+      "name": "Image With Text",
+      "settings": {
+        "background_image": "shopify://shop_images/Freestyle_Full-product-family_1307_1_2.png",
+        "mobile_background_image": "shopify://shop_images/Freestyle_Full-product-family_1307_1_1_003666b7-7b16-400f-8e64-4c54f92d9b09.png",
+        "image": "shopify://shop_images/Freestyle_Full-product-family_1307_1_3.png",
+        "image_position": "right",
+        "sub_heading": "NEVER RUN OUT OF DIAPERS AGAIN",
+        "heading": "Get your diapers delivered monthly <strong>and save</strong>",
+        "button": "GET OFFER",
+        "link": "shopify://products/skinshield-diapers"
+      }
+    },
+    "marquee_v2_hCBKbi": {
+      "type": "marquee-v2",
+      "blocks": {
+        "text_ThgDfk": {
+          "type": "text",
+          "settings": {
+            "big_text": "14x",
+            "small_text": "Better Absorption"
+          }
+        },
+        "text_wNFBz3": {
+          "type": "text",
+          "settings": {
+            "big_text": "TCF",
+            "small_text": "Total Chlorine Free"
+          }
+        },
+        "text_eqeR4a": {
+          "type": "text",
+          "settings": {
+            "big_text": "7",
+            "small_text": "Layer Skin Protection"
+          }
+        },
+        "text_3kjeRh": {
+          "type": "text",
+          "settings": {
+            "big_text": "EWG",
+            "small_text": "EWG Verified®"
+          }
+        }
+      },
+      "block_order": [
+        "text_ThgDfk",
+        "text_wNFBz3",
+        "text_eqeR4a",
+        "text_3kjeRh"
+      ],
+      "custom_css": [],
+      "name": "Marquee v2",
+      "settings": {}
     }
   },
   "order": [
-    "c_hero_img_9HYJYd",
+    "image_with_overlay_banner_RDda4e",
+    "multiple_marquee_NAAYw3",
+    "image_banner_6JmcCC",
+    "marquee_qcpmje",
+    "comparison_W96rKh",
+    "testimonial_KfHNHw",
     "logo-section",
     "product_features",
-    "c_scrub_scrolling_dke3Md",
     "diaper_custom_section_R8nRxJ",
-    "c_hero_img_3b7kXN",
-    "review_scroller_custom_CMUd3m"
+    "review_scroller_custom_CMUd3m",
+    "image_hero_banner_hWWaDf",
+    "media_slider_6dEPzQ",
+    "image_with_text_Dc79b8",
+    "marquee_v2_hCBKbi"
   ]
 }

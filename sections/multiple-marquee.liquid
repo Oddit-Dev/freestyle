@@ -1,0 +1,327 @@
+{% if section.blocks.size > 0 %}
+  {{ 'multiple-marquee.js' | asset_url | script_tag }}
+
+  {% capture first_marquee %}{% endcapture %}
+  {% capture second_marquee %}{% endcapture %}
+  {% capture third_marquee %}{% endcapture %}
+
+  {% for block in section.blocks %}
+    {% case block.type %}
+      {% when 'first_marquee' %}
+        {% if block.settings.image != blank or block.settings.heading != blank or block.settings.sub_heading != blank %}
+          {%  capture first_marquee %}
+            {{ first_marquee }}
+            <div class="marquee-item min-w-[458px] max-md:min-w-[250px]">
+              <div class="flex-image-with-content flex items-center gap-[25px]  max-md:gap-[15px]">
+                {% if block.settings.image != blank %}
+                  <div class="left-image flex-[0_0_60px] w-[60px] h-[60px] max-md:flex-[0_0_32px] max-md:w-[32px] max-md:h-[32px] rounded-full overflow-hidden ">
+                    {%- render 'image-element',
+                      image: block.settings.image,
+                      widths: '375, 550, 750, 950',
+                      sizes: '(max-width: 749px) 100vw, 100vw',
+                      class: 'w-full h-full object-cover h-auto'
+                    -%}
+                  </div>
+                {% endif %}
+                {% if block.settings.heading != blank or block.settings.sub_heading != blank %}
+                  <div class="right-content flex-1">
+                    {% if block.settings.heading != blank %}
+                      <h2 class="heading font-grotesk font-medium text-[19px] max-md:text-[10.35px] leading-[120%] mb-[8px] max-md:mb-[5px] text-scheme_one tracking-normal">{{ block.settings.heading }}</h2>
+                    {% endif %}
+                    {% if block.settings.sub_heading != blank %}
+                      <p class="sub-heading font-grotesk font-medium text-[16px] max-md:text-[9px] text-scheme_one opacity-70">{{ block.settings.sub_heading }}</p>
+                    {% endif %}
+                  </div>
+                {% endif %}
+              </div>
+            </div>  
+          {% endcapture %}
+        {% endif %}
+      {% when 'second_marquee' %}
+        {% if block.settings.image != blank or block.settings.heading != blank or block.settings.sub_heading != blank %}
+          {%  capture second_marquee %}
+            {{ second_marquee }}
+            <div class="marquee-item min-w-[458px] max-md:min-w-[250px]">
+              <div class="flex-image-with-content flex items-center gap-[25px] max-md:gap-[15px]">
+                {% if block.settings.image != blank %}
+                  <div class="left-image flex-[0_0_60px] w-[60px] h-[60px] max-md:flex-[0_0_32px] max-md:w-[32px] max-md:h-[32px] rounded-full overflow-hidden ">
+                    {%- render 'image-element',
+                      image: block.settings.image,
+                      widths: '375, 550, 750, 950',
+                      sizes: '(max-width: 749px) 100vw, 100vw',
+                      class: 'w-full h-full object-cover h-auto'
+                    -%}
+                  </div>
+                {% endif %}
+                {% if block.settings.heading != blank or block.settings.sub_heading != blank %}
+                  <div class="right-content flex-1">
+                    {% if block.settings.heading != blank %}
+                      <h2 class="heading font-grotesk font-medium text-[19px] max-md:text-[10.35px] leading-[120%] mb-[8px] max-md:mb-[5px] text-scheme_one tracking-normal">{{ block.settings.heading }}</h2>
+                    {% endif %}
+                    {% if block.settings.sub_heading != blank %}
+                      <p class="sub-heading font-grotesk font-medium text-[16px] max-md:text-[9px] text-scheme_one opacity-70">{{ block.settings.sub_heading }}</p>
+                    {% endif %}
+                  </div>
+                {% endif %}
+              </div>
+            </div>  
+          {% endcapture %}  
+        {% endif %}
+      {% when 'third_marquee' %}
+        {% if block.settings.image != blank or block.settings.heading != blank or block.settings.sub_heading != blank %}
+          {%  capture third_marquee %}
+            {{ third_marquee }}
+            <div class="marquee-item min-w-[458px] max-md:min-w-[250px]">
+              <div class="flex-image-with-content flex items-center gap-[25px]  max-md:gap-[15px]">
+                {% if block.settings.image != blank %}
+                  <div class="left-image flex-[0_0_60px] w-[60px] h-[60px] max-md:flex-[0_0_32px] max-md:w-[32px] max-md:h-[32px] rounded-full overflow-hidden">
+                    {%- render 'image-element',
+                      image: block.settings.image,
+                      widths: '375, 550, 750, 950',
+                      sizes: '(max-width: 749px) 100vw, 100vw',
+                      class: 'w-full h-full object-cover h-auto'
+                    -%}
+                  </div>
+                {% endif %}
+                {% if block.settings.heading != blank or block.settings.sub_heading != blank %}
+                  <div class="right-content flex-1">
+                    {% if block.settings.heading != blank %}
+                      <h2 class="heading font-grotesk font-medium text-[19px] max-md:text-[10.35px] leading-[120%] mb-[8px] max-md:mb-[5px] text-scheme_one tracking-normal">{{ block.settings.heading }}</h2>
+                    {% endif %}
+                    {% if block.settings.sub_heading != blank %}
+                      <p class="sub-heading font-grotesk font-medium text-[16px] max-md:text-[9px] text-scheme_one opacity-70">{{ block.settings.sub_heading }}</p>
+                    {% endif %}
+                  </div>
+                {% endif %}
+              </div>
+            </div>  
+          {% endcapture %}  
+        {% endif %}
+    {% endcase %}
+  {% endfor %}
+  
+  <div class="multiple-marquee-section section-{{ section.id }} pt-[70px] pb-[55px] max-md:pt-[30px] max-md:pb-[20px]">
+    {% if section.settings.heading != blank %}
+      {% assign heart_svg = 'icon-heart.svg' | inline_asset_content %}
+      {% assign main_heading = section.settings.heading | replace: '$heart', heart_svg %}
+      <div class="header-wrapper mb-[50px] max-md:mb-[30px] px-[16px]">
+        <h2 class="heading flex flex-wrap items-baseline gap-x-[10px] justify-center [&_svg]:relative [&_svg]:top-[1px] [&_svg]:max-md:w-[30px] [&_svg]:max-md:h-auto">{{ main_heading }}</h2>
+      </div>
+    {% endif %}
+    <div class="multiple-marquee-container overflow-hidden flex flex-wrap gap-[55px] max-md:gap-[30px]">
+      {% if first_marquee != blank %}
+        <div
+          class="marquee-container marquee-first-row{% if section.settings.first_marquee_hide_desktop %} desktop-hide{% endif %}{% if section.settings.first_marquee_hide_mobile %} mobile-hide{% endif %}"
+          data-marquee-container="multiple-marquee-{{ section.id }}-1"
+          data-marquee-direction="{{ section.settings.first_marquee_direction }}">
+          <div
+            class="marquee-track marquee-track-{{ section.id }}-1 flex gap-[75px] max-md:gap-[40px]"
+            data-marquee-track
+          >
+            {{ first_marquee }}
+          </div>
+        </div>
+      {% endif %}
+      {% if second_marquee != blank %}
+        <div
+          class="marquee-container marquee-first-row{% if section.settings.second_marquee_hide_desktop %} desktop-hide{% endif %}{% if section.settings.second_marquee_hide_mobile %} mobile-hide{% endif %}"
+          data-marquee-container="multiple-marquee-{{ section.id }}-2"
+          data-marquee-direction="{{ section.settings.second_marquee_direction }}"
+        >
+          <div
+            class="marquee-track marquee-track-{{ section.id }}-2 flex gap-[75px] max-md:gap-[40px]"
+            data-marquee-track
+          >
+            {{ second_marquee }}
+          </div>
+        </div>
+      {% endif %}
+      {% if third_marquee != blank %}
+        <div
+          class="marquee-container marquee-first-row{% if section.settings.third_marquee_hide_desktop %} desktop-hide{% endif %}{% if section.settings.third_marquee_hide_mobile %} mobile-hide{% endif %}"
+          data-marquee-container="multiple-marquee-{{ section.id }}-3"
+          data-marquee-direction="{{ section.settings.third_marquee_direction }}"
+        >
+          <div
+            class="marquee-track marquee-track-{{ section.id }}-3 flex gap-[75px] max-md:gap-[40px]"
+            data-marquee-track
+          >
+            {{ third_marquee }}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}
+{% schema %}
+{
+  "name": "Multiple Marquee",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "header",
+      "content": "First Marquee"
+    },
+    {
+      "type": "checkbox",
+      "id": "first_marquee_hide_desktop",
+      "label": "Marquee Hide On Desktop"
+    },
+    {
+      "type": "checkbox",
+      "id": "first_marquee_hide_mobile",
+      "label": "Marquee Hide On Mobile"
+    },
+    {
+      "type": "select",
+      "id": "first_marquee_direction",
+      "options": [
+        {
+          "value": "-1",
+          "label": "Right To Left"
+        },
+        {
+          "value": "1",
+          "label": "Left To Right"
+        }
+      ],
+      "default": "-1",
+      "label": "Marquee Position"
+    },
+    {
+      "type": "header",
+      "content": "Second Marquee"
+    },
+    {
+      "type": "checkbox",
+      "id": "second_marquee_hide_desktop",
+      "label": "Marquee Hide On Desktop"
+    },
+    {
+      "type": "checkbox",
+      "id": "second_marquee_hide_mobile",
+      "label": "Marquee Hide On Mobile"
+    },
+    {
+      "type": "select",
+      "id": "second_marquee_direction",
+      "options": [
+        {
+          "value": "-1",
+          "label": "Right To Left"
+        },
+        {
+          "value": "1",
+          "label": "Left To Right"
+        }
+      ],
+      "default": "1",
+      "label": "Marquee Position"
+    },
+    {
+      "type": "header",
+      "content": "Third Marquee"
+    },
+    {
+      "type": "checkbox",
+      "id": "third_marquee_hide_desktop",
+      "label": "Marquee Hide On Desktop"
+    },
+    {
+      "type": "checkbox",
+      "id": "third_marquee_hide_mobile",
+      "label": "Marquee Hide On Mobile"
+    },
+    {
+      "type": "select",
+      "id": "third_marquee_direction",
+      "options": [
+        {
+          "value": "-1",
+          "label": "Right To Left"
+        },
+        {
+          "value": "1",
+          "label": "Left To Right"
+        }
+      ],
+      "default": "-1",
+      "label": "Marquee Position"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "first_marquee",
+      "name": "First Marquee",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "sub_heading",
+          "label": "Sub Heading"
+        }
+      ]
+    },
+    {
+      "type": "second_marquee",
+      "name": "Second Marquee",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "sub_heading",
+          "label": "Sub Heading"
+        }
+      ]
+    },
+    {
+      "type": "third_marquee",
+      "name": "Third Marquee",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "sub_heading",
+          "label": "Sub Heading"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Multiple Marquee"
+    }
+  ]
+}
+{% endschema %}

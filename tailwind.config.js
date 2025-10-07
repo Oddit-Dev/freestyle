@@ -30,6 +30,7 @@ export default {
       fontFamily: {
         grotesk: ['GroteskNeue', 'system-ui'],
         fkroman: ['FK Roman Standard', 'sans-serif'],
+        Neufile_Grotesk: ['Neufile Grotesk'],
         Inter: ['Inter', 'system-ui'],
       },
       container: {
@@ -136,12 +137,14 @@ export default {
           bg: '#ffffff',
           content: '#ffffff',
           bd: '#ffffff',
+          text: '#F1F2F5',
         },
         black: {
           DEFAULT: '#020617',
           bg: '#000000',
           content: '#262626',
           inactive: 'rgba(0, 0, 0, 0.5)',
+          text: '#000000',
         },
         lightBlue: {
           DEFAULT: '#c3e6fa',
@@ -151,6 +154,18 @@ export default {
           primary: 'var(--theme-color-primary)',
           secondary: 'var(--theme-color-secondary)',
           tertiary: 'var(--theme-color-tertiary)',
+        },
+        scheme_one: {
+          DEFAULT: '#6638B6',
+          secondary: '#000000',
+          tertiary: '#ffffff',
+          white: '#FBFAF8'
+        },
+        scheme_two: {
+          DEFAULT: '#6638B6',
+          secondary: '#DADAFF',
+          tertiary: '#B5B5F5',
+          black:'#000000'
         },
       },
       utilities: {

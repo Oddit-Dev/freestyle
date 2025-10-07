@@ -1,0 +1,178 @@
+{% if section.blocks.size > 0 %}
+  <div class="testimonial testimonial--{{ section.id }} bg-scheme_two-secondary py-[100px] max-md:py-[40px] overflow-hidden">
+    <div class="container">
+      {% if section.settings.heading != blank %}
+        <div class="header-wrapper text-center mb-[50px] max-md:mb-[40px]">
+          <h2 class="heading !mb-0 [&_strong]:font-fkroman [&_strong]:font-normal max-md:max-w-[200px] max-md:mx-auto">
+            {{ section.settings.heading }}
+          </h2>
+        </div>
+      {% endif %}
+      <div class="multiple-testimonial testimonial-slider !overflow-visible">
+        <div class="swiper-wrapper">
+          {% for block in section.blocks %}
+            {% if block.settings.image != blank
+              or block.settings.rating_image != blank
+              or block.settings.text != blank
+              or block.settings.title != blank
+            %}
+              <div class="testimonial-block swiper-slide">
+                <div class="image-with-text-content grid grid-cols-2 max-md:grid-cols-1 gap-[10px]">
+                  {% if block.settings.rating_image != blank
+                    or block.settings.text != blank
+                    or block.settings.title != blank
+                  %}
+                    <div class="content-wrapper py-[65px] px-[30px] bg-scheme_two-tertiary/40 rounded-[20px] max-md:order-[1] max-md:py-[30px] max-md:px-[20px]">
+                      {% if block.settings.rating_image != blank %}
+                        <div class="rating-image mb-[30px]">
+                          {%- render 'image-element',
+                            image: block.settings.rating_image,
+                            widths: '50, 60, 70, 80, 90',
+                            sizes: '(max-width: 749px) 100vw, 100vw',
+                            class: 'w-full h-auto max-w-[77px] block'
+                          -%}
+                        </div>
+                      {% endif %}
+                      {% if block.settings.text != blank %}
+                        <div class="text [&_p]:!font-grotesk [&_p]:font-medium [&_p]:text-[15px] [&_p]:tracking-normal [&_p]:!mb-0">
+                          {{ block.settings.text }}
+                        </div>
+                      {% endif %}
+                      {% if block.settings.title != blank %}
+                        <h2 class="title font-grotesk font-medium text-[16px] tracking-normal leading-none mb-[10px] text-scheme_two-black !mt-[30px] ">
+                          {{ block.settings.title }}
+                        </h2>
+                      {% endif %}
+                      {% if block.settings.verified_buyer %}
+                        <p class="verify-content flex items-center gap-[5px] !font-grotesk !font-medium text-[11px] uppercase tracking-normal text-scheme_two">
+                          {{ 'icon-verified-buyer.svg' | inline_asset_content }}
+                          <span class="text leading-none">Verified buyer</span>
+                        </p>
+                      {% endif %}
+                    </div>
+                  {% endif %}
+                  {% if block.settings.image != blank %}
+                    <div class="image-wrapper rounded-[20px] overflow-hidden relative max-md:order-[0] max-md:pt-[100%] ">
+                      {%- render 'image-element',
+                        image: block.settings.image,
+                        widths: '250, 280, 310, 340, 370',
+                        sizes: '(max-width: 749px) 100vw, 50vw',
+                        class: 'w-full h-full object-cover block max-md:absolute max-md:left-0 max-md:top-0'
+                      -%}
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+      {% if section.settings.button != blank and section.settings.link != blank %}
+        {% assign heart_svg = 'icon-heart.svg' | inline_asset_content %}
+        {% assign main_button = section.settings.button | replace: '$heart', heart_svg %}
+        <div class="button-wrapper max-w-[390px] mx-auto mt-[40px]">
+          <a class="button" href="{{ section.settings.link }}">{{ main_button }}</a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const swiper = new Swiper('.testimonial--{{ section.id }} .testimonial-slider', {
+        spaceBetween: 6,
+        centeredSlides: true,
+        slidesPerView: 1.02,
+        loop: false,
+        pagination: {
+          el: '.testimonial--{{ section.id }} .swiper-pagination',
+        },
+        initialSlide: 1,
+        breakpoints: {
+          768: {
+            freemode: true,
+            slidesPerView: 1.2,
+            spaceBetween: 10,
+            centeredSlides: false,
+          },
+          989: {
+            freemode: true,
+            slidesPerView: 1.5,
+            spaceBetween: 10,
+            centeredSlides: false,
+          },
+          1200: {
+            freemode: true,
+            slidesPerView: 1.95,
+            spaceBetween: 10,
+            centeredSlides: false,
+          },
+        },
+      });
+    });
+  </script>
+{% endif %}
+
+
+{% schema %}
+{
+  "name": "Testimonial",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "button",
+      "label": "Button"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "rating_image",
+          "label": "Rating Image"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "checkbox",
+          "id": "verified_buyer",
+          "label": "Verified buyer",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonial"
+    }
+  ]
+}
+{% endschema %}

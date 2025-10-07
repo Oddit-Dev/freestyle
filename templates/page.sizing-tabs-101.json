@@ -1,0 +1,174 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "c_hero_img_3b7kXN": {
+      "type": "c-hero-img",
+      "settings": {
+        "image": "shopify://shop_images/Group_26716.jpg",
+        "heading": "",
+        "heading_color": "#ffffff",
+        "heading_weight": "normal",
+        "heading_icon_size": 12,
+        "description": "",
+        "description_color": "#ffffff",
+        "button_icon": "shopify://shop_images/wallmart-icon.svg",
+        "button_icon_size": 16,
+        "button_text_icon": "shopify://shop_images/heart-icon-text.svg",
+        "button_text_icon_size": 16,
+        "banner_height_desktop": "500",
+        "banner_height_mobile": "300",
+        "description_icon": "shopify://shop_images/heart-icon-violet.svg",
+        "description_icon_size": 36,
+        "button_label": "",
+        "button_link": "https://www.walmart.com/ip/Freestyle-Diaper-Size-5-44CT/13920570352",
+        "show_popup": false,
+        "popup__trigger": ""
+      }
+    },
+    "c_hero_img_tV4cdU": {
+      "type": "c-hero-img",
+      "settings": {
+        "image": "shopify://shop_images/Group_26715.jpg",
+        "heading": "",
+        "heading_color": "#ffffff",
+        "heading_weight": "normal",
+        "heading_icon_size": 12,
+        "description": "",
+        "description_color": "#ffffff",
+        "button_icon": "shopify://shop_images/wallmart-icon.svg",
+        "button_icon_size": 16,
+        "button_text_icon": "shopify://shop_images/heart-icon-text.svg",
+        "button_text_icon_size": 16,
+        "banner_height_desktop": "400",
+        "banner_height_mobile": "300",
+        "description_icon": "shopify://shop_images/heart-icon-violet.svg",
+        "description_icon_size": 36,
+        "button_label": "",
+        "button_link": "https://www.walmart.com/ip/Freestyle-Diaper-Size-5-44CT/13920570352",
+        "show_popup": false,
+        "popup__trigger": ""
+      }
+    },
+    "c_hero_img_3b8kXN": {
+      "type": "c-hero-img",
+      "settings": {
+        "image": "shopify://shop_images/242A6894_6.jpg",
+        "heading": "Shop Skin Shield™",
+        "heading_color": "#ffffff",
+        "heading_icon": "shopify://shop_images/hear-icon-2-light.svg",
+        "heading_weight": "normal",
+        "heading_icon_size": 94,
+        "description": "",
+        "description_color": "#ffffff",
+        "button_icon_size": 16,
+        "button_text_icon": "shopify://shop_images/heart-icon-text.svg",
+        "button_text_icon_size": 16,
+        "banner_height_desktop": "818",
+        "banner_height_mobile": "350",
+        "description_icon": "shopify://shop_images/heart-icon-violet.svg",
+        "description_icon_size": 36,
+        "button_label": "Shop Skin Shield™",
+        "button_link": "https://freestyle.world/products/skinshield-diapers",
+        "show_popup": false,
+        "popup__trigger": ""
+      }
+    },
+    "review_scroller_custom_CMUd3m": {
+      "type": "review-scroller-custom",
+      "blocks": {
+        "review_Aw7wkC": {
+          "type": "review",
+          "settings": {
+            "author_name": "@taylor.dyne",
+            "author_url": "https://www.instagram.com/taylor.dyne/",
+            "is_verified": false,
+            "author_handle": "",
+            "review_text": "\"I am literally so excited about these. They are so nice. If you are looking for a new TCF diaper and you want something more affordable...definitely check out Freestyle from Walmart.\"",
+            "review_video": "shopify://files/videos/Video.mov"
+          }
+        },
+        "review_3Briaz": {
+          "type": "review",
+          "settings": {
+            "author_name": "@cathrinmanningg",
+            "author_url": "https://www.instagram.com/cathrinmanningg/",
+            "is_verified": false,
+            "author_handle": "",
+            "review_text": "\"I still don't understand how the paper towel was completely dry!!! If you're looking for a super soft & very absorbent diaper, you need to try these Freestyle diapers!\"",
+            "review_video": "shopify://files/videos/Download(2).mp4"
+          }
+        },
+        "review_UGacVf": {
+          "type": "review",
+          "settings": {
+            "author_name": "@megtimmons",
+            "author_url": "https://www.instagram.com/megtimmons/",
+            "is_verified": false,
+            "author_handle": "",
+            "review_text": "\"If you are not using Freestyle diapers, you need to\"",
+            "review_video": "shopify://files/videos/f638ab6e9897459186a252843e0004d2.mov"
+          }
+        },
+        "review_Pw4aDj": {
+          "type": "review",
+          "settings": {
+            "author_name": "@nicolewebz",
+            "author_url": "https://www.instagram.com/nicolewebz/",
+            "is_verified": false,
+            "author_handle": "",
+            "review_text": "\"It is so absorbent you can use it as an overnight diaper. It is so soft. The best thing about the diaper is it is TCF...these are actually really cost effective and very comparable to some non-TCF diapers.\"",
+            "review_video": "shopify://files/videos/Download.mp4"
+          }
+        },
+        "review_hWVwfN": {
+          "type": "review",
+          "settings": {
+            "author_name": "@cathrinmanningg",
+            "author_url": "https://www.instagram.com/cathrinmanningg/",
+            "is_verified": false,
+            "author_handle": "",
+            "review_text": "\"These diapers are so dang soft...the price point is actually reasonable....I love them so much\"",
+            "review_video": "shopify://files/videos/Download (1).mp4"
+          }
+        },
+        "review_GAyDCY": {
+          "type": "review",
+          "settings": {
+            "author_name": "@emmsab",
+            "author_url": "https://www.instagram.com/emmsab/",
+            "is_verified": false,
+            "author_handle": "",
+            "review_text": "\"That's amazing. Wow.\"",
+            "review_video": "shopify://files/videos/copy_9479F2B8-C285-4D6C-A2DA-48DEE54C16B8.MOV"
+          }
+        }
+      },
+      "block_order": [
+        "review_Aw7wkC",
+        "review_3Briaz",
+        "review_UGacVf",
+        "review_Pw4aDj",
+        "review_hWVwfN",
+        "review_GAyDCY"
+      ],
+      "settings": {
+        "title": "For parents, by parents",
+        "subtitle": "Don’t just trust us. Hear from our community  why they love and trust Freestyle."
+      }
+    }
+  },
+  "order": [
+    "c_hero_img_3b7kXN",
+    "c_hero_img_tV4cdU",
+    "c_hero_img_3b8kXN",
+    "review_scroller_custom_CMUd3m"
+  ]
+}

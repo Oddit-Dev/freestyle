@@ -16,8 +16,7 @@
   {% if template contains 'bambootek' and section.settings.extra_product_for_bambootek %}
     data-extra-product="{{ all_products[section.settings.extra_product_for_bambootek].first_available_variant.id }}"
     data-extra-product-qty="{{ section.settings.extra_product_quantity }}"
-  {% endif %}
->
+  {% endif %}>
   <div class="container container-lg">
     <div class="product__inner">
       {% render 'product-gallery', product: product %}
@@ -66,16 +65,20 @@
 
                 <div class="product__rating">
                   {% render 'rating-stars', text: section.settings.review_numbers %}
-                  {% comment %} <span class="junip-store-key" data-store-key="{{ shop.metafields.junip.store_key }}"></span>
-                  <span
-                    class="junip-product-summary"
-                    data-product-id="{{ product.id }}"
-                    data-product-rating-count="{{ product.metafields.junip.rating_count }}"
-                    data-product-rating-average="{{ product.metafields.junip.rating_average }}"> </span>{% endcomment %}
+                  {% comment %}
+                    <span class="junip-store-key" data-store-key="{{ shop.metafields.junip.store_key }}"></span>
+                    <span
+                      class="junip-product-summary"
+                      data-product-id="{{ product.id }}"
+                      data-product-rating-count="{{ product.metafields.junip.rating_count }}"
+                      data-product-rating-average="{{ product.metafields.junip.rating_average }}"> </span>
+                  {% endcomment %}
                 </div>
                 <div x-show="activeVariant" class="product__options-price">
-                  {% comment %} <p>Selected variant: <span x-text="activeVariant.title"></span></p>
-                  <p>Selected variantID: <span x-text="activeVariant.id"></span></p> {% endcomment %}
+                  {% comment %}
+                    <p>Selected variant: <span x-text="activeVariant.title"></span></p>
+                    <p>Selected variantID: <span x-text="activeVariant.id"></span></p>
+                  {% endcomment %}
 
                   <strong class="product__options-price_current" x-text="price(activeVariant.price)"></strong>
                 </div>
@@ -102,7 +105,7 @@
                   </div>
 
                   <div x-show="!activeVariant.available" x-cloak>
-                    <button class="button m-disabled" >Out of Stock</button>
+                    <button class="button m-disabled">Out of Stock</button>
                   </div>
 
                 {% else %}
@@ -114,7 +117,9 @@
 
             {% when 'description' %}
               <div class="product__description">
-                <h4 class="mb-6"><strong>About {{ product.title }}</strong></h4>
+                <h4 class="mb-6">
+                  <strong>About {{ product.title }}</strong>
+                </h4>
                 <div class="tracking-tighter">
                   {{ product.description | replace: '[title_product]', product.title }}
                 </div>
@@ -160,17 +165,15 @@
                     </div>
                   {% endfor %}
                 </div>
-              {% else  %}
+              {% else %}
                 <div class="product__tags flex flex-wrap gap-4 mb-4">
-                    {% for attribute in product_attributes.value %}
-                      <div class="product__tag flex items-center gap-2">
-                        {{ attribute }}
-                      </div>
-                    {% endfor %}
+                  {% for attribute in product_attributes.value %}
                     <div class="product__tag flex items-center gap-2">
-                      Free shipping when added to subscription
+                      {{ attribute }}
                     </div>
-                  </div>
+                  {% endfor %}
+                  <div class="product__tag flex items-center gap-2">Free shipping when added to subscription</div>
+                </div>
               {% endif %}
               {% comment %}
                 {% if product.tags.size > 0 %}
@@ -198,10 +201,12 @@
                         @change="updateActiveVariant(item.id)">
                       <div
                         class="product__size-content"
-                        :class="{
-                          'm-active': item.id === activeVariant.id,
-                          'm-no-size': !item.size
-                        }"
+                        :class="
+                          {
+                            'm-active': item.id === activeVariant.id,
+                            'm-no-size': !item.size
+                          }
+                        "
                         :data-percent-off="item.compare_at_price > item.price ? percentOff(item.price, item.compare_at_price) : null">
                         <div
                           class="product__size-info"
@@ -210,10 +215,10 @@
                             class="product__size-title"
                             x-show="item.size"
                             x-text="item.size"></div>
-                            <div
-                              class="product__size-title m-small"
-                              x-show="!item.size && item.title"
-                              x-html="item.title.replace('/', '<br>')"></div>
+                          <div
+                            class="product__size-title m-small"
+                            x-show="!item.size && item.title"
+                            x-html="item.title.replace('/', '<br>')"></div>
                           <div
                             class="product__size-label"
                             x-show="item.type === 'wipes'"
@@ -257,26 +262,23 @@
                     <template x-for="([key, values], index) in Object.entries(options)" :key="key">
                       <fieldset class="product-form__input">
                         <h3 class="form__label" x-text="'Select ' + optionsName[index] + ':'"></h3>
-                          <template x-for="value in values" :key="value">
-                            <div class="product-form__radios">
-                              <button
-                                class="product-form__button-option"
-                                :disabled="index === optionsName.length - 1 && !finalVariantIdsMap[key]?.[value]?.available"
+                        <template x-for="value in values" :key="value">
+                          <div class="product-form__radios">
+                            <button
+                              class="product-form__button-option"
+                              :disabled="index === optionsName.length - 1 && !finalVariantIdsMap[key]?.[value]?.available"
                               :data-variant-id="index === optionsName.length - 1 ? finalVariantIdsMap[key]?.[value]?.id : null"
-                                :class="{ 'm-selected': selectedOptions[key] === value }"
-                                @click="selectOption(key, value)"
-                                x-text="value"
-                              ></button>
-                            </div>
-                          </template>
+                              :class="{ 'm-selected': selectedOptions[key] === value }"
+                              @click="selectOption(key, value)"
+                              x-text="value"></button>
+                          </div>
+                        </template>
                       </fieldset>
                     </template>
                   </variant-radios>
                   <!-- Showed selected variant -->
-
                 </div>
               </div>
-
 
             {% when 'accordion' %}
               <div class="product__accordion">
@@ -308,8 +310,7 @@
       class="aspect-auto h-auto w-full object-cover rounded-regular"
       loading="eager"
       fetchpriority="high"
-      decoding="auto"
-    />
+      decoding="auto">
   </div>
 </template>
 {% render 'entry' with '@/scripts/sections/main-product.js' %}
@@ -534,8 +535,8 @@
               const swiperPagination = new Swiper(swiper, {
                   // loop: true,
                   direction: "vertical",
-                  slidesPerView: 6,
-                  spaceBetween: 10,
+                  slidesPerView: 10,
+                  spaceBetween: 100,
                   draggable: true,
                   mousewheel: true,
               });
@@ -990,7 +991,7 @@
           "type": "text",
           "id": "title",
           "label": "Title"
-        },
+        }
       ],
       "limit": 1
     }

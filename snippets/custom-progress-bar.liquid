@@ -1,0 +1,103 @@
+<div x-data="progressBarThemeSettings()" x-init="init()" class="b-progress-bar__wrapper">
+  <div class="b-progress-bar__unlock-text text-black">
+    <span x-text="unlockText"></span>
+  </div>
+  <div class="b-progress-bar__lock-text text-black">
+    <span x-text="lockText"></span>
+  </div>
+  <div class="b-progress-bar">
+    <div class="b-progress-bar__fill" :style="`width: ${progress * 100}%`"></div>
+    <template x-for="(milestone, index) in milestones" :key="index">
+      <div class="b-progress-bar__point" :style="`left: ${milestone.percent}%`"
+           :class="{ active: currentPrice >= milestone.amount }"></div>
+    </template>
+  </div>
+</div>
+
+<script>
+document.addEventListener('alpine:init', () => {
+  Alpine.data('progressBarThemeSettings', () => ({
+    milestones: [
+      {
+        amount: {{ settings.milestone_1_amount | default: 50 }},
+        text: {{ settings.milestone_1_text | json }}
+      }
+    ],
+    successText: {{ settings.success_text | json }},
+    currentPrice: 0,
+    progress: 0,
+    unlockText: '',
+    lockText: '',
+
+    init() {
+      if (Alpine.store('cart')) {
+        this.$watch('$store.cart.totalPrice', (newTotal) => {
+          this.currentPrice = newTotal;
+          this.updateProgressBar();
+        });
+      }
+      this.updateProgressBar();
+      this.calculateMilestonePercent();
+    },
+    calculateMilestonePercent() {
+      const maxAmount = Math.max(...this.milestones.map(m => m.amount));
+      this.milestones = this.milestones.map(m => ({
+        ...m,
+        percent: (m.amount / maxAmount) * 100
+      }));
+    },
+    updateProgressBar() {
+      const lastMilestone = this.milestones[this.milestones.length - 1];
+      this.progress = Math.min(this.currentPrice / lastMilestone.amount, 1);
+      const nextMilestone = this.milestones.find(m => this.currentPrice < m.amount);
+
+      if (!nextMilestone) {
+        this.unlockText = this.successText;
+        this.lockText = '';
+      } else {
+        this.unlockText = '';
+        this.lockText = nextMilestone.text.replace('[value]', `$${(nextMilestone.amount - this.currentPrice).toFixed(2)}`);
+      }
+    }
+  }));
+});
+</script>
+
+<style>
+.b-progress-bar__wrapper {
+  background: #f7f7f9;
+  padding: 15px;
+  text-align: center;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+}
+.b-progress-bar {
+  margin-top: 10px;
+  height: 12px;
+  background: #ddd;
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+}
+.b-progress-bar__fill {
+  height: 100%;
+  background: #6b2ab4;
+  width: 0%;
+  transition: width 0.3s ease;
+  border-radius: 6px 0 0 6px;
+}
+.b-progress-bar__point {
+  position: absolute;
+  top: -4px;
+  width: 8px;
+  height: 8px;
+  background: #ccc;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  transition: background 0.3s ease;
+}
+.b-progress-bar__point.active {
+  background: #6b2ab4;
+}
+</style>

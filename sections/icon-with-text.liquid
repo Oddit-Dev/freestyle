@@ -1,0 +1,125 @@
+{% if section.blocks.size > 0 %}
+  {% if section.settings.background_image != blank %}
+    {% style %}
+      .icon-with-text--{{ section.id }}::before {
+        background-image: url({{ section.settings.background_image |  image_url: width: 1920 }});
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      @media (max-width: 767px) {
+        .icon-with-text--{{ section.id }}::before {
+          {% if section.settings.background_image_mobile != blank %}
+            background-image: url({{ section.settings.background_image_mobile | image_url: width: 720 }});
+          {% else %}
+            background-image: url({{ section.settings.background_image | image_url: width: 1920 }});
+          {% endif %}
+        }
+      }
+    {% endstyle %}
+  {% endif %}
+  <div class="icon-with-text icon-with-text--{{ section.id }} relative bg-[#F1F2F5] bg-no-repeat bg-center bg-cover py-[80px] max-md:py-[40px] after:absolute after:content-[''] after:top-0 after:left-0 after:w-full after:h-full  after:bg-[#D9D9D9] after:opacity-[14%] before:absolute before:content-[''] before:top-0 before:left-0 before:w-full before:h-full before:opacity-[14%]">
+    <div class="container relative z-[1]">
+      {% if section.settings.heading != blank or section.settings.text != blank %}
+        <div class="header-wrapper mb-[60px] max-md:mb-[34px] max-w-[466px] w-full mx-auto">
+          {% if section.settings.heading != blank %}
+            <h2 class="heading mb-[20px] font-grotesk font-medium text-[40px] max-md:text-[32px] leading-[1.2] tracking-[-0.05em] text-scheme_one text-center">
+              {{ section.settings.heading }}
+            </h2>
+          {% endif %}
+          {% if section.settings.text != blank %}
+            <p class="text font-grotesk font-normal text-[18px] max-md:text-[16px] leading-[1.6] text-scheme_one text-center">
+              {{ section.settings.text }}
+            </p>
+          {% endif %}
+        </div>
+      {% endif %}
+      <div class="multiple-icon-with-text grid grid-cols-4 max-md:grid-cols-1 gap-[20px] max-lg:gap-[16px] max-md:gap-[50px]">
+        {% for block in section.blocks %}
+          <div class="icon-text-details flex md:flex-col md:items-center gap-[30px] max-md:gap-[24px]">
+            {% if block.settings.image != blank %}
+              <div class="icon-wrapper w-[90px] max-md:w-[60px] max-md:min-w-[60px] h-[90px] max-md:h-[60px] flex items-center justify-center">
+                {%- render 'image-element',
+                  image: block.settings.image,
+                  widths: '80, 90, 100, 110, 120, 130',
+                  sizes: '(max-width: 749px) 100vw, 100vw',
+                  class: 'max-w-full max-h-full h-auto object-contain'
+                -%}
+              </div>
+            {% endif %}
+            {% if block.settings.heading != blank or block.settings.text != blank %}
+              <div class="details-wrapper md:px-[10px]">
+                {% if block.settings.heading != blank %}
+                  <h2 class="heading mb-[8px] md:text-center font-grotesk font-medium text-[18px] leading-[1.4] text-scheme_one tracking-normal">
+                    {{ block.settings.heading }}
+                  </h2>
+                {% endif %}
+                {% if block.settings.text != blank %}
+                  <p class="text md:text-center font-grotesk font-normal text-[16px] leading-[1.4] text-scheme_one">
+                    {{ block.settings.text }}
+                  </p>
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Icon With Text",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image_mobile",
+      "label": "Mobile Background Image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "text",
+      "label": "Text"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "icon",
+      "name": "Icon",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Icon With Text"
+    }
+  ]
+}
+{% endschema %}

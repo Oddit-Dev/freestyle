@@ -1,0 +1,93 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "c_hero_img_3b7kXN": {
+      "type": "c-hero-img",
+      "settings": {
+        "image": "shopify://shop_images/TYB_HEADER_2.png",
+        "heading": "",
+        "heading_color": "#ffffff",
+        "heading_weight": "normal",
+        "heading_icon_size": 50,
+        "description": "",
+        "description_color": "#ffffff",
+        "button_icon": "shopify://shop_images/wallmart-icon.svg",
+        "button_icon_size": 16,
+        "button_text_icon": "shopify://shop_images/heart-icon-text.svg",
+        "button_text_icon_size": 16,
+        "banner_height_desktop": "818",
+        "banner_height_mobile": "300",
+        "description_icon": "shopify://shop_images/heart-icon-violet.svg",
+        "description_icon_size": 36,
+        "button_label": "",
+        "button_link": "https://www.walmart.com/ip/Freestyle-Diaper-Size-5-44CT/13920570352",
+        "show_popup": false,
+        "popup__trigger": ""
+      }
+    },
+    "c_hero_banner_9rR8e6": {
+      "type": "c-hero-banner",
+      "settings": {
+        "title": "Join us on TYB",
+        "subtitle": "Introducing community, early access, and content rewards, open to everyone. We’re on a mission to grow the Freestyle Fam and want to say thank you to our community along the way.",
+        "baner_button": "Freestyle on TYB",
+        "baner_button_link": "https://freestyle.tyb.xyz/",
+        "bg_color": "#4d337a",
+        "bg_size": "cover",
+        "image_alignment_x": "center",
+        "image_alignment_y": "middle",
+        "text_position-x": "center",
+        "text_position-y": "center",
+        "text_alignment": "center",
+        "title_font_size": 48,
+        "title_font_size_mobile": 36,
+        "title_color": "#ffffff",
+        "subtitle_font_size": 18,
+        "subtitle_font_size_mobile": 16,
+        "text_color": "#ffffff",
+        "padding_desktop": 40,
+        "padding_mobile": 20,
+        "banner_text_width": "760",
+        "banner_height_desktop": "500",
+        "banner_height_mobile": "450"
+      }
+    },
+    "c_hero_img_3b8kXN": {
+      "type": "c-hero-img",
+      "settings": {
+        "image": "shopify://shop_images/242A6894_6.jpg",
+        "heading": "Shop Skin Shield™",
+        "heading_color": "#ffffff",
+        "heading_icon": "shopify://shop_images/hear-icon-2-light.svg",
+        "heading_weight": "normal",
+        "heading_icon_size": 94,
+        "description": "",
+        "description_color": "#ffffff",
+        "button_icon_size": 16,
+        "button_text_icon": "shopify://shop_images/heart-icon-text.svg",
+        "button_text_icon_size": 16,
+        "banner_height_desktop": "818",
+        "banner_height_mobile": "350",
+        "description_icon": "shopify://shop_images/heart-icon-violet.svg",
+        "description_icon_size": 36,
+        "button_label": "Shop Skin Shield™",
+        "button_link": "https://freestyle.world/products/skinshield-diapers",
+        "show_popup": false,
+        "popup__trigger": ""
+      }
+    }
+  },
+  "order": [
+    "c_hero_img_3b7kXN",
+    "c_hero_banner_9rR8e6",
+    "c_hero_img_3b8kXN"
+  ]
+}

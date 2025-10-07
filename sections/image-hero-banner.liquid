@@ -1,0 +1,106 @@
+{% if section.settings.image != blank or section.settings.heading != blank or section.settings.heading2 != blank or section.settings.button != blank %}
+  {% style %}
+    .image-hero--{{ section.id }} .image-with-text-content .button:hover svg path {
+      fill: #6638B6;
+    }
+  {% endstyle %}
+  <div class="image-hero-banner image-hero--{{ section.id }} pt-[80px] pb-[100px] max-md:py-[40px]">
+    <div class="container">
+      <div class="image-with-text-content relative rounded-[30px] overflow-hidden">
+        {% if section.settings.image != blank %}
+          <div class="image-wrapper">
+            {%- render 'image-element',
+              image: section.settings.image,
+              widths: '375, 550, 750, 950,1150, 1500, 1780, 2000, 2500',
+              sizes: '(max-width: 749px) 100vw, 100vw',
+              class: 'mobile-hide w-full block object-cover h-full min-h-[360px]'
+            -%}
+            {% if section.settings.image_mobile != blank %}
+              {%- render 'image-element',
+                image: section.settings.image_mobile,
+                widths: '375, 550, 750, 950,1150, 1500, 1780, 2000, 2500',
+                sizes: '(max-width: 749px) 100vw, 100vw',
+                class: 'desktop-hide w-full block object-cover h-full'
+              -%}
+            {% else %}
+              {%- render 'image-element',
+                image: section.settings.image,
+                widths: '375, 550, 750, 950,1150, 1500, 1780, 2000, 2500',
+                sizes: '(max-width: 749px) 100vw, 100vw',
+                class: 'desktop-hide w-full block object-cover h-full'
+              -%}
+            {% endif %}
+          </div>
+        {% endif %}
+        {% if section.settings.button != blank or section.settings.heading != blank or section.settings.heading2 != blank %}
+          <div class="content-wrapper px-[60px] max-[1199px]:px-[40px] py-[30px] max-md:px-[16px] md:absolute md:left-0 md:top-1/2 md:-translate-y-1/2 w-full md:max-w-[622px] max-md:bg-[linear-gradient(180deg,rgba(238,239,234,0)6.15%,#EEEFEA_20.38%)] max-md:mt-[-38px] ">
+            {% if section.settings.heading != blank %}
+              {% assign logo_svg = 'icon-logo.svg' | inline_asset_content %}
+              {% assign main_heading = section.settings.heading | replace: '$logo', logo_svg %}
+              <h2 class="heading flex items-center flex-wrap gap-x-[10px] text-scheme_one-secondary [&_svg]:max-md:w-[136px] [&_svg]:max-md:h-[30px]">
+                {{ main_heading }}
+              </h2>
+            {% endif %}
+            {% if section.settings.heading2 != blank %}
+              <h2 class="heading flex items-center flex-wrap gap-x-[10px] text-scheme_one-secondary [&_svg]:max-md:w-[136px] [&_svg]:max-md:h-[30px]">
+                {{ section.settings.heading2 }}
+              </h2>
+            {% endif %}
+            {% if section.settings.button != blank and section.settings.link %}
+              {% assign walmart_svg = 'icon-walmart-white.svg' | inline_asset_content %}
+              {% assign main_button = section.settings.button | replace: '$walmart', walmart_svg %}
+              <a
+                class="button max-w-[300px] max-md:max-w-[330px] w-full mt-[40px] max-md:mt-[25px] [&_svg]:relative [&_svg]:top-[-1px] [&_svg]:!w-auto [&_svg]:!h-[20px] [&_svg]:!m-0 gap-x-[6px]"
+                href="{{ section.settings.link }}">
+                {{- main_button -}}
+              </a>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Image Hero Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Image Mobile"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading2",
+      "label": "Heading2"
+    },
+    {
+      "type": "text",
+      "id": "button",
+      "label": "Button"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image Hero Banner"
+    }
+  ]
+}
+{% endschema %}

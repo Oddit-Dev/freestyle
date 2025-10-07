@@ -1,0 +1,97 @@
+<upsell-product-cart
+  class="cart-upsell-main upsell-product !tw-overflow-visible"
+  data-product-id="{{ cart.items[0].product.id }}"
+  data-url="{{ routes.product_recommendations_url }}?limit=5&intent=related"
+  data-section-id="{{ section.id }}">
+  {%- if recommendations.performed and recommendations.products_count > 0 -%}
+    <div class="cart-upsell-header">
+      <h3>Customers Also Bought</h3>
+    </div>
+    <div class="cart-upsell-header">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          {%- for recommendation in recommendations.products -%}
+            <div class="cart__upsell swiper-slide !tw-h-auto !tw-flex !tw-flex-col">
+              <div class="cart__upsell-product-tile tw-p-[10px] tw-border tw-border-solid tw-border-light_blue tw-flex tw-gap-[12px] tw-h-full tw-rounded-[16px]">
+                {% if recommendation.featured_image != blank %}
+                  <div class="cart__upsell-product-tile-image tw-w-[110px] tw-h-[110px] tw-flex tw-items-center tw-justify-center tw-p-0 tw-rounded-[10px] tw-overflow-hidden">
+                    <img
+                      src="{{ recommendation.featured_image | img_url: 'master' }}"
+                      alt="{{ recommendation.featured_image.alt }}"
+                      class="tw-h-full tw-min-w-full tw-object-cover">
+                  </div>
+                {% endif %}
+                <div class="tw-w-full tw-flex tw-flex-col tw-flex-1">
+                  <div class="top-bar tw-justify-between tw-gap-3 tw-mb-0">
+                    <div
+                      data-bv-show="inline_rating"
+                      data-bv-product-id="{{ recommendation.id }}"
+                      data-bv-redirect-url="{{ recommendation.url }}"
+                      data-bv-seo="false"
+                      class="first-review tw-font-primary tw-font-normal tw-leading-[1] tw-text-[12px] tw-tracking-normal !tw-text-primary !tw-mb-[10px]"></div>
+                    <a href="{{ recommendation.url }}" class="tw-no-underline">
+                      <p class="cart__item-name tw-capitalize !tw-mb-[16px] !tw-mt-0 tw-break-words tw-text-[16px] tw-leading-[1] tw-text-primary tw-font-semibold tw-font-primary max-md:tw-text-[14px]">
+                        {{ recommendation.title }}
+                      </p>
+                    </a>
+                    <div class="product-block product-block--price product-block--price-main tw-m-0 tw-font-primary tw-font-normal tw-text-[14px] tw-leading-[1] tw-text-primary !tw-mb-[6px]">
+                      {{ recommendation.price | money_with_currency }}
+                    </div>
+                  </div>
+                  <div class="variant-swatch-btn-main tw-flex tw-flex-wrap tw-items-end">
+                    <add-variant-item class="custom-buy-button tw-flex *:tw-w-full tw-mt-auto !tw-py-[11px] !tw-px-[25px] tw-bg-primary hover:tw-bg-[rgba(29,29,68,0.8)] tw-border-primary tw-text-white tw-no-underline tw-text-center tw-font-primary tw-font-semibold tw-text-[14px] tw-rounded-[30px] tw-leading-[1] tw-w-fit !tw-ml-[auto] tw-cursor-pointer" data-id="{{ recommendation.selected_or_first_available_variant.id }}">
+                      {{ block.settings.quick_shop_button_label | default: 'Add' }}
+                    </add-variant-item>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+        <div class="tw-flex tw-items-center tw-justify-center tw-gap-6 tw-mt-[16px]">
+          <div class="swiper-pagination tw-flex tw-flex-wrap !tw-w-auto tw-gap-[5px]" style="position: unset !important;"></div>
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+</upsell-product-cart>
+<script>
+  class UpsellProductCart extends HTMLElement {
+    constructor() {
+      super();
+    }
+  
+    connectedCallback() {
+      this.initializeUpsellProduct(this.dataset.productId);
+    }
+  
+    initializeUpsellProduct(productId) {
+      fetch(`${this.dataset.url}&product_id=${productId}&section_id=${this.dataset.sectionId}`)
+        .then((response) => response.text())
+        .then((text) => {
+          const html = document.createElement('div');
+          html.innerHTML = text;
+          const upsellProduct = html.querySelector('upsell-product-cart');
+          if (upsellProduct && upsellProduct.querySelectorAll('.cart__upsell').length > 0) {
+            this.innerHTML = upsellProduct.innerHTML;
+            this.closest('.cart-upsell-section').classList.remove('!tw-hidden');
+            
+            new Swiper('upsell-product-cart .swiper', {
+              slidesPerView: 1.03,
+              spaceBetween: 10,
+              loop: false,
+              pagination: {
+                el: 'upsell-product-cart .swiper-pagination',
+                clickable: true,
+              }
+            });
+          }
+        })
+        .catch((e) => {
+          console.error(e);
+        });
+    }
+  }
+  
+  customElements.define('upsell-product-cart', UpsellProductCart);
+</script>
