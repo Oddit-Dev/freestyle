@@ -70,7 +70,7 @@
                           </p>
                           <div class="selling-price-box">
                             <div class="selling-price flex items-center gap-[6px]">
-                              {% if variant.compare_at_price > allocation.price %}
+                              {% if save_value != 0 %}
                                 <span class="variant-price text-scheme_two/50 line-through text-[14px] max-md:text-[13px] font-normal font-grotesk leading-none">
                                   {{- variant.price | money_without_trailing_zeros -}}
                                 </span>
