@@ -17,10 +17,10 @@
         "description": ""
       }
     },
-    "c_hero_img_3b8kXN": {
+    "c_hero_img_XpKgiL": {
       "type": "c-hero-img",
       "settings": {
-        "image": "shopify://shop_images/hero-2-freestyle_V2_EWG.webp",
+        "image": "shopify://shop_images/242A6894_6.jpg",
         "heading": "Shop Skin Shield™",
         "heading_color": "#ffffff",
         "heading_icon": "shopify://shop_images/hear-icon-2-light.svg",
@@ -127,7 +127,7 @@
   },
   "order": [
     "c_store_locator_DcCFAp",
-    "c_hero_img_3b8kXN",
+    "c_hero_img_XpKgiL",
     "review_scroller_custom_CMUd3m"
   ]
 }
