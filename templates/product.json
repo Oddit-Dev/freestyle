@@ -224,105 +224,96 @@
         "store_sub_heading": ""
       }
     },
-    "multiple_marquee_pUJj6y": {
+    "multiple_marquee_4VUVyj": {
       "type": "multiple-marquee",
       "blocks": {
-        "first_marquee_fYVW4M": {
+        "first_marquee_eLDwDc": {
           "type": "first_marquee",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2025-09-01_at_3.29.27_PM_1.png",
-            "heading": "\"Proving that you don't need to sacrifice quality to go green\"",
-            "sub_heading": "@freestyle.fan"
+            "image": "shopify://shop_images/Reviews_TCF_check.png",
+            "heading": "\"Best diapers ever\"",
+            "sub_heading": "@megcannette"
           }
         },
-        "first_marquee_3m6ACQ": {
+        "first_marquee_9i3UVX": {
           "type": "first_marquee",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2025-09-01_at_3.29.27_PM_1.png",
-            "heading": "\"Proving that you don't need to sacrifice quality to go green\"",
-            "sub_heading": "@freestyle.fan"
+            "image": "shopify://shop_images/Group_26713.png",
+            "heading": "\"Freestyle is THAT girl. I'll never use anything else\"",
+            "sub_heading": "@user2296160136252"
           }
         },
-        "first_marquee_7Edfy9": {
+        "first_marquee_4mADX8": {
           "type": "first_marquee",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2025-09-01_at_3.29.27_PM_1.png",
-            "heading": "\"Proving that you don't need to sacrifice quality to go green\"",
-            "sub_heading": "@freestyle.fan"
+            "image": "shopify://shop_images/Works_Overnight_8f001b9c-e0a9-48aa-9698-30b0f7bb474d.png",
+            "heading": "\"I swapped and am 🤯 changed to Freestyle for less than 24 hours and redness completely gone. Hope this helps someone\"",
+            "sub_heading": "@brooklyn_barton"
           }
         },
-        "first_marquee_wj939T": {
-          "type": "first_marquee",
-          "settings": {
-            "image": "shopify://shop_images/Screenshot_2025-09-01_at_3.29.27_PM_1.png",
-            "heading": "\"Proving that you don't need to sacrifice quality to go green\"",
-            "sub_heading": "@freestyle.fan"
-          }
-        },
-        "first_marquee_zzkEzB": {
-          "type": "first_marquee",
-          "settings": {
-            "image": "shopify://shop_images/Screenshot_2025-09-01_at_3.29.27_PM_1.png",
-            "heading": "\"Proving that you don't need to sacrifice quality to go green\"",
-            "sub_heading": "@freestyle.fan"
-          }
-        },
-        "second_marquee_FmFzdf": {
+        "second_marquee_fJ3iNU": {
           "type": "second_marquee",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2025-09-01_at_3.29.27_PM_1.png",
-            "heading": "\"Proving that you don't need to sacrifice quality to go green\"",
-            "sub_heading": "@freestyle.fan"
+            "image": "shopify://shop_images/Group_26713.png",
+            "heading": "\"Switched and LOVE\"",
+            "sub_heading": "@emiley.childers"
           }
         },
-        "second_marquee_AAPGkg": {
+        "second_marquee_eEiRqk": {
           "type": "second_marquee",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2025-09-01_at_3.29.27_PM_1.png",
-            "heading": "\"Proving that you don't need to sacrifice quality to go green\"",
-            "sub_heading": "@freestyle.fan"
+            "image": "shopify://shop_images/Works_Overnight_8f001b9c-e0a9-48aa-9698-30b0f7bb474d.png",
+            "heading": "\"Freestyle is literally amazing 😭\"",
+            "sub_heading": "@sarahemeck"
           }
         },
-        "second_marquee_bzHjkh": {
+        "second_marquee_YPmiK9": {
           "type": "second_marquee",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2025-09-01_at_3.29.27_PM_1.png",
-            "heading": "\"Proving that you don't need to sacrifice quality to go green\"",
-            "sub_heading": "@freestyle.fan"
+            "image": "shopify://shop_images/Reviews_TCF_check.png",
+            "heading": "\"I'm obsessed with them, I challenge any diaper to compare to Freestyle, they are so good\"",
+            "sub_heading": "@balancedbycass"
           }
         },
-        "second_marquee_ybEtVh": {
-          "type": "second_marquee",
+        "third_marquee_iP74xK": {
+          "type": "third_marquee",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2025-09-01_at_3.29.27_PM_1.png",
-            "heading": "\"Proving that you don't need to sacrifice quality to go green\"",
-            "sub_heading": "@freestyle.fan"
+            "image": "shopify://shop_images/Works_Overnight_8f001b9c-e0a9-48aa-9698-30b0f7bb474d.png",
+            "heading": "\"I started using Freestyle diapers and ever since I switched, my baby hasn't had a diaper rash. Thank you thank you thank you\"",
+            "sub_heading": "@bd2033"
           }
         },
-        "second_marquee_axYFwz": {
-          "type": "second_marquee",
+        "third_marquee_DwBKDn": {
+          "type": "third_marquee",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2025-09-01_at_3.29.27_PM_1.png",
-            "heading": "\"Proving that you don't need to sacrifice quality to go green\"",
-            "sub_heading": "@freestyle.fan"
+            "image": "shopify://shop_images/Reviews_TCF_check.png",
+            "heading": "\"I refuse to buy any other diaper now.\"",
+            "sub_heading": "@darbysmith8"
+          }
+        },
+        "third_marquee_rW3YnR": {
+          "type": "third_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Group_26713.png",
+            "heading": "\"They have outperformed every diaper, TCF or not, that I have ever tried\"",
+            "sub_heading": "@eliserivera0422"
           }
         }
       },
       "block_order": [
-        "first_marquee_fYVW4M",
-        "first_marquee_3m6ACQ",
-        "first_marquee_7Edfy9",
-        "first_marquee_wj939T",
-        "first_marquee_zzkEzB",
-        "second_marquee_FmFzdf",
-        "second_marquee_AAPGkg",
-        "second_marquee_bzHjkh",
-        "second_marquee_ybEtVh",
-        "second_marquee_axYFwz"
+        "first_marquee_eLDwDc",
+        "first_marquee_9i3UVX",
+        "first_marquee_4mADX8",
+        "second_marquee_fJ3iNU",
+        "second_marquee_eEiRqk",
+        "second_marquee_YPmiK9",
+        "third_marquee_iP74xK",
+        "third_marquee_DwBKDn",
+        "third_marquee_rW3YnR"
       ],
       "name": "Multiple Marquee",
       "settings": {
-        "heading": "Millions $heart FreeStyle",
+        "heading": "Thousands $heart Freestyle",
         "first_marquee_hide_desktop": false,
         "first_marquee_hide_mobile": false,
         "first_marquee_direction": "-1",
@@ -451,88 +442,88 @@
       ],
       "settings": {}
     },
-    "media_slider_CJgbn8": {
+    "media_slider_AqMcEa": {
       "type": "media-slider",
       "blocks": {
-        "media_4y6Vdb": {
+        "media_zRnkUL": {
           "type": "media",
           "settings": {
-            "thumbanil": "shopify://shop_images/Image.png",
-            "video": "shopify://files/videos/video-compress-1.mov",
-            "text": "\"I am literally so excited about these. They are so nice. If you are looking for a new TCF diaper and you want something more affordable, definitely check out Freestyle from Walmart.\"",
-            "button": "@taylor.dyne",
-            "link": "shopify://collections"
-          }
-        },
-        "media_HEU87G": {
-          "type": "media",
-          "settings": {
-            "thumbanil": "shopify://shop_images/Rectangle_1901.png",
+            "thumbanil": "shopify://shop_images/Capture_d_ecran_2025-10-04_a_12.03.38.png",
             "video": "shopify://files/videos/freestyle absorbancy test final(1).mp4",
-            "text": "\"I am literally so excited about these. They are so nice. If you are looking for a new TCF diaper and you want something more affordable, definitely check out Freestyle from Walmart.\"",
-            "button": "@taylor.dyne",
-            "link": "shopify://collections"
+            "text": "\"I still don't understand how the paper towel was completely dry!!! If you're looking for a super soft & very absorbent diaper, you need to try these Freestyle diapers!\"",
+            "button": "@cathrinmanningg",
+            "link": "https://www.tiktok.com/@cathrinmanningg"
           }
         },
-        "media_cH4tCR": {
+        "media_X3ipcY": {
           "type": "media",
           "settings": {
-            "thumbanil": "shopify://shop_images/Image.png",
-            "video": "shopify://files/videos/KennedyAd2.mp4",
-            "text": "\"I am literally so excited about these. They are so nice. If you are looking for a new TCF diaper and you want something more affordable, definitely check out Freestyle from Walmart.\"",
-            "button": "@taylor.dyne",
-            "link": "shopify://collections"
-          }
-        },
-        "media_WriNcd": {
-          "type": "media",
-          "settings": {
-            "thumbanil": "shopify://shop_images/Rectangle_1901.png",
-            "video": "shopify://files/videos/copy_9479F2B8-C285-4D6C-A2DA-48DEE54C16B8.MOV",
-            "text": "\"I am literally so excited about these. They are so nice. If you are looking for a new TCF diaper and you want something more affordable, definitely check out Freestyle from Walmart.\"",
-            "button": "@taylor.dyne",
-            "link": "shopify://collections"
-          }
-        },
-        "media_UyMzkP": {
-          "type": "media",
-          "settings": {
-            "thumbanil": "shopify://shop_images/Image.png",
-            "video": "shopify://files/videos/f638ab6e9897459186a252843e0004d2.mov",
-            "text": "\"I am literally so excited about these. They are so nice. If you are looking for a new TCF diaper and you want something more affordable, definitely check out Freestyle from Walmart.\"",
-            "button": "@taylor.dyne",
-            "link": "shopify://collections"
-          }
-        },
-        "media_QjYJ6c": {
-          "type": "media",
-          "settings": {
-            "thumbanil": "shopify://shop_images/Rectangle_1901.png",
+            "thumbanil": "shopify://shop_images/image_5310_1.png",
             "video": "shopify://files/videos/Video.mov",
             "text": "\"I am literally so excited about these. They are so nice. If you are looking for a new TCF diaper and you want something more affordable, definitely check out Freestyle from Walmart.\"",
             "button": "@taylor.dyne",
-            "link": "shopify://collections"
+            "link": "https://www.tiktok.com/@taylor.dyne"
+          }
+        },
+        "media_NEeQMj": {
+          "type": "media",
+          "settings": {
+            "thumbanil": "shopify://shop_images/Capture_d_ecran_2025-10-04_a_12.05.23.png",
+            "video": "shopify://files/videos/video-compress-1.mov",
+            "text": "\"This is so crazy. I see a clear winner here. Go grab a pack and try it for yourself.\"",
+            "button": "@madipcurtis",
+            "link": "https://www.tiktok.com/@madipcurtis?lang=fr"
+          }
+        },
+        "media_TXP9gF": {
+          "type": "media",
+          "settings": {
+            "thumbanil": "shopify://shop_images/Capture_d_ecran_2025-10-04_a_12.07.21.png",
+            "video": "shopify://files/videos/KennedyAd2.mp4",
+            "text": "“It's the obvious choice– Freestyle diapers. No leaks, no mess, no stress. Just diapers.\"",
+            "button": "@frowzyy",
+            "link": "https://www.instagram.com/frowzyy/"
+          }
+        },
+        "media_aFmUzD": {
+          "type": "media",
+          "settings": {
+            "thumbanil": "shopify://shop_images/image_5311_1.png",
+            "video": "shopify://files/videos/copy_9479F2B8-C285-4D6C-A2DA-48DEE54C16B8.MOV",
+            "text": "\"That's amazing. Wow.\"",
+            "button": "@emmsab",
+            "link": "https://www.instagram.com/emmsab/"
+          }
+        },
+        "media_Km6dba": {
+          "type": "media",
+          "settings": {
+            "thumbanil": "shopify://shop_images/Capture_d_ecran_2025-10-04_a_12.08.48.png",
+            "video": "shopify://files/videos/f638ab6e9897459186a252843e0004d2.mov",
+            "text": "\"If you are not using Freestyle diapers, you need to\"",
+            "button": "@megtimmons",
+            "link": "https://www.tiktok.com/@megtimmons"
           }
         }
       },
       "block_order": [
-        "media_4y6Vdb",
-        "media_HEU87G",
-        "media_cH4tCR",
-        "media_WriNcd",
-        "media_UyMzkP",
-        "media_QjYJ6c"
+        "media_zRnkUL",
+        "media_X3ipcY",
+        "media_NEeQMj",
+        "media_TXP9gF",
+        "media_aFmUzD",
+        "media_Km6dba"
       ],
       "name": "Media Slider",
       "settings": {
-        "heading": "For parents, by parents",
+        "heading": "For parents, <strong>by parents</strong>",
         "description": "<p>Hear from our community why they love and trust Freestyle. Then try it for youself. </p>"
       }
     },
-    "testimonial_zwc8TV": {
+    "testimonial_dNiEWm": {
       "type": "testimonial",
       "blocks": {
-        "testimonial_VRz3Hc": {
+        "testimonial_EjHrNH": {
           "type": "testimonial",
           "settings": {
             "image": "shopify://shop_images/Rectangle_1901.png",
@@ -542,7 +533,7 @@
             "verified_buyer": true
           }
         },
-        "testimonial_ctrxmw": {
+        "testimonial_jFxdUG": {
           "type": "testimonial",
           "settings": {
             "image": "shopify://shop_images/Flores_family.png",
@@ -552,7 +543,7 @@
             "verified_buyer": true
           }
         },
-        "testimonial_eQ6ABT": {
+        "testimonial_DhWwBc": {
           "type": "testimonial",
           "settings": {
             "image": "shopify://shop_images/Sabio_family.png",
@@ -562,7 +553,7 @@
             "verified_buyer": true
           }
         },
-        "testimonial_L7Fr7P": {
+        "testimonial_cyiB6m": {
           "type": "testimonial",
           "settings": {
             "image": "shopify://shop_images/Image.png",
@@ -574,10 +565,10 @@
         }
       },
       "block_order": [
-        "testimonial_VRz3Hc",
-        "testimonial_ctrxmw",
-        "testimonial_eQ6ABT",
-        "testimonial_L7Fr7P"
+        "testimonial_EjHrNH",
+        "testimonial_jFxdUG",
+        "testimonial_DhWwBc",
+        "testimonial_cyiB6m"
       ],
       "name": "Testimonial",
       "settings": {
@@ -589,11 +580,11 @@
   },
   "order": [
     "main",
-    "multiple_marquee_pUJj6y",
+    "multiple_marquee_4VUVyj",
     "perfect_info_mgPXdV",
     "icon_with_text_Tirzyn",
     "174411240666086477",
-    "media_slider_CJgbn8",
-    "testimonial_zwc8TV"
+    "media_slider_AqMcEa",
+    "testimonial_dNiEWm"
   ]
 }

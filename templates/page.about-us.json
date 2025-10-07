@@ -169,87 +169,82 @@
         "popup__trigger": ""
       }
     },
-    "review_scroller_custom_CMUd3m": {
-      "type": "review-scroller-custom",
+    "media_slider_tEDUFN": {
+      "type": "media-slider",
       "blocks": {
-        "review_Aw7wkC": {
-          "type": "review",
+        "media_Pqa3C9": {
+          "type": "media",
           "settings": {
-            "author_name": "@taylor.dyne",
-            "author_url": "https://www.instagram.com/taylor.dyne/",
-            "is_verified": false,
-            "author_handle": "",
-            "review_text": "\"I am literally so excited about these. They are so nice. If you are looking for a new TCF diaper and you want something more affordable...definitely check out Freestyle from Walmart.\"",
-            "review_video": "shopify://files/videos/Video.mov"
+            "thumbanil": "shopify://shop_images/Capture_d_ecran_2025-10-04_a_12.03.38.png",
+            "video": "shopify://files/videos/freestyle absorbancy test final(1).mp4",
+            "text": "\"I still don't understand how the paper towel was completely dry!!! If you're looking for a super soft & very absorbent diaper, you need to try these Freestyle diapers!\"",
+            "button": "@cathrinmanningg",
+            "link": "https://www.tiktok.com/@cathrinmanningg"
           }
         },
-        "review_3Briaz": {
-          "type": "review",
+        "media_qUxL3Y": {
+          "type": "media",
           "settings": {
-            "author_name": "@cathrinmanningg",
-            "author_url": "https://www.instagram.com/cathrinmanningg/",
-            "is_verified": false,
-            "author_handle": "",
-            "review_text": "\"I still don't understand how the paper towel was completely dry!!! If you're looking for a super soft & very absorbent diaper, you need to try these Freestyle diapers!\"",
-            "review_video": "shopify://files/videos/Download(2).mp4"
+            "thumbanil": "shopify://shop_images/image_5310_1.png",
+            "video": "shopify://files/videos/Video.mov",
+            "text": "\"I am literally so excited about these. They are so nice. If you are looking for a new TCF diaper and you want something more affordable, definitely check out Freestyle from Walmart.\"",
+            "button": "@taylor.dyne",
+            "link": "https://www.tiktok.com/@taylor.dyne"
           }
         },
-        "review_UGacVf": {
-          "type": "review",
+        "media_MVHYg8": {
+          "type": "media",
           "settings": {
-            "author_name": "@megtimmons",
-            "author_url": "https://www.instagram.com/megtimmons/",
-            "is_verified": false,
-            "author_handle": "",
-            "review_text": "\"If you are not using Freestyle diapers, you need to\"",
-            "review_video": "shopify://files/videos/f638ab6e9897459186a252843e0004d2.mov"
+            "thumbanil": "shopify://shop_images/Capture_d_ecran_2025-10-04_a_12.05.23.png",
+            "video": "shopify://files/videos/video-compress-1.mov",
+            "text": "\"This is so crazy. I see a clear winner here. Go grab a pack and try it for yourself.\"",
+            "button": "@madipcurtis",
+            "link": "https://www.tiktok.com/@madipcurtis?lang=fr"
           }
         },
-        "review_Pw4aDj": {
-          "type": "review",
+        "media_Ke4Dk9": {
+          "type": "media",
           "settings": {
-            "author_name": "@nicolewebz",
-            "author_url": "https://www.instagram.com/nicolewebz/",
-            "is_verified": false,
-            "author_handle": "",
-            "review_text": "\"It is so absorbent you can use it as an overnight diaper. It is so soft. The best thing about the diaper is it is TCF...these are actually really cost effective and very comparable to some non-TCF diapers.\"",
-            "review_video": "shopify://files/videos/Download.mp4"
+            "thumbanil": "shopify://shop_images/Capture_d_ecran_2025-10-04_a_12.07.21.png",
+            "video": "shopify://files/videos/KennedyAd2.mp4",
+            "text": "“It's the obvious choice– Freestyle diapers. No leaks, no mess, no stress. Just diapers.\"",
+            "button": "@frowzyy",
+            "link": "https://www.instagram.com/frowzyy/"
           }
         },
-        "review_hWVwfN": {
-          "type": "review",
+        "media_bkkfJF": {
+          "type": "media",
           "settings": {
-            "author_name": "@cathrinmanningg",
-            "author_url": "https://www.instagram.com/cathrinmanningg/",
-            "is_verified": false,
-            "author_handle": "",
-            "review_text": "\"These diapers are so dang soft...the price point is actually reasonable....I love them so much\"",
-            "review_video": "shopify://files/videos/Download (1).mp4"
+            "thumbanil": "shopify://shop_images/image_5311_1.png",
+            "video": "shopify://files/videos/copy_9479F2B8-C285-4D6C-A2DA-48DEE54C16B8.MOV",
+            "text": "\"That's amazing. Wow.\"",
+            "button": "@emmsab",
+            "link": "https://www.instagram.com/emmsab/"
           }
         },
-        "review_GAyDCY": {
-          "type": "review",
+        "media_UqHbDr": {
+          "type": "media",
           "settings": {
-            "author_name": "@emmsab",
-            "author_url": "https://www.instagram.com/emmsab/",
-            "is_verified": false,
-            "author_handle": "",
-            "review_text": "\"That's amazing. Wow.\"",
-            "review_video": "shopify://files/videos/copy_9479F2B8-C285-4D6C-A2DA-48DEE54C16B8.MOV"
+            "thumbanil": "shopify://shop_images/Capture_d_ecran_2025-10-04_a_12.08.48.png",
+            "video": "shopify://files/videos/f638ab6e9897459186a252843e0004d2.mov",
+            "text": "\"If you are not using Freestyle diapers, you need to\"",
+            "button": "@megtimmons",
+            "link": "https://www.tiktok.com/@megtimmons"
           }
         }
       },
       "block_order": [
-        "review_Aw7wkC",
-        "review_3Briaz",
-        "review_UGacVf",
-        "review_Pw4aDj",
-        "review_hWVwfN",
-        "review_GAyDCY"
+        "media_Pqa3C9",
+        "media_qUxL3Y",
+        "media_MVHYg8",
+        "media_Ke4Dk9",
+        "media_bkkfJF",
+        "media_UqHbDr"
       ],
+      "name": "Media Slider",
       "settings": {
-        "title": "For parents, by parents",
-        "subtitle": "Don’t just trust us. Hear from our community  why they love and trust Freestyle."
+        "heading": "For parents, <strong>by parents</strong>",
+        "description": "<p>Hear from our community why they love and trust Freestyle. Then try it for youself. </p>"
       }
     }
   },
@@ -260,6 +255,6 @@
     "c_image_aside_about_us_QpyCzL",
     "c_hero_banner_8zCmDY",
     "c_hero_img_3b8kXN",
-    "review_scroller_custom_CMUd3m"
+    "media_slider_tEDUFN"
   ]
 }
