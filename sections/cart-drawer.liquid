@@ -108,6 +108,7 @@
           </div>
         </div>
       {% else %}
+        {% capture product_ids %}{% endcapture %}        
         {% for item in cart.items %}
           <div class="cart-drawer__item p-[20px_16px] flex gap-[16px]" data-key="{{ item.key }}">
             <span class="w-[80px] min-w-[80px] h-[80px] flex items-center justify-center">
@@ -190,10 +191,13 @@
               </div>
             </div>
           </div>
+          {% capture product_ids %}
+          {{ product_ids }}{{ item.product.id }}{% unless forloop.last %},{% endunless %}
+        {% endcapture %}
         {% endfor %}
       {% endif %}
 
-      {% if cart.item_count != 0 %}
+      {% unless product_ids contains section.settings.custom_upsell_product.id %}
         <div class="custom-upsell-products border-0 border-t border-solid border-[#E3E3E3] p-[30px_16px]">
           {% if section.settings.custom_upsell_product != blank %}
             {% assign add_on_product = section.settings.custom_upsell_product %}
@@ -234,7 +238,7 @@
             </div>
           {% endif %}
         </div>
-      {% endif %}
+      {% endunless %}
     </div>
     <footer class="cart-drawer__footer hidden p-[20px_16px_25px] border-0 border-t border-solid border-[#E3E3E3]">
       <div class="cart-drawer-addon">
