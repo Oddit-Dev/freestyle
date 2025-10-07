@@ -318,6 +318,8 @@ document.addEventListener("DOMContentLoaded", function () {
         items.push(addonItem);
       }
 
+      items.reverse();
+
       fetch("/cart/add.js", {
         method: "POST",
         headers: {
