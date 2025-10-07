@@ -288,7 +288,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const addToCartBtn = document.querySelector(".js-add-to-cart");
   const addonCheckbox = document.querySelector(".addonproduct");
-
+  
   if (addToCartBtn) {
     addToCartBtn.addEventListener("click", function () {
       const mainVariantId = this.dataset.variantId;
@@ -309,8 +309,11 @@ document.addEventListener("DOMContentLoaded", function () {
           id: addonCheckbox.dataset.variantId,
           quantity: 1
         };
-        if (addonCheckbox.dataset.sellingPlanId) {
-          addonItem.selling_plan = addonCheckbox.dataset.sellingPlanId;
+        const selectedPlan = document.querySelector(".selected-plan").textContent;
+        if (selectedPlan != 'One-Time Purchase') {
+          if (addonCheckbox.dataset.sellingPlanId) {
+            addonItem.selling_plan = addonCheckbox.dataset.sellingPlanId;
+          }
         }
         items.push(addonItem);
       }
@@ -344,6 +347,7 @@ class AddVariantCheckbox extends HTMLElement {
     super();
     this.variantId = Number(this.dataset.id);
     this.sellingPlanId = Number(this.dataset.sellingPlanId);
+    this.onetimePurchase = this.dataset.onetimePurchase;
     this.drawer = document.querySelector('cart-drawer');
 
     this.checkbox = document.createElement('input');
@@ -377,9 +381,11 @@ class AddVariantCheckbox extends HTMLElement {
         id: this.variantId,
         quantity: 1
       };
-
-      if (this.sellingPlanId) {
-        mainItem.selling_plan = this.sellingPlanId;
+      
+      if (this.onetimePurchase == 'false') {
+        if (this.sellingPlanId) {
+          mainItem.selling_plan = this.sellingPlanId;
+        }
       }
 
       let items = [mainItem];

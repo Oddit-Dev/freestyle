@@ -227,7 +227,7 @@
                     </div>
                     
                     <add-variant-checkbox
-                      data-id="{{ add_on_product.selected_or_first_available_variant.id }}" data-selling-plan-id="{{ add_on_product.selected_or_first_available_variant.selling_plan_allocations.first.selling_plan.id }}"></add-variant-checkbox>
+                      data-id="{{ add_on_product.selected_or_first_available_variant.id }}" data-selling-plan-id="{{ add_on_product.selected_or_first_available_variant.selling_plan_allocations.first.selling_plan.id }}" data-onetime-purchase="{% if section.settings.enable_onetime_purchase %}{{ section.settings.enable_onetime_purchase }}{% else %}false{% endif %}"></add-variant-checkbox>
                   </div>
                 </div>
               </label>
@@ -427,6 +427,11 @@
     {
       "type": "header",
       "content": "Addon with Checkbox"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_onetime_purchase",
+      "label": "Enable Onetime Purchase"
     },
     {
       "type": "text",
