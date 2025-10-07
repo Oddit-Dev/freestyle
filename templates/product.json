@@ -520,10 +520,10 @@
         "description": "<p>Hear from our community why they love and trust Freestyle. Then try it for youself. </p>"
       }
     },
-    "testimonial_zwc8TV": {
+    "testimonial_dNiEWm": {
       "type": "testimonial",
       "blocks": {
-        "testimonial_VRz3Hc": {
+        "testimonial_EjHrNH": {
           "type": "testimonial",
           "settings": {
             "image": "shopify://shop_images/Rectangle_1901.png",
@@ -533,7 +533,7 @@
             "verified_buyer": true
           }
         },
-        "testimonial_ctrxmw": {
+        "testimonial_jFxdUG": {
           "type": "testimonial",
           "settings": {
             "image": "shopify://shop_images/Flores_family.png",
@@ -543,7 +543,7 @@
             "verified_buyer": true
           }
         },
-        "testimonial_eQ6ABT": {
+        "testimonial_DhWwBc": {
           "type": "testimonial",
           "settings": {
             "image": "shopify://shop_images/Sabio_family.png",
@@ -553,7 +553,7 @@
             "verified_buyer": true
           }
         },
-        "testimonial_L7Fr7P": {
+        "testimonial_cyiB6m": {
           "type": "testimonial",
           "settings": {
             "image": "shopify://shop_images/Image.png",
@@ -565,10 +565,10 @@
         }
       },
       "block_order": [
-        "testimonial_VRz3Hc",
-        "testimonial_ctrxmw",
-        "testimonial_eQ6ABT",
-        "testimonial_L7Fr7P"
+        "testimonial_EjHrNH",
+        "testimonial_jFxdUG",
+        "testimonial_DhWwBc",
+        "testimonial_cyiB6m"
       ],
       "name": "Testimonial",
       "settings": {
@@ -585,6 +585,6 @@
     "icon_with_text_Tirzyn",
     "174411240666086477",
     "media_slider_AqMcEa",
-    "testimonial_zwc8TV"
+    "testimonial_dNiEWm"
   ]
 }
