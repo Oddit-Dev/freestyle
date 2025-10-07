@@ -43,7 +43,7 @@
     "subscription_upsell_product": [
       "wipes"
     ],
-    "cart_btm_content": "This order ships FREE",
+    "cart_btm_content": "Free shipping for orders over $95",
     "custom_upsell_heading": "Add 99% Water Sensitive Wipes",
     "custom_upsell_product": "wipes",
     "empty_cart_title": "Your cart is empty",
@@ -160,7 +160,7 @@
           "product_feature_btn_url": "shopify://products/skinshield-diapers",
           "subscription_button_label": "Subscribe",
           "empty_btm_walmart": "<p>Find a store <a href=\"https://freestyle.world/pages/about-us?view=store-locator\" title=\"https://freestyle.world/pages/about-us?view=store-locator\">here</a></p>",
-          "free_shipping_threshold": 95,
+          "free_shipping_threshold": 80,
           "free_shipping_text": "<p>This order ships FREE</p>",
           "enable_note": false,
           "note_heading": "Add gift message or order note",
