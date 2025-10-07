@@ -59,10 +59,14 @@
                           data-variant-price="{{ allocationPrice }}"
                           data-variant-compare-at-price="{{ allocationComparedAtPrice }}"
                           checked>
-                        <div class="title-price w-[calc(100%-20px)] pl-[16px] flex items-center justify-between gap-[10px]"> 
+                        <div class="title-price w-[calc(100%-20px)] pl-[16px] flex items-center justify-between gap-[10px]">
+                          {% assign save_value = allocation.selling_plan.price_adjustments[0].value | divided_by: 100 | round: 2 %} 
                           <p class="title-text text-[18px] max-md:text-[15px] text-black-bg font-medium font-grotesk leading-none">
-                            Subscribe &
-                            <span class="save-text">Save {{ allocation.selling_plan.price_adjustments[0].value | divided_by: 100 | round: 2 }}%</span>
+                            Subscribe
+                            {% if save_value != 0 %}
+                              &
+                              <span class="save-text">Save {{ save_value }}%</span>
+                            {% endif %}
                           </p>
                           <div class="selling-price-box">
                             <div class="selling-price flex items-center gap-[6px]">

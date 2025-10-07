@@ -54,6 +54,14 @@
                 {% endfor %}
               </div>
             {% endif %}
+            <div class="mt-[50px] max-md:mt-[24px]">
+              {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
+                {% assign main_button = section.settings.button_label | replace: '$heart', heart_svg %}
+                <a href="{{ section.settings.button_link }}" class="button button-primary !max-w-[390px] w-full max-md:mx-auto">
+                  {{ main_button }}
+                </a>
+              {%- endif -%}
+            </div>
             </div>
         </div>
 
