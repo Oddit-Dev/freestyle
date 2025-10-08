@@ -92,7 +92,7 @@
           "settings": {
             "title": "Shipping",
             "question": "When will I receive my order?",
-            "answer": "<p>Orders take 1-2 business days to process and 3-4 business days to arrive. We’ll send along tracking information so you can be updated every step of the way.</p>",
+            "answer": "<p>Orders take 1-2 business days to process and typically arrive in 3-4 business days. You will receive tracking info so you can follow your package every step of the way. </p><p>Orders are typically shipped via UPS Ground, and sometimes handed off to a local courier for the final delivery leg.</p>",
             "question-1": "How much does shipping cost?",
             "answer-1": "<p>Shipping is free for subscription orders. Shipping fees are noted at checkout for one-time orders. </p>",
             "question-2": "Where do you ship?",
