@@ -38,25 +38,35 @@
         <div class="swiper-wrapper">
           {% if main_compare_text != blank or section.settings.image != blank %}
             <div class="left-compare swiper-slide bg-scheme_one py-[50px] px-[32px] max-md:pt-[30px] max-md:pb-[65px] max-md:px-[24px] rounded-[30px] !h-auto">
-              <div class="image-wrapper max-w-[325px] mx-auto max-md:px-[20px]">
-                {%- render 'image-element',
-                  image: section.settings.image,
-                  widths: '240, 270, 300, 330, 360, 290',
-                  sizes: '(max-width: 749px) 100vw, 50vw',
-                  class: 'w-full h-full block object-contain'
-                -%}
-              </div>
-              <div class="content-wrapper mt-[60px] max-md:mt-[30px]">
-                {% if section.settings.heading != blank %}
-                  {% assign heart_svg = 'icon-heart-white-border.svg' | inline_asset_content %}
-                  {% assign main_heading = section.settings.heading | replace: '$heart', heart_svg %}
-                  <h2 class="heading text-white-text text-[36px] max-md:text-[24px] text-center [&_strong]:font-fkroman [&_strong]:font-normal tracking-[-1.8px] max-md:tracking-[-1.2px] mb-[30px] max-md:mb-[25px] flex items-center flex-wrap justify-center gap-[5px] [&_svg]:w-[28px] [&_svg]:h-[23px]">
-                    {{ main_heading }}
-                  </h2>
-                {% endif %}
-                <div class="multiple-text-content text-white-text flex items-center justify-center gap-[10px] max-md:gap-[8px] flex-wrap">
-                  {{ main_compare_text }}
+              <div class="top-main">
+                <div class="image-wrapper max-w-[325px] mx-auto max-md:px-[20px]">
+                  {%- render 'image-element',
+                    image: section.settings.image,
+                    widths: '240, 270, 300, 330, 360, 290',
+                    sizes: '(max-width: 749px) 100vw, 50vw',
+                    class: 'w-full h-full block object-contain'
+                  -%}
                 </div>
+                <div class="content-wrapper mt-[60px] max-md:mt-[30px]">
+                  {% if section.settings.heading != blank %}
+                    {% assign heart_svg = 'icon-heart-white-border.svg' | inline_asset_content %}
+                    {% assign main_heading = section.settings.heading | replace: '$heart', heart_svg %}
+                    <h2 class="heading text-white-text text-[36px] max-md:text-[24px] text-center [&_strong]:font-fkroman [&_strong]:font-normal tracking-[-1.8px] max-md:tracking-[-1.2px] mb-[30px] max-md:mb-[25px] flex items-center flex-wrap justify-center gap-[5px] [&_svg]:w-[30px] [&_svg]:h-[32px]">
+                      {{ main_heading }}
+                    </h2>
+                  {% endif %}
+                  <div class="multiple-text-content text-white-text flex items-center justify-center gap-[10px] max-md:gap-[8px] flex-wrap">
+                    {{ main_compare_text }}
+                  </div>
+                </div>
+              </div>
+              <div class="btn-main mt-[50px] max-md:mt-[24px]">
+                {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
+                  {% assign main_button = section.settings.button_label | replace: '$heart', heart_svg %}
+                  <a href="{{ section.settings.button_link }}" class="button button-primary !max-w-[390px] w-full max-md:mx-auto">
+                    {{ main_button }}
+                  </a>
+                {%- endif -%}
               </div>
             </div>
           {% endif %}
@@ -150,6 +160,16 @@
       "type": "inline_richtext",
       "id": "heading",
       "label": "Heading"
+    },
+    {
+      "type": "text",
+     "id": "button_label",
+     "label": "Button label"
+    },
+    {
+     "type": "url",
+    "id": "button_link",
+      "label": "Button link"
     },
     {
       "type": "header",
