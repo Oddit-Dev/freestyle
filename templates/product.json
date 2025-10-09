@@ -421,26 +421,14 @@
       ],
       "name": "Icon With Text",
       "settings": {
+        "background_image": "shopify://shop_images/HEADER_F1F2F5.jpg",
+        "background_image_mobile": "shopify://shop_images/HEADER_F1F2F5.jpg",
         "heading": "Safe & Soft Protection",
         "text": "SkinShield™ diapers use non-toxic, lab-tested, clean materials that keep your baby protected and you worry-free."
       }
     },
     "174411240666086477": {
       "type": "apps",
-      "blocks": {
-        "junip_junip_product_review_xLN8Xa": {
-          "type": "shopify://apps/junip/blocks/junip-product-review/dc14f5a8-ed15-41b1-ad08-cfba23f9789b",
-          "disabled": true,
-          "settings": {
-            "product": "{{product}}",
-            "title": "",
-            "alignment": ""
-          }
-        }
-      },
-      "block_order": [
-        "junip_junip_product_review_xLN8Xa"
-      ],
       "settings": {}
     },
     "media_slider_AqMcEa": {
