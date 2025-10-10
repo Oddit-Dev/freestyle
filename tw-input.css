@@ -69,7 +69,7 @@ h2,
 }
 
 .button svg {
-  @apply w-[18px] h-auto block mx-[4px]
+  @apply w-[20px] h-auto block mx-[4px]
 }
 
 .desktop-hide {
