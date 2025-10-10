@@ -1,27 +1,21 @@
 {% if section.blocks.size > 0 %}
   <style>
-  .section-{{ section.id }} {
-    padding-top: {{ section.settings.padding_top_desktop }}px;
-    padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
-  }
-  @media screen and (max-width: 768px) {
     .section-{{ section.id }} {
-      padding-top: {{ section.settings.padding_top_mobile }}px !important;
-      padding-bottom: {{ section.settings.padding_bottom_mobile }}px !important;
+      padding-top: {{ section.settings.padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
     }
-  }
-</style>
+    @media screen and (max-width: 768px) {
+      .section-{{ section.id }} {
+        padding-top: {{ section.settings.padding_top_mobile }}px;
+        padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+      }
+    }
+  </style>
   {{ 'marquee.js' | asset_url | script_tag }}
-  
+
   <div class="marquee-section section-{{ section.id }} pt-[60px] pb-[140px] max-md:py-[30px]">
-    <div
-      class="marquee-container overflow-hidden"
-      data-marquee-container="marquee-{{ section.id }}"
-      >
-      <div
-        class="marquee-track marquee-track-{{ section.id }} flex gap-[60px] w-[max-content] lg:gap-[116px] "
-        data-marquee-track
-      >
+    <div class="marquee-container overflow-hidden" data-marquee-container="marquee-{{ section.id }}">
+      <div class="marquee-track marquee-track-{{ section.id }} flex gap-[60px] w-[max-content] lg:gap-[116px] " data-marquee-track>
         {%- capture marqee_content -%}
             {% for block in section.blocks %}
               {% if block.settings.image != blank %}
@@ -30,7 +24,7 @@
                     image: block.settings.image,
                     widths: '375, 550, 750, 950',
                     sizes: '(max-width: 749px) 100vw, 100vw',
-                    class: 'w-full h-full object-contain block max-h-[89px]'
+                    class: 'w-auto h-full object-contain block max-h-[89px]'
                 -%}
                 </div>  
               {% endif %}
@@ -43,67 +37,67 @@
   </div>
 {% endif %}
 {% schema %}
-{
-  "name": "Marquee",
-  "settings": [
-    {
-      "type": "range",
-      "id": "padding_top_desktop",
-      "label": "Padding Top (Desktop)",
-      "min": 0,
-      "max": 150,
-      "step": 5,
-      "unit": "px",
-      "default": 60
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom_desktop",
-      "label": "Padding Bottom (Desktop)",
-      "min": 0,
-      "max": 150,
-      "step": 5,
-      "unit": "px",
-      "default": 60
-    },
-    {
-      "type": "range",
-      "id": "padding_top_mobile",
-      "label": "Padding Top (Mobile)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 30
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom_mobile",
-      "label": "Padding Bottom (Mobile)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 30
-    }
-  ],
-  "blocks": [
-    {
-      "type": "image",
-      "name": "Image",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Marquee"
-    }
-  ]
-}
+  {
+    "name": "Marquee",
+    "settings": [
+      {
+        "type": "range",
+        "id": "padding_top_desktop",
+        "label": "Padding Top (Desktop)",
+        "min": 0,
+        "max": 150,
+        "step": 5,
+        "unit": "px",
+        "default": 60
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom_desktop",
+        "label": "Padding Bottom (Desktop)",
+        "min": 0,
+        "max": 150,
+        "step": 5,
+        "unit": "px",
+        "default": 60
+      },
+      {
+        "type": "range",
+        "id": "padding_top_mobile",
+        "label": "Padding Top (Mobile)",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "px",
+        "default": 30
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom_mobile",
+        "label": "Padding Bottom (Mobile)",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "px",
+        "default": 30
+      }
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Image",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Marquee"
+      }
+    ]
+  }
 {% endschema %}
