@@ -357,18 +357,16 @@
                   {% endif %}
                   <label for="add-on-product-{{ forloop.index }}" class="add-on-label p-[20px_14px] rounded-[12px] border border-solid border-[#E3E3E3] flex">
                     <div class="flex-add-on-details flex items-center gap-[18px] w-full">
-                      <div class="add-on-image w-[70px] min-w-[70px] h-[70px] flex items-center justify-center">
-                        {%- render 'image-element'
-                          ,
- image: add_on_product.featured_image
-                          ,
- widths: '50, 60, 70, 80'
-                          ,
- sizes: '(max-width: 749px) 100vw, 100vw'
-                          ,
- class: 'max-w-full max-h-full object-contain'
-                        -%}
-                      </div>
+                      {% if product.id != add_on_product.id %}
+                        <div class="add-on-image w-[70px] min-w-[70px] h-[70px] flex items-center justify-center">
+                          {%- render 'image-element',
+                          image: add_on_product.featured_image,
+                          widths: '50,60,70,80',
+                          sizes: '(max-width: 749px) 100vw, 100vw',
+                          class: 'max-w-full max-h-full object-contain'
+                          -%}
+                        </div>
+                      {% endif %}
                       <div class="add-on-text w-full flex items-center gap-[18px] justify-between">
                         <div class="flex flex-col gap-[4px] w-full">
                           <h2 class="title font-grotesk font-normal text-[16px] max-md:text-[13px] leading-[1.6] text-black-text !tracking-normal">
@@ -545,7 +543,8 @@
                     currentSizeElement.innerText = size;
                     
                     const sizeDiv = document.createElement("div");
-                    sizeDiv.textContent = size + ' month supply';
+                    //sizeDiv.textContent = size + ' month supply';
+                    sizeDiv.textContent = '1 month supply';
                     sizeDiv.classList.add("month-supply");
   
                     const countDiv = document.createElement("div");

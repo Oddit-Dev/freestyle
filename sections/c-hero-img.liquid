@@ -19,7 +19,7 @@
         <h2
           class="font-grotesk font-{{ section.settings.heading_weight }} mb-12 lg:mb-24 text-center flex flex-col items-center text-[3rem] leading-[1.1] md:text-[9rem] md:leading-[1] md:tracking-[-0.02em]"
           style="color: {{ section.settings.heading_color }};">
-          <span class="block">
+          <span class="flex items-center flex-wrap gap-[24px] max-md:gap-[18px]">
             {% for word in heading_words %}
               {{ word }}
               {% if forloop.index == 2 and section.settings.heading_icon != blank %}
@@ -64,7 +64,7 @@
           <a
             href="{{ section.settings.button_link | default: '#' }}"
             target="_blank"
-            class="button btn--secondary bg-[#5A36A8]">
+            class="button btn--secondary bg-[#5A36A8] gap-[4px]">
         {% else %}
           <span class="button btn--secondary bg-[#5A36A8]"
             >

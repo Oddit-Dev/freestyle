@@ -43,12 +43,12 @@
                         {% if block.settings.description != blank %}
                           {% assign heart_svg = 'icon-heart.svg' | inline_asset_content %}
                           {% assign main_description = block.settings.description | replace: '$heart', heart_svg %}
-                          <p class="description [&_svg]:inline-block [&_svg]:h-[11px] [&_svg]:w-auto font-grotesk font-normal text-[16px] leading-[1.5] text-scheme_one">
+                          <p class="description [&_svg]:inline-block [&_svg]:h-[14px] [&_svg]:w-auto font-grotesk font-normal text-[16px] leading-[1.5] text-scheme_one">
                             {{ main_description }}
                           </p>
                         {% endif %}
                         {% if block.settings.text != blank %}
-                          <p class="text font-grotesk mt-[12px] font-normal italic text-[12px] leading-[1.4] text-scheme_one opacity-60 max-w-[288px]">
+                          <p class="text font-grotesk mt-[12px] font-normal italic text-[11px] leading-[1.4] text-scheme_one opacity-60 max-w-[288px]">
                             {{ block.settings.text }}
                           </p>
                         {% endif %}
