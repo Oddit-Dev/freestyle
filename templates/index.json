@@ -672,8 +672,8 @@
       "type": "image-with-text",
       "name": "Image With Text",
       "settings": {
-        "background_image": "shopify://shop_images/Freestyle_Full-product-family_1307_1_2.png",
-        "mobile_background_image": "shopify://shop_images/Freestyle_Full-product-family_1307_1_1_003666b7-7b16-400f-8e64-4c54f92d9b09.png",
+        "background_image": "shopify://shop_images/FREESTYLE_Gradient_D.jpg",
+        "mobile_background_image": "shopify://shop_images/FREESTYLE_Gradient_M.jpg",
         "image": "shopify://shop_images/Freestyle_Full-product-family_1307_1_3.png",
         "image_position": "right",
         "sub_heading": "NEVER RUN OUT OF DIAPERS AGAIN",

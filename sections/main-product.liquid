@@ -346,52 +346,51 @@
                 {% endfor %}
               </div>
 
-            {% when 'add_on_product' %}
+            {% when 'add_on_product' %}        
               {% if block.settings.product != blank %}
                 {% assign add_on_product = block.settings.product %}
-                <div class="add-on-product mb-[40px] max-md:mb-[30px]">
-                  {% if block.settings.heading != blank %}
-                    <h2 class="heading font-grotesk !font-medium text-[16px] tracking-normal leading-[1.5] text-black-text mb-[12px]">
-                      {{ block.settings.heading }}
-                    </h2>
-                  {% endif %}
-                  <label for="add-on-product-{{ forloop.index }}" class="add-on-label p-[20px_14px] rounded-[12px] border border-solid border-[#E3E3E3] flex">
-                    <div class="flex-add-on-details flex items-center gap-[18px] w-full">
-                      {% if product.id != add_on_product.id %}
-                        <div class="add-on-image w-[70px] min-w-[70px] h-[70px] flex items-center justify-center">
-                          {%- render 'image-element',
-                          image: add_on_product.featured_image,
-                          widths: '50,60,70,80',
-                          sizes: '(max-width: 749px) 100vw, 100vw',
-                          class: 'max-w-full max-h-full object-contain'
-                          -%}
-                        </div>
-                      {% endif %}
-                      <div class="add-on-text w-full flex items-center gap-[18px] justify-between">
-                        <div class="flex flex-col gap-[4px] w-full">
-                          <h2 class="title font-grotesk font-normal text-[16px] max-md:text-[13px] leading-[1.6] text-black-text !tracking-normal">
-                            {{ add_on_product.title }}
-                          </h2>
-                          <p class="price font-grotesk font-medium text-[15px] leading-[1.6] text-black-text">
-                            {{ add_on_product.selected_or_first_available_variant.price | money }}
-                          </p>
-                        </div>
-                       
-                        <div class="add-on-control cursor-pointer">
-                          <input
-                            type="checkbox"
-                            class="addonproduct"
-                            id="add-on-product-{{ forloop.index }}"
-                            data-selling-plan-id="{{ add_on_product.selected_or_first_available_variant.selling_plan_allocations.first.selling_plan.id }}"
-                            data-variant-id="{{ add_on_product.selected_or_first_available_variant.id }}" data-variant-price="{{ add_on_product.selected_or_first_available_variant.price | money }}">
-                          <span class="controls"></span>
+                {% if product.id != add_on_product.id %}
+                  <div class="add-on-product mb-[40px] max-md:mb-[30px]">
+                    {% if block.settings.heading != blank %}
+                      <h2 class="heading font-grotesk !font-medium text-[16px] tracking-normal leading-[1.5] text-black-text mb-[12px]">
+                        {{ block.settings.heading }}
+                      </h2>
+                    {% endif %}
+                    <label for="add-on-product-{{ forloop.index }}" class="add-on-label p-[20px_14px] rounded-[12px] border border-solid border-[#E3E3E3] flex">
+                      <div class="flex-add-on-details flex items-center gap-[18px] w-full">
+                          <div class="add-on-image w-[70px] min-w-[70px] h-[70px] flex items-center justify-center">
+                            {%- render 'image-element',
+                            image: add_on_product.featured_image,
+                            widths: '50,60,70,80',
+                            sizes: '(max-width: 749px) 100vw, 100vw',
+                            class: 'max-w-full max-h-full object-contain'
+                            -%}
+                          </div>
+                        <div class="add-on-text w-full flex items-center gap-[18px] justify-between">
+                          <div class="flex flex-col gap-[4px] w-full">
+                            <h2 class="title font-grotesk font-normal text-[16px] max-md:text-[13px] leading-[1.6] text-black-text !tracking-normal">
+                              {{ add_on_product.title }}
+                            </h2>
+                            <p class="price font-grotesk font-medium text-[15px] leading-[1.6] text-black-text">
+                              {{ add_on_product.selected_or_first_available_variant.price | money }}
+                            </p>
+                          </div>
+                        
+                          <div class="add-on-control cursor-pointer">
+                            <input
+                              type="checkbox"
+                              class="addonproduct"
+                              id="add-on-product-{{ forloop.index }}"
+                              data-selling-plan-id="{{ add_on_product.selected_or_first_available_variant.selling_plan_allocations.first.selling_plan.id }}"
+                              data-variant-id="{{ add_on_product.selected_or_first_available_variant.id }}" data-variant-price="{{ add_on_product.selected_or_first_available_variant.price | money }}">
+                            <span class="controls"></span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </label>
-                </div>
+                    </label>
+                  </div>
+                {% endif %}
               {% endif %}
-
             {% when 'accordion' %}
               <div class="product__accordion">
                 {% for item in accordionItems %}
