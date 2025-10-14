@@ -85,16 +85,16 @@
                   </h1>
                 {% endif %}
 
-                <div class="product__rating">
+                <div class="product__rating [&_svg_path]:fill-scheme_one">
                   {% render 'rating-stars'
                     , text: section.settings.review_numbers %}
-                {% comment %} 
-                                                                        <span class="junip-store-key" data-store-key="{{ shop.metafields.junip.store_key }}"></span> 
-                                                                        <span 
-                                                                        class="junip-product-summary" 
-                                                                        data-product-id="{{ product.id }}" 
+                {% comment %}
+                                                                        <span class="junip-store-key" data-store-key="{{ shop.metafields.junip.store_key }}"></span>
+                                                                        <span
+                                                                        class="junip-product-summary"
+                                                                        data-product-id="{{ product.id }}"
                                                                         data-product-rating-count="{{ product.metafields.junip.rating_count }}"
-                                                                        data-product-rating-average="{{ product.metafields.junip.rating_average }}"> </span> 
+                                                                        data-product-rating-average="{{ product.metafields.junip.rating_average }}"> </span>
                                                                 {% endcomment %}
                 </div>
               </div>
@@ -124,13 +124,13 @@
                         {{ block.settings.cta_label }}
                       </button>
                     {% endform %}
-                    {% comment %} 
-                                                                                        <span class="button" @click="addToCart(activeVariant.id)"> 
-                                                                                        {{ block.settings.cta_label }} 
-                                                                                        <span class="sale-price"> 
-                                                                                        {{ product.selected_or_first_available_variant.price | money }} 
+                    {% comment %}
+                                                                                        <span class="button" @click="addToCart(activeVariant.id)">
+                                                                                        {{ block.settings.cta_label }}
+                                                                                        <span class="sale-price">
+                                                                                        {{ product.selected_or_first_available_variant.price | money }}
                                                                                         </span>
-                                                                                        </span> 
+                                                                                        </span>
                                                                                 {% endcomment %}
                     <button
                       class="button js-add-to-cart w-full gap-[6px] capitalize"
@@ -234,7 +234,7 @@
                   <div class="product__tag flex items-center gap-2">Free shipping when added to subscription</div>
                 </div>
               {% endif %}
-            {% comment %} 
+            {% comment %}
                                                         {% if product.tags.size > 0 %}
                                                         <div class="product__tags flex flex-wrap gap-4 mb-4">
                                                         {% for tag in product.tags %}
@@ -243,7 +243,7 @@
                                                         </div>
                                                         {% endfor %}
                                                         </div>
-                                                        {% endif %} 
+                                                        {% endif %}
                                                 {% endcomment %}
             {% when 'variants' %}
               <div class="product__sizes" x-show="variants.length > 1">
@@ -347,7 +347,7 @@
                 {% endfor %}
               </div>
 
-            {% when 'add_on_product' %}        
+            {% when 'add_on_product' %}
               {% if block.settings.product != blank %}
                 {% assign add_on_product = block.settings.product %}
                 {% if product.id != add_on_product.id %}
@@ -376,7 +376,7 @@
                               {{ add_on_product.selected_or_first_available_variant.price | money }}
                             </p>
                           </div>
-                        
+
                           <div class="add-on-control cursor-pointer">
                             <input
                               type="checkbox"
@@ -445,13 +445,13 @@
             product: {{ productCurrent | json }},
             linkToShowSizeMOdal: false,
             showWeight: true,
-  
+
             addCheckedAddons() {
               const checkedAddons = document.querySelectorAll('.addonproduct:checked');
-              console.log(checkedAddons,"checkedAddons");  
+              console.log(checkedAddons,"checkedAddons");
               checkedAddons.forEach((addon) => {
                 const variantId = addon.getAttribute('data-variant-id');
-                 console.log(variantId,"variantId2");  
+                 console.log(variantId,"variantId2");
                 if (variantId) {
                   console.log('variantId',variantId);
                   Alpine.store('cart').addToCart({
@@ -461,7 +461,7 @@
                 }
               });
             },
-  
+
             updateSellingPlan(id) {
                 this.sellingPlan = this.activeVariant.selling_plan_allocations.find(item => item.id == id);
             },
@@ -471,7 +471,7 @@
               const simpleDiaperMatch = str.match(/Size (\d+)\s*\(([\d\+\-]+)\s*lbs\)/i);
               const simpleWipeMatch = str.match(/Size (\d+)\s*\((Packs?)\)/i);
               const justSizeMatch = str.match(/^(Size )?([a-zA-Z0-9]+)/i);
-  
+
               if (diaperMatch) {
                 return {
                   type: 'diaper',
@@ -535,38 +535,38 @@
                   const mainVariantTitle = this.activeVariant.title;
                   const regex = /Size\s(\d+)\s\(([\w-]+)\)\s-\s(\d+\s\w+)/;
                   const matches = mainVariantTitle.match(regex);
-   
+
                   if (matches) {
                     const size = matches[1];
                     const count = matches[3];
                     const currentSizeElement = document.querySelector('.current-size');
                     currentSizeElement.innerText = size;
-                    
+
                     const sizeDiv = document.createElement("div");
                     //sizeDiv.textContent = size + ' month supply';
                     sizeDiv.textContent = '1 month supply';
                     sizeDiv.classList.add("month-supply");
-  
+
                     const countDiv = document.createElement("div");
                     countDiv.textContent = count;
                     countDiv.classList.add("count-main");
-  
+
                     const variantTextMain = document.querySelector('.variant-text-main');
                     const oldCount = variantTextMain.querySelector('.count-main');
                     const oldSize = variantTextMain.querySelector('.month-supply');
-  
+
                     if (oldCount) oldCount.remove();
                     if (oldSize) oldSize.remove();
-  
+
                     variantTextMain.appendChild(countDiv);
                     variantTextMain.appendChild(sizeDiv);
-                    
+
                   }
-                  
-  
+
+
                   const addToCartBtn = document.querySelector(".js-add-to-cart");
                   addToCartBtn.setAttribute("data-variant-id", this.activeVariant.id);
-                  
+
                   console.log(this.activeVariant.id,"this.activeVariant.id");
 
                   if(document.querySelectorAll('.selling_plan_app_container .selling_plan_theme_integration').length > 0){
@@ -576,7 +576,7 @@
                     document.querySelector(`.selling_plan_app_container .selling_plan_theme_integration[data-variant-id="${this.activeVariant.id}"]`).classList.remove('hidden', 'has-hidden');
 
                     const variantPrice = document.querySelector(`.selling_plan_theme_integration:not(.has-hidden) [type="radio"]:checked`).dataset.variantPrice;
-                   
+
                     document.querySelector('.product__cta .sale-price').textContent = variantPrice;
 
                     if (document.querySelector('.current-variant-price')) {
@@ -595,34 +595,34 @@
                   const mainVariantTitle = this.activeVariant.title;
                   const regex = /Size\s(\d+)\s\(([\w-]+)\)\s-\s(\d+\s\w+)/;
                   const matches = mainVariantTitle.match(regex);
-   
+
                   if (matches) {
                     const size = matches[1];
                     const count = matches[3];
                     const currentSizeElement = document.querySelector('.current-size');
                     currentSizeElement.innerText = size;
-                    
+
                     const sizeDiv = document.createElement("div");
                     sizeDiv.textContent = size + ' month supply';
                     sizeDiv.classList.add("month-supply");
-  
+
                     const countDiv = document.createElement("div");
                     countDiv.textContent = count;
                     countDiv.classList.add("count-main");
-  
+
                     const variantTextMain = document.querySelector('.variant-text-main');
                     const oldCount = variantTextMain.querySelector('.count-main');
                     const oldSize = variantTextMain.querySelector('.month-supply');
-  
+
                     if (oldCount) oldCount.remove();
                     if (oldSize) oldSize.remove();
-  
+
                     variantTextMain.appendChild(countDiv);
-                    variantTextMain.appendChild(sizeDiv);                    
+                    variantTextMain.appendChild(sizeDiv);
                   }
                   // this.slideToSlideByDataAttribute(this.activeVariant.id);
               }
-              
+
               function formatMoney(cents, format, currencySymbol = '$') {
                   cents = Number(cents);
                   let value = (cents / 100).toFixed(2);
@@ -633,7 +633,7 @@
               if(activeVariantPrice && addToCartPrice){
                 addToCartPrice.innerHTML = activeVariantPrice;
               }
-  
+
               if (this.templateName === 'product-bambootek') {
                 const defaultPlan = this.activeVariant?.selling_plan_allocations?.[0];
                 if (defaultPlan) {
@@ -693,7 +693,7 @@
                     const [sizePart, colorPart] = line.split(' - ');
                     const size = sizePart.trim();
                     const [accentTop, accentBottom] = colorPart.split('|').map(c => `#${c.trim()}`);
-  
+
                     return {
                       size,
                       accentTop,
@@ -701,7 +701,7 @@
                     };
                   });
             },
-  
+
             setupVariants() {
               console.log('this.variants', this.variants);
               if (this.templateName === 'product') {
@@ -711,38 +711,38 @@
                   variant.diapersQty = '345';
                   variant.wipesQty = '567';
                   variant.type = '789';
-                  
+
                   const mainVariantTitle = variant.title;
                   const regex = /Size\s(\d+)\s\(([\w-]+)\)\s-\s(\d+\s\w+)/;
                   const matches = mainVariantTitle.match(regex);
-  
+
                   if (matches) {
                       const size = matches[1];
                       const weight = matches[2];
                       const count = matches[3];
-                      
+
                       const mainDiv = document.createElement("div");
                       mainDiv.classList.add("main-div");
-  
+
                       const sizeDiv = document.createElement("div");
                       sizeDiv.textContent = size;
                       sizeDiv.classList.add("size-div");
-  
+
                       const weightDiv = document.createElement("div");
                       weightDiv.textContent = weight;
                       weightDiv.classList.add("weight-div");
-  
+
                       const countDiv = document.createElement("div");
                       countDiv.textContent = count;
                       countDiv.classList.add("count-div");
-  
+
                       mainDiv.appendChild(sizeDiv);
                       mainDiv.appendChild(weightDiv);
                       mainDiv.appendChild(countDiv);
-                     
-                      variant.size = mainDiv.outerHTML;      
-                  } 
-                
+
+                      variant.size = mainDiv.outerHTML;
+                  }
+
                   variant.accentTop = this.sizesAccentColors.find(item => item.size == variant.size)?.accentTop;
                   variant.accentBottom = this.sizesAccentColors.find(item => item.size == variant.size)?.accentBottom;
                 });
@@ -828,15 +828,15 @@
                 console.log("No slides found");
               }
             },
-  
+
             init() {
                 this.linkToShowSizeMOdal = document.querySelector('.product__accordion-content p em');
                 this.extraProductId = Number(this.$root.dataset.extraProduct);
                 this.extraProductQty = Number(this.$root.dataset.extraProductQty || 1);
                 this.paginationSlides = this.$refs.mainSwiperPagination.querySelectorAll('.swiper-slide');
-  
+
                 console.log('Show weight setting:', this.showWeight);
-  
+
                 this.parseSizeColors(this.sizesAccentColorsString);
                 this.setupVariants();
                 this.loading = true;
@@ -853,7 +853,7 @@
                 // console.log('product.variants', this.product.variants);
                 // console.log('this.variants', this.variants);
                 // console.log('this.templateName', this.templateName);
-  
+
                 // Only add event listener if the element exists
                 if (this.linkToShowSizeMOdal) {
                   this.linkToShowSizeMOdal.addEventListener('click', (e) => {
@@ -868,12 +868,12 @@
             }
         }))
     })
-  
+
     document.addEventListener("DOMContentLoaded", () => {
   const btn = document.querySelector(".sizeChartBtn");
   const modal = document.querySelector(".sizeChartModal");
   const close = document.querySelector(".closeSizeChart");
-  
+
   if (btn && modal && close) {
     btn.addEventListener("click", () => {
       modal.classList.remove("hidden");
@@ -896,10 +896,10 @@
     const planPrice = parseFloat(checkbox.dataset.planPrice.replace(/[^0-9.]/g, "")) || 0;
     const priceElement = document.querySelector(".product__cta .sale-price");
     if (checkbox.checked) {
-      const newPrice = addonPrice + planPrice;  
+      const newPrice = addonPrice + planPrice;
       priceElement.textContent = `$${newPrice.toFixed(2)}`;
     } else {
-      const newPrice = planPrice;  
+      const newPrice = planPrice;
       priceElement.textContent = `$${newPrice.toFixed(2)}`;
     }
   }
