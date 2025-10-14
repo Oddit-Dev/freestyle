@@ -166,6 +166,18 @@ class CartDrawer extends HTMLElement {
       }
     });
 
+    const cartDrawerBody = document.getElementById("CartDrawerBody");
+    const shippingText = document.querySelector(".cart-drawer-shipping-text");
+
+    if (cartDrawerBody && shippingText) {
+      const threshold = parseFloat(cartDrawerBody.dataset.freeShippingThreshold);
+
+      if (threshold === 100) {
+        shippingText.classList.remove("hidden");
+      }else{
+        shippingText.classList.add("hidden");
+      }
+    }
 
     const footer = this.querySelector('.cart-drawer__footer');
     if (footer) {

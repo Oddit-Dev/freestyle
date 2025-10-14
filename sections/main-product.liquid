@@ -25,21 +25,22 @@
           {% render 'product-gallery'
             , product: product %}
         </div>
-        <div class="custom-pdp-store-locater-desktop">
-        <div class="custom-pdp-store-locater">
-          {% assign walmartlogo = section.settings.store_main_logo %}
-          {% assign storetitle = section.settings.store_main_heading %}
-          {% assign storesubtitle = section.settings.store_sub_heading %}
-          {% assign rightlogo = section.settings.store_right_logo %}
-          {% render 'c-store-locator',title: storetitle,
- text: storesubtitle
-            ,
- walmartlogo: walmartlogo
-            ,
- rightlogo: rightlogo
-          %}
-        </div>
-        </div>
+        {% if section.settings.show_store_locator %}
+          <div class="custom-pdp-store-locater-desktop">
+          <div class="custom-pdp-store-locater">
+            {% assign walmartlogo = section.settings.store_main_logo %}
+            {% assign storetitle = section.settings.store_main_heading %}
+            {% assign storesubtitle = section.settings.store_sub_heading %}
+            {% assign rightlogo = section.settings.store_right_logo %}
+            {% render 'c-store-locator',
+              title: storetitle,
+              text: storesubtitle,
+              walmartlogo: walmartlogo,
+              rightlogo: rightlogo
+            %}
+          </div>
+          </div>
+        {% endif %}
       </div>
 
       <div class="product__content lg:!pl-[50px] md:!pl-[30px]">
@@ -949,6 +950,12 @@
       {
         "type": "header",
         "content": "Store Locator Detail"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_store_locator",
+        "label": "Show Store Locator",
+        "default": true
       },
       {
         "type": "image_picker",
