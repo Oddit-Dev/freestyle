@@ -1,4 +1,4 @@
-<section class="grid items-center py-12 md:py-16 lg:py-20">
+<section class="four-main-section grid items-center py-12 md:py-16 lg:py-20" style="display: none;">
   <div class="container px-4 mx-auto flex flex-col items-start gap-4 md:gap-5">
     <h1 class="max-w-xl scroll-m-20 text-4xl font-medium tracking-tight lg:text-5xl">
       {{ section.settings.heading }}
@@ -17,11 +17,14 @@
 </section>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    if (window.location.href === 'https://freestyle.world/cart') {
-        window.location.href = 'https://freestyle.world';
-    }
-});
+  if (window.location.href === 'https://freestyle.world/cart') {
+    window.location.href = 'https://freestyle.world';
+  }
+  document.addEventListener('DOMContentLoaded', function () {
+    setTimeout(() => {
+      document.querySelector('.four-main-section').style.display = 'block';
+    }, 1500);
+  });
 </script>
 
 {% schema %}

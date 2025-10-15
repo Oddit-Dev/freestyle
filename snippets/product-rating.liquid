@@ -1,0 +1,14 @@
+{% comment %} <span class="junip-store-key" data-store-key="{{ shop.metafields.junip.store_key }}"></span> {% endcomment %}
+<div class="product-rating-main">
+  <span
+    class="junip-product-summary"
+    data-product-id="{{ product.id }}"
+    data-product-rating-count="{{ product.metafields.junip.rating_count }}"
+    data-product-rating-average="{{ product.metafields.junip.rating_average | slice: 0, 3 }}">
+  </span>
+  {{ product.metafields.junip.rating_average | slice: 0, 3 }} based on
+  <span>
+    {{- product.metafields.junip.rating_count }}+
+    {{ product.metafields.junip.rating_count | pluralize: 'Review', 'Reviews' -}}
+  </span>
+</div>
