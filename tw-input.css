@@ -444,4 +444,40 @@ h2,
   display: none;
 }
 
-@media screen and (max-width: 749px) {}
+.product-rating-main {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+    font-size: 14px;
+    line-height: 16px;
+    font-family: GroteskNeue, system-ui;
+    font-weight: 400;
+}
+.product-rating-main .junip-product-summary-review-count {
+    display: none;
+}
+.product-rating-main .junip-product-summary-star {
+    padding: 0 2px 0 0;
+    width: 13px;
+    height: 13px;
+    margin: 0;
+}
+.product-rating-main span:last-child {
+    text-decoration: underline;
+}
+.product-rating-main .junip-product-summary {
+    margin-right: 3px;
+    position: relative;
+    left: 0;
+    top: -2px;
+}
+.product-rating-main .junip-product-summary-star svg{
+  width: 100% !important;
+  height: 100% !important;
+}
+.product-rating-main .junip-product-summary-stars-wrapper{
+  display: flex;
+}
+
+
