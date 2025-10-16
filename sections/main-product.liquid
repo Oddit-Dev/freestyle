@@ -239,7 +239,7 @@
                     <span class="current-size text-[#7A7A7A]"></span>
                   </h4>
                   {% if product.metafields.custom.size_chart != blank %}
-                    <div class="sizeChartBtn font-grotesk font-medium text-[16px] leading-[1.5] underline text-scheme_one cursor-pointer">
+                    <div class="sizeChartBtn font-grotesk font-medium text-[16px] leading-[1.5] underline text-scheme_one cursor-pointer mb-[14px]">
                       Size Chart
                     </div>
 
@@ -272,10 +272,13 @@
                       <div class="product__size-content" :data-percent-off="item.compare_at_price > item.price ? percentOff(item.price, item.compare_at_price) : null">
                         <div class="product__size-info" :style="{ backgroundColor: item.id === activeVariant.id ? item.accentTop : 'transparent' }">
                           <div
-                            class="product__size-title"
+                            class="product__size-title flex gap-x-[8px]"
                             x-show="item.size"
                             x-text="item.size"
-                            x-html="item.size.includes(' / ') ? item.size.split(' / ').reverse().map(s => `<span class='option-item'>${s}</span>`).join('') : item.size"></div>
+                           x-html="item.size.includes(' / ') 
+                            ? item.size.split(' / ').reverse().map(s => `<span class='option-item'>${s}</span>`).join('') 
+                            : `<span class='single-option-item block w-full'>${item.size}</span>`"
+                          ></div>
                           <div
                             class="product__size-title m-small"
                             x-show="!item.size && item.title"
@@ -512,7 +515,6 @@
                 {% endfor %}
             ],
            updateActiveVariant(id) {
-            console.log("id--------------", id)
             if (id) {
                   this.activeVariant = this.variants.find(item => item.id == id);
                   console.log('Updated active variant:', this.activeVariant);
@@ -551,11 +553,8 @@
                   const addToCartBtn = document.querySelector(".js-add-to-cart");
                   addToCartBtn.setAttribute("data-variant-id", this.activeVariant.id);
 
-                  console.log(this.activeVariant.id,"this.activeVariant.id");
-
                   function updateSelectedSize() {
                   const checkedInput = document.querySelector('input[name="size"]:checked');
-                  console.log('asssaa');
                   
                   if (!checkedInput) return;
 
@@ -929,7 +928,7 @@
       const sizeTitle = label.querySelector('.product__size-title');
       if (!sizeTitle) return;
 
-      const firstSpan = sizeTitle.querySelector('span.option-item');
+      const firstSpan = sizeTitle.querySelector('span.option-item') || sizeTitle;
       if (!firstSpan) return;
 
       const variantTitle = document.querySelector('.product__sizes .product__sizes-title');
