@@ -68,6 +68,14 @@ h2,
   @apply flex items-center flex-wrap px-[40px] py-[6px] text-center justify-center;
 }
 
+.button-white {
+  @apply !bg-white !text-scheme_one;
+  transition: all .3s;
+}
+.button-white:hover {
+  @apply !text-white !bg-scheme_one !border-white
+}
+
 .button svg {
   @apply w-[20px] h-auto block mx-[4px]
 }
