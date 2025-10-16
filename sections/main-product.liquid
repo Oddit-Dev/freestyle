@@ -275,10 +275,10 @@
                             class="product__size-title flex gap-x-[8px]"
                             x-show="item.size"
                             x-text="item.size"
-                           x-html="item.size.includes(' / ') 
+                            x-html="item.size.includes(' / ') 
                             ? item.size.split(' / ').reverse().map(s => `<span class='option-item'>${s}</span>`).join('') 
-                            : `<span class='single-option-item block w-full'>${item.size}</span>`"
-                          ></div>
+                            : `<span class='single-option-item block w-full'>${item.size}</span>`">
+</div>
                           <div
                             class="product__size-title m-small"
                             x-show="!item.size && item.title"
@@ -526,7 +526,9 @@
                     const size = matches[1];
                     const count = matches[3];
                     const currentSizeElement = document.querySelector('.current-size');
-                    currentSizeElement.innerText = size;
+                    if(currentSizeElement){
+                      currentSizeElement.innerText = size;
+                    }
 
                     const sizeDiv = document.createElement("div");
                     //sizeDiv.textContent = size + ' month supply';
@@ -554,23 +556,23 @@
                   addToCartBtn.setAttribute("data-variant-id", this.activeVariant.id);
 
                   function updateSelectedSize() {
-                  const checkedInput = document.querySelector('input[name="size"]:checked');
-                  
-                  if (!checkedInput) return;
+                    const checkedInput = document.querySelector('input[name="size"]:checked');
+                    
+                    if (!checkedInput) return;
 
-                  const label = checkedInput.closest('label.product__size');
-                  if (!label) return;
+                    const label = checkedInput.closest('label.product__size');
+                    if (!label) return;
 
-                  const sizeTitle = label.querySelector('.product__size-title');
-                  if (!sizeTitle) return;
+                    const sizeTitle = label.querySelector('.product__size-title');
+                    if (!sizeTitle) return;
 
-                  const firstSpan = sizeTitle.querySelector('span.option-item') || sizeTitle;
-                  if (!firstSpan) return;
+                    const firstSpan = sizeTitle.querySelector('span.option-item') || sizeTitle;
+                    if (!firstSpan || sizeTitle.querySelector('.main-div')) return;
 
-                  const variantTitle = document.querySelector('.product__sizes .product__sizes-title');
-                  if (variantTitle) {
-                    variantTitle.textContent ='Select ' + window.optionsName + ' : ' + firstSpan.textContent;
-                  }
+                    const variantTitle = document.querySelector('.product__sizes .product__sizes-title');
+                    if (variantTitle) {
+                      variantTitle.textContent ='Select ' + window.optionsName + ' : ' + firstSpan.textContent;
+                    }
                   }
 
                   const sizeRadios = document.querySelectorAll('input[name="size"]');
@@ -611,7 +613,9 @@
                     const size = matches[1];
                     const count = matches[3];
                     const currentSizeElement = document.querySelector('.current-size');
-                    currentSizeElement.innerText = size;
+                    if(currentSizeElement){
+                      currentSizeElement.innerText = size;
+                    }
 
                     const sizeDiv = document.createElement("div");
                     sizeDiv.textContent = size + ' month supply';
@@ -918,32 +922,9 @@
   }
   });
   document.addEventListener("DOMContentLoaded", () => {
-    function updateSelectedSize() {
-      const checkedInput = document.querySelector('input[name="size"]:checked');
-      if (!checkedInput) return;
-
-      const label = checkedInput.closest('label.product__size');
-      if (!label) return;
-
-      const sizeTitle = label.querySelector('.product__size-title');
-      if (!sizeTitle) return;
-
-      const firstSpan = sizeTitle.querySelector('span.option-item') || sizeTitle;
-      if (!firstSpan) return;
-
-      const variantTitle = document.querySelector('.product__sizes .product__sizes-title');
-      if (variantTitle) {
-        variantTitle.textContent = 'Select ' +  window.optionsName + ' : ' + firstSpan.textContent;
-      }
-      }
-
-      const sizeRadios = document.querySelectorAll('input[name="size"]');
-      sizeRadios.forEach(radio => {
-      radio.addEventListener('change', updateSelectedSize);
-      });
-
-      updateSelectedSize();
-
+    if(document.querySelector('.product__content input:checked')){
+      document.querySelector('.product__content input:checked').dispatchEvent(new Event('change'));
+    }
   });
 </script>
 <style></style>
