@@ -1,5 +1,8 @@
 {{ 'cart-drawer.css' | asset_url | stylesheet_tag }}
-<cart-drawer id="CartDrawer" class="cart-drawer" data-id="{{ section.id }}">
+<cart-drawer
+  id="CartDrawer"
+  class="cart-drawer"
+  data-id="{{ section.id }}">
   <div class="cart-drawer__content flex flex-col ">
     <div class="cart-drawer__loader hidden" id="CartDrawerLoader">
       <div class="spinner"></div>
@@ -9,9 +12,19 @@
         Your Cart (<span id="CartCount">{{ cart.item_count }}</span>)
       </h2>
       <button class="cart-drawer__close w-[24px] min-w-[24px] h-[24px] flex items-center justify-center ">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M6 18.5L12.5 12L6 18.5ZM19 5.5L12.4988 12L19 5.5ZM12.4988 12L6 5.5L12.4988 12ZM12.5 12L19 18.5L12.5 12Z" fill="black"/>
-          <path d="M6 18.5L12.5 12L19 18.5M19 5.5L12.4988 12L6 5.5" stroke="black" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none">
+          <path d="M6 18.5L12.5 12L6 18.5ZM19 5.5L12.4988 12L19 5.5ZM12.4988 12L6 5.5L12.4988 12ZM12.5 12L19 18.5L12.5 12Z" fill="black" />
+          <path
+            d="M6 18.5L12.5 12L19 18.5M19 5.5L12.4988 12L6 5.5"
+            stroke="black"
+            stroke-width="1.4"
+            stroke-linecap="round"
+            stroke-linejoin="round" />
         </svg>
       </button>
 
@@ -23,12 +36,17 @@
       {% endif %}
     </header>
 
-    <div class="cart-drawer__body flex-1 flex flex-col" id="CartDrawerBody" data-cart-total="{{ cart_total }}" data-free-shipping-threshold="{{ progress }}">
+    <div
+      class="cart-drawer__body flex-1 flex flex-col"
+      id="CartDrawerBody"
+      data-cart-total="{{ cart_total }}"
+      data-free-shipping-threshold="{{ progress }}">
       {% if cart.item_count != 0 %}
         <div class="cart-drawer__progress bg-[#F1F2F5] p-[18px_16px_16px]">
           {% if cart_total >= free_shipping_threshold %}
             <p class="progress-message font-grotesk font-normal text-[13px] leading-[1.6] text-center text-black mb-[12px]">
-              Congrats! You’ve unlocked <strong class="font-medium">FREE shipping!</strong>
+              Congrats! You’ve unlocked
+              <strong class="font-medium">FREE shipping!</strong>
             </p>
           {% else %}
             <p class="progress-message font-grotesk font-normal text-[13px] leading-[1.6] text-center text-black mb-[12px]">
@@ -59,11 +77,11 @@
               {% assign pro_feature_image = section.settings.product_feature_image %}
               {% if pro_feature_image != blank %}
                 <div class="product-feature-image mt-[-71px] w-[160px] h-[160px] mx-auto mb-[10px] flex items-center justify-center">
-                  {% render 'image-element',
-                    image: pro_feature_image,
-                    widths: '100, 200, 300, 375, 550, 750, 1100, 1500, 1780',
-                    sizes: '(max-width: 989px) 100vw, 45vw',
-                    class: 'product-feature-image max-w-full max-h-full h-auto object-contain'
+                  {% render 'image-element'
+                    , image: pro_feature_image
+                    , widths: '100, 200, 300, 375, 550, 750, 1100, 1500, 1780'
+                    , sizes: '(max-width: 989px) 100vw, 45vw'
+                    , class: 'product-feature-image max-w-full max-h-full h-auto object-contain'
                   %}
                 </div>
               {% endif %}
@@ -80,15 +98,12 @@
                     {{ section.settings.product_feature_content }}
                   </span>
                 {% endif %}
-                {% if section.settings.product_feature_btn_url != blank
-                  and section.settings.product_feature_btn_txt != blank
+                {% if section.settings.product_feature_btn_url != blank and section.settings.product_feature_btn_txt != blank
                 %}
                   <div class="mt-[12px]">
                     {% assign heart_svg = 'icon-heart.svg' | inline_asset_content %}
                     {% assign main_btn = section.settings.product_feature_btn_txt | replace: '$heart', heart_svg %}
-                    <a
-                      href="{{ section.settings.product_feature_btn_url }}"
-                      class="button button-primary !max-w-[390px] w-full max-md:mx-auto !px-[20px]">
+                    <a href="{{ section.settings.product_feature_btn_url }}" class="button button-primary !max-w-[390px] w-full max-md:mx-auto !px-[20px]">
                       {{ main_btn }}
                     </a>
                   </div>
@@ -108,7 +123,7 @@
           </div>
         </div>
       {% else %}
-        {% capture product_ids %}{% endcapture %}        
+        {% capture product_ids %}{% endcapture %}
         {% for item in cart.items %}
           <div class="cart-drawer__item p-[20px_16px] flex gap-[16px]" data-key="{{ item.key }}">
             <span class="w-[80px] min-w-[80px] h-[80px] flex items-center justify-center">
@@ -118,7 +133,7 @@
                 class="object-contain max-h-full">
             </span>
             <div class="cart-drawer__details w-full">
-              <a  href="{{ item.product.url }}" class="cart-drawer__title font-grotesk font-medium text-[16px] leading-[1.2] tracking-[0.05em] text-scheme_two !mb-[8px] block">
+              <a href="{{ item.product.url }}" class="cart-drawer__title font-grotesk font-medium text-[16px] leading-[1.2] tracking-[0.05em] text-scheme_two !mb-[8px] block">
                 {{ item.product.title }}
               </a>
 
@@ -138,8 +153,10 @@
 
                   <p class="cart-drawer__variant font-grotesk font-normal text-[13px] leading-[1] text-[#707070] mb-[10px] [&_span]:px-[6px] [&_span]:text-[#E3E3E3]">
                     {{ size }}
-                    <span>|</span> {{ weight }}
-                    <span>|</span> {{ diapers }}
+                    <span>|</span>
+                    {{ weight }}
+                    <span>|</span>
+                    {{ diapers }}
                   </p>
 
                 {% else %}
@@ -149,21 +166,20 @@
                 {% endif %}
               {% endif %}
               {% if item.selling_plan_allocation.selling_plan.name != blank %}
-              <p class="product-selling-plan font-grotesk font-normal text-[13px] leading-[1] text-[#707070] mb-[10px]">
-                {{ item.selling_plan_allocation.selling_plan.name }} 
-              </p>
+                <p class="product-selling-plan font-grotesk font-normal text-[13px] leading-[1] text-[#707070] mb-[10px]">
+                  {{ item.selling_plan_allocation.selling_plan.name }}
+                </p>
               {% endif %}
               {% assign price = item.final_line_price %}
               {% assign compare_at = item.original_line_price %}
-              
+
               <p class="cart-drawer__price flex items-center gap-[4px] font-Inter font-medium text-[15px] leading-[1] text-[#212121] mb-[16px]">
                 {{ price | money }}
                 {% if compare_at > price %}
                   <span class="compare-price text-[#909090]">{{ compare_at | money }}</span>
                   {% assign discount = compare_at | minus: price | times: 100 | divided_by: compare_at %}
                   <span class="discount-badge bg-[#82E8D3] p-[3px_8px] rounded-[24px] font-grotesk font-bold text-[11px] leading-[1.2] tracking-[-0.05em] uppercase text-black">
-                    {{- discount }}% OFF</span
-                  >
+                    {{- discount }}% OFF</span>
                 {% endif %}
               </p>
 
@@ -187,7 +203,9 @@
               </div>
 
               <div class="subscription-main">
-                {% render 'subscription-form', item: item, forloop: forloop %}
+                {% render 'subscription-form'
+                  , item: item
+                  , forloop: forloop %}
               </div>
             </div>
           </div>
@@ -197,48 +215,50 @@
         {% endfor %}
       {% endif %}
 
-      {% unless product_ids contains section.settings.custom_upsell_product.id %}
-        <div class="custom-upsell-products border-0 border-t border-solid border-[#E3E3E3] p-[30px_16px]">
-          {% if section.settings.custom_upsell_product != blank %}
-            {% assign add_on_product = section.settings.custom_upsell_product %}
-            <div class="custom-upsell flex flex-col gap-[10px]">
-              {% if section.settings.custom_upsell_heading != blank %}
-                <h4 class="heading font-grotesk font-medium text-[18px] leading-[1.5] tracking-none text-black">
-                  {{ section.settings.custom_upsell_heading }}
-                </h4>
-              {% endif %}
-              <label
-                for="custom-drawer-upsell"
-                class="add-on-label p-[20px_14px] rounded-[12px] border border-solid border-[#E3E3E3]">
-                <div class="flex-add-on-details flex items-center gap-[18px]">
-                  <div class="cdp-img w-[70px] min-w-[70px] h-[70px] flex items-center justify-center">
-                    <img
-                      src="{{ add_on_product.featured_image |  image_url: width: 32 }}"
-                      width="32"
-                      height="24"
-                      class="max-w-full max-h-full object-contain"
-                      alt="{{ add_on_product.title }}"
-                      loading="lazy">
-                  </div>
-                  <div class="add-on-text w-full flex items-center gap-[18px] justify-between">
-                    <div class="flex flex-col gap-[4px]">
-                      <span class="title font-grotesk font-normal text-[13px] leading-[1.6] text-black">
-                        {{- add_on_product.title -}}
-                      </span>
-                      <p class="price font-grotesk font-medium text-[15px] leading-[1.6] text-black">
-                        {{ add_on_product.selected_or_first_available_variant.price | money }}
-                      </p>
+      {% if cart != empty %}
+        {% unless product_ids contains section.settings.custom_upsell_product.id %}
+          <div class="custom-upsell-products border-0 border-t border-solid border-[#E3E3E3] p-[30px_16px]">
+            {% if section.settings.custom_upsell_product != blank %}
+              {% assign add_on_product = section.settings.custom_upsell_product %}
+              <div class="custom-upsell flex flex-col gap-[10px]">
+                {% if section.settings.custom_upsell_heading != blank %}
+                  <h4 class="heading font-grotesk font-medium text-[18px] leading-[1.5] tracking-none text-black">
+                    {{ section.settings.custom_upsell_heading }}
+                  </h4>
+                {% endif %}
+                <label for="custom-drawer-upsell" class="add-on-label p-[20px_14px] rounded-[12px] border border-solid border-[#E3E3E3]">
+                  <div class="flex-add-on-details flex items-center gap-[18px]">
+                    <div class="cdp-img w-[70px] min-w-[70px] h-[70px] flex items-center justify-center">
+                      <img
+                        src="{{ add_on_product.featured_image |  image_url: width: 32 }}"
+                        width="32"
+                        height="24"
+                        class="max-w-full max-h-full object-contain"
+                        alt="{{ add_on_product.title }}"
+                        loading="lazy">
                     </div>
-                    
-                    <add-variant-checkbox
-                      data-id="{{ add_on_product.selected_or_first_available_variant.id }}" data-selling-plan-id="{{ add_on_product.selected_or_first_available_variant.selling_plan_allocations.first.selling_plan.id }}" data-onetime-purchase="{% if section.settings.enable_onetime_purchase %}{{ section.settings.enable_onetime_purchase }}{% else %}false{% endif %}"></add-variant-checkbox>
+                    <div class="add-on-text w-full flex items-center gap-[18px] justify-between">
+                      <div class="flex flex-col gap-[4px]">
+                        <span class="title font-grotesk font-normal text-[13px] leading-[1.6] text-black">
+                          {{- add_on_product.title -}}
+                        </span>
+                        <p class="price font-grotesk font-medium text-[15px] leading-[1.6] text-black">
+                          {{ add_on_product.selected_or_first_available_variant.price | money }}
+                        </p>
+                      </div>
+
+                      <add-variant-checkbox
+                        data-id="{{ add_on_product.selected_or_first_available_variant.id }}"
+                        data-selling-plan-id="{{ add_on_product.selected_or_first_available_variant.selling_plan_allocations.first.selling_plan.id }}"
+                        data-onetime-purchase="{% if section.settings.enable_onetime_purchase %}{{ section.settings.enable_onetime_purchase }}{% else %}false{% endif %}"></add-variant-checkbox>
+                    </div>
                   </div>
-                </div>
-              </label>
-            </div>
-          {% endif %}
-        </div>
-      {% endunless %}
+                </label>
+              </div>
+            {% endif %}
+          </div>
+        {% endunless %}
+      {% endif %}
     </div>
     <footer class="cart-drawer__footer hidden p-[20px_16px_25px] border-0 border-t border-solid border-[#E3E3E3]">
       <div class="cart-drawer-addon">
@@ -309,144 +329,120 @@
 </cart-drawer>
 <div class="cart-drawer__overlay"></div>
 {% schema %}
-{
-  "name": "Cart Drawer",
-  "settings": [
-    {
-      "type": "header",
-      "content": "Empty Cart"
-    },
-    {
-      "type": "text",
-      "id": "empty_cart_title",
-      "label": "Empty Cart Heading"
-    },
-    {
-      "type": "richtext",
-      "id": "empty_cart_content",
-      "label": "Sub Content"
-    },
-    {
-      "type": "header",
-      "content": "Product Featured"
-    },
-    {
-      "type": "image_picker",
-      "id": "product_feature_image",
-      "label": "Choose Image"
-    },
-    {
-      "type": "richtext",
-      "id": "product_feature_title",
-      "label": "Heading"
-    },
-    {
-      "type": "richtext",
-      "id": "product_feature_content",
-      "label": "Content"
-    },
-    {
-      "type": "text",
-      "id": "product_feature_btn_txt",
-      "label": "Button Text"
-    },
-    {
-      "type": "url",
-      "id": "product_feature_btn_url",
-      "label": "URL"
-    },
-    {
-      "type": "header",
-      "content": "Subscription Product"
-    },
-    {
-      "type": "text",
-      "id": "subscription_button_label",
-      "label": "Subscription Button Label"
-    },
-    {
-      "type": "header",
-      "content": "Button Content"
-    },
-    {
-      "type": "richtext",
-      "id": "empty_btm_walmart",
-      "label": "Content"
-    },
-    {
-      "type": "header",
-      "content": "Free shipping content"
-    },
-    {
-      "type": "number",
-      "id": "free_shipping_threshold",
-      "label": "Free shipping threshold",
-      "default": 150
-    },
-    {
-      "type": "richtext",
-      "id": "free_shipping_text",
-      "label": "Free shipping text",
-      "default": "<p>Free Shipping on Orders Over $150</p>"
-    },
-    {
-      "type": "header",
-      "content": "Cart note"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_note",
-      "label": "Enable note"
-    },
-    {
-      "type": "text",
-      "id": "note_heading",
-      "label": "Note title",
-      "default": "Add gift message or order note"
-    },
-    {
-      "type": "header",
-      "content": "Addon Product"
-    },
-    {
-      "type": "product",
-      "id": "addon_product",
-      "label": "Select Product"
-    },
-    {
-      "type": "image_picker",
-      "id": "addon_image",
-      "label": "Addon Product Image"
-    },
-    {
-      "type": "text",
-      "id": "addon_title",
-      "label": "Addon Product Title"
-    },
-    {
-      "type": "richtext",
-      "id": "addon_info",
-      "label": "Addon Product Info"
-    },
-    {
-      "type": "header",
-      "content": "Addon with Checkbox"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_onetime_purchase",
-      "label": "Enable Onetime Purchase"
-    },
-    {
-      "type": "text",
-      "id": "custom_upsell_heading",
-      "label": "Upsell Heading"
-    },
-    {
-      "type": "product",
-      "id": "custom_upsell_product",
-      "label": "Choose Product"
-    }
-  ]
-}
+  {
+    "name": "Cart Drawer",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Empty Cart"
+      },
+      {
+        "type": "text",
+        "id": "empty_cart_title",
+        "label": "Empty Cart Heading"
+      },
+      {
+        "type": "richtext",
+        "id": "empty_cart_content",
+        "label": "Sub Content"
+      },
+      {
+        "type": "header",
+        "content": "Product Featured"
+      }, {
+        "type": "image_picker",
+        "id": "product_feature_image",
+        "label": "Choose Image"
+      }, {
+        "type": "richtext",
+        "id": "product_feature_title",
+        "label": "Heading"
+      }, {
+        "type": "richtext",
+        "id": "product_feature_content",
+        "label": "Content"
+      }, {
+        "type": "text",
+        "id": "product_feature_btn_txt",
+        "label": "Button Text"
+      }, {
+        "type": "url",
+        "id": "product_feature_btn_url",
+        "label": "URL"
+      }, {
+        "type": "header",
+        "content": "Subscription Product"
+      }, {
+        "type": "text",
+        "id": "subscription_button_label",
+        "label": "Subscription Button Label"
+      }, {
+        "type": "header",
+        "content": "Button Content"
+      }, {
+        "type": "richtext",
+        "id": "empty_btm_walmart",
+        "label": "Content"
+      }, {
+        "type": "header",
+        "content": "Free shipping content"
+      }, {
+        "type": "number",
+        "id": "free_shipping_threshold",
+        "label": "Free shipping threshold",
+        "default": 150
+      }, {
+        "type": "richtext",
+        "id": "free_shipping_text",
+        "label": "Free shipping text",
+        "default": "<p>Free Shipping on Orders Over $150</p>"
+      }, {
+        "type": "header",
+        "content": "Cart note"
+      }, {
+        "type": "checkbox",
+        "id": "enable_note",
+        "label": "Enable note"
+      }, {
+        "type": "text",
+        "id": "note_heading",
+        "label": "Note title",
+        "default": "Add gift message or order note"
+      }, {
+        "type": "header",
+        "content": "Addon Product"
+      }, {
+        "type": "product",
+        "id": "addon_product",
+        "label": "Select Product"
+      }, {
+        "type": "image_picker",
+        "id": "addon_image",
+        "label": "Addon Product Image"
+      }, {
+        "type": "text",
+        "id": "addon_title",
+        "label": "Addon Product Title"
+      }, {
+        "type": "richtext",
+        "id": "addon_info",
+        "label": "Addon Product Info"
+      }, {
+        "type": "header",
+        "content": "Addon with Checkbox"
+      }, {
+        "type": "checkbox",
+        "id": "enable_onetime_purchase",
+        "label": "Enable Onetime Purchase"
+      }, {
+        "type": "text",
+        "id": "custom_upsell_heading",
+        "label": "Upsell Heading"
+      }, {
+        "type": "product",
+        "id": "custom_upsell_product",
+        "label": "Choose Product"
+      }
+    ]
+  }
 {% endschema %}
