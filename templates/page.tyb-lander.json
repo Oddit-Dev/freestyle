@@ -56,7 +56,7 @@
         "padding_desktop": 40,
         "padding_mobile": 20,
         "banner_text_width": "760",
-        "banner_height_desktop": "500",
+        "banner_height_desktop": "400",
         "banner_height_mobile": "450"
       }
     },
