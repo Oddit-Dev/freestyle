@@ -72,45 +72,80 @@
               {{- section.settings.empty_cart_content -}}
             </span>
           {% endif %}
-          <div class="custom-product-feature mt-[22px] p-[85px_0_80px]">
-            <div class="product-feature-main bg-[#DADAFF] rounded-[16px] p-[0_20px_24px] flex flex-col">
-              {% assign pro_feature_image = section.settings.product_feature_image %}
-              {% if pro_feature_image != blank %}
-                <div class="product-feature-image mt-[-71px] w-[160px] h-[160px] mx-auto mb-[10px] flex items-center justify-center">
-                  {% render 'image-element'
-                    , image: pro_feature_image
-                    , widths: '100, 200, 300, 375, 550, 750, 1100, 1500, 1780'
-                    , sizes: '(max-width: 989px) 100vw, 45vw'
-                    , class: 'product-feature-image max-w-full max-h-full h-auto object-contain'
-                  %}
-                </div>
-              {% endif %}
-              <div class="product-feature-content">
-                {% if section.settings.product_feature_title != blank %}
-                  {% assign heart_svg = 'icon-heart.svg' | inline_asset_content %}
-                  {% assign main_heading = section.settings.product_feature_title | replace: '$heart', heart_svg %}
-                  <h3 class="product-feature-title font-grotesk font-medium [&_p]:flex [&_p]:flex-wrap [&_p]:items-center [&_p]:gap-x-[4px] [&_p]:justify-center [&_svg]:w-[17px] [&_svg]:h-auto text-scheme_one [&_strong]:font-fkroman [&_strong]:font-normal text-[20px] leading-[40px] tracking-[-0.05em]">
-                    {{ main_heading }}
-                  </h3>
-                {% endif %}
-                {% if section.settings.product_feature_content != blank %}
-                  <span class="product-feature-description font-grotesk font-normal text-[13px] leading-[1.6] text-center text-black">
-                    {{ section.settings.product_feature_content }}
-                  </span>
-                {% endif %}
-                {% if section.settings.product_feature_btn_url != blank and section.settings.product_feature_btn_txt != blank
-                %}
-                  <div class="mt-[12px]">
-                    {% assign heart_svg = 'icon-heart.svg' | inline_asset_content %}
-                    {% assign main_btn = section.settings.product_feature_btn_txt | replace: '$heart', heart_svg %}
-                    <a href="{{ section.settings.product_feature_btn_url }}" class="button button-primary !max-w-[390px] w-full max-md:mx-auto !px-[20px]">
-                      {{ main_btn }}
-                    </a>
+          {% if section.settings.empty_cart_product_list != blank %}
+            {% for product in section.settings.empty_cart_product_list %}
+              <div class="empty-cart-product-container tw-px-[16px] tw-mb-[16px]">
+                  <div class="product-featured-image tw-relative tw-flex tw-w-full tw-bg-[rgba(var(--color-foreground))] before:tw-content-[''] before:tw-pb-[51.2%] before:tw-w-full before:tw-block">
+                    {% render 'image-element',
+                      image: product.featured_image,
+                      widths: '100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100',
+                      sizes: '(max-width: 989px) 100vw, 40vw',
+                      class: 'product-featured-image tw-w-full tw-h-full tw-absolute tw-top-0 tw-left-0 tw-object-contain tw-pb-[10px]'
+                    %}
+                  </div>
+                  <div class="product-content tw-mt-[10px]">
+                      <div class="product-title tw-uppercase">
+                        {{ product.title }}
+                      </div>
+                      <div class="product-price tw-uppercase">
+                        {% assign selling_plan_price = product.selected_or_first_available_variant.selling_plan_allocations.first.price %}
+                        
+                        {% if selling_plan_price != blank %}
+                          <span class="starting-label">Starting at </span><span class="p-price">{{ selling_plan_price | money }}/ Month</span>
+                        {% else %}
+                          <span class="p-price">{{ product.price | money }}</span>   
+                        {% endif %}  
+                      </div>
+                  </div>
+                  <div class="btn-main">
+                     <add-product-item data-product-handle="{{ product.handle }}" data-money-format="{{ shop.money_format | escape }}">
+                      {{ "plus-icon.svg" | inline_asset_content }}
+                     </add-product-item>
+                  </div>
+              </div>
+            {% endfor %}
+          {% endif %}
+          {% if section.settings.enable_product_feature %}
+            <div class="custom-product-feature mt-[22px] p-[85px_0_80px]">
+              <div class="product-feature-main bg-[#DADAFF] rounded-[16px] p-[0_20px_24px] flex flex-col">
+                {% assign pro_feature_image = section.settings.product_feature_image %}
+                {% if pro_feature_image != blank %}
+                  <div class="product-feature-image mt-[-71px] w-[160px] h-[160px] mx-auto mb-[10px] flex items-center justify-center">
+                    {% render 'image-element'
+                      , image: pro_feature_image
+                      , widths: '100, 200, 300, 375, 550, 750, 1100, 1500, 1780'
+                      , sizes: '(max-width: 989px) 100vw, 45vw'
+                      , class: 'product-feature-image max-w-full max-h-full h-auto object-contain'
+                    %}
                   </div>
                 {% endif %}
+                <div class="product-feature-content">
+                  {% if section.settings.product_feature_title != blank %}
+                    {% assign heart_svg = 'icon-heart.svg' | inline_asset_content %}
+                    {% assign main_heading = section.settings.product_feature_title | replace: '$heart', heart_svg %}
+                    <h3 class="product-feature-title font-grotesk font-medium [&_p]:flex [&_p]:flex-wrap [&_p]:items-center [&_p]:gap-x-[4px] [&_p]:justify-center [&_svg]:w-[17px] [&_svg]:h-auto text-scheme_one [&_strong]:font-fkroman [&_strong]:font-normal text-[20px] leading-[40px] tracking-[-0.05em]">
+                      {{ main_heading }}
+                    </h3>
+                  {% endif %}
+                  {% if section.settings.product_feature_content != blank %}
+                    <span class="product-feature-description font-grotesk font-normal text-[13px] leading-[1.6] text-center text-black">
+                      {{ section.settings.product_feature_content }}
+                    </span>
+                  {% endif %}
+                  {% if section.settings.product_feature_btn_url != blank and section.settings.product_feature_btn_txt != blank
+                  %}
+                    <div class="mt-[12px]">
+                      {% assign heart_svg = 'icon-heart.svg' | inline_asset_content %}
+                      {% assign main_btn = section.settings.product_feature_btn_txt | replace: '$heart', heart_svg %}
+                      <a href="{{ section.settings.product_feature_btn_url }}" class="button button-primary !max-w-[390px] w-full max-md:mx-auto !px-[20px]">
+                        {{ main_btn }}
+                      </a>
+                    </div>
+                  {% endif %}
+                </div>
               </div>
             </div>
-          </div>
+          {% endif %}
           <div class="empty-footer-logo relative flex items-center justify-center mt-auto py-[30px]">
             <div class="custom-walmart-logo [&_p]:flex [&_p]:items-center [&_p]:justify-center [&_p]:gap-[7px] [&_p]:flex-wrap [&_p]:font-grotesk [&_p]:font-medium [&_p]:text-[20px] [&_p]:leading-[1] [&_p]:tracking-[-0.05em] [&_p]:text-black [&_svg]:h-[18px] [&_svg]:w-auto">
               {% assign walmart_svg = 'icon-walmart.svg' | inline_asset_content %}
@@ -347,98 +382,134 @@
         "label": "Sub Content"
       },
       {
+        "type": "product_list",
+        "id": "empty_cart_product_list",
+        "label": "Empty Cart Product List",
+        "limit": 4
+      },
+      {
         "type": "header",
         "content": "Product Featured"
-      }, {
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_product_feature",
+        "label": "Enable Product Feature",
+        "default": true
+      },  
+      {
         "type": "image_picker",
         "id": "product_feature_image",
         "label": "Choose Image"
-      }, {
+      }, 
+      {
         "type": "richtext",
         "id": "product_feature_title",
         "label": "Heading"
-      }, {
+      }, 
+      {
         "type": "richtext",
         "id": "product_feature_content",
         "label": "Content"
-      }, {
+      }, 
+      {
         "type": "text",
         "id": "product_feature_btn_txt",
         "label": "Button Text"
-      }, {
+      }, 
+      {
         "type": "url",
         "id": "product_feature_btn_url",
         "label": "URL"
-      }, {
+      }, 
+      {
         "type": "header",
         "content": "Subscription Product"
-      }, {
+      }, 
+      {
         "type": "text",
         "id": "subscription_button_label",
         "label": "Subscription Button Label"
-      }, {
+      }, 
+      {
         "type": "header",
         "content": "Button Content"
-      }, {
+      }, 
+      {
         "type": "richtext",
         "id": "empty_btm_walmart",
         "label": "Content"
-      }, {
+      }, 
+      {
         "type": "header",
         "content": "Free shipping content"
-      }, {
+      }, 
+      {
         "type": "number",
         "id": "free_shipping_threshold",
         "label": "Free shipping threshold",
         "default": 150
-      }, {
+      }, 
+      {
         "type": "richtext",
         "id": "free_shipping_text",
         "label": "Free shipping text",
         "default": "<p>Free Shipping on Orders Over $150</p>"
-      }, {
+      }, 
+      {
         "type": "header",
         "content": "Cart note"
-      }, {
+      }, 
+      {
         "type": "checkbox",
         "id": "enable_note",
         "label": "Enable note"
-      }, {
+      }, 
+      {
         "type": "text",
         "id": "note_heading",
         "label": "Note title",
         "default": "Add gift message or order note"
-      }, {
+      }, 
+      {
         "type": "header",
         "content": "Addon Product"
-      }, {
+      }, 
+      {
         "type": "product",
         "id": "addon_product",
         "label": "Select Product"
-      }, {
+      }, 
+      {
         "type": "image_picker",
         "id": "addon_image",
         "label": "Addon Product Image"
-      }, {
+      }, 
+      {
         "type": "text",
         "id": "addon_title",
         "label": "Addon Product Title"
-      }, {
+      }, 
+      {
         "type": "richtext",
         "id": "addon_info",
         "label": "Addon Product Info"
-      }, {
+      }, 
+      {
         "type": "header",
         "content": "Addon with Checkbox"
-      }, {
+      }, 
+      {
         "type": "checkbox",
         "id": "enable_onetime_purchase",
         "label": "Enable Onetime Purchase"
-      }, {
+      }, 
+      {
         "type": "text",
         "id": "custom_upsell_heading",
         "label": "Upsell Heading"
-      }, {
+      }, 
+      {
         "type": "product",
         "id": "custom_upsell_product",
         "label": "Choose Product"
