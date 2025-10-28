@@ -9,7 +9,7 @@
     </div>
     <header class="cart-drawer__header p-[20px_16px_16px] flex justify-between gap-[10px] items-center border-0 border-b border-solid border-[#E3E3E3]">
       <h2 class="text-[20px] font-grotesk font-medium leading-[1] capitalize text-[#212121] tracking-normal">
-        Your Cart (<span id="CartCount">{{ cart.item_count }}</span>)
+        Your Cart (<span id="CartCount" {% if cart.item_count == 0 %}class="tw-hidden"{% endif %}>{{ cart.item_count }}</span>)
       </h2>
       <button class="cart-drawer__close w-[24px] min-w-[24px] h-[24px] flex items-center justify-center ">
         <svg
@@ -61,50 +61,8 @@
       {% endif %}
 
       {% if cart.item_count == 0 %}
-        <div class="px-[16px]">
-          {% if section.settings.empty_cart_title != blank %}
-            <h2 class="text-center font-grotesk font-medium text-[24px] leading-[1.3] tracking-[-0.05em] text-scheme_one mb-[10px] mt-[80px]">
-              {{ section.settings.empty_cart_title }}
-            </h2>
-          {% endif %}
-          {% if section.settings.empty_cart_content != blank %}
-            <span class="empty-subheading font-grotesk font-normal text-[15px] leading-[1.7] text-center text-black">
-              {{- section.settings.empty_cart_content -}}
-            </span>
-          {% endif %}
-          {% if section.settings.empty_cart_product_list != blank %}
-            {% for product in section.settings.empty_cart_product_list %}
-              <div class="empty-cart-product-container tw-px-[16px] tw-mb-[16px]">
-                  <div class="product-featured-image tw-relative tw-flex tw-w-full tw-bg-[rgba(var(--color-foreground))] before:tw-content-[''] before:tw-pb-[51.2%] before:tw-w-full before:tw-block">
-                    {% render 'image-element',
-                      image: product.featured_image,
-                      widths: '100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100',
-                      sizes: '(max-width: 989px) 100vw, 40vw',
-                      class: 'product-featured-image tw-w-full tw-h-full tw-absolute tw-top-0 tw-left-0 tw-object-contain tw-pb-[10px]'
-                    %}
-                  </div>
-                  <div class="product-content tw-mt-[10px]">
-                      <div class="product-title tw-uppercase">
-                        {{ product.title }}
-                      </div>
-                      <div class="product-price tw-uppercase">
-                        {% assign selling_plan_price = product.selected_or_first_available_variant.selling_plan_allocations.first.price %}
-                        
-                        {% if selling_plan_price != blank %}
-                          <span class="starting-label">Starting at </span><span class="p-price">{{ selling_plan_price | money }}/ Month</span>
-                        {% else %}
-                          <span class="p-price">{{ product.price | money }}</span>   
-                        {% endif %}  
-                      </div>
-                  </div>
-                  <div class="btn-main">
-                     <add-product-item data-product-handle="{{ product.handle }}" data-money-format="{{ shop.money_format | escape }}">
-                      {{ "plus-icon.svg" | inline_asset_content }}
-                     </add-product-item>
-                  </div>
-              </div>
-            {% endfor %}
-          {% endif %}
+        <div class="px-[16px] empty-drawer-main">
+          {% render 'empty-cart' section: section %}
           {% if section.settings.enable_product_feature %}
             <div class="custom-product-feature mt-[22px] p-[85px_0_80px]">
               <div class="product-feature-main bg-[#DADAFF] rounded-[16px] p-[0_20px_24px] flex flex-col">
@@ -146,16 +104,6 @@
               </div>
             </div>
           {% endif %}
-          <div class="empty-footer-logo relative flex items-center justify-center mt-auto py-[30px]">
-            <div class="custom-walmart-logo [&_p]:flex [&_p]:items-center [&_p]:justify-center [&_p]:gap-[7px] [&_p]:flex-wrap [&_p]:font-grotesk [&_p]:font-medium [&_p]:text-[20px] [&_p]:leading-[1] [&_p]:tracking-[-0.05em] [&_p]:text-black [&_svg]:h-[18px] [&_svg]:w-auto">
-              {% assign walmart_svg = 'icon-walmart.svg' | inline_asset_content %}
-              {% assign main_button = section.settings.empty_btm_walmart | replace: '$walmart', walmart_svg %}
-              {{ main_button }}
-            </div>
-            <span class="absolute top-1/2 transform -translate-y-1/2 right-[4px] w-[12px] h-auto flex items-center justify-center">
-              {{ 'arrow-bottom-right.svg' | inline_asset_content }}
-            </span>
-          </div>
         </div>
       {% else %}
         {% capture product_ids %}{% endcapture %}
@@ -236,7 +184,117 @@
                   {{ 'drawer-delete.svg' | inline_asset_content }}Remove
                 </button>
               </div>
+              {% if item.product.variants.size > 0 %}  
+                <custom-variant-selector class="custom-variant-selector block ml-[-96px] w-[calc(100%+96px)]" data-line="{{ forloop.index }}" data-qty="{{ item.quantity }}">
+                  <button type="button" class="variant-select-button flex justify-between w-full text-[14px]">
+                    {% if item.variant.title contains 'Size' %}
+                      {%- assign variant_number = item.variant.title |  split: '(' | first |  split: ' ' | last -%}
+                      {%- assign variant_lbs = item.variant.title |  split: ')' | first |  split: '(' | last -%}
+                      {%- assign variant_size = item.variant.title |  split: '-' | last -%}
+                      <span class="pointer-events-none">
+                        {% if variant_number and variant_lbs %}
+                            <span class="cart-v-top flex items-center gap-[8px]">
+                                <b class="font-bold text-[18px] leading-[1.5]">{{ variant_number }}</b>
+                                <span class="text-[#909090] text-[13px] font-normal">{{ variant_lbs }}</span>
+                            </span>
+                        {% endif %}
+                        {% if variant_size %}
+                          <b class="cart-v-bottom">
+                              {{- variant_size | escape -}}
+                          </b>
+                        {% endif %}
+                      </span>
+                    {% else %}  
+                    {{ item.variant.title }}
+                    {% endif %}
+                    <span class="tw-w-[16px] tw-min-w-[16px] tw-h-[16px] tw-flex tw-items-center tw-justify-center down-icon [&_svg]:tw-transition-all [&_svg]:tw-duration-300">
+                      {{ 'icon-edit.svg' | inline_asset_content }}
+                      <span>Edit Size</span>
+                    </span>
+                  </button>
+                  <ul class="variant-option-list flex-wrap gap-[8px]">
+                    {% for variant in item.product.variants %}
+                      <li data-variant-id="{{ variant.id }}" class="w-[calc(33.33%-2/3*8px)] border-[1px] border-solid border-[#E3E3E3] rounded-[8px] text-center flex items-center justify-center p-[20px_12px] text-[14px] font-medium leading-[24px] flex-col gap-[13px] {% if variant.id == item.variant.id %}active{% endif %}">
+                        {% if variant.title contains 'Size' %}
+                          {%- assign variant_number = variant.title |  split: '(' | first |  split: ' ' | last -%}
+                          {%- assign variant_lbs = variant.title |  split: ')' | first |  split: '(' | last -%}
+                          {%- assign variant_size = variant.title |  split: '-' | last -%}
+                          {% if variant_number and variant_lbs %}
+                              <span class="cart-v-top flex items-center gap-[8px]">
+                                  <b class="font-bold text-[18px] leading-[1.5]">{{ variant_number }}</b>
+                                  <span class="text-[#909090] text-[13px] font-normal">{{ variant_lbs }}</span>
+                              </span>
+                          {% endif %}
+                          {% if variant_size %}
+                              <b class="cart-v-bottom">
+                                  {{- variant_size | escape -}}
+                              </b>
+                          {% endif %}
+                        {% else %}  
+                        {{ variant.title }}
+                        {% endif %}  
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </custom-variant-selector>
+              {% endif %}
+              {% if item.selling_plan_allocation != null %}
+                {% if item.selling_plan_allocation
+                  or item.variant.product.selling_plan_groups.size > 0
+                %}
+                  <custom-selling-plan-selector
+                    class="custom-selling-plan-selector relative block ml-[-96px] w-[calc(100%+96px)]"
+                    data-qty="{{ item.quantity }}"
+                    data-line="{{ forloop.index }}"
+                    data-current-id="{{ item.variant.id }}"
+                  >
+                    <div class="selling-plan-button product-option justify-between items-center !py-[10px] !font-primary !text-[12px] !leading-[1.2] !text-dark flex items-center gap-[10px] cursor-pointer">
+                      {% assign allocation = item.selling_plan_allocation %}
+                      {% assign adjustment = allocation.selling_plan.price_adjustments | first %}
+                      {% assign save_value = adjustment.value | divided_by: 100 | round: 2 %}
 
+                      <div class="selling-plan-info">
+                        <span class="plan-name">{{ allocation.selling_plan.name }}</span>
+                        {% if save_value != 0 %}
+                          <span class="save-text">Save {{ save_value }}%</span>
+                        {% endif %}
+                      </div> 
+                      <span class="">
+                        {{ 'icon-edit.svg' | inline_asset_content }}
+                        <span>Edit Plan</span>
+                      </span>
+                    </div>
+                    <ul
+                      class="selling-plan-list-ul absolute z-[2] top-[90%] left-0 w-max min-w-max bg-white shadow p-[10px] flex flex-col gap-[5px] m-0"
+                    >
+                      <li
+                        class="!font-primary !text-[12px] !leading-[1.2] !text-dark cursor-pointer"
+                        data-value=""
+                        {% unless item.selling_plan_allocation %}
+                          selected
+                        {% endunless %}
+                      >
+                        One-time purchase
+                      </li>
+              
+                      {% for group in item.variant.product.selling_plan_groups %}
+                        {% for plan in group.selling_plans %}
+                          <li
+                            class="!font-primary !text-[12px] !leading-[1.2] !text-dark cursor-pointer"
+                            data-value="{{ plan.id }}"
+                            {% if item.selling_plan_allocation.selling_plan.id == plan.id %}
+                              selected
+                            {% endif %}
+                          >
+                            {{ plan.name }}
+                          </li>
+                        {% endfor %}
+                      {% endfor %}
+                    </ul>
+                  </custom-selling-plan-selector>
+                {% endif %}
+              {% endif %}
+              
               <div class="subscription-main">
                 {% render 'subscription-form'
                   , item: item
@@ -350,7 +408,7 @@
             name="checkout"
             class="secure-checkout button flex items-center gap-[8px] [&_svg]:!m-0 w-full">
             {{ 'checkout-lock.svg' | inline_asset_content }}
-            <span>Secure Checkout</span>
+            <span>Continue to Checkout</span>
           </button>
         </form>
       </div>

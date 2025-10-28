@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{
+ {
   "current": {
     "header_logo": "shopify://shop_images/Vector_2.svg",
     "header_bg": "#FFFFFF",
@@ -168,7 +168,7 @@
           "subscription_button_label": "Subscribe",
           "empty_btm_walmart": "<p>Find a store <a href=\"https://freestyle.world/pages/about-us?view=store-locator\" title=\"https://freestyle.world/pages/about-us?view=store-locator\">here</a></p>",
           "free_shipping_threshold": 80,
-          "free_shipping_text": "<p>This order ships FREE</p>",
+          "free_shipping_text": "",
           "enable_note": false,
           "note_heading": "Add gift message or order note",
           "addon_product": "",

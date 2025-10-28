@@ -1,0 +1,63 @@
+<div class="cart-single-product-info">
+    <div class="sp-info-main">
+      <div class="sp-info-image">
+        {% render 'image-element',
+          image: product.featured_image,
+          widths: '70, 100',
+          sizes: '100vw',
+          class: 'tw-w-full tw-block tw-object-contain tw-h-auto'
+        %}
+      </div>
+      <div class="sp-info-text">
+        <h4 class="h4">
+            {{ product.title }}
+        </h4>
+        <div class="sp-qty-remove">
+            <div class="sp-qty-block">
+              <span class="sp-qty-btn sp-qty-minus">
+                {{ 'icon-minus.svg' | inline_asset_content }}
+              </span>
+              <input type="number" name="quantity" value="1" min="1" max="">
+              <span class="sp-qty-btn sp-qty-plus">
+                {{ 'icon-plus.svg' | inline_asset_content }}
+              </span>
+            </div>
+            <div class="sp-remove">
+              {{ 'icon-remove.svg' | inline_asset_content }}
+              <span>Remove</span>
+            </div>
+        </div>
+      </div>
+    </div>
+    
+    {% if product.variants.size > 0 %}
+        <div class="sp-variant-list tw-grid tw-grid-col-3">
+            {% for variant in product.variants %}
+                <div class="sp-variant-item" data-variant-id="{{ variant.id }}" data-product-handle="{{ product.handle }}" data-variant-title="{{ variant.title }}">
+                    {% if variant.title contains 'Size' %}
+                      {%- assign variant_number = variant.title |  split: '(' | first |  split: ' ' | last -%}
+                      {%- assign variant_lbs = variant.title |  split: ')' | first |  split: '(' | last -%}
+                      {%- assign variant_size = variant.title |  split: '-' | last -%}
+                      <div class="sp-variant-item-info tw-cursor-pointer">
+                          {% if variant_number and variant_lbs %}
+                              <div class="sp-item-top">
+                                  <b>{{ variant_number }}</b>
+                                  <span>{{ variant_lbs }}</span>
+                              </div>
+                          {% endif %}
+                          {% if variant_size %}
+                              <div class="sp-item-bottom">
+                                  {{- variant_size | escape -}}
+                              </div>
+                          {% endif %}
+                      </div>
+                    {% else %}  
+                      <div class="sp-variant-item-info tw-cursor-pointer">
+                        {{ variant.title }}
+                      </div>    
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>

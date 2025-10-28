@@ -503,4 +503,19 @@ h2,
   display: flex;
 }
 
+/* cart drawer flow start */
+.selling_plan-item .cart-subscription-list.check-active input[type="radio"]:before {
+  background: #6638B6;
+}
 
+.cart-drawer__details .selling-plan-list-ul,
+.cart-drawer__details .variant-option-list {
+  display: none;
+}
+
+.cart-drawer__details .custom-selling-plan-selector.active .selling-plan-list-ul,
+.cart-drawer__details .custom-variant-selector.active .variant-option-list {
+  display: flex;
+}
+
+/* cart drawer flow end */

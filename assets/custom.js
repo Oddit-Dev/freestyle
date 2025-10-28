@@ -5,6 +5,13 @@ class CartDrawer extends HTMLElement {
     this.closeBtn = this.querySelector('.cart-drawer__close');
     this.loader = this.querySelector('.cart-drawer__loader');
 
+    // Empty cart flow elements
+    
+    this.selectedProduct = null;
+    this.selectedVariant = null;
+    this.selectedPlan = null;
+    this.selectedQty = 1;
+
     // bind handlers
     this.handleQtyClick = this.handleQtyClick.bind(this);
     this.inputHandleQtyClick = this.inputHandleQtyClick.bind(this);
@@ -12,12 +19,13 @@ class CartDrawer extends HTMLElement {
     this.handleUpsellClick = this.handleUpsellClick.bind(this);
     this.handleToggleNote = this.handleToggleNote.bind(this);
     this.open = this.open.bind(this);
-
+    // this.handleChoosePlan() = this.handleChoosePlan.bind(this);
     // Event listeners
     this.onNoteBlur = this.onNoteBlur.bind(this);
     this.overlay.addEventListener('click', () => this.close());
     this.closeBtn.addEventListener('click', () => this.close());
     this.delegateEvents(); // Attach event delegation
+    this.emptyDelegateEvents(); 
   }
 
   showLoader() {
@@ -54,8 +62,159 @@ class CartDrawer extends HTMLElement {
     //   noteField.removeEventListener('blur', this.saveNote);
     //   noteField.addEventListener('blur', () => this.saveNote());
     // }
-
     this.updateMinusButtonStates();
+
+  }
+
+  emptyDelegateEvents() {
+    this.addEventListener('click', (e) => {
+      const el = e.target.closest('.add-product-item');
+      if (el) {
+        e.preventDefault();
+        this.handleAddProductItem(el);
+      }
+    });
+  }
+
+  handleAddProductItem(el) {
+    // Step navigation helper
+    const handle = el.dataset.productHandle;
+    fetch(`/products/${handle}?section_id=single-product-info`)
+      .then((response) => response.text())
+      .then((data) => {
+        const html = new DOMParser().parseFromString(data, 'text/html');
+        const singleProduct = html.querySelector('.cart-single-product-info');
+        const existingSingleProduct = document.querySelector('.cart-single-product-info');
+        if (singleProduct && existingSingleProduct) {
+          existingSingleProduct.replaceWith(singleProduct);
+        }
+
+        this.querySelectorAll('.sp-variant-list .sp-variant-item').forEach((item) => {
+          item.addEventListener('click', (event) => {
+            document.querySelectorAll('.sp-variant-list .sp-variant-item').forEach((el) => {
+              el.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active'); 
+            if(this.querySelector('.sp-variant-list .sp-variant-item.active')) {
+              this.querySelector('.choose_size_btn').removeAttribute('disabled');
+            } 
+          });
+        });
+        setTimeout(()=>{
+          this.showStep('variant');
+        },100)
+
+        document.querySelector('.choose_size_btn').addEventListener('click', ()=> {
+          this.handleChoosePlan();
+          this.showStep('plan');
+        });
+
+        document.querySelector('.cart-single-product-info .sp-remove').addEventListener('click', ()=> {
+          this.showStep('product-list');
+        });
+
+        this.handleEmptyQrt();
+
+      })
+    .catch((error) => console.error('Error fetching section:', error));
+  }
+
+  handleChoosePlan(el) {
+      const handle = this.querySelector('.sp-variant-list .sp-variant-item.active').dataset.productHandle;
+      const variant = this.querySelector('.sp-variant-list .sp-variant-item.active').dataset.variantId;
+      console.log('handle', handle);
+      fetch(`/products/${handle}?variant=${variant}&section_id=product-selling-plan`)
+        .then((response) => response.text())
+        .then((data) => {
+          const html = new DOMParser().parseFromString(data, 'text/html');
+          const singleProduct = html.querySelector('.cart-selling-plan-info');
+          const existingSingleProduct = document.querySelector('.cart-selling-plan-info');
+          if (singleProduct && existingSingleProduct) {
+            existingSingleProduct.replaceWith(singleProduct);
+          }
+
+          const qtyInput = document.querySelector('.cart-single-product-info .sp-qty-block input[name="quantity"]');
+          if(qtyInput){
+            this.selectedQty = qtyInput.value;
+            const planQtyInput = document.querySelector('.cart-selling-plan-info .sp-qty-block input[name="quantity"]');
+            if(planQtyInput){
+              planQtyInput.value = this.selectedQty;
+            }            
+          }
+
+          document.querySelector('.custom-cart-flow .choose_plan_btn').addEventListener('click', ()=> {
+            const planWrapper = document.querySelector('.custom-cart-flow .selling_plan-item');
+            let variantId = null;
+            let selling_plan = '';
+            if(planWrapper){
+              variantId = planWrapper.querySelector('.cart-subscription-list.check-active input[type=radio]:checked').dataset.variantId;
+              selling_plan = planWrapper.querySelector('.cart-subscription-list.check-active input[type=radio]:checked').dataset.sellingPlanId;
+            } else {
+              variantId = document.querySelector('.cart-selling-plan-info .cart-sp-main').dataset.variantId || null;
+            }
+            const qty = parseInt(document.querySelector('.cart-selling-plan-info input[type="number"]').value);
+            if(variantId){
+              this.addSelectedProduct(variantId, qty, selling_plan);
+            }
+          }); 
+
+          document.querySelector('.custom-cart-flow .variant-edit-btn').addEventListener('click', ()=> {
+            this.showStep('variant');
+          });
+
+          document.querySelector('.cart-selling-plan-info .sp-remove').addEventListener('click', ()=> {
+            this.showStep('product-list');
+          });
+
+          this.handleEmptyQrt();
+          
+        })
+      .catch((error) => console.error('Error fetching section:', error));
+  }
+
+  async addSelectedProduct(variantId, qty = 1, selling_plan = '') {
+    this.showLoader();
+    const body = { id: variantId, quantity: qty };
+    if (selling_plan) body.selling_plan = selling_plan;
+
+    await fetch('/cart/add.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    await this.refresh();
+    this.hideLoader();
+  }
+
+  showStep(stepName) {
+    this.querySelectorAll('.step').forEach(step => step.classList.add('hidden'));
+    const activeStep = this.querySelector(`.step-${stepName}`);
+    if (activeStep) {
+      activeStep.classList.remove('hidden');
+      console.log(`Switched to step: ${stepName}`);
+    } else {
+      console.warn(`Step not found: ${stepName}`);
+    }
+  }
+
+  handleEmptyQrt(){
+    document.querySelectorAll('.sp-qty-block').forEach(block => {
+      const input = block.querySelector('input[type="number"]');
+      const minusBtn = block.querySelector('.sp-qty-minus');
+      const plusBtn = block.querySelector('.sp-qty-plus');
+    
+      minusBtn.addEventListener('click', () => {
+        let current = parseInt(input.value) || 1;
+        const min = parseInt(input.min) || 1;
+        if (current > min) input.value = current - 1;
+      });
+    
+      plusBtn.addEventListener('click', () => {
+        let current = parseInt(input.value) || 1;
+        const max = parseInt(input.max) || Infinity;
+        if (current < max) input.value = current + 1;
+      });
+    });
   }
 
   handleQtyClick(e) {
@@ -191,6 +350,7 @@ class CartDrawer extends HTMLElement {
     }
 
     this.delegateEvents(); // Re-delegate events after refresh
+    
   }
 
   updateQuantity(e) {
@@ -218,7 +378,6 @@ class CartDrawer extends HTMLElement {
   }
 }
 
-customElements.define('cart-drawer', CartDrawer);
 
 class AddVariantItem extends HTMLElement {
   constructor() {
@@ -293,6 +452,9 @@ class CartIcon extends HTMLElement {
 customElements.define('cart-icon', CartIcon);
 
 document.addEventListener("DOMContentLoaded", function () {
+  if (!customElements.get('cart-drawer')) {
+    customElements.define('cart-drawer', CartDrawer);
+  }
    const drawer = document.querySelector('cart-drawer');
     if (drawer) {
       drawer.refresh();
@@ -625,8 +787,197 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+class CartSellingPlan extends HTMLElement {
+  constructor() {
+    super();
 
+    // Store current selection
+    this.selectedVariantId = null;
+    this.selectedPlanId = null;
+    this.selectedType = null;
 
+    // Bind methods
+    this.onRadioChange = this.onRadioChange.bind(this);
+    this.onSelectChange = this.onSelectChange.bind(this);
+  }
 
+  connectedCallback() {
+    this.radioInputs = this.querySelectorAll('input[data-radio-type]');
+    this.selectInputs = this.querySelectorAll('select.selling-plan-dropdown');
 
+    this.radioInputs.forEach((radio) => {
+      radio.addEventListener('change', this.onRadioChange);
+    });
 
+    this.selectInputs.forEach((select) => {
+      select.addEventListener('change', this.onSelectChange);
+    });
+
+    const checked = this.querySelector('input[data-radio-type]:checked');
+    if (checked) this.setSelectedPlan(checked);
+  }
+
+  disconnectedCallback() {
+    // Clean up event listeners
+    this.radioInputs.forEach((radio) => {
+      radio.removeEventListener('change', this.onRadioChange);
+    });
+    this.selectInputs.forEach((select) => {
+      select.removeEventListener('change', this.onSelectChange);
+    });
+  }
+
+  onRadioChange(event) {
+    const radio = event.currentTarget;
+    this.setSelectedPlan(radio);
+  }
+
+  // Handle select dropdown change
+  onSelectChange(event) {
+    const select = event.currentTarget;
+    const selectedPlanId = select.value;
+    this.selectedPlanId = selectedPlanId;
+  }
+
+  setSelectedPlan(radio) {
+    this.querySelectorAll('.cart-subscription-list').forEach((el) =>
+      el.classList.remove('check-active')
+    );
+    radio.closest('.cart-subscription-list')?.classList.add('check-active');
+
+    this.selectedType = radio.dataset.radioType;
+    this.selectedVariantId = radio.dataset.variantId || radio.dataset.variantId;
+    this.selectedPlanId = radio.dataset.sellingPlanId || null;
+
+    //this.updateHiddenInputs();
+  }
+
+  updateHiddenInputs() {
+    let hiddenPlanInput = this.querySelector('input[name="selling_plan"]');
+    if (!hiddenPlanInput) {
+      hiddenPlanInput = document.createElement('input');
+      hiddenPlanInput.type = 'hidden';
+      hiddenPlanInput.name = 'selling_plan';
+      this.appendChild(hiddenPlanInput);
+    }
+
+    if (this.selectedType === 'selling_plan') {
+      hiddenPlanInput.value = this.selectedPlanId;
+    } else {
+      hiddenPlanInput.value = '';
+    }
+  }
+
+}
+
+// Register custom element
+customElements.define('cart-selling-plan', CartSellingPlan);
+
+class CustomSellingPlanSelector extends HTMLElement {
+  constructor() {
+    super();
+    this.handleClick = this.handleClick.bind(this);
+    this.listClick = this.listClick.bind(this);
+  }
+
+  connectedCallback() {
+    this.querySelector('.selling-plan-button').addEventListener('click', this.handleClick);
+    this.querySelectorAll('.selling-plan-list-ul li').forEach((li) => {
+      li.addEventListener('click', this.listClick);
+    });
+  }
+
+  handleClick(event) {
+    this.classList.toggle('active');
+  }
+
+  listClick(event) {
+    const sellingPlanId = event.target.dataset.value;
+    const qty = this.dataset.qty;
+    const line = this.dataset.line;
+    window.convertToSubscription(line, qty, sellingPlanId);
+  }
+}
+
+customElements.define('custom-selling-plan-selector', CustomSellingPlanSelector);
+
+window.convertToSubscription = async function (lineIndex, quantity, newSellingPlanId) {
+  const data = {
+    line: lineIndex,
+    quantity: quantity,
+    selling_plan: newSellingPlanId,
+  };
+
+  fetch('/cart/change.js', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+  .then((response) => response.json())
+  .then((updatedCart) => {
+    const drawer = document.querySelector('cart-drawer');
+    if (drawer) {
+      drawer.refresh();
+      drawer.hideLoader();
+      drawer.open();
+    }
+  })
+  .catch((error) => {
+    console.error('Error updating selling plan:', error);
+  });
+
+};
+
+class CustomVariantSelector extends HTMLElement {
+  constructor() {
+    super();
+    this.handleClick = this.handleClick.bind(this);
+    this.optionClick = this.optionClick.bind(this);
+  }
+
+  connectedCallback() {
+    // Toggle variant list visibility
+    const button = this.querySelector('.variant-select-button');
+    if (button) button.addEventListener('click', this.handleClick);
+
+    // Bind all variant list items
+    this.querySelectorAll('.variant-option-list li').forEach((li) => {
+      li.addEventListener('click', this.optionClick);
+    });
+  }
+
+  handleClick() {
+    this.classList.toggle('active');
+  }
+
+  async optionClick(event) {
+    const newVariantId = event.target.dataset.variantId;
+    const line = this.dataset.line;
+    const qty = this.dataset.qty || 1;
+
+    if (!newVariantId || !line) return;
+
+    // Show a loader if you have one
+    const drawer = document.querySelector('cart-drawer');
+    drawer?.showLoader();
+
+    // Replace current line with new variant
+    await fetch('/cart/change.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        line: parseInt(line),
+        id: newVariantId,
+        quantity: parseInt(qty),
+      }),
+    });
+
+    // Refresh cart drawer UI
+    await drawer?.refresh();
+    drawer?.hideLoader();
+  }
+}
+
+customElements.define('custom-variant-selector', CustomVariantSelector);
