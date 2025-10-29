@@ -71,11 +71,17 @@
                       | image_tag:
                         class: 'w-[3rem] md:w-[5rem] inline-block translate-y-[-0.4rem] md:translate-y-[-0.7rem] mx-1'
                     %}
+                    {% assign water_icon = settings.water_icon
+                      | image_url: width: 100
+                      | image_tag:
+                        class: 'w-[3rem] md:w-[5rem] inline-block translate-y-[-0.4rem] md:translate-y-[-0.7rem] mx-1'
+                    %}
                     {% assign alternate_title = block.settings.alternate_title | default: product.metafields.custom.alternate_title %}
                     {{
                       alternate_title
                       | replace: '[bamboo]', bamboo_icon
                       | replace: '[heart]', heart_icon
+                      | replace: '[water]', water_icon
                     }}
                   </h1>
                 {% else %}
