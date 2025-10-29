@@ -373,19 +373,22 @@
                           {% if product.metafields.custom.alternate_title != blank %}
                             <h2 class="title font-grotesk font-normal text-[16px] max-md:text-[13px] leading-[1.6] text-black-text !tracking-normal">
                               {% assign bamboo_icon = settings.bamboo_icon
-                                | image_url: width: 100
+                                | image_url: width: 32
                                 | image_tag:
-                                  class: 'w-[16px] inline-block translate-y-[-2px] mx-1'
+                                  class: 'inline-block translate-y-[-2px] mx-1',
+                                  style: 'width: 16px;'
                               %}
                               {% assign heart_icon = settings.heart_icon
-                                | image_url: width: 100
+                                | image_url: width: 32
                                 | image_tag:
-                                  class: 'w-[16px] inline-block translate-y-[-2px] mx-1'
+                                  class: 'inline-block translate-y-[-2px] mx-1',
+                                  style: 'width: 16px;'
                               %}
                               {% assign water_icon = settings.water_icon
-                                | image_url: width: 100
+                                | image_url: width: 32
                                 | image_tag:
-                                  class: 'w-[16px] inline-block translate-y-[-2px] mx-1'
+                                  class: 'inline-block translate-y-[-2px] mx-1',
+                                  style: 'width: 16px;'
                               %}
                               {% assign alternate_title = block.settings.alternate_title | default: product.metafields.custom.alternate_title %}
                               {{
