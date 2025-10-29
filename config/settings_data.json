@@ -169,7 +169,7 @@
           "product_feature_btn_txt": "Shop Skin $heart Shield™ Diapers",
           "product_feature_btn_url": "shopify://products/skinshield-diapers",
           "subscription_button_label": "Subscribe",
-          "empty_btm_walmart": "<p>Find a $walmart store <a href=\"https://freestyle.world/pages/about-us?view=store-locator\" title=\"https://freestyle.world/pages/about-us?view=store-locator\">here</a></p>",
+          "empty_btm_walmart": "<p>Find a $walmart near <a href=\"https://freestyle.world/pages/about-us?view=store-locator\" title=\"https://freestyle.world/pages/about-us?view=store-locator\">you</a></p>",
           "free_shipping_threshold": 80,
           "free_shipping_text": "",
           "enable_note": false,
