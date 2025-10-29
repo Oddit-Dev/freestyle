@@ -84,6 +84,12 @@
                     , product: product %}
                 </div>
               </div>
+            {% when 'richtext' %}  
+              {% if block.settings.richtext != blank %}
+                <div class="product-richtext">
+                  {{ block.settings.richtext }}
+                </div>
+              {% endif %}
             {% when 'variant_text' %}
               <div class="variant-text-main"></div>
             {% when 'cta' %}
@@ -1000,6 +1006,17 @@
             "type": "product",
             "id": "product",
             "label": "Product"
+          }
+        ]
+      },
+      {
+        "type": "richtext",
+        "name": "Richtext",
+        "settings": [
+          {
+            "type": "richtext",
+            "id":"richtext",
+            "label": "Content"
           }
         ]
       },

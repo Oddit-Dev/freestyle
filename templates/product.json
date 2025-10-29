@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{
+ {
   "sections": {
     "main": {
       "type": "main-product",
@@ -27,44 +27,10 @@
           "disabled": true,
           "settings": {}
         },
-        "specification_Ge8xVj": {
-          "type": "specification",
-          "settings": {}
-        },
-        "specification_item_dV6Phj": {
-          "type": "specification_item",
+        "richtext_kqgkj3": {
+          "type": "richtext",
           "settings": {
-            "text": "14x better absorption"
-          }
-        },
-        "specification_item_DHXd4r": {
-          "type": "specification_item",
-          "settings": {
-            "text": "Skin-safe"
-          }
-        },
-        "specification_item_Xd8f99": {
-          "type": "specification_item",
-          "settings": {
-            "text": "7-layer skin protection"
-          }
-        },
-        "specification_item_phF7QT": {
-          "type": "specification_item",
-          "settings": {
-            "text": "EWG Verified®"
-          }
-        },
-        "specification_item_Fchqkp": {
-          "type": "specification_item",
-          "settings": {
-            "text": "TCF: Total Chlorine Free"
-          }
-        },
-        "specification_item_G6zHax": {
-          "type": "specification_item",
-          "settings": {
-            "text": "Cloud-like softness"
+            "richtext": "<ul><li>14x better absorption</li><li>Skin-safe</li><li>7-layer skin protection</li><li>EWG Verified®</li><li>TCF: Total chlorine free</li><li>Cloud-like softness</li></ul>"
           }
         },
         "variants_EBNBwP": {
@@ -189,13 +155,7 @@
         "title_hijtjK",
         "variant_text_JnAzJ8",
         "separator_NF3Aqz",
-        "specification_Ge8xVj",
-        "specification_item_dV6Phj",
-        "specification_item_DHXd4r",
-        "specification_item_Xd8f99",
-        "specification_item_phF7QT",
-        "specification_item_Fchqkp",
-        "specification_item_G6zHax",
+        "richtext_kqgkj3",
         "variants_EBNBwP",
         "separator_WX87Ph",
         "description_RgQkN8",
