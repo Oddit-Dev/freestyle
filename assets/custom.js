@@ -122,7 +122,7 @@ class CartDrawer extends HTMLElement {
   handleChoosePlan(el) {
       const handle = this.querySelector('.sp-variant-list .sp-variant-item.active').dataset.productHandle;
       const variant = this.querySelector('.sp-variant-list .sp-variant-item.active').dataset.variantId;
-      console.log('handle', handle);
+      
       fetch(`/products/${handle}?variant=${variant}&section_id=product-selling-plan`)
         .then((response) => response.text())
         .then((data) => {
@@ -191,9 +191,6 @@ class CartDrawer extends HTMLElement {
     const activeStep = this.querySelector(`.step-${stepName}`);
     if (activeStep) {
       activeStep.classList.remove('hidden');
-      console.log(`Switched to step: ${stepName}`);
-    } else {
-      console.warn(`Step not found: ${stepName}`);
     }
   }
 
@@ -310,7 +307,16 @@ class CartDrawer extends HTMLElement {
 
     this.querySelector('#CartDrawerBody').replaceWith(newBody);
     this.querySelector('.subtotal').textContent = newSubtotal.textContent;
-    this.querySelector('#CartCount').textContent = newCount.textContent;
+    const countElm = this.querySelector('#CartCount');
+    if(countElm){
+      const qty = parseInt(newCount.textContent, 10) || 0;
+      countElm.textContent = newCount.textContent;
+      if(qty > 0){
+        countElm.classList.add('active');
+      }else {
+        countElm.classList.remove('active');
+      }
+    }
 
     const headerCounts = document.querySelectorAll('.header-cart__count');
     const countValue = newCount.textContent.trim();
@@ -341,7 +347,6 @@ class CartDrawer extends HTMLElement {
     const footer = this.querySelector('.cart-drawer__footer');
     if (footer) {
       const count = parseInt(newCount.textContent, 10) || 0;
-      console.log(count,"count");
       if (count > 0) {
         footer.classList.remove("hidden");
       } else {
@@ -873,111 +878,117 @@ class CartSellingPlan extends HTMLElement {
 // Register custom element
 customElements.define('cart-selling-plan', CartSellingPlan);
 
-class CustomSellingPlanSelector extends HTMLElement {
-  constructor() {
-    super();
-    this.handleClick = this.handleClick.bind(this);
-    this.listClick = this.listClick.bind(this);
-  }
-
-  connectedCallback() {
-    this.querySelector('.selling-plan-button').addEventListener('click', this.handleClick);
-    this.querySelectorAll('.selling-plan-list-ul li').forEach((li) => {
-      li.addEventListener('click', this.listClick);
-    });
-  }
-
-  handleClick(event) {
-    this.classList.toggle('active');
-  }
-
-  listClick(event) {
-    const sellingPlanId = event.target.dataset.value;
-    const qty = this.dataset.qty;
-    const line = this.dataset.line;
-    window.convertToSubscription(line, qty, sellingPlanId);
-  }
-}
-
-customElements.define('custom-selling-plan-selector', CustomSellingPlanSelector);
-
-window.convertToSubscription = async function (lineIndex, quantity, newSellingPlanId) {
-  const data = {
-    line: lineIndex,
-    quantity: quantity,
-    selling_plan: newSellingPlanId,
-  };
-
-  fetch('/cart/change.js', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  })
-  .then((response) => response.json())
-  .then((updatedCart) => {
+class CartItemUpdater {
+  static async replaceItem(oldItemId, newVariantId, qty, sellingPlanId = null) {
     const drawer = document.querySelector('cart-drawer');
-    if (drawer) {
-      drawer.refresh();
-      drawer.hideLoader();
-      drawer.open();
+    try {
+      drawer?.showLoader();
+      await fetch('/cart/change.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: oldItemId,
+          quantity: 0
+        })
+      });
+
+      const addBody = {
+        id: Number(newVariantId),
+        quantity: Number(qty)
+      };
+
+      if (sellingPlanId && sellingPlanId !== 'null' && sellingPlanId !== '') {
+        addBody.selling_plan = Number(sellingPlanId);
+      }
+
+      await fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(addBody)
+      });
+
+      if (drawer) await drawer.refresh();
+
+    } catch (err) {
+      console.error('Error replacing cart item:', err);
+    } finally {
+      drawer?.hideLoader();
     }
-  })
-  .catch((error) => {
-    console.error('Error updating selling plan:', error);
-  });
-
-};
-
-class CustomVariantSelector extends HTMLElement {
-  constructor() {
-    super();
-    this.handleClick = this.handleClick.bind(this);
-    this.optionClick = this.optionClick.bind(this);
-  }
-
-  connectedCallback() {
-    // Toggle variant list visibility
-    const button = this.querySelector('.variant-select-button');
-    if (button) button.addEventListener('click', this.handleClick);
-
-    // Bind all variant list items
-    this.querySelectorAll('.variant-option-list li').forEach((li) => {
-      li.addEventListener('click', this.optionClick);
-    });
-  }
-
-  handleClick() {
-    this.classList.toggle('active');
-  }
-
-  async optionClick(event) {
-    const newVariantId = event.target.dataset.variantId;
-    const line = this.dataset.line;
-    const qty = this.dataset.qty || 1;
-
-    if (!newVariantId || !line) return;
-
-    // Show a loader if you have one
-    const drawer = document.querySelector('cart-drawer');
-    drawer?.showLoader();
-
-    // Replace current line with new variant
-    await fetch('/cart/change.js', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        line: parseInt(line),
-        id: newVariantId,
-        quantity: parseInt(qty),
-      }),
-    });
-
-    // Refresh cart drawer UI
-    await drawer?.refresh();
-    drawer?.hideLoader();
   }
 }
 
-customElements.define('custom-variant-selector', CustomVariantSelector);
+// ---------- Variant Selector ----------
+class CustomCartVariantSelector extends HTMLElement {
+  constructor() {
+    super();
+    this.toggleList = this.toggleList.bind(this);
+    this.selectVariant = this.selectVariant.bind(this);
+  }
+
+  connectedCallback() {
+    this.querySelector('.variant-select-button')?.addEventListener('click', this.toggleList);
+    this.querySelectorAll('.variant-option-list li').forEach(li =>
+      li.addEventListener('click', this.selectVariant)
+    );
+  }
+
+  toggleList() {
+    this.classList.toggle('active');
+  }
+
+  async selectVariant(event) {
+    const li = event.currentTarget;
+    const newVariantId = li.dataset.variantId;
+    const itemId = this.dataset.itemId;
+    const qty = this.dataset.qty;
+
+    // find selling plan (if exists)
+    const sellingPlanSelector = this.closest('.cart-item')?.querySelector('custom-cart-selling-plan-selector');
+    let sellingPlanId = null;
+    if (sellingPlanSelector && typeof sellingPlanSelector.getSelectedSellingPlanId === 'function') {
+      sellingPlanId = sellingPlanSelector.getSelectedSellingPlanId();
+    }
+
+    //console.log('Replacing cart item →', { itemId, newVariantId, qty, sellingPlanId });
+
+    await CartItemUpdater.replaceItem(itemId, newVariantId, qty, sellingPlanId);
+  }
+}
+
+customElements.define('custom-cart-variant-selector', CustomCartVariantSelector);
+
+// ---------- Selling Plan Selector ----------
+class CustomCartSellingPlanSelector extends HTMLElement {
+  constructor() {
+    super();
+    this.toggleList = this.toggleList.bind(this);
+    this.selectPlan = this.selectPlan.bind(this);
+  }
+
+  connectedCallback() {
+    this.querySelector('.selling-plan-button')?.addEventListener('click', this.toggleList);
+    this.querySelectorAll('.selling-plan-list-ul li').forEach(li =>
+      li.addEventListener('click', this.selectPlan)
+    );
+  }
+
+  toggleList() {
+    this.classList.toggle('active');
+  }
+
+  selectPlan(event) {
+    const newPlanId = event.currentTarget.dataset.value;
+    const itemId = this.dataset.itemId;
+    const qty = this.dataset.qty;
+    const variantSelector = this.closest('.cart-drawer__item')?.querySelector('custom-cart-variant-selector');
+    const variantId = variantSelector?.querySelector('.active')?.dataset.variantId;
+    CartItemUpdater.replaceItem(itemId, variantId, qty, newPlanId);
+  }
+
+  // helper to fetch currently active plan id
+  getSelectedSellingPlanId() {
+    return this.querySelector('.selling-plan-list-ul li.active')?.dataset.value || null;
+  }
+}
+customElements.define('custom-cart-selling-plan-selector', CustomCartSellingPlanSelector);
+

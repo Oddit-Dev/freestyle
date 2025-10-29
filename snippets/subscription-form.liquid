@@ -27,7 +27,7 @@
     {% if item.variant.selling_plan_allocations != blank %}
       <div class="button-main">
         <div class="top-text">{{ section.settings.subscription_button_top_text }}</div>
-        <div class="change-label cursor-pointer inline-flex items-center gap-1 bg-scheme_two py-[6px] px-[12px] mt-[5px] rounded-[30px]" data-selling-id="{{ first_plan_id | strip }}">
+        <div class="change-label cursor-pointer inline-flex items-center gap-1 bg-scheme_two py-[12px] justify-center px-[12px] mt-[10px] w-full rounded-[30px]" data-selling-id="{{ first_plan_id | strip }}">
           <span class="text-[12px] text-scheme_one-tertiary font-medium font-grotesk leading-none !ml-0 relative">
             {%- for allocation in item.variant.selling_plan_allocations -%}
               {%- assign plan = allocation.selling_plan -%}

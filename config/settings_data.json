@@ -159,6 +159,9 @@
             "baby-maker-sport-tee",
             "baby-maker-hat"
           ],
+          "empty_size_title": "Choose a Size",
+          "empty_size_text": "<p>Not sure which size is right for your little one? Check out our <a href=\"#\" title=\"#\">size chart</a></p>",
+          "empty_plan_title": "Select plan",
           "enable_product_feature": false,
           "product_feature_image": "shopify://shop_images/image_5303_8e6fac27-d71a-428b-b919-5cebffb17173.png",
           "product_feature_title": "<p>Skin $heart Shield™ <strong>Diapers</strong></p>",
@@ -166,7 +169,7 @@
           "product_feature_btn_txt": "Shop Skin $heart Shield™ Diapers",
           "product_feature_btn_url": "shopify://products/skinshield-diapers",
           "subscription_button_label": "Subscribe",
-          "empty_btm_walmart": "<p>Find a store <a href=\"https://freestyle.world/pages/about-us?view=store-locator\" title=\"https://freestyle.world/pages/about-us?view=store-locator\">here</a></p>",
+          "empty_btm_walmart": "<p>Find a $walmart store <a href=\"https://freestyle.world/pages/about-us?view=store-locator\" title=\"https://freestyle.world/pages/about-us?view=store-locator\">here</a></p>",
           "free_shipping_threshold": 80,
           "free_shipping_text": "",
           "enable_note": false,
@@ -175,7 +178,7 @@
           "addon_title": "",
           "addon_info": "",
           "enable_onetime_purchase": true,
-          "custom_upsell_heading": "Add 99% Water Sensitive Wipes",
+          "custom_upsell_heading": "Add Wipes",
           "custom_upsell_product": "wipes"
         }
       }

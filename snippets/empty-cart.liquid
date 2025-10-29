@@ -1,8 +1,8 @@
-<div class="custom-cart-flow" id="custom-cart-flow">
-    <div class="step step-product-list">
-        <div class="empty-drawer-header">
+<div class="custom-cart-flow h-full" id="custom-cart-flow">
+    <div class="step step-product-list h-full">
+        <div class="empty-drawer-header py-[30px]">
             {% if section.settings.empty_cart_title != blank %}
-              <h2 class="text-center font-grotesk font-medium text-[24px] leading-[1.3] tracking-[-0.05em] text-scheme_one mb-[10px] mt-[80px]">
+              <h2 class="text-center font-grotesk font-medium text-[24px] leading-[1.3] tracking-[-0.05em] text-scheme_one mt-0 mb-[16px]">
                 {{ section.settings.empty_cart_title }}
               </h2>
             {% endif %}
@@ -13,70 +13,80 @@
             {% endif %}
         </div>
         {% if section.settings.empty_cart_product_list != blank %}
-          <div class="step-product-items">    
+          <div class="step-product-items flex flex-col gap-[12px] py-[16px]">    
               {% for product in section.settings.empty_cart_product_list %}
-                <div class="empty-cart-product-container tw-px-[16px] tw-mb-[16px]">
-                    <div class="product-featured-image tw-relative tw-flex tw-w-full tw-bg-[rgba(var(--color-foreground))] before:tw-content-[''] before:tw-pb-[51.2%] before:tw-w-full before:tw-block">
+                <div class="empty-cart-product-container p-[14px] border-[0.7px] border-solid border-[#E3E3E3] rounded-[12px] flex items-center">
+                    <div class="product-featured-image relative flex w-[70px] h-[70px] min-w-[70px] rounded-[8px] overflow-hidden mr-[12px]">
                       {% render 'image-element',
                         image: product.featured_image,
-                        widths: '100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100',
+                        widths: '100, 200, 300',
                         sizes: '(max-width: 989px) 100vw, 40vw',
-                        class: 'product-featured-image tw-w-full tw-h-full tw-absolute tw-top-0 tw-left-0 tw-object-contain tw-pb-[10px]'
+                        class: 'product-featured-image w-full h-full absolute top-0 left-0 object-cover'
                       %}
                     </div>
-                    <div class="product-content tw-mt-[10px]">
-                        <div class="product-title tw-uppercase">
+                    <div class="product-content mt-[10px]">
+                        <div class="product-title text-scheme_one font-medium tracking-[-0.05em] leading-[1.3]">
                           {{ product.title }}
                         </div>
-                        <div class="product-price tw-uppercase">
+                        <div class="product-price mt-[9px] text-[13px] leading-[1.3] text-[#909090]">
                           {% assign selling_plan_price = product.selected_or_first_available_variant.selling_plan_allocations.first.price %}
-                          
                           {% if selling_plan_price != blank %}
-                            <span class="starting-label">Starting at </span><span class="p-price">{{ selling_plan_price | money }}/ Month</span>
+                            <span class="starting-label">Starting at </span><span class="p-price text-[#212121]">{{ selling_plan_price | money }}/ Month</span>
                           {% else %}
-                            <span class="p-price">{{ product.price | money }}</span>   
+                            <span class="p-price text-[#212121]">{{ product.price | money }}</span>   
                           {% endif %}  
                         </div>
                     </div>
-                    <div class="btn-main">
-                      <div class="add-product-item" data-product-handle="{{ product.handle }}" data-money-format="{{ shop.money_format | escape }}">
-                        {{ "plus-icon.svg" | inline_asset_content }}
+                    <div class="btn-main min-w-[51px] ml-auto flex justify-end">
+                      <div class="add-product-item cursor-pointer border-[0.8px] border-solid border-[#E3E3E3] rounded-[50%] w-[35px] h-[35px] flex items-center justify-center hover:bg-scheme_one hover:text-white" data-product-handle="{{ product.handle }}" data-money-format="{{ shop.money_format | escape }}">
+                        {{ "icon-plus.svg" | inline_asset_content }}
                       </div>
                     </div>
                 </div>
               {% endfor %}
           </div>
         {% endif %}
-        <div class="empty-footer-logo relative flex items-center justify-center mt-auto py-[30px]">
-            <div class="custom-walmart-logo [&_p]:flex [&_p]:items-center [&_p]:justify-center [&_p]:gap-[7px] [&_p]:flex-wrap [&_p]:font-grotesk [&_p]:font-medium [&_p]:text-[20px] [&_p]:leading-[1] [&_p]:tracking-[-0.05em] [&_p]:text-black [&_svg]:h-[18px] [&_svg]:w-auto">
+        <div class="empty-footer-logo mt-auto sticky left-0 bottom-0 z-[2] mx-[-16px] w-auto p-[30px_33px] border-[0px] border-t-[1px] border-solid border-[#E3E3E3] rounded-[8px_8px_0px_0px] bg-white">
+          <div class="flex items-center justify-between walmart-btn relative">
+            <div class="custom-walmart-logo border-[0px] border-b-[1px] border-solid border-[#6638B6] pb-[3px] [&_p]:flex [&_p]:items-center [&_p]:justify-center [&_p]:gap-[7px] [&_p]:flex-wrap [&_p]:font-grotesk [&_p]:font-medium [&_p]:text-[20px] [&_p]:leading-[1] [&_p]:tracking-[-0.05em] [&_p]:text-black [&_svg]:h-[18px] [&_svg]:w-auto">
               {% assign walmart_svg = 'icon-walmart.svg' | inline_asset_content %}
               {% assign main_button = section.settings.empty_btm_walmart | replace: '$walmart', walmart_svg %}
               {{ main_button }}
             </div>
-            <span class="absolute top-1/2 transform -translate-y-1/2 right-[4px] w-[12px] h-auto flex items-center justify-center">
+            <span class="w-[12px] h-auto">
               {{ 'arrow-bottom-right.svg' | inline_asset_content }}
             </span>
-          </div>  
+          </div>
+        </div>  
     </div>
-    <div class="step step-variant hidden">
-        <div class="variant-header step-header tw-text-center tw-my-[20px]">
-            <h3 class="font-grotesk text-[20px] font-medium">Choose a Size</h3>
-            <p>
-              Choose a Size Not sure which size is right for your little one? Check out our size chart
-            </p>
+    <div class="step step-variant h-full hidden">
+        <div class="variant-header step-header py-[30px]">
+            {% if section.settings.empty_size_title != blank %}
+              <h2 class="text-center font-grotesk font-medium text-[24px] leading-[1.3] tracking-[-0.05em] text-scheme_one mt-0 mb-[16px]">
+                {{ section.settings.empty_size_title }}
+              </h2>
+            {% endif %}
+            {% if section.settings.empty_size_text != blank %}
+              <span class="empty-subheading font-grotesk font-normal text-[15px] leading-[1.7] text-center text-black">
+                {{- section.settings.empty_size_text -}}
+              </span>
+            {% endif %}
         </div>
-        <div class="cart-single-product-info"></div>
-        <div class="variant-footer step-footer tw-text-center tw-mt-[20px]">
-          {% comment %} <button class="btn-secondary go-back-step tw-text-[14px] tw-font-medium" data-prev-step="product-list">Back</button> {% endcomment %}
+        <div class="cart-single-product-info mx-[-16px] p-[16px] border-[0px] border-t-[1px] border-solid border-[#E3E3E3]"></div>
+        <div class="variant-footer step-footer text-center mt-auto sticky left-0 bottom-0 z-[2] flex items-center justify-between mx-[-16px] w-auto p-[16px] border-[0px] border-t-[1px] border-solid border-[#E3E3E3] bg-white">
           <button class="choose_size_btn button button-primary w-full" data-next-step="plan" disabled>Choose Size</button>
         </div>
     </div>
-    <div class="step step-plan hidden">
-        <div class="plan-header step-header tw-text-center tw-my-[20px]">
-            <h3 class="font-grotesk text-[20px] font-medium">Select Plan</h3>
+    <div class="step step-plan h-full hidden">
+        <div class="plan-header step-header py-[30px]">
+            {% if section.settings.empty_plan_title != blank %}
+              <h2 class="text-center font-grotesk font-medium text-[24px] leading-[1.3] tracking-[-0.05em] text-scheme_one mt-0 mb-[0px]">
+                {{ section.settings.empty_plan_title }}
+              </h2>
+            {% endif %}
         </div>
-        <div class="cart-selling-plan-info"></div>
-        <div class="plan-footer step-footer tw-text-center tw-mt-[20px]">
+        <div class="cart-selling-plan-info mx-[-16px] p-[16px] border-[0px] border-t-[1px] border-solid border-[#E3E3E3]"></div>
+        <div class="plan-footer step-footer text-center mt-auto sticky left-0 bottom-0 z-[2] flex items-center justify-between mx-[-16px] w-auto p-[16px] border-[0px] border-t-[1px] border-solid border-[#E3E3E3] bg-white">
           <button class="choose_plan_btn button button-primary w-full" data-next-step="summary">Choose Plan</button>
         </div>
     </div>

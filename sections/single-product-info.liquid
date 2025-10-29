@@ -1,62 +1,60 @@
-<div class="cart-single-product-info">
-    <div class="sp-info-main">
-      <div class="sp-info-image">
+<div class="cart-single-product-info mx-[-16px] p-[16px] border-[0px] border-t-[1px] border-solid border-[#E3E3E3]">
+    <div class="sp-info-main flex gap-[16px] ">
+      <div class="sp-info-image relative overflow-hidden min-w-[70px] min-h-[70px] rounded-[8px]">
         {% render 'image-element',
           image: product.featured_image,
           widths: '70, 100',
           sizes: '100vw',
-          class: 'tw-w-full tw-block tw-object-contain tw-h-auto'
+          class: 'w-full block object-contain h-full absolute left-0 top-0'
         %}
       </div>
-      <div class="sp-info-text">
-        <h4 class="h4">
+      <div class="sp-info-text w-[calc(100%-86px)] flex-1">
+        <h4 class="text-[16px] text-scheme_one font-medium tracking-[-0.05em] leading-[1.3]">
             {{ product.title }}
         </h4>
-        <div class="sp-qty-remove">
-            <div class="sp-qty-block">
-              <span class="sp-qty-btn sp-qty-minus">
+        <div class="sp-qty-remove mt-[12px] flex items-center justify-between gap-[16px]">
+            <div class="sp-qty-block grid w-[105px] max-w-[105px] h-[35px] grid-cols-3 border-[0.8px] border-solid border-[#E3E3E3] rounded-full items-center">
+              <span class="sp-qty-btn sp-qty-minus flex justify-center h-full items-center cursor-pointer">
                 {{ 'icon-minus.svg' | inline_asset_content }}
               </span>
-              <input type="number" name="quantity" value="1" min="1" max="">
-              <span class="sp-qty-btn sp-qty-plus">
+              <input class="border-none text-center pointer-events-none" type="number" name="quantity" value="1" min="1" max="">
+              <span class="sp-qty-btn sp-qty-plus flex justify-center h-full items-center cursor-pointer">
                 {{ 'icon-plus.svg' | inline_asset_content }}
               </span>
             </div>
-            <div class="sp-remove">
+            <div class="sp-remove inline-flex items-center gap-[6px] text-[13px] cursor-pointer">
               {{ 'icon-remove.svg' | inline_asset_content }}
-              <span>Remove</span>
+              <span class="underline">Remove</span>
             </div>
         </div>
       </div>
     </div>
     
     {% if product.variants.size > 0 %}
-        <div class="sp-variant-list tw-grid tw-grid-col-3">
+        <div class="sp-variant-list flex flex-wrap gap-[8px] mt-[24px]">
             {% for variant in product.variants %}
-                <div class="sp-variant-item" data-variant-id="{{ variant.id }}" data-product-handle="{{ product.handle }}" data-variant-title="{{ variant.title }}">
+              {% if variant.available %}
+                <div class="sp-variant-item w-[calc(33.33%-2/3*8px)] leading-[1] text-left border-[1px] border-solid border-[#E3E3E3] rounded-[8px] flex items-center justify-center p-[20px_8px] text-[14px] font-medium flex-col gap-[13px]" data-variant-id="{{ variant.id }}" data-product-handle="{{ product.handle }}" data-variant-title="{{ variant.title }}">
                     {% if variant.title contains 'Size' %}
                       {%- assign variant_number = variant.title |  split: '(' | first |  split: ' ' | last -%}
                       {%- assign variant_lbs = variant.title |  split: ')' | first |  split: '(' | last -%}
                       {%- assign variant_size = variant.title |  split: '-' | last -%}
-                      <div class="sp-variant-item-info tw-cursor-pointer">
-                          {% if variant_number and variant_lbs %}
-                              <div class="sp-item-top">
-                                  <b>{{ variant_number }}</b>
-                                  <span>{{ variant_lbs }}</span>
-                              </div>
-                          {% endif %}
-                          {% if variant_size %}
-                              <div class="sp-item-bottom">
-                                  {{- variant_size | escape -}}
-                              </div>
-                          {% endif %}
-                      </div>
+                        {% if variant_number and variant_lbs %}
+                            <div class="sp-item-top flex items-center gap-[8px] w-full leading-[1]">
+                                <b class="font-bold text-[18px] leading-[13px]">{{ variant_number }}</b>
+                                <span class="text-[#909090] text-[13px] font-normal">{{ variant_lbs }}</span>
+                            </div>
+                        {% endif %}
+                        {% if variant_size %}
+                            <div class="sp-item-bottom">
+                                {{- variant_size | escape -}}
+                            </div>
+                        {% endif %}
                     {% else %}  
-                      <div class="sp-variant-item-info tw-cursor-pointer">
-                        {{ variant.title }}
-                      </div>    
+                      {{ variant.title }}
                     {% endif %}
                 </div>
+              {% endif %}
             {% endfor %}
         </div>
     {% endif %}

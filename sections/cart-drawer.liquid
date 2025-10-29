@@ -7,9 +7,9 @@
     <div class="cart-drawer__loader hidden" id="CartDrawerLoader">
       <div class="spinner"></div>
     </div>
-    <header class="cart-drawer__header p-[20px_16px_16px] flex justify-between gap-[10px] items-center border-0 border-b border-solid border-[#E3E3E3]">
+    <header class="cart-drawer__header p-[20px_16px_16px] flex justify-between gap-[10px] items-center border-0 border-b border-solid border-[#E3E3E3] z-[2]">
       <h2 class="text-[20px] font-grotesk font-medium leading-[1] capitalize text-[#212121] tracking-normal">
-        Your Cart (<span id="CartCount" {% if cart.item_count == 0 %}class="tw-hidden"{% endif %}>{{ cart.item_count }}</span>)
+        Your Cart <span id="CartCount" class="cart-count">{{ cart.item_count }}</span>
       </h2>
       <button class="cart-drawer__close w-[24px] min-w-[24px] h-[24px] flex items-center justify-center ">
         <svg
@@ -61,7 +61,7 @@
       {% endif %}
 
       {% if cart.item_count == 0 %}
-        <div class="px-[16px] empty-drawer-main">
+        <div class="px-[16px] empty-drawer-main h-full">
           {% render 'empty-cart' section: section %}
           {% if section.settings.enable_product_feature %}
             <div class="custom-product-feature mt-[22px] p-[85px_0_80px]">
@@ -108,7 +108,7 @@
       {% else %}
         {% capture product_ids %}{% endcapture %}
         {% for item in cart.items %}
-          <div class="cart-drawer__item p-[20px_16px] flex gap-[16px]" data-key="{{ item.key }}">
+          <div class="cart-drawer__item p-[20px_16px] flex gap-[16px]" data-key="{{ item.key }}" data-item-id="{{ item.id }}" data-qty="{{ item.quantity }}">
             <span class="w-[80px] min-w-[80px] h-[80px] flex items-center justify-center">
               <img
                 src="{{ item.image | image_url: width: 80 }}"
@@ -175,7 +175,7 @@
                     type="number"
                     value="{{ item.quantity }}"
                     min="1"
-                    class="w-[35px] min-w-[35px] h-[35px] flex items-center justify-center font-grotesk font-normal text-[13px] leading-[1] text-black text-center pt-[2px]">
+                    class="w-[35px] min-w-[35px] h-[35px] flex items-center justify-center font-grotesk font-normal text-[13px] leading-[1] text-black text-center pt-[2px] pointer-events-none">
                   <button class="qty-btn plus w-[35px] min-w-[35px] h-[35px] flex items-center justify-center pr-[7px]">
                     {{ 'drawer-plus.svg' | inline_asset_content }}
                   </button>
@@ -185,48 +185,45 @@
                 </button>
               </div>
               {% if item.product.variants.size > 0 %}  
-                <custom-variant-selector class="custom-variant-selector block ml-[-96px] w-[calc(100%+96px)]" data-line="{{ forloop.index }}" data-qty="{{ item.quantity }}">
-                  <button type="button" class="variant-select-button flex justify-between w-full text-[14px]">
-                    {% if item.variant.title contains 'Size' %}
-                      {%- assign variant_number = item.variant.title |  split: '(' | first |  split: ' ' | last -%}
-                      {%- assign variant_lbs = item.variant.title |  split: ')' | first |  split: '(' | last -%}
-                      {%- assign variant_size = item.variant.title |  split: '-' | last -%}
-                      <span class="pointer-events-none">
-                        {% if variant_number and variant_lbs %}
-                            <span class="cart-v-top flex items-center gap-[8px]">
-                                <b class="font-bold text-[18px] leading-[1.5]">{{ variant_number }}</b>
-                                <span class="text-[#909090] text-[13px] font-normal">{{ variant_lbs }}</span>
-                            </span>
-                        {% endif %}
-                        {% if variant_size %}
-                          <b class="cart-v-bottom">
-                              {{- variant_size | escape -}}
-                          </b>
-                        {% endif %}
-                      </span>
-                    {% else %}  
-                    {{ item.variant.title }}
-                    {% endif %}
-                    <span class="tw-w-[16px] tw-min-w-[16px] tw-h-[16px] tw-flex tw-items-center tw-justify-center down-icon [&_svg]:tw-transition-all [&_svg]:tw-duration-300">
+                <custom-cart-variant-selector class="custom-variant-selector block ml-[-96px] w-[calc(100%+96px)] mt-[10px]" data-item-id="{{ item.id }}" data-line="{{ forloop.index }}" data-qty="{{ item.quantity }}">
+                  <button type="button" class="variant-select-button flex justify-between w-full text-[14px] gap-[16px] items-center bg-[#C5B4E326] p-[13px_12px] rounded-[8px] mt-[10px]">
+                    <div class="varaint-text-left flex items-center text-[14px] leading-[1] text-[#000000] pointer-events-none">
+                      {% if item.variant.title contains 'Size' %}
+                        {%- assign variant_number = item.variant.title |  split: '(' | first |  split: ' ' | last -%}
+                        {%- assign variant_lbs = item.variant.title |  split: ')' | first |  split: '(' | last -%}
+                        {%- assign variant_size = item.variant.title |  split: '-' | last -%}
+                          {% if variant_number and variant_lbs %}
+                            <b class="mr-[8px]">{{ variant_number }}</b>
+                            <span class="text-[#909090] mr-[14px]">{{ variant_lbs }}</span>
+                          {% endif %}
+                          {% if variant_size %}
+                            <b class="lowercase">{{- variant_size | escape -}}</b>
+                          {% endif %}
+                      {% else %}  
+                      {{ item.variant.title }}
+                      {% endif %}
+                    </div>
+                    <span class="flex items-center gap-[6px] cursor-pointer text-[13px]">
                       {{ 'icon-edit.svg' | inline_asset_content }}
-                      <span>Edit Size</span>
+                      <span class="underline">Edit Size</span>
                     </span>
                   </button>
-                  <ul class="variant-option-list flex-wrap gap-[8px]">
+                  <ul class="variant-option-list flex-wrap gap-[8px] mt-[10px]">
                     {% for variant in item.product.variants %}
-                      <li data-variant-id="{{ variant.id }}" class="w-[calc(33.33%-2/3*8px)] border-[1px] border-solid border-[#E3E3E3] rounded-[8px] text-center flex items-center justify-center p-[20px_12px] text-[14px] font-medium leading-[24px] flex-col gap-[13px] {% if variant.id == item.variant.id %}active{% endif %}">
+                      {% if variant.available %}
+                      <li data-variant-id="{{ variant.id }}" class="w-[calc(33.33%-2/3*8px)] leading-[1] text-left border-[1px] border-solid border-[#E3E3E3] rounded-[8px] flex items-center justify-center p-[20px_8px] text-[13px] font-medium flex-col gap-[13px] {% if variant.id == item.variant.id %}active{% endif %}">
                         {% if variant.title contains 'Size' %}
                           {%- assign variant_number = variant.title |  split: '(' | first |  split: ' ' | last -%}
                           {%- assign variant_lbs = variant.title |  split: ')' | first |  split: '(' | last -%}
                           {%- assign variant_size = variant.title |  split: '-' | last -%}
                           {% if variant_number and variant_lbs %}
-                              <span class="cart-v-top flex items-center gap-[8px]">
-                                  <b class="font-bold text-[18px] leading-[1.5]">{{ variant_number }}</b>
+                              <span class="cart-v-top flex items-center gap-[8px] w-full leading-[1]">
+                                  <b class="font-bold text-[16px] leading-[13px]">{{ variant_number }}</b>
                                   <span class="text-[#909090] text-[13px] font-normal">{{ variant_lbs }}</span>
                               </span>
                           {% endif %}
                           {% if variant_size %}
-                              <b class="cart-v-bottom">
+                              <b class="cart-v-bottom lowercase">
                                   {{- variant_size | escape -}}
                               </b>
                           {% endif %}
@@ -234,38 +231,40 @@
                         {{ variant.title }}
                         {% endif %}  
                       </li>
+                      {% endif %}
                     {% endfor %}
                   </ul>
-                </custom-variant-selector>
+                </custom-cart-variant-selector>
               {% endif %}
               {% if item.selling_plan_allocation != null %}
                 {% if item.selling_plan_allocation
                   or item.variant.product.selling_plan_groups.size > 0
                 %}
-                  <custom-selling-plan-selector
+                  <custom-cart-selling-plan-selector
                     class="custom-selling-plan-selector relative block ml-[-96px] w-[calc(100%+96px)]"
+                    data-item-id="{{ item.id }}"
                     data-qty="{{ item.quantity }}"
                     data-line="{{ forloop.index }}"
                     data-current-id="{{ item.variant.id }}"
                   >
-                    <div class="selling-plan-button product-option justify-between items-center !py-[10px] !font-primary !text-[12px] !leading-[1.2] !text-dark flex items-center gap-[10px] cursor-pointer">
+                    <div class="selling-plan-button product-option justify-between flex gap-[16px] text-[13px] items-center bg-[#C5B4E326] p-[13px_12px] rounded-[8px] mt-[10px]">
                       {% assign allocation = item.selling_plan_allocation %}
                       {% assign adjustment = allocation.selling_plan.price_adjustments | first %}
                       {% assign save_value = adjustment.value | divided_by: 100 | round: 2 %}
 
-                      <div class="selling-plan-info">
+                      <div class="selling-plan-info flex items-center gap-[9px]">
                         <span class="plan-name">{{ allocation.selling_plan.name }}</span>
                         {% if save_value != 0 %}
-                          <span class="save-text">Save {{ save_value }}%</span>
+                          <span class="save-text bg-[#82E8D3] text-[11px] leading-[1.2] tracking-[-0.05em] p-[4px_8px] pb-[2px] rounded-full font-bold">Save {{ save_value }}%</span>
                         {% endif %}
                       </div> 
-                      <span class="">
+                      <span class="flex items-center gap-[6px] cursor-pointer text-[13px]">
                         {{ 'icon-edit.svg' | inline_asset_content }}
-                        <span>Edit Plan</span>
+                        <span class="underline text-[13px] text-[#000000]">Edit Plan</span>
                       </span>
                     </div>
                     <ul
-                      class="selling-plan-list-ul absolute z-[2] top-[90%] left-0 w-max min-w-max bg-white shadow p-[10px] flex flex-col gap-[5px] m-0"
+                      class="selling-plan-list-ul absolute z-[2] top-[90%] left-0 min-w-max bg-white shadow p-[10px] flex flex-col gap-[8px] m-0 w-full"
                     >
                       <li
                         class="!font-primary !text-[12px] !leading-[1.2] !text-dark cursor-pointer"
@@ -291,11 +290,11 @@
                         {% endfor %}
                       {% endfor %}
                     </ul>
-                  </custom-selling-plan-selector>
+                  </custom-cart-selling-plan-selector>
                 {% endif %}
               {% endif %}
               
-              <div class="subscription-main">
+              <div class="subscription-main ml-[-96px] w-[calc(100%+96px)]">
                 {% render 'subscription-form'
                   , item: item
                   , forloop: forloop %}
@@ -323,9 +322,9 @@
                   <div class="flex-add-on-details flex items-center gap-[18px]">
                     <div class="cdp-img w-[70px] min-w-[70px] h-[70px] flex items-center justify-center">
                       <img
-                        src="{{ add_on_product.featured_image |  image_url: width: 32 }}"
-                        width="32"
-                        height="24"
+                        src="{{ add_on_product.featured_image |  image_url: width: 70 }}"
+                        width="70"
+                        height="70"
                         class="max-w-full max-h-full object-contain"
                         alt="{{ add_on_product.title }}"
                         loading="lazy">
@@ -394,11 +393,11 @@
       </div>
       <div class="cart-drawer-subtotal mb-[16px] flex items-center justify-between gap-[10px]">
         <span class="font-grotesk font-normal text-[16px] leading-[1] text-[#212121]">Subtotal:</span>
-        <span class="subtotal font-grotesk font-medium text-[16px] leading-[1] text-[#212121]">
+        <span class="subtotal font-semibold font-Inter text-[16px] leading-[1] text-[#212121]">
           {{- cart.total_price | money -}}
         </span>
       </div>
-      <div class="cart-drawer-buttons mb-[10px]">
+      <div class="cart-drawer-buttons">
         <form
           method="post"
           action="{{ routes.cart_url }}"
@@ -413,7 +412,7 @@
         </form>
       </div>
       {% if section.settings.free_shipping_text != blank %}
-        <div class="cart-drawer-shipping-text text-center font-grotesk font-normal text-[14px] leading-[1.6] text-black hidden ">
+        <div class="cart-drawer-shipping-text text-center font-grotesk font-normal text-[14px] leading-[1.6] text-black hidden mt-[10px]">
           {{ section.settings.free_shipping_text }}
         </div>
       {% endif %}
@@ -444,6 +443,31 @@
         "id": "empty_cart_product_list",
         "label": "Empty Cart Product List",
         "limit": 4
+      },
+      {
+        "type": "header",
+        "content": "Choose size content"
+      },
+      {
+        "type": "text",
+        "id": "empty_size_title",
+        "label": "Empty Size Heading",
+        "default": "Choose a Size"
+      },
+      {
+        "type": "richtext",
+        "id": "empty_size_text",
+        "label": "Sub Content"
+      },
+      {
+        "type": "header",
+        "content": "Select plan content"
+      },
+      {
+        "type": "text",
+        "id": "empty_plan_title",
+        "label": "Empty Plan Heading",
+        "default": "Select plan"
       },
       {
         "type": "header",

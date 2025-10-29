@@ -27,7 +27,6 @@
               %}
               <ul class="selling_plan-item">
                 {% for allocation in allocations limit: 1 %}
-
                   {% liquid
                     if forloop.first and product.requires_selling_plan and first_selling_plan_group
                       assign plan_checked = 'checked'
