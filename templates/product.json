@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "main": {
       "type": "main-product",
@@ -180,7 +180,7 @@
         "extra_product_for_bambootek": "",
         "extra_product_quantity": 0,
         "show_product_details": false,
-        "show_store_locator": false,
+        "show_store_locator": true,
         "store_main_heading": "Find SkinShield™ near you",
         "store_sub_heading": ""
       }
