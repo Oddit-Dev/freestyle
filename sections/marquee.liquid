@@ -4,6 +4,21 @@
       padding-top: {{ section.settings.padding_top_desktop }}px;
       padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
     }
+    .section-{{ section.id }} .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee-scroll 30s linear infinite;
+      will-change: transform;
+    }
+
+    @keyframes marquee-scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
     @media screen and (max-width: 768px) {
       .section-{{ section.id }} {
         padding-top: {{ section.settings.padding_top_mobile }}px;
@@ -11,15 +26,14 @@
       }
     }
   </style>
-  {{ 'marquee.js' | asset_url | script_tag }}
-
+  {% comment %} {{ 'marquee.js' | asset_url | script_tag }} {% endcomment %}
   <div class="marquee-section section-{{ section.id }} pt-[60px] pb-[140px] max-md:py-[30px]">
-    <div class="marquee-container overflow-hidden" data-marquee-container="marquee-{{ section.id }}">
+    <div class="marquee-container relative overflow-hidden" data-marquee-container="marquee-{{ section.id }}">
       <div class="marquee-track marquee-track-{{ section.id }} flex gap-[60px] w-[max-content] lg:gap-[116px] " data-marquee-track>
         {%- capture marqee_content -%}
             {% for block in section.blocks %}
               {% if block.settings.image != blank %}
-                <div class="marquee-item">
+                <div class="marquee-item flex-shrink-0">
                   {%- render 'image-element',
                     image: block.settings.image,
                     widths: '375, 550, 750, 950',
@@ -32,9 +46,25 @@
           {%- endcapture -%}
         {{ marqee_content }}
         {{ marqee_content }}
+        {{ marqee_content }}
       </div>
     </div>
   </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll(".section-{{ section.id }} [data-marquee-container]").forEach((container) => {
+        const track = container.querySelector("[data-marquee-track]");
+        if (!track) return;
+
+        track.innerHTML += track.innerHTML;
+
+        const speed = parseFloat(container.dataset.speed) || 30;
+        track.style.animationDuration = `${speed}s`;
+      });
+    });
+
+  </script>
 {% endif %}
 {% schema %}
   {
