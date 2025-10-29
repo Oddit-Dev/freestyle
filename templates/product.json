@@ -15,7 +15,7 @@
         "title_hijtjK": {
           "type": "title",
           "settings": {
-            "alternate_title": ""
+            "alternate_title": "{{ section.settings.extra_product_for_bambootek.metafields.custom.alternate_title.value }}"
           }
         },
         "variant_text_JnAzJ8": {
