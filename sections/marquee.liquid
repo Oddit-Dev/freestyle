@@ -4,21 +4,6 @@
       padding-top: {{ section.settings.padding_top_desktop }}px;
       padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
     }
-    .section-{{ section.id }} .marquee-track {
-      display: flex;
-      width: max-content;
-      animation: marquee-scroll 30s linear infinite;
-      will-change: transform;
-    }
-
-    @keyframes marquee-scroll {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
-    }
     @media screen and (max-width: 768px) {
       .section-{{ section.id }} {
         padding-top: {{ section.settings.padding_top_mobile }}px;
@@ -26,44 +11,98 @@
       }
     }
   </style>
-  {% comment %} {{ 'marquee.js' | asset_url | script_tag }} {% endcomment %}
-  <div class="marquee-section section-{{ section.id }} pt-[60px] pb-[140px] max-md:py-[30px]">
-    <div class="marquee-container relative overflow-hidden" data-marquee-container="marquee-{{ section.id }}">
-      <div class="marquee-track marquee-track-{{ section.id }} flex gap-[60px] w-[max-content] lg:gap-[116px] " data-marquee-track>
-        {%- capture marqee_content -%}
-            {% for block in section.blocks %}
-              {% if block.settings.image != blank %}
-                <div class="marquee-item flex-shrink-0">
-                  {%- render 'image-element',
-                    image: block.settings.image,
-                    widths: '375, 550, 750, 950',
-                    sizes: '(max-width: 749px) 100vw, 100vw',
-                    class: 'w-auto h-full object-contain block max-h-[89px]'
-                -%}
-                </div>  
-              {% endif %}
-            {% endfor %}
-          {%- endcapture -%}
-        {{ marqee_content }}
-        {{ marqee_content }}
-        {{ marqee_content }}
+  <div class="marquee-section section-{{ section.id }} pt-[60px] pb-[140px] max-md:py-[30px] ">    
+    <div class="marquee overflow-hidden" data-speed="0.8">
+      <div class="marquee-track flex gap-[60px] w-[max-content] lg:gap-[116px] will-change-transform items-center" aria-hidden="true">
+        {% for block in section.blocks %}
+          {% if block.settings.image != blank %}
+            <div class="marquee-item">
+              {%- render 'image-element',
+                image: block.settings.image,
+                widths: '375, 550, 750, 950',
+                sizes: '(max-width: 749px) 100vw, 100vw',
+                class: 'w-auto h-full object-contain block max-h-[89px]'
+            -%}
+            </div>  
+          {% endif %}
+        {% endfor %}
       </div>
     </div>
   </div>
-
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      document.querySelectorAll(".section-{{ section.id }} [data-marquee-container]").forEach((container) => {
-        const track = container.querySelector("[data-marquee-track]");
-        if (!track) return;
+      const marquee = document.querySelector(".section-{{ section.id }} .marquee");
+      const track = marquee.querySelector(".marquee-track");
+      const speed = parseFloat(marquee.dataset.speed) || 0.6; // px per frame
 
-        track.innerHTML += track.innerHTML;
+      let items = Array.from(track.children);
+      let animationFrame;
+      let x = 0;
 
-        const speed = parseFloat(container.dataset.speed) || 30;
-        track.style.animationDuration = `${speed}s`;
+      function fillTrack() {
+        const containerWidth = marquee.offsetWidth;
+        let totalWidth = track.scrollWidth;
+
+        // If content narrower than container, clone until filled 2x
+        while (totalWidth < containerWidth * 2) {
+          items.forEach((item) => {
+            track.appendChild(item.cloneNode(true));
+          });
+          totalWidth = track.scrollWidth;
+        }
+      }
+
+      function animate() {
+        x -= speed;
+        const firstItem = track.firstElementChild;
+        const firstWidth = firstItem.offsetWidth + parseInt(getComputedStyle(track).gap);
+
+        // Reset to start when the first item completely leaves view
+        if (-x >= firstWidth) {
+          track.appendChild(firstItem);
+          x += firstWidth;
+        }
+
+        track.style.transform = `translateX(${x}px)`;
+        animationFrame = requestAnimationFrame(animate);
+      }
+
+      function start() {
+        cancelAnimationFrame(animationFrame);
+        x = 0;
+        track.style.transform = "translateX(0)";
+        fillTrack();
+        animate();
+      }
+
+      // Wait for images to load before measuring
+      const imgs = marquee.querySelectorAll("img");
+      let loaded = 0;
+      if (imgs.length === 0) {
+        start();
+      } else {
+        imgs.forEach((img) => {
+          if (img.complete) {
+            loaded++;
+            if (loaded === imgs.length) start();
+          } else {
+            img.addEventListener("load", () => {
+              loaded++;
+              if (loaded === imgs.length) start();
+            });
+          }
+        });
+        // fallback if images are slow
+        setTimeout(() => start(), 1500);
+      }
+
+      // Handle resize
+      window.addEventListener("resize", () => {
+        cancelAnimationFrame(animationFrame);
+        track.style.transform = "translateX(0)";
+        start();
       });
     });
-
   </script>
 {% endif %}
 {% schema %}
