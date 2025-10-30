@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "main": {
       "type": "main-product",
@@ -25,7 +25,7 @@
         "richtext_czpjtz": {
           "type": "richtext",
           "settings": {
-            "richtext": "<ul><li>14x better absorption</li><li>Skin-safe</li><li>7-layer skin protection</li><li>EWG Verified®</li><li>TCF: Total chlorine free</li><li>Cloud-like softness</li></ul>"
+            "richtext": "{{ section.settings.extra_product_for_bambootek.metafields.custom.product_specification | metafield_tag }}<ul><li>14x better absorption</li><li>Skin-safe</li><li>7-layer skin protection</li><li>EWG Verified®</li><li>TCF: Total chlorine free</li><li>Cloud-like softness</li></ul>"
           }
         },
         "separator_NF3Aqz": {
