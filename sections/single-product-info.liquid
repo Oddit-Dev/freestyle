@@ -58,4 +58,22 @@
             {% endfor %}
         </div>
     {% endif %}
+
+    {% if product.metafields.custom.size_chart != blank %}
+      <div class="cart-size-chart-modal hidden">
+        <div class="container-main fixed top-0 left-0 w-full h-full flex items-center justify-center p-[30px] max-md:p-[20px] bg-black/60 z-[99]">
+          <div class="image-main relative">
+            <button class="cart-close-modal absolute top-[-15px] right-[-15px] w-[30px] h-[30px] flex items-center justify-center bg-scheme_one text-white rounded-full">
+              ✕
+            </button>
+            {% render 'image-element'
+              , image: product.metafields.custom.size_chart
+              , widths: '100, 200, 300, 375, 550, 750, 1100, 1500, 1780'
+              , sizes: '(max-width: 989px) 100vw, 45vw'
+              , class: 'product-feature-image max-w-full max-h-full h-auto object-contain'
+            %}
+          </div>
+        </div>
+      </div>
+    {% endif %}
 </div>

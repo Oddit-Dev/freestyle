@@ -113,7 +113,8 @@ class CartDrawer extends HTMLElement {
           this.showStep('product-list');
         });
 
-        this.handleEmptyQrt();
+        this.handleEmptyQty();
+        this.handleSizeModal();
 
       })
     .catch((error) => console.error('Error fetching section:', error));
@@ -166,7 +167,7 @@ class CartDrawer extends HTMLElement {
             this.showStep('product-list');
           });
 
-          this.handleEmptyQrt();
+          this.handleEmptyQty();
           
         })
       .catch((error) => console.error('Error fetching section:', error));
@@ -194,7 +195,7 @@ class CartDrawer extends HTMLElement {
     }
   }
 
-  handleEmptyQrt(){
+  handleEmptyQty(){
     document.querySelectorAll('.sp-qty-block').forEach(block => {
       const input = block.querySelector('input[type="number"]');
       const minusBtn = block.querySelector('.sp-qty-minus');
@@ -212,6 +213,31 @@ class CartDrawer extends HTMLElement {
         if (current < max) input.value = current + 1;
       });
     });
+  }
+
+  handleSizeModal(){
+    const btn = document.querySelector(".custom-cart-flow .empty-subheading a");
+    const modal = document.querySelector(".cart-size-chart-modal");
+    const close = document.querySelector(".cart-close-modal");
+    if(!modal){
+      if(btn){
+        btn.closest('.empty-subheading').classList.add('hidden');
+      }
+    }
+    if (btn && modal && close) {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        modal.classList.remove("hidden");
+      });
+      close.addEventListener("click", () => {
+        modal.classList.add("hidden");
+      });
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          modal.classList.add("hidden");
+        }
+      });
+    }
   }
 
   handleQtyClick(e) {
@@ -488,10 +514,12 @@ document.addEventListener("DOMContentLoaded", function () {
           id: addonCheckbox.dataset.variantId,
           quantity: 1
         };
-        const selectedPlan = document.querySelector(".selected-plan").textContent;
-        if (selectedPlan != 'One-Time Purchase') {
-          if (addonCheckbox.dataset.sellingPlanId) {
-            addonItem.selling_plan = addonCheckbox.dataset.sellingPlanId;
+        if(document.querySelector(".selected-plan")){
+          const selectedPlan = document.querySelector(".selected-plan").textContent;
+          if (selectedPlan != 'One-Time Purchase') {
+            if (addonCheckbox.dataset.sellingPlanId) {
+              addonItem.selling_plan = addonCheckbox.dataset.sellingPlanId;
+            }
           }
         }
         items.push(addonItem);
