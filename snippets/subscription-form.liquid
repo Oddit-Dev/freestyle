@@ -32,12 +32,13 @@
             {%- for allocation in item.variant.selling_plan_allocations -%}
               {%- assign plan = allocation.selling_plan -%}
               {%- assign adjustment = plan.price_adjustments[0] -%}
+              {%- assign save_value = allocation.selling_plan.price_adjustments[0].value | divided_by: 100 | round: 2 -%}
               {%- if adjustment.value_type == 'percentage' -%}
-                {{ section.settings.subscription_button_label }} & Save
+                {{ section.settings.subscription_button_label }}{% if save_value != 0 %} & Save{% endif %}
               {%- elsif adjustment.value_type == 'amount' -%}
-                {{ section.settings.subscription_button_label }} & Save
+                {{ section.settings.subscription_button_label }}{% if save_value != 0 %} & Save{% endif %}
               {%- else -%}
-                {{ section.settings.subscription_button_label }} & Save
+                {{ section.settings.subscription_button_label }}{% if save_value != 0 %} & Save{% endif %}
               {%- endif -%}
               {%- break -%}
             {%- endfor -%}
