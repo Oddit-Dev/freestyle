@@ -639,6 +639,15 @@ h2,
   background-size: contain;
 }
 
+.product__cta .button.m-disabled {
+  width: 100%;
+}
+
+.product__options-selector .product-form__button-option[disabled] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 @media screen and (max-width: 749px) {
 
   .product .product-richtext {

@@ -1,0 +1,992 @@
+{% render 'entry' with '@/styles/sections/product.scss' %}
+
+{% assign sst = section.settings %}
+{% assign blocks = section.blocks %}
+{% assign features = blocks | where: 'type', 'product_feature' %}
+{% assign accordionItems = blocks | where: 'type', 'accordion_item' %}
+{% assign productCurrent = product %}
+{% assign activeVariant = product.selected_or_first_available_variant %}
+{% assign product_badge = product.metafields.custom.badge_product %}
+{% assign product_attributes = product.metafields.custom.product_attributes %}
+
+<div
+  class="product"
+  x-data="product"
+  x-init="init"
+  {% if template contains 'bambootek' and section.settings.extra_product_for_bambootek %}
+    data-extra-product="{{ all_products[section.settings.extra_product_for_bambootek].first_available_variant.id }}"
+    data-extra-product-qty="{{ section.settings.extra_product_quantity }}"
+  {% endif %}>
+  <div class="container container-lg">
+    <div class="product__inner">
+      {% render 'product-gallery', product: product %}
+      <div class="product__content flex flex-col gap-6 lg:mr-24">
+        {% for block in blocks %}
+          {% case block.type %}
+            {% when 'text_line' %}
+              <div class="product__vendor">
+                {{ block.settings.text }}
+              </div>
+
+            {% when 'title' %}
+              <div class="product__title-wrapper">
+                {% if product_badge != blank %}
+                  <div class="product__badge font-grotesk">
+                    {{ product_badge }}
+                  </div>
+                {% endif %}
+                {% if block.settings.image != blank %}
+                  <h1 class="product__title-image">
+                    <img src="{{ block.settings.image | image_url }}" alt="{{ product.title }}">
+                  </h1>
+                {% elsif block.settings.alternate_title != blank %}
+                  <h1 class="product__title">
+                    {% assign bamboo_icon = settings.bamboo_icon
+                      | image_url: width: 100
+                      | image_tag:
+                        class: 'w-[2.2rem] md:w-[3.6rem] inline-block translate-y-[-0.6rem] md:translate-y-[-1rem] mx-1'
+                    %}
+                    {% assign heart_icon = settings.heart_icon
+                      | image_url: width: 100
+                      | image_tag:
+                        class: 'w-[3rem] md:w-[5rem] inline-block translate-y-[-0.4rem] md:translate-y-[-0.7rem] mx-1'
+                    %}
+                    {{
+                      block.settings.alternate_title
+                      | replace: '[bamboo]', bamboo_icon
+                      | replace: '[heart]', heart_icon
+                    }}
+                  </h1>
+                {% else %}
+                  <h1 class="product__title">
+                    {{ product.title }}
+                  </h1>
+                {% endif %}
+
+                <div class="product__rating">
+                  {% render 'product-rating', product: product %}
+                </div>
+                <div x-show="activeVariant" class="product__options-price">
+                  {% comment %}
+                    <p>Selected variant: <span x-text="activeVariant.title"></span></p>
+                    <p>Selected variantID: <span x-text="activeVariant.id"></span></p>
+                  {% endcomment %}
+
+                  <strong class="product__options-price_current" x-text="price(activeVariant.price)"></strong>
+                </div>
+              </div>
+
+            {% when 'cta' %}
+              <div class="product__cta">
+                {% if block.settings.cta_type == 'add_to_cart' %}
+                  <div x-show="activeVariant.available">
+                    {% form 'product', product, class: 'product__cta' %}
+                      <input type="hidden" name="id" :value="activeVariant.id">
+                      <input type="hidden" name="selling_plan" :value="sellingPlan.id">
+                      <input type="hidden" name="quantity" value="1">
+
+                      <button class="btn !hidden">
+                        {{ block.settings.cta_label }}
+                      </button>
+                    {% endform %}
+                    <span
+                      class="button"
+                      @click="addToCart(activeVariant.id)">
+                      {{ block.settings.cta_label }}
+                    </span>
+                  </div>
+
+                  <div x-show="!activeVariant.available" x-cloak>
+                    <button class="button m-disabled">Out of Stock</button>
+                  </div>
+
+                {% else %}
+                  <a href="{{ block.settings.cta_url }}" class="btn btn--walmart" target="_blank">
+                    {{ block.settings.cta_label }}
+                  </a>
+                {% endif %}
+              </div>
+
+            {% when 'description' %}
+              <div class="product__description">
+                <h4 class="mb-6">
+                  <strong>About {{ product.title }}</strong>
+                </h4>
+                <div class="tracking-tighter">
+                  {{ product.description | replace: '[title_product]', product.title }}
+                </div>
+              </div>
+
+            {% when 'product_features' %}
+              <div class="product__features flex flex-col gap-10 md:py-8">
+                {% for feature in features %}
+                  <div class="product__feature flex items-center gap-8 md:gap-14">
+                    <div class="product__feature-icon flex items-center justify-center">
+                      {% if feature.settings.icon_image != blank %}
+                        <img src="{{ feature.settings.icon_image | image_url }}" alt="{{ product.title }}">
+                      {% else %}
+                        {{ feature.settings.icon }}
+                      {% endif %}
+                    </div>
+
+                    <div class="product__feature-title">
+                      {{ feature.settings.title }}
+                    </div>
+                  </div>
+                {% endfor %}
+
+                {% if block.settings.note %}
+                  <div class="product__feature flex items-center gap-4 md:gap-14">
+                    <div class="product__feature-icon"></div>
+                    <div class="product__feature-note">
+                      {{ block.settings.note }}
+                    </div>
+                  </div>
+                {% endif %}
+              </div>
+
+            {% when 'separator' %}
+              <hr class="product__separator">
+
+            {% when 'tags' %}
+              {% if product_attributes.value and template.suffix != blank %}
+                <div class="product__tags flex flex-wrap gap-4 mb-4">
+                  {% for attribute in product_attributes.value %}
+                    <div class="product__tag flex items-center gap-2">
+                      {{ attribute }}
+                    </div>
+                  {% endfor %}
+                </div>
+              {% else %}
+                <div class="product__tags flex flex-wrap gap-4 mb-4">
+                  {% for attribute in product_attributes.value %}
+                    <div class="product__tag flex items-center gap-2">
+                      {{ attribute }}
+                    </div>
+                  {% endfor %}
+                  <div class="product__tag flex items-center gap-2">Free shipping when added to subscription</div>
+                </div>
+              {% endif %}
+              {% comment %}
+                {% if product.tags.size > 0 %}
+                  <div class="product__tags flex flex-wrap gap-4 mb-4">
+                    {% for tag in product.tags %}
+                        <div class="product__tag flex items-center gap-2">
+                            {{ tag }}
+                        </div>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              {% endcomment %}
+            {% when 'variants' %}
+              <div class="product__sizes" x-show="variants.length > 1">
+                <h4 class="product__sizes-title mb-4">{{ block.settings.title }}</h4>
+
+                <div class="product__sizes-list mb-10">
+                  <template x-for="item in variants" x-key="item.id">
+                    <label class="product__size">
+                      <input
+                        type="radio"
+                        :checked="item.id === activeVariant.id"
+                        name="size"
+                        :value="item.id"
+                        @change="updateActiveVariant(item.id)">
+                      <div
+                        class="product__size-content"
+                        :class="
+                          {
+                            'm-active': item.id === activeVariant.id,
+                            'm-no-size': !item.size
+                          }
+                        "
+                        :data-percent-off="item.compare_at_price > item.price ? percentOff(item.price, item.compare_at_price) : null">
+                        <div
+                          class="product__size-info"
+                          :style="{ backgroundColor: item.id === activeVariant.id ? item.accentTop : 'transparent' }">
+                          <div
+                            class="product__size-title"
+                            x-show="item.size"
+                            x-text="item.size"></div>
+                          <div
+                            class="product__size-title m-small"
+                            x-show="!item.size && item.title"
+                            x-html="item.title.replace('/', '<br>')"></div>
+                          <div
+                            class="product__size-label"
+                            x-show="item.type === 'wipes'"
+                            x-text="item.size > 1 ? 'packs' : 'pack'"></div>
+                          {% if block.settings.show_weight %}
+                            <div
+                              class="product__size-weight"
+                              x-show="item.weight"
+                              x-text="item.weight + ' lbs'"></div>
+                          {% endif %}
+                        </div>
+                        <div
+                          class="product__size-price"
+                          :style="{ backgroundColor: item.id === activeVariant.id ? item.accentBottom : 'transparent' }"
+                          x-text="price(item.price)"></div>
+                      </div>
+                    </label>
+                  </template>
+                </div>
+                {% if section.settings.show_product_details %}
+                  <div class="product__diapers mb-4">
+                    <span
+                      class="product__diapers-diapers"
+                      x-show="activeVariant.diapersQty"
+                      x-text="'Box Contains: ' + activeVariant.diapersQty + ' Diapers'"></span>
+                    <span
+                      class="product__diapers-wipes"
+                      x-show="activeVariant.wipesQty"
+                      x-text="'Pack Contains: ' + activeVariant.wipesQty + ' Wipes'"></span>
+                  </div>
+                {% endif %}
+              </div>
+            {% when 'options_selector' %}
+              <div class="product__options-selector">
+                {% if block.settings.title != blank %}
+                  <h4 class="product__options-title mb-4">{{ block.settings.title }}</h4>
+                {% endif %}
+                <div class="product__options-list mb-10">
+                  <variant-radios>
+                    <!-- Rendering every options level -->
+                    <template x-for="([key, values], index) in Object.entries(options)" :key="key">
+                      <fieldset class="product-form__input">
+                        <h3 class="form__label" x-text="'Select ' + optionsName[index] + ':'"></h3>
+                        <template x-for="value in values" :key="value">
+                          <div class="product-form__radios">
+                            <button
+                              class="product-form__button-option"
+                              :disabled="index === optionsName.length - 1 && !finalVariantIdsMap[key]?.[value]?.available"
+                              :data-variant-id="index === optionsName.length - 1 ? finalVariantIdsMap[key]?.[value]?.id : null"
+                              :class="{ 'm-selected': selectedOptions[key] === value }"
+                              @click="selectOption(key, value)"
+                              x-text="value"></button>
+                          </div>
+                        </template>
+                      </fieldset>
+                    </template>
+                  </variant-radios>
+                  <!-- Showed selected variant -->
+                </div>
+              </div>
+
+            {% when 'accordion' %}
+              <div class="product__accordion">
+                {% for item in accordionItems %}
+                  <div class="product__accordion-item" x-data="{ open: false }">
+                    <div
+                      class="product__accordion-title"
+                      :class="{ 'product__accordion-title--active': open }"
+                      @click="open = !open">
+                      {{ item.settings.title }}
+                    </div>
+                    <div class="product__accordion-content" x-show="open">
+                      {{ item.settings.content }}
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+<template id="modal-product-info">
+  <div>
+    <img
+      src="{{ sst.size_chart_image | image_url }}"
+      alt="Sizing Chart"
+      class="aspect-auto h-auto w-full object-cover rounded-regular"
+      loading="eager"
+      fetchpriority="high"
+      decoding="auto">
+  </div>
+</template>
+{% render 'entry' with '@/scripts/sections/main-product.js' %}
+<script>
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('product', () => ({
+            loading: true,
+            activeVariant: null,
+            extraProductId: null,
+            extraProductQty: null,
+            sellingPlan: '',
+            mainSwiper: null,
+            mainSwiperPagination: null,
+            paginationSlides: null,
+            activeSlideNum: 0,
+            productType: `{{ product.type }}`,
+            sizesAccentColorsString: `{{ sst.sizes_accent_colors }}`,
+            sizesAccentColors: [],
+            templateName: '{{ template |  handleize }}',
+            product: {{ productCurrent | json }},
+            linkToShowSizeMOdal: false,
+            showWeight: true,
+            // Options Selector
+            optionsName: [], // ['Color', 'Size']
+            options: {}, // { Color: ['Red', 'Blue'], Size: ['S', 'M'] }
+            selectedOptions: {}, // { Color: 'Red', Size: 'M' }
+            variants: [], // All variants with options mapped
+            finalVariantIdsMap: {},
+
+            updateSellingPlan(id) {
+                this.sellingPlan = this.activeVariant.selling_plan_allocations.find(item => item.id == id);
+            },
+            parseDiaperInfo(str) {
+              const diaperMatch = str.match(/Size (\d+)\s*\(([\d\+\-]+)\s*lbs\)\s*-\s*(\d+)\s*diapers/i);
+              const wipeMatch = str.match(/Size (\d+)\s*\((Packs?)\)\s*-\s*(\d+)\s*wipes/i);
+              const simpleDiaperMatch = str.match(/Size (\d+)\s*\(([\d\+\-]+)\s*lbs\)/i);
+              const simpleWipeMatch = str.match(/Size (\d+)\s*\((Packs?)\)/i);
+              const justSizeMatch = str.match(/^(Size )?([a-zA-Z0-9]+)/i);
+
+              if (diaperMatch) {
+                return {
+                  type: 'diaper',
+                  size: parseInt(diaperMatch[1]),
+                  weight: diaperMatch[2],
+                  weightValue: parseInt(diaperMatch[2].replace('+', '')),
+                  diapersQty: parseInt(diaperMatch[3])
+                };
+              } else if (wipeMatch) {
+                return {
+                  type: 'wipes',
+                  size: parseInt(wipeMatch[1]),
+                  wipesQty: parseInt(wipeMatch[3])
+                };
+              } else if (simpleDiaperMatch) {
+                return {
+                  type: 'diaper',
+                  size: parseInt(simpleDiaperMatch[1]),
+                  weight: simpleDiaperMatch[2],
+                  weightValue: parseInt(simpleDiaperMatch[2].replace('+', '')),
+                };
+              } else if (simpleWipeMatch) {
+                return {
+                  type: 'wipes',
+                  size: parseInt(simpleWipeMatch[1])
+                };
+              } else if (justSizeMatch) {
+                return {
+                  type: 'basic',
+                  sizeLabel: justSizeMatch[2].toUpperCase() // "S", "M", "L", "2", etc.
+                };
+              } else {
+                return null;
+              }
+            },
+            variants: [
+                {% for variant in product.variants %}
+                    {
+                        available: {{ variant.available }},
+                        id: {{ variant.id }},
+                        title: `{{ variant.title }}`,
+                        price: {{ variant.price }},
+                        compare_at_price: {{ variant.compare_at_price | default: 0 }},
+                        weight: {{ variant.weight | default: 0 }},
+                        selling_plan_allocations: [
+                            {% for selling_plan_allocation in variant.selling_plan_allocations %}
+                                {
+                                    price: {{ selling_plan_allocation.price }},
+                                    id: {{ selling_plan_allocation.selling_plan.id }},
+                                    name: `{{ selling_plan_allocation.selling_plan.name }}`
+                                },
+                            {% endfor %}
+                        ]
+                    },
+                {% endfor %}
+            ],
+            updateActiveVariant(id) {
+              if (id) {
+                  this.activeVariant = this.variants.find(item => item.id == id);
+                  console.log('Updated active variant:', this.activeVariant);
+                  this.slideToSlideByDataAttribute(this.activeVariant.id);
+
+                  if (this.activeVariant) {
+                    const activeVariant = this.variants.find(item => item.id == this.activeVariant.id);
+                    this.selectedOptions = { ...activeVariant.optionsMapped };
+                    console.log('[slideToSlide] Synced selectedOptions (via optionsMapped):', this.selectedOptions);
+                  }
+              } else {
+                  this.activeVariant = this.variants[0];
+                  console.log('Set default variant:', this.activeVariant);
+                  // this.slideToSlideByDataAttribute(this.activeVariant.id);
+              }
+
+              if (this.templateName === 'product-bambootek') {
+                const defaultPlan = this.activeVariant?.selling_plan_allocations?.[0];
+                if (defaultPlan) {
+                  this.sellingPlan = defaultPlan;
+                }
+              }
+            },
+            addToCart(variantID, redirect = false) {
+              if (!variantID) return;
+              if (this.templateName == 'product-bambootek') {
+                  console.log('product-bambootek IFIFIFIF', this.templateName);
+                  const itemsToAdd = [
+                    {
+                      id: this.activeVariant.id,
+                      quantity: 1,
+                      ...(this.sellingPlan?.id && { selling_plan: this.sellingPlan.id })
+                    }
+                  ];
+                  if (this.extraProductId) {
+                    console.log('this.extraProductId', this.extraProductId);
+                    itemsToAdd.push({
+                      id: this.extraProductId,
+                      quantity: this.extraProductQty || 4,
+                      ...(this.sellingPlan?.id && { selling_plan: this.sellingPlan.id })
+                    });
+                  }
+                  console.log('this.BEFORE ADD TO CART');
+                  Alpine.store('cart').addMultiplyToCart(itemsToAdd).then(() => {
+                    if (redirect) {
+                      // window.location.href = '/checkout';
+                    } else {
+                      Alpine.store('cart').toggleCart(true);
+                    }
+                  });
+                } else {
+                  Alpine.store('cart').addToCart({
+                  variantId: this.activeVariant.id,
+                  quantity: 1,
+                  sellingPlanId: this.sellingPlan?.id || null
+                }, true, redirect)
+              }
+            },
+            price(price) {
+                return `$${(price / 100).toFixed(2)}`;
+            },
+            percentOff(price, compare_at_price) {
+                return `${((compare_at_price - price) / compare_at_price * 100).toFixed(0)}% off`;
+            },
+            parseSizeColors(input) {
+                this.sizesAccentColors = input
+                  .trim()
+                  .split('\n')
+                  .map(line => {
+                    const [sizePart, colorPart] = line.split(' - ');
+                    const size = sizePart.trim();
+                    const [accentTop, accentBottom] = colorPart.split('|').map(c => `#${c.trim()}`);
+
+                    return {
+                      size,
+                      accentTop,
+                      accentBottom
+                    };
+                  });
+            },
+
+            setupVariants() {
+              console.log('this.variants', this.variants);
+              if (this.templateName === 'product') {
+                this.variants.forEach(variant => {
+                  variant.size = variant.title;
+                  variant.weight = '';
+                  variant.diapersQty = '';
+                  variant.wipesQty = '';
+                  variant.type = '';
+                  variant.accentTop = this.sizesAccentColors.find(item => item.size == variant.size)?.accentTop;
+                  variant.accentBottom = this.sizesAccentColors.find(item => item.size == variant.size)?.accentBottom;
+                });
+              } else {
+                this.variants.forEach(variant => {
+                  variant.size = Number(this.parseDiaperInfo(variant.title)?.size);
+                  variant.weight = this.parseDiaperInfo(variant.title)?.weight;
+                  variant.diapersQty = this.parseDiaperInfo(variant.title)?.diapersQty;
+                  variant.wipesQty = this.parseDiaperInfo(variant.title)?.wipesQty;
+                  variant.type = this.parseDiaperInfo(variant.title)?.type;
+                  variant.accentTop = this.sizesAccentColors.find(item => item.size == variant.size)?.accentTop;
+                  variant.accentBottom = this.sizesAccentColors.find(item => item.size == variant.size)?.accentBottom;
+                });
+              }
+            },
+            updateMainSwiper(swiper) {
+                this.mainSwiper = swiper;
+            },
+            initSwiperMain() {
+                const swiper = this.$refs.mainSwiper;
+                const swiperMain = new Swiper(swiper, {
+                    loop: true,
+                    slidesPerView: 1,
+                    // pagination: {
+                    //   clickable: true,
+                    //   el: this.$refs.mainSwiperPagination,
+                    // },
+                });
+                this.$nextTick(() => {
+                  this.updateMainSwiper(swiperMain);
+                  this.loading = false;
+                });
+            },
+            initSwiperPagination() {
+              const swiper = this.$refs.mainSwiperPagination;
+              const swiperPagination = new Swiper(swiper, {
+                  // loop: true,
+                  direction: "vertical",
+                  slidesPerView: 10,
+                  spaceBetween: 100,
+                  draggable: true,
+                  mousewheel: true,
+              });
+              this.$nextTick(() => {
+                this.mainSwiperPagination = swiperPagination;
+              });
+            },
+            slideToSlide(event, index) {
+              this.mainSwiper.slideTo(index);
+              this.mainSwiperPagination.slideTo(index);
+              this.activeSlideNum = index;
+              const variantId = event.target.closest('.swiper-slide')?.getAttribute('data-variant-id');
+
+
+              if (variantId) {
+                console.log('[slideToSlide] Synced selectedOptions BEFORE:', this.selectedOptions);
+
+                const foundVariant = this.variants.find(item => item.id == variantId);
+
+                if (foundVariant) {
+                  this.activeVariant = foundVariant;
+
+                  this.selectedOptions = { ...foundVariant.optionsMapped };
+
+                  console.log('[slideToSlide] Synced selectedOptions (via optionsMapped):', this.selectedOptions);
+                }
+              }
+
+
+
+
+              //if (variantId !== null && variantId !== undefined && variantId !== '') {
+                //console.log('slideToSlideVARIANT', variantId);
+                //this.activeVariant = this.variants.find(item => item.id == variantId);
+                //console.log('this.activeVariant', this.activeVariant);
+              //} else {
+                //console.log("Dont SlideToSlideVARIANT");
+              //}
+
+              //this.selectVariant();
+              //console.log('this.selectedOptions', this.selectedOptions);
+
+            },
+            slideToSlideByDataAttribute(dataAttrValue) {
+              const slides = this.$refs.mainSwiperPagination.querySelectorAll('.swiper-slide.m-variant');
+              const targetSlide = Array.from(slides).find(slide => {
+                const variantId = slide.getAttribute('data-variant-id');
+                return String(variantId) === String(dataAttrValue);
+              });
+              if (targetSlide) {
+                  const index = parseInt(targetSlide.dataset.index);
+                  this.slideToSlide(event, index);
+              } else if (slides.length > 0) {
+                const activeSlide = Array.from(slides).find(slide => slide.classList.contains('m-active'));
+                if (activeSlide) {
+                      this.slideToSlide(event, 0);
+                  } else {
+                      // this.slideToSlide(event, 0);
+                  }
+              } else {
+                console.log("No slides found");
+              }
+            },
+
+            // Options Selector
+            /**
+            * Map all available product options and their unique values
+            */
+            mapOptions() {
+              this.options = {};
+              this.optionsName = [];
+
+              this.product.options.forEach((option, index) => {
+                const key = `option${index + 1}`;
+                this.optionsName.push(option);
+                this.options[key] = this.product.variants
+                  .map(v => v.options[index])
+                  .filter((value, i, arr) => arr.indexOf(value) === i);
+              });
+
+              console.log('this.options', this.options);
+              console.log('this.optionsName', this.optionsName);
+            },
+
+            /**
+            * Create a normalized list of variants with key-value pair options
+            */
+            mapVariants() {
+              this.variants = this.product.variants.map(variant => {
+                const optionsObj = {};
+                this.product.options.forEach((opt, i) => {
+                  const key = `option${i + 1}`;
+                  optionsObj[key] = variant.options[i];
+                });
+                return {
+                  ...variant,
+                  optionsMapped: optionsObj,
+                };
+              });
+              console.log('this.variants', this.variants);
+            },
+
+            /**
+            * Set the default selected options.
+            * If the URL contains a ?variant=ID, use that variant's options.
+            * Otherwise, fallback to the first available variant.
+            */
+            selectDefaultOptions() {
+              if (this.variants.length === 0) return;
+
+              const urlParams = new URLSearchParams(window.location.search);
+              const variantIdFromUrl = urlParams.get('variant');
+
+              if (variantIdFromUrl && /^\d+$/.test(variantIdFromUrl)) {
+                  const matchedVariant = this.variants.find(v => v.id.toString() === variantIdFromUrl);
+
+                  if (matchedVariant) {
+                      this.selectedOptions = { ...matchedVariant.optionsMapped };
+                      this.activeVariant = matchedVariant;
+                      const lastKey = `option${this.optionsName.length}`;
+                      this.updateFinalVariantMap(lastKey);
+                      console.log('Selected from URL:', matchedVariant);
+                      return;
+                  }
+              }
+
+              // fallback if variant param not found or invalid
+              this.selectedOptions = { ...this.variants[0].optionsMapped };
+              this.activeVariant = this.variants[0];
+              const lastKey = `option${this.optionsName.length}`;
+              this.updateFinalVariantMap(lastKey);
+              console.log('Selected default variant:', this.activeVariant);
+            },
+
+              /**
+              * Update the selected option for a given option name
+              * @param {String} name - Option name (e.g. "Option1")
+              * @param {String} value - Selected value (e.g. "Red")
+              */
+              selectOption(name, value) {
+                this.selectedOptions[name] = value;
+                this.selectVariant();
+                const lastKey = `option${this.optionsName.length}`;
+                this.updateFinalVariantMap(lastKey);
+                console.log('this.selectedOptions', this.selectedOptions);
+              },
+
+              /**
+              * Find and set the selected variant based on current selectedOptions
+              */
+              selectVariant() {
+
+                this.activeVariant = this.variants.find(v => {
+                    return Object.entries(this.selectedOptions).every(([key, value]) => {
+                    return v.optionsMapped[key] === value;
+                  });
+                }) || null;
+
+                // Update the URL with the selected variant ID
+                if (this.activeVariant) {
+
+
+                  console.log('Updating active variant:', this.activeVariant.id);
+                  this.updateActiveVariant(this.activeVariant.id);
+
+
+
+                  const url = new URL(window.location.href);
+                  url.searchParams.set('variant', this.activeVariant.id);
+                  window.history.replaceState({}, '', url);
+                  console.log('Selected variant:', this.activeVariant);
+                }
+
+                console.log('Selecting variant based on options:', this.selectedOptions);
+            },
+
+            /**
+            * Get mapping of option values to variant IDs for the final option level.
+            * This can be used to render buttons with attached variant IDs.
+            * @param {String} optionKey - like "option3"
+            * @returns {Object} - { "Black": 1234567890, "White": 1234567891 }
+            */
+            updateFinalVariantMap(optionKey) {
+              console.log('Updating variant map for:', optionKey);
+
+              const filtered = this.variants.filter(v => {
+                return Object.entries(this.selectedOptions).every(([key, value]) => {
+                  return key === optionKey || v.optionsMapped[key] === value;
+                });
+              });
+
+              if (filtered.length === 0) {
+                this.finalVariantIdsMap[optionKey] = {};
+                return;
+              }
+
+              const map = {};
+              filtered.forEach(v => {
+                const value = v.optionsMapped[optionKey];
+                map[value] = {
+                  id: v.id,
+                  available: v.available
+                };
+              });
+
+              this.finalVariantIdsMap = {
+                ...this.finalVariantIdsMap,
+                [optionKey]: map
+              };
+            },
+
+            init() {
+                this.linkToShowSizeMOdal = document.querySelector('.product__accordion-content p em');
+                this.extraProductId = Number(this.$root.dataset.extraProduct);
+                this.extraProductQty = Number(this.$root.dataset.extraProductQty || 1);
+                this.paginationSlides = this.$refs.mainSwiperPagination.querySelectorAll('.swiper-slide');
+
+                console.log('Show weight setting:', this.showWeight);
+                console.log('This Product:', this.product);
+                this.parseSizeColors(this.sizesAccentColorsString);
+                this.setupVariants();
+                this.loading = true;
+                this.updateActiveVariant();
+
+              // Options Selector
+              this.mapOptions();            // Extract all unique option values
+              this.mapVariants();           // Map all variants with named option objects
+              this.selectDefaultOptions();  // Select the default variant and options
+              // and Options Selector
+
+
+                if (this.templateName === 'product-bambootek') {
+                  const defaultPlan = this.activeVariant?.selling_plan_allocations?.[0];
+                  if (defaultPlan) {
+                    this.sellingPlan = defaultPlan;
+                  }
+                }
+                this.initSwiperMain();
+                this.initSwiperPagination();
+                // console.log('product', this.product);
+                // console.log('product.variants', this.product.variants);
+                // console.log('this.variants', this.variants);
+                // console.log('this.templateName', this.templateName);
+
+                // Only add event listener if the element exists
+                if (this.linkToShowSizeMOdal) {
+                  this.linkToShowSizeMOdal.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.Modal.open({
+                      title: 'Size and Pack Details',
+                      size: 'medium',
+                      content: document.querySelector('#modal-product-info')?.innerHTML || 'Dont have content',
+                    });
+                  });
+                }
+            }
+        }))
+    })
+</script>
+<style></style>
+
+{% schema %}
+{
+  "name": "Main Product",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "sizes_accent_colors",
+      "label": "Sizes Accent Colors",
+      "info": "size - accent_color_top|accent_color_bottom"
+    },
+    {
+      "type": "text",
+      "id": "review_numbers",
+      "label": "How many reviews?",
+      "default": "4.8 out of 5 (1000+ reviews)"
+    },
+    {
+      "type": "product",
+      "id": "extra_product_for_bambootek",
+      "label": "Extra Product for Bambootek",
+      "info": "This product will be used for the Bambootek template only. It will not be displayed in the product page."
+    },
+    {
+      "type": "number",
+      "id": "extra_product_quantity",
+      "label": "Extra Product Quantity",
+      "default": 4
+    },
+    {
+      "type": "image_picker",
+      "id": "size_chart_image",
+      "label": "Size Chart Image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_details",
+      "label": "Show Product Details",
+      "info": "Show the 'Box Contains' and 'Pack Contains' information below variant options",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "accordion",
+      "name": "Accordion",
+      "limit": 1
+    },
+    {
+      "type": "accordion_item",
+      "name": "Accordion Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "name": "CTA",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "cta_type",
+          "label": "CTA Type",
+          "options": [
+            {
+              "value": "add_to_cart",
+              "label": "Add to Cart"
+            },
+            {
+              "value": "external_link",
+              "label": "External Link"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "cta_label",
+          "label": "CTA Label",
+          "default": "Add to Cart"
+        },
+        {
+          "type": "url",
+          "id": "cta_url",
+          "label": "CTA URL"
+        }
+      ]
+    },
+    {
+      "type": "description",
+      "name": "Description",
+      "limit": 1
+    },
+    {
+      "type": "product_features",
+      "name": "Product Features",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "note",
+          "label": "Note"
+        }
+      ]
+    },
+    {
+      "type": "product_feature",
+      "name": "Product Feature",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icon Image"
+        },
+        {
+          "type": "richtext",
+          "id": "title",
+          "label": "Text"
+        }
+      ]
+    },
+    {
+      "type": "separator",
+      "name": "Separator"
+    },
+    {
+      "type": "tags",
+      "name": "Tags",
+      "limit": 1
+    },
+    {
+      "type": "title",
+      "name": "Title",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Alternate Title Image"
+        },
+        {
+          "type": "text",
+          "id": "alternate_title",
+          "label": "Alternate Title"
+        }
+      ]
+    },
+    {
+      "type": "variants",
+      "name": "Variants",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "sizes_accent_colors",
+          "label": "Sizes Accent Colors",
+          "info": "size - accent_color_top|accent_color_bottom"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_weight",
+          "label": "Show Weight",
+          "info": "Display the weight information for each variant",
+          "default": true
+        }
+      ],
+      "limit": 1
+    },
+    {
+      "type": "options_selector",
+      "name": "Options Selector",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        }
+      ],
+      "limit": 1
+    }
+  ]
+}
+{% endschema %}
