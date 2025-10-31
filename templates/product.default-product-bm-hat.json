@@ -30,7 +30,7 @@
         "richtext_kqgkj3": {
           "type": "richtext",
           "settings": {
-            "richtext": "<ul><li>14x better absorption</li><li>Skin-safe</li><li>7-layer skin protection</li><li>EWG Verified®</li><li>TCF: Total chlorine free</li><li>Cloud-like softness</li></ul>"
+            "richtext": "<ul><li>One size fits most</li><li>Made in Los Angeles</li><li>Premium embroidery</li></ul>"
           }
         },
         "variants_EBNBwP": {
@@ -66,6 +66,7 @@
         },
         "add_on_product_KMz7qM": {
           "type": "add_on_product",
+          "disabled": true,
           "settings": {
             "heading": "Add wipes",
             "product": "wipes"
@@ -77,11 +78,12 @@
             "cta_type": "add_to_cart",
             "cta_label": "Add to cart",
             "cta_url": "#",
-            "text": "<ul><li>Free shipping on diapers</li><li>Fast delivery</li></ul>"
+            "text": "<ul><li>Free shipping with diapers</li><li>Fast delivery</li></ul>"
           }
         },
         "product_features_jDgQVM": {
           "type": "product_features",
+          "disabled": true,
           "settings": {
             "note": ""
           }
@@ -125,12 +127,13 @@
         "accordion_item_yWrVCC": {
           "type": "accordion_item",
           "settings": {
-            "title": "Size & pack details",
-            "content": "<p>Find your best size:</p><p>Size NB: Up to 10 lbs</p><p>Size 1: 6-12 lbs</p><p>Size 2: 9-18 lbs</p><p>Size 3: 14-24 lbs</p><p>Size 4: 22-34 lbs</p><p>Size 5: 28-40 lbs</p><p>Size 6: 34-44 lbs</p><p></p><p>We optimize monthly quantities according to the average number of diaper changes babies need as they grow. Each monthly shipment includes six packs of diapers (and three packs of wipes as an add on) for around a month’s use. </p><p></p><p>Size NB: 32 diapers per pack, 192 diapers total count</p><p>Size 1: 34 diapers per pack, 204 diapers total count</p><p>Size 2: 32 diapers per pack, 192 diapers total count</p><p>Size 3: 28 diapers per pack, 168 diapers total count</p><p>Size 4: 24 diapers per pack, 144 diapers total count</p><p>Size 5: 22 diapers per pack, 132 diapers total count</p><p>Size 6: 20 diapers per pack, 120 diapers total count</p><p>3 packs of wipes: 72 wipes per pack; 216 wipes total count</p>"
+            "title": "About",
+            "content": "<p>It takes a village to raise a baby and if you’re part of the village you’re a Baby Maker. With premium embroidered lettering and a bright Freestyle purple colorway, our made-in-LA Baby Maker hat is an outfit finisher (or starter). One size fits most, thanks to adjustable back closure. </p><p>One size. </p>"
           }
         },
         "accordion_item_cWHA4e": {
           "type": "accordion_item",
+          "disabled": true,
           "settings": {
             "title": "EWG Verified® non-toxic ingredients",
             "content": "<p>The Freestyle Formula<br/><br/>SkinShield™ diapers are EWG Verified® and Total Chlorine Free. <br/><br/>The core of this diaper is made with our proprietary SAP Matrix (super absorbent polymers (sodium acrylate, silicon dioxide, polyacrylic acid, water)) and FSC Certified Total Chlorine Free wood pulp (cellulose, hemicellulose). The topsheet, backsheet, leakguard, and films are made with performance-driven nonwoven fabrics (polypropylene, polyethylene terephthalate, polythene, titanium dioxide, nylon and polyester, sodium dodecylbenzenesulfonate). Elastics (polypropylene, segmented polyurethaneurea, titanium dioxide) and adhesives (hydrocarbon resin, styrene-Isoprene-styrene copolymer, mineral oil, petroleum resin, rosin ester) are used to hold it all together - and we mean all.<br/><br/>Read more about our safety and testing <a href=\"https://freestyle.world/pages/safety-and-testing\" target=\"_blank\" title=\"Safety and Testing\">here</a>.</p>"
@@ -138,6 +141,7 @@
         },
         "accordion_item_QDWeYg": {
           "type": "accordion_item",
+          "disabled": true,
           "settings": {
             "title": "Skin ❤️ Shield™'s performance",
             "content": "<p>SkinShield™ has been tested against leading competitors and is up to 14x more absorbent than a leading brand. This means better performance at the best price. Read more <a href=\"https://freestyle.world/pages/safety-and-testing\" target=\"_blank\" title=\"https://freestyle.world/pages/safety-and-testing\">here</a>.</p>"
@@ -145,6 +149,7 @@
         },
         "accordion_item_ztzDDX": {
           "type": "accordion_item",
+          "disabled": true,
           "settings": {
             "title": "Where to shop",
             "content": "<p>SkinShield™ diapers are available at here at Freestyle.World, at <a href=\"https://www.walmart.com/ip/Freestyle-Diaper-Size-4-48CT/13932710597\" target=\"_blank\" title=\"https://www.walmart.com/ip/Freestyle-Diaper-Size-4-48CT/13932710597 \">Walmart.com</a> and select Walmart stores (find one <a href=\"https://freestyle.world/pages/stores\" title=\"https://freestyle.world/pages/stores\">here</a>).</p>"
@@ -180,7 +185,7 @@
         "extra_product_for_bambootek": "",
         "extra_product_quantity": 0,
         "show_product_details": false,
-        "show_store_locator": true,
+        "show_store_locator": false,
         "store_main_heading": "Find SkinShield™ near you",
         "store_sub_heading": ""
       }
@@ -332,6 +337,7 @@
         "text_4VrKDj",
         "text_gPi7eD"
       ],
+      "disabled": true,
       "name": "Perfect Info",
       "settings": {
         "image": "shopify://shop_images/Group_26714_2x_3576ab57-560c-434f-8d5f-4a47caacdc01_V2.png",
@@ -380,6 +386,7 @@
         "icon_JCck3C",
         "icon_wr7y76"
       ],
+      "disabled": true,
       "name": "Icon With Text",
       "settings": {
         "background_image": "shopify://shop_images/HEADER_F1F2F5.jpg",
@@ -403,6 +410,7 @@
       "block_order": [
         "junip_junip_product_review_QaUeLN"
       ],
+      "disabled": true,
       "settings": {}
     },
     "media_slider_AqMcEa": {
