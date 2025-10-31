@@ -70,7 +70,7 @@ window.addEventListener('scroll', updateHeaderHeight);
       <nav class="hidden lg:flex items-center pt-[3px]">
         <ul class="flex b-header__inner-menu">
           {% assign bamboo_icon = settings['bamboo_icon'] | image_url: width: 100 | image_tag: class: 'w-[1.2rem] inline-block translate-y-[-0.2rem] mx-1' %}
-          {% assign heart_icon = settings['heart_icon'] | image_url: width: 100 | image_tag: class: 'w-[1.6rem] inline-block translate-y-[-0.2rem] mx-[0.1rem]' %}
+          {% assign heart_icon = settings['heart_icon'] | image_url: width: 100 | image_tag: class: 'w-[1.6rem] inline-block translate-y-[-0.2rem] mx-[0.4rem]' %}
           {% for link in settings.main_menu.links %}
             <li class="menu-item flex items-center before:hidden">
               <a href="{{ link.url }}" class="text-black-text font-grotesk font-medium px-[15px] max-[1200px]:px-[10px] leading-[1] capitalize">

@@ -3,7 +3,7 @@
     <div class="container">
       {% if section.settings.heading != blank %}
         <div class="header-wrapper text-center mb-[50px] max-md:mb-[40px]">
-          <h2 class="heading !mb-0 [&_strong]:font-fkroman [&_strong]:font-normal max-md:max-w-[200px] max-md:mx-auto">
+          <h2 class="heading !mb-0 [&_strong]:font-fkroman [&_strong]:font-light max-md:max-w-[200px] max-md:mx-auto">
             {{ section.settings.heading }}
           </h2>
         </div>
@@ -85,6 +85,10 @@
         centeredSlides: true,
         slidesPerView: 1.02,
         loop: false,
+        mousewheel: {
+          forceToAxis: true,
+          releaseOnEdges: true,
+        },
         pagination: {
           el: '.testimonial--{{ section.id }} .swiper-pagination',
         },
@@ -113,7 +117,6 @@
     });
   </script>
 {% endif %}
-
 
 {% schema %}
 {

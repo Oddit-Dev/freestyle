@@ -1,27 +1,35 @@
 <div class="hero-banner-section relative overflow-hidden pt-[167%] sm:pt-[120%] md:pt-[41.7%] md:min-h-[500px]">
   <div class="hero-banner-image absolute inset-0 h-full w-full overflow-hidden">
     {% assign desktop_image = section.settings.image %}
-    {% assign mobile_image = section.settings.mobile_image |  default: desktop_image %}
+    {% assign mobile_image = section.settings.mobile_image | default: desktop_image %}
 
     {% if desktop_image %}
-      {%- render 'image-element',
-        image: desktop_image,
-        widths: '375, 550, 750, 950,1150, 1500, 1780, 2000, 2500',
-        sizes: '(max-width: 749px) 100vw, 100vw',
-        class: 'w-full block object-cover h-full max-md:hidden h-auto'
+      {%- render 'image-element'
+        ,
+ image: desktop_image
+        ,
+ widths: '375, 550, 750, 950,1150, 1500, 1780, 2000, 2500'
+        ,
+ sizes: '(max-width: 749px) 100vw, 100vw'
+        ,
+ class: 'w-full block object-cover h-full max-md:hidden h-auto'
       -%}
     {% endif %}
-    
+
     {% if mobile_image %}
-      {%- render 'image-element',
-        image: mobile_image,
-        widths: '300, 480, 640, 750',
-        sizes: '(max-width: 749px) 100vw, 750px',
-        class: 'w-full block object-cover h-full md:hidden h-auto'
+      {%- render 'image-element'
+        ,
+ image: mobile_image
+        ,
+ widths: '300, 480, 640, 750'
+        ,
+ sizes: '(max-width: 749px) 100vw, 750px'
+        ,
+ class: 'w-full block object-cover h-full md:hidden h-auto'
       -%}
     {% endif %}
   </div>
-  {%  capture 'caption_alignment' %}
+  {% capture 'caption_alignment' %}
     {% if section.settings.text_alignment == 'align-left' %}text-left md:justify-start
     {% elsif section.settings.text_alignment == 'align-right' %}text-right md:justify-end
     {% else %}text-center justify-center{% endif %}
@@ -33,7 +41,7 @@
         {%- if section.settings.heading != blank -%}
           {% assign heart_svg = 'icon-heart.svg' | inline_asset_content %}
           {% assign main_heading = section.settings.heading | replace: '$heart', heart_svg %}
-          <h2 class="flex flex-wrap items-center gap-x-[10px] max-md:justify-center text-scheme_one [&_strong]:font-fkroman [&_strong]:font-normal text-[52px] max-lg:text-[46px] leading-[120%] tracking-[-2.6px] max-md:tracking-[-1.8px] mb-[12px] max-md:mb-[12px] max-md:text-[36px] [&_strong]:items-center [&_strong]:flex-wrap 
+          <h2 class="max-md:justify-center text-scheme_one [&_svg]:relative [&_svg]:top-[-5px] max-lg:[&_svg]:top-[-4px] [&_svg]:!inline-block [&_strong]:font-fkroman [&_strong]:font-light text-[52px] max-lg:text-[46px] leading-[120%] tracking-[-2.6px] max-md:tracking-[-1.8px] mb-[12px] max-md:mb-[12px] max-md:text-[36px] [&_strong]:items-center [&_strong]:flex-wrap 
           [&_svg]:max-md:w-[30px] [&_svg]:max-md:h-[26px]">
             {{ main_heading }}
           </h2>
@@ -44,18 +52,18 @@
             {{ section.settings.text }}
           </div>
         {%- endif -%}
-      </div>          
+      </div>
       <div class="mt-[50px] max-md:mt-[24px]">
         {%- if section.settings.button_text != blank and section.settings.button_link != blank -%}
           {% assign main_button = section.settings.button_text | replace: '$heart', heart_svg %}
-          <a href="{{ section.settings.button_link }}" class="button button-primary !max-w-[390px] w-full max-md:mx-auto">
+          <a href="{{ section.settings.button_link }}" class="button button-primary !max-w-[390px] w-full max-md:mx-auto [&_svg]:!w-[25px]">
             {{ main_button }}
           </a>
         {%- endif -%}
-      </div> 
+      </div>
     </div>
   </div>
-</div>  
+</div>
 {%- schema -%}
   {
     "name": "Image With Overlay Banner",
@@ -75,7 +83,7 @@
         "content": "Caption content"
       },
       {
-        "type": "inline_richtext",
+        "type": "richtext",
         "id": "heading",
         "label": "Heading"
       },
@@ -100,11 +108,20 @@
         "id": "text_alignment",
         "label": "Text alignment",
         "options": [
-          { "value": "center", "label": "Center" },
-          { "value": "align-left", "label": "Left" },
-          { "value": "align-right", "label": "Right" }
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "align-left",
+            "label": "Left"
+          },
+          {
+            "value": "align-right",
+            "label": "Right"
+          }
         ]
-      },
+      }
     ],
     "presets": [
       {
@@ -112,4 +129,4 @@
       }
     ]
   }
-  {% endschema %}
+{% endschema %}

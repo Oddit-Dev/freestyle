@@ -1,109 +1,172 @@
 {% if section.blocks.size > 0 %}
   <style>
-  .section-{{ section.id }} {
-    padding-top: {{ section.settings.padding_top_desktop }}px;
-    padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
-  }
-  @media screen and (max-width: 768px) {
     .section-{{ section.id }} {
-      padding-top: {{ section.settings.padding_top_mobile }}px !important;
-      padding-bottom: {{ section.settings.padding_bottom_mobile }}px !important;
+      padding-top: {{ section.settings.padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
     }
-  }
-</style>
-  {{ 'marquee.js' | asset_url | script_tag }}
-  
-  <div class="marquee-section section-{{ section.id }} pt-[60px] pb-[140px] max-md:py-[30px]">
-    <div
-      class="marquee-container overflow-hidden"
-      data-marquee-container="marquee-{{ section.id }}"
-      >
-      <div
-        class="marquee-track marquee-track-{{ section.id }} flex gap-[60px] w-[max-content] lg:gap-[116px] "
-        data-marquee-track
-      >
-        {%- capture marqee_content -%}
-            {% for block in section.blocks %}
-              {% if block.settings.image != blank %}
-                <div class="marquee-item">
-                  {%- render 'image-element',
-                    image: block.settings.image,
-                    widths: '375, 550, 750, 950',
-                    sizes: '(max-width: 749px) 100vw, 100vw',
-                    class: 'w-full h-full object-contain block max-h-[89px]'
-                -%}
-                </div>  
-              {% endif %}
-            {% endfor %}
-          {%- endcapture -%}
-        {{ marqee_content }}
-        {{ marqee_content }}
+    @media screen and (max-width: 768px) {
+      .section-{{ section.id }} {
+        padding-top: {{ section.settings.padding_top_mobile }}px;
+        padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+      }
+    }
+  </style>
+  <div class="marquee-section section-{{ section.id }} pt-[60px] pb-[140px] max-md:py-[30px] ">    
+    <div class="marquee overflow-hidden" data-speed="0.8">
+      <div class="marquee-track flex gap-[60px] w-[max-content] lg:gap-[116px] will-change-transform items-center" aria-hidden="true">
+        {% for block in section.blocks %}
+          {% if block.settings.image != blank %}
+            <div class="marquee-item">
+              {%- render 'image-element',
+                image: block.settings.image,
+                widths: '375, 550, 750, 950',
+                sizes: '(max-width: 749px) 100vw, 100vw',
+                class: 'w-auto h-full object-contain block max-h-[89px]'
+            -%}
+            </div>  
+          {% endif %}
+        {% endfor %}
       </div>
     </div>
   </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const marquee = document.querySelector(".section-{{ section.id }} .marquee");
+      const track = marquee.querySelector(".marquee-track");
+      const speed = parseFloat(marquee.dataset.speed) || 0.6; // px per frame
+
+      let items = Array.from(track.children);
+      let animationFrame;
+      let x = 0;
+
+      function fillTrack() {
+        const containerWidth = marquee.offsetWidth;
+        let totalWidth = track.scrollWidth;
+
+        // If content narrower than container, clone until filled 2x
+        while (totalWidth < containerWidth * 2) {
+          items.forEach((item) => {
+            track.appendChild(item.cloneNode(true));
+          });
+          totalWidth = track.scrollWidth;
+        }
+      }
+
+      function animate() {
+        x -= speed;
+        const firstItem = track.firstElementChild;
+        const firstWidth = firstItem.offsetWidth + parseInt(getComputedStyle(track).gap);
+
+        // Reset to start when the first item completely leaves view
+        if (-x >= firstWidth) {
+          track.appendChild(firstItem);
+          x += firstWidth;
+        }
+
+        track.style.transform = `translateX(${x}px)`;
+        animationFrame = requestAnimationFrame(animate);
+      }
+
+      function start() {
+        cancelAnimationFrame(animationFrame);
+        x = 0;
+        track.style.transform = "translateX(0)";
+        fillTrack();
+        animate();
+      }
+
+      // Wait for images to load before measuring
+      const imgs = marquee.querySelectorAll("img");
+      let loaded = 0;
+      if (imgs.length === 0) {
+        start();
+      } else {
+        imgs.forEach((img) => {
+          if (img.complete) {
+            loaded++;
+            if (loaded === imgs.length) start();
+          } else {
+            img.addEventListener("load", () => {
+              loaded++;
+              if (loaded === imgs.length) start();
+            });
+          }
+        });
+        // fallback if images are slow
+        setTimeout(() => start(), 1500);
+      }
+
+      // Handle resize
+      window.addEventListener("resize", () => {
+        cancelAnimationFrame(animationFrame);
+        track.style.transform = "translateX(0)";
+        start();
+      });
+    });
+  </script>
 {% endif %}
 {% schema %}
-{
-  "name": "Marquee",
-  "settings": [
-    {
-      "type": "range",
-      "id": "padding_top_desktop",
-      "label": "Padding Top (Desktop)",
-      "min": 0,
-      "max": 150,
-      "step": 5,
-      "unit": "px",
-      "default": 60
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom_desktop",
-      "label": "Padding Bottom (Desktop)",
-      "min": 0,
-      "max": 150,
-      "step": 5,
-      "unit": "px",
-      "default": 60
-    },
-    {
-      "type": "range",
-      "id": "padding_top_mobile",
-      "label": "Padding Top (Mobile)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 30
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom_mobile",
-      "label": "Padding Bottom (Mobile)",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "default": 30
-    }
-  ],
-  "blocks": [
-    {
-      "type": "image",
-      "name": "Image",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Marquee"
-    }
-  ]
-}
+  {
+    "name": "Marquee",
+    "settings": [
+      {
+        "type": "range",
+        "id": "padding_top_desktop",
+        "label": "Padding Top (Desktop)",
+        "min": 0,
+        "max": 150,
+        "step": 5,
+        "unit": "px",
+        "default": 60
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom_desktop",
+        "label": "Padding Bottom (Desktop)",
+        "min": 0,
+        "max": 150,
+        "step": 5,
+        "unit": "px",
+        "default": 60
+      },
+      {
+        "type": "range",
+        "id": "padding_top_mobile",
+        "label": "Padding Top (Mobile)",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "px",
+        "default": 30
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom_mobile",
+        "label": "Padding Bottom (Mobile)",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "px",
+        "default": 30
+      }
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Image",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Marquee"
+      }
+    ]
+  }
 {% endschema %}

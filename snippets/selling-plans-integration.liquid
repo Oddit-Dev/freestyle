@@ -1,6 +1,6 @@
 {%- assign current_variant = product.selected_or_first_available_variant | default: product.variants.first -%}
 {% if product.selling_plan_groups.size > 0 %}
-  <div class="label-main flex items-center gap-[8px] mb-[20px] max-md:mb-[16px]">
+  <div class="label-main flex items-center gap-[8px] mb-[20px] max-md:mb-[20px]">
     <label class="text-[16px] text-black-bg font-medium font-grotesk leading-none">Select Plan:</label>
     <span class="selected-plan text-[16px] font-medium font-grotesk leading-none text-[#7A7A7A] max-md:max-w-[140px] max-md:w-full max-md:line-clamp-1"></span>
   </div>
@@ -27,7 +27,6 @@
               %}
               <ul class="selling_plan-item">
                 {% for allocation in allocations limit: 1 %}
-
                   {% liquid
                     if forloop.first and product.requires_selling_plan and first_selling_plan_group
                       assign plan_checked = 'checked'
@@ -40,8 +39,8 @@
                   %}
 
                   <li class="subscription-list{% if forloop.index == 1 %} check-active{% endif %}">
-                    <label class="plan-label block w-full relative border border-solid border-[#E3E3E3] rounded-[12px] py-[24px] max-md:py-[20px] px-[20px] max-md:px-[16px]" for="{{ section.id }}_selling_plan_{{ allocation.selling_plan.id }}_{{ forloop.index }}_{{ variant.id }}">
-                      <span class="bes-value absolute bottom-[98%] right-0 bg-[url('https://cdn.shopify.com/s/files/1/0616/2835/0723/files/Tag.png?v=1758800332')] bg-no-repeat max-w-[132px] w-full text-scheme_one-tertiary text-[13px] font-bold font-grotesk leading-none uppercase text-right py-[6px] pr-[15px]">BEST VALUE</span>
+                    <label class="plan-label block w-full relative border border-solid border-[#E3E3E3] rounded-[12px_0_12px_12px] py-[24px] max-md:py-[20px] px-[20px] max-md:px-[16px]" for="{{ section.id }}_selling_plan_{{ allocation.selling_plan.id }}_{{ forloop.index }}_{{ variant.id }}">
+                      <span class="bes-value absolute bottom-[97%] right-0 max-w-[132px] w-full text-scheme_one-tertiary text-[13px] font-bold font-grotesk leading-none uppercase text-right py-[6px] pr-[15px]">{{ 'best-value.svg' | inline_asset_content }} <span class="absolute z-10 top-[12px] right-[15px]">BEST VALUE</span></span>
                       <div class="flex items-center">
                         <input
                           class="plan-radio appearance-none w-[20px] h-[20px] border border-solid border-[#E3E3E3] rounded-full relative before:content-[''] before:w-[10px] before:h-[10px] before:block before:absolute before:rounded-full flex items-center justify-center"
@@ -60,7 +59,7 @@
                           data-variant-compare-at-price="{{ allocationComparedAtPrice }}"
                           checked>
                         <div class="title-price w-[calc(100%-20px)] pl-[16px] flex items-center justify-between gap-[10px]">
-                          {% assign save_value = allocation.selling_plan.price_adjustments[0].value | divided_by: 100 | round: 2 %} 
+                          {% assign save_value = allocation.selling_plan.price_adjustments[0].value | divided_by: 100 | round: 2 %}
                           <p class="title-text text-[18px] max-md:text-[15px] text-black-bg font-medium font-grotesk leading-none">
                             Subscribe
                             {% if save_value != 0 %}

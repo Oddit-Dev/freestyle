@@ -1,9 +1,9 @@
-<div class="image-with-text image-with-text--{{ section.id }} bg-scheme_one-white py-[50px] max-md:py-[40px] relative overflow-hidden">
+<div class="image-with-text image-with-text--{{ section.id }} bg-scheme_one-white py-[50px] max-md:py-[40px] relative overflow-hidden filter">
   {% if section.settings.background_image != blank %}
     {%- render 'image-element',
       image: section.settings.background_image,
       widths: '800, 1000, 1500, 2000, 2500',
-      sizes: '(max-width: 749px) 100vw, 50vw',
+      sizes: '(max-width: 749px) 100vw, 100vw',
       class: 'background-image absolute left-0 md:top-0 max-md:bottom-[200px] w-full h-full object-cover block  max-md:blur-[20px] max-md:hidden'
     -%}
   {% endif %}
@@ -11,14 +11,14 @@
     {%- render 'image-element',
       image: section.settings.mobile_background_image,
       widths: '800, 1000, 1500, 2000, 2500',
-      sizes: '(max-width: 749px) 100vw, 50vw',
-      class: 'background-image absolute left-0 md:top-0 max-md:bottom-[160px] w-full h-full object-cover block  max-md:blur-[10px] md:hidden'
+      sizes: '(max-width: 749px) 100vw, 100vw',
+      class: 'background-image absolute left-0 md:top-0 max-md:bottom-[160px] w-full h-full object-cover block  max-md:blur-[10px] md:hidden !h-full !object-cover !bottom-0 !filter-none'
     -%}
   {% else %}
     {%- render 'image-element',
       image: section.settings.background_image,
       widths: '800, 1000, 1500, 2000, 2500',
-      sizes: '(max-width: 749px) 100vw, 50vw',
+      sizes: '(max-width: 749px) 100vw, 100vw',
       class: 'background-image absolute left-0 md:top-0 max-md:bottom-[200px] w-full h-full object-cover block  max-md:blur-[20px] md:hidden'
     -%}
   {% endif %}
@@ -36,18 +36,18 @@
       {% endif %}
       <div class="text-content-wrapper p-[60px] max-[1199px]:p-[40px] max-md:px-[0px] max-md:pb-[0] max-md:pt-[30px]">
         {% if section.settings.sub_heading != blank %}
-          <h3 class="sub-heading text-scheme_one uppercase font-bold mb-[30px] max-md:mb-[20px] leading-none">
+          <h3 class="sub-heading text-white uppercase font-bold mb-[30px] max-md:mb-[20px] leading-none">
             {{ section.settings.sub_heading }}
           </h3>
         {% endif %}
         {% if section.settings.heading != blank %}
-          <h2 class="heading text-scheme_one-secondary [&_strong]:font-fkroman [&_strong]:font-normal">
+          <h2 class="heading text-white [&_strong]:font-fkroman [&_strong]:font-light">
             {{ section.settings.heading }}
           </h2>
         {% endif %}
         {% if section.settings.button != blank and section.settings.link != blank %}
           <a
-            class="button max-w-[300px] max-md:max-w-full !py-[3px] mt-[40px] max-md:mt-[35px]"
+            class="button max-w-[300px] max-md:max-w-full !py-[3px] mt-[40px] max-md:mt-[35px] button-white"
             href="{{ section.settings.link }}">
             {{- section.settings.button -}}
           </a>

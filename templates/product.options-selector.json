@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{
+ {
   "sections": {
     "main": {
       "type": "main-product-options",
@@ -18,8 +18,19 @@
             "alternate_title": ""
           }
         },
+        "variant_text_JnAzJ8": {
+          "type": "variant_text",
+          "settings": {}
+        },
+        "richtext_czpjtz": {
+          "type": "richtext",
+          "settings": {
+            "richtext": "{{ section.settings.extra_product_for_bambootek.metafields.custom.product_specification | metafield_tag }}<ul><li>14x better absorption</li><li>Skin-safe</li><li>7-layer skin protection</li><li>EWG Verified®</li><li>TCF: Total chlorine free</li><li>Cloud-like softness</li></ul>"
+          }
+        },
         "separator_NF3Aqz": {
           "type": "separator",
+          "disabled": true,
           "settings": {}
         },
         "variants_EBNBwP": {
@@ -31,7 +42,7 @@
             "show_weight": false
           }
         },
-        "options_selector_JV8GyL": {
+        "options_selector_grFjxn": {
           "type": "options_selector",
           "settings": {
             "title": ""
@@ -44,36 +55,49 @@
         },
         "description_RgQkN8": {
           "type": "description",
+          "disabled": true,
           "settings": {}
         },
         "tags_8BMpFw": {
           "type": "tags",
+          "disabled": true,
           "settings": {}
+        },
+        "subscription_form_z4dV3d": {
+          "type": "subscription-form",
+          "settings": {
+            "free_shipping": "Free shipping on every order",
+            "cancel_text": "Pause or cancel anytime",
+            "plan_text": ""
+          }
+        },
+        "add_on_product_KMz7qM": {
+          "type": "add_on_product",
+          "settings": {
+            "heading": "Add 99% Water Sensitive Wipes",
+            "product": "wipes"
+          }
         },
         "cta_MaBGF4": {
           "type": "cta",
           "settings": {
             "cta_type": "add_to_cart",
             "cta_label": "Add to cart",
-            "cta_url": "#"
+            "cta_url": "#",
+            "text": "<ul><li>Free shipping with subscription</li><li>Fast delivery</li></ul>"
           }
         },
         "product_features_jDgQVM": {
           "type": "product_features",
-          "disabled": true,
           "settings": {
-            "note": "<p>*up to 14x better absorption than leading brands</p>"
+            "note": ""
           }
-        },
-        "accordion_gjrxaL": {
-          "type": "accordion",
-          "disabled": true,
-          "settings": {}
         },
         "product_feature_eA7tTG": {
           "type": "product_feature",
           "settings": {
             "icon": "<svg width=\"71\" height=\"36\" viewbox=\"0 0 71 36\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M0 10V6.775H3.45518C7.30524 6.775 8.712 5.325 8.712 2.1V0H12.9076V36H8.4652V10H0Z\" fill=\"#262626\"></path>\n<path d=\"M16.8407 26.675V23.475L34.5855 0H40.1385V23.1H46.0863V26.675H40.1385V36H35.7455V26.675H16.8407ZM21.4064 23.1H35.7455V4.85H35.2519L21.4064 23.1Z\" fill=\"#262626\"></path>\n<path d=\"M47.3567 10.525H51.7744L58.7094 20H59.203L66.1627 10.525H70.5558V11.275L61.6957 23.025L71 35.25V36H66.5576L59.1783 26.075H58.6847L51.3301 36H46.9124V35.25L56.1921 23.025L47.3567 11.275V10.525Z\" fill=\"#262626\"></path>\n</svg>",
+            "icon_image": "shopify://shop_images/Works_Overnight_916294d8-c264-4574-b312-dad17f6a2734.png",
             "title": "<p>Better absorption</p>"
           }
         },
@@ -81,67 +105,78 @@
           "type": "product_feature",
           "settings": {
             "icon": "<svg width=\"40\" height=\"43\" viewbox=\"0 0 40 43\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M36.8641 11.2178L36.9469 11.3626L36.9692 11.385C38.5987 14.3436 38.2524 17.9114 36.3057 20.4621L35.7268 21.2205L36.3057 21.9789C38.2816 24.5677 38.6106 28.1832 36.8903 31.1959C35.1752 34.1748 31.8489 35.7023 28.6318 35.2885L27.6903 35.1674L27.3209 36.0417C26.0579 39.0307 23.0981 41.1408 19.6453 41.1408C16.1883 41.1408 13.2326 39.0521 11.971 36.0447L11.6006 35.1618L10.6517 35.2894C7.41831 35.7243 4.11518 34.2031 2.37308 31.1922C0.634218 28.1869 0.979942 24.548 2.95993 21.9538L3.53877 21.1954L2.95993 20.437C0.97964 17.8424 0.634461 14.2286 2.37308 11.2237L2.37451 11.2212C4.08995 8.24066 7.39254 6.71329 10.6349 7.12754L11.5781 7.24805L11.946 6.37115C13.2097 3.35848 16.1688 1.25 19.6203 1.25C23.0717 1.25 26.0308 3.35847 27.2946 6.37115L27.6628 7.24882L28.6068 7.1274C31.8292 6.71291 35.1515 8.22045 36.8641 11.2178ZM30.8324 16.8172L31.1976 16.4512V16.337C31.8504 15.3116 31.7286 13.9448 30.8324 13.0468C29.7939 12.0063 28.1259 12.0063 27.0875 13.0468L17.7449 22.4073L13.0783 17.7318C12.0399 16.6914 10.3719 16.6914 9.33343 17.7318C8.29628 18.771 8.29628 20.438 9.33343 21.4772L15.8849 28.0412C16.9234 29.0817 18.5914 29.0817 19.6298 28.0412L30.8324 16.8172Z\" stroke=\"#262626\" stroke-width=\"2.5\"></path>\n</svg>",
-            "title": "<p>Total chlorine free</p>"
+            "icon_image": "shopify://shop_images/Frame_1_b8e23f19-0f7c-4c95-b179-9237cf84dc71.png",
+            "title": "<p>7-Layer skin protection</p>"
           }
         },
         "product_feature_nUkWcM": {
           "type": "product_feature",
           "settings": {
             "icon": "<svg width=\"46\" height=\"30\" viewbox=\"0 0 46 30\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M36.2264 12.06L36.2046 12.309C35.6717 12.2622 35.2635 11.8094 35.2635 11.2737V11.2334C35.2635 8.53142 33.9663 5.99103 31.782 4.41018C29.5979 2.82947 26.79 2.39895 24.2357 3.25525C21.681 4.1117 19.6916 6.14269 18.887 8.72725L18.8865 8.72869C18.7883 9.03769 18.5514 9.29115 18.2371 9.39855C17.9267 9.50463 17.5832 9.45833 17.312 9.27242L17.3099 9.27099C16.4382 8.66039 15.3991 8.33365 14.3365 8.33845L14.0853 8.33959V8.33931C11.3082 8.4704 9.09715 10.7741 9.09249 13.5976V14.4288C9.09249 14.9572 8.69745 15.4043 8.1713 15.4585C4.99564 15.8172 2.64762 18.6042 2.82603 21.8086C3.00447 25.0133 5.64708 27.5197 8.84249 27.5197H35.5135C38.1428 27.5197 40.5879 26.1536 41.9735 23.9087C43.359 21.664 43.4855 18.8578 42.3089 16.4958L42.3087 16.4954C41.1372 14.1337 38.8234 12.548 36.2037 12.3089L36.2264 12.06ZM36.2264 12.06C35.8248 12.0247 35.5135 11.682 35.5135 11.2737V11.2334C35.5135 8.45134 34.1779 5.83558 31.9286 4.20766C29.6792 2.57974 26.7872 2.13622 24.1562 3.01822C21.5253 3.90022 19.4767 5.99182 18.6483 8.65294C18.573 8.88982 18.3922 9.08134 18.1562 9.16198C17.9203 9.24262 17.6592 9.20734 17.4533 9.06622L36.2264 12.06ZM2.12258 25.9985L2.12266 25.9986C3.62995 28.2499 6.14787 29.5972 8.84752 29.5972H35.5185C38.7813 29.5972 41.8275 27.9466 43.6109 25.2045C45.394 22.4627 45.6773 19.0021 44.3685 16.0021L44.3684 16.0018C43.0808 13.0621 40.4372 10.956 37.3001 10.3661C37.0461 7.27748 35.4351 4.45288 32.9065 2.66297L32.9063 2.66283C30.3188 0.834912 27.0471 0.282371 24.0069 1.15504C21.0504 2.0037 18.6246 4.11686 17.3628 6.91937C15.1471 5.90577 12.5656 6.06738 10.488 7.35693C8.34684 8.686 7.03979 11.0319 7.02609 13.5571C4.47236 14.1476 2.35551 15.9487 1.35593 18.3913C0.330276 20.8976 0.620335 23.7521 2.12258 25.9985Z\" fill=\"#262626\" stroke=\"#262626\" stroke-width=\"0.5\"></path>\n</svg>",
-            "title": "<p>Cloud-like softness</p>"
+            "icon_image": "shopify://shop_images/Works_Overnight.png",
+            "title": "<p>Total Chlorine Free</p>"
           }
         },
         "product_feature_HWGJLV": {
           "type": "product_feature",
           "settings": {
             "icon": "<svg width=\"34\" height=\"42\" viewbox=\"0 0 34 42\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M22.6783 35.6733L22.6788 35.6731C25.2361 34.8928 26.9782 33.2426 27.8767 30.7558L27.8767 30.7557C28.0415 30.3002 28.5414 30.062 28.9961 30.2316C29.4499 30.4004 29.6779 30.9058 29.5137 31.3598C28.434 34.3473 26.2403 36.4248 23.1815 37.3588L23.1796 37.3594C23.0985 37.3834 23.0156 37.3961 22.9316 37.3964L22.6783 35.6733ZM22.6783 35.6733C22.2181 35.8148 21.9591 36.3053 22.0967 36.7682M22.6783 35.6733L22.0967 36.7682M6.98739 30.6996H6.38932C6.24407 30.6996 6.09809 30.6648 5.96423 30.5929C5.96414 30.5929 5.96404 30.5928 5.96394 30.5927L6.03988 30.4514L5.81586 30.2245C5.07708 29.7977 4.38838 29.2618 3.71952 28.5946C1.76468 26.6315 1 24.3365 1 21.6089C1 19.1598 2.09219 16.6811 4.24734 14.2409L4.96669 13.4201L6.98739 30.6996ZM6.98739 30.6996L6.8542 30.5646L6.98739 30.6996ZM8.49302 7.97236C7.68375 9.59332 6.4362 11.3709 4.77898 13.255L4.77868 13.2554L4.05996 14.0754C4.05982 14.0756 4.05969 14.0757 4.05956 14.0759L8.49302 7.97236ZM8.49302 7.97236C9.02114 6.90048 9.52653 5.54335 9.99315 3.93921L9.99317 3.93917L10.578 1.93012L10.8133 1.12192L11.0573 1.92752L11.6641 3.93064L11.6641 3.93077C12.1987 5.69921 12.6822 6.97867 13.1817 7.96776C13.7474 9.08511 14.7043 10.5164 15.881 11.9947L15.8813 11.995C16.1334 12.313 16.1549 12.7534 15.9391 13.0945L15.9388 13.095C15.0042 14.5649 13.849 15.9875 12.307 17.5698L11.4209 18.5724C8.68942 21.6741 7.15252 24.8013 7.15252 27.8375C7.15252 28.3889 7.19535 28.9835 7.28622 29.6558L8.49302 7.97236ZM22.0967 36.7682C22.2086 37.1474 22.5528 37.3951 22.9287 37.3964L22.0967 36.7682ZM5.36315 15.2465L5.36379 15.2458L6.07824 14.4306L6.07955 14.4292L6.0843 14.4238C7.83388 12.4349 9.16962 10.531 10.0533 8.76107L10.0539 8.76002C10.3237 8.21318 10.5849 7.6054 10.8372 6.9417C11.0998 7.63235 11.3612 8.23405 11.6316 8.76825C12.3234 10.1356 13.3316 11.5579 14.1565 12.629C13.3443 13.8282 12.3467 15.0243 11.0514 16.3525L11.0512 16.3523L11.0431 16.3614L10.1205 17.4044L10.1202 17.4048C7.13595 20.793 5.4112 24.3165 5.4112 27.8405C5.4112 27.9294 5.41204 28.0192 5.41384 28.1099C5.19687 27.9286 4.98241 27.7325 4.76915 27.52C3.12034 25.8648 2.49279 23.9302 2.49279 21.6089C2.49279 19.5621 3.44204 17.4214 5.36315 15.2465ZM28.0154 18.3289L27.7233 17.999C25.8672 15.8168 24.4556 13.7626 23.5194 11.8834L23.5191 11.8827C22.851 10.552 22.2243 8.89138 21.6039 6.80037L21.6039 6.80035L20.9971 4.75576L20.753 3.93312L20.5171 4.75815L19.9308 6.80868L19.9307 6.80888C19.3515 8.84097 18.7176 10.547 18.0497 11.8846L18.0494 11.8852C17.0326 13.9341 15.462 16.1725 13.3779 18.5351L12.4773 19.5543L12.4773 19.5544C9.77815 22.6112 8.38658 25.7286 8.38658 28.8198C8.38658 32.2644 9.58278 35.1382 12.034 37.5892C14.4767 40.0493 17.3373 41.25 20.7633 41.25C24.1907 41.25 27.0611 40.0494 29.524 37.59L29.5247 37.5893C31.9882 35.1095 33.1912 32.2361 33.1912 28.8198C33.1912 25.7227 31.7997 22.6053 29.1003 19.5542L29.1002 19.5541L28.0154 18.3289ZM19.607 12.6765C20.0142 11.8597 20.4061 10.9257 20.7797 9.8836C21.1616 10.9338 21.5547 11.8587 21.9652 12.677C23.0523 14.859 24.7141 17.228 26.9004 19.7217L26.901 19.7224L28.248 21.247C30.3858 23.8226 31.4484 26.3672 31.4484 28.8183C31.4484 31.7459 30.4204 34.2018 28.2959 36.3402C26.1723 38.463 23.7092 39.4892 20.7633 39.4892C17.8175 39.4892 15.3692 38.4631 13.2632 36.3406L13.2625 36.3399C11.1509 34.2291 10.1294 31.7738 10.1294 28.8183C10.1294 26.2071 11.3403 23.4841 13.7775 20.7255L14.6782 19.7061L14.6783 19.706C16.8549 17.2384 18.5155 14.8735 19.607 12.6765Z\" fill=\"#262626\" stroke=\"#262626\" stroke-width=\"0.5\"></path>\n</svg>",
-            "title": "<p>Overnight protection</p>"
+            "icon_image": "shopify://shop_images/EWG.png",
+            "title": "<p>EWG Verified®</p>"
           }
+        },
+        "accordion_gjrxaL": {
+          "type": "accordion",
+          "settings": {}
         },
         "accordion_item_yWrVCC": {
           "type": "accordion_item",
           "settings": {
-            "title": "Size and pack details",
-            "content": "<p>Lorem ipsum dolor sit amet</p>"
+            "title": "Size & pack details",
+            "content": "<p>Find your best size:</p><ul><li>Size NB: Up to 10 lbs</li><li>Size 1: 6-12 lbs</li><li>Size 2: 9-18 lbs</li><li>Size 3: 14-24 lbs</li><li>Size 4: 22-34 lbs</li><li>Size 5: 28-40 lbs</li><li>Size 6: 34-44 lbs</li></ul><p>  </p><p>Each monthly shipment includes six packs of diapers (and three packs of wipes as an add on) for around one month’s use. <br/>&nbsp;</p><p>Size NB: 32 diapers per pack, 192 diapers total count<br/>Size 1: 34 diapers per pack, 204 diapers total count<br/>Size 2: 32 diapers per pack, 192 diapers total count<br/>Size 3: 28 diapers per pack, 168 diapers total count<br/>Size 4: 24 diapers per pack, 144 diapers total count<br/>Size 5: 22 diapers per pack, 132 diapers total count<br/>Size 6: 20 diapers per pack, 120 diapers total count<br/>3 packs of wipes: 72 wipes per pack; 216 wipes total count</p>"
           }
         },
         "accordion_item_cWHA4e": {
           "type": "accordion_item",
           "settings": {
-            "title": "Lab-tested non-toxic ingredients",
-            "content": "<p>Lorem ipsum dolor sit amet</p>"
+            "title": "EWG Verified® non-toxic ingredients",
+            "content": "<p>The Freestyle Formula<br/><br/>SkinShield™ diapers are EWG Verified® and Total Chlorine Free. <br/><br/>The core of this diaper is made with our proprietary SAP Matrix (super absorbent polymers (sodium acrylate, silicon dioxide, polyacrylic acid, water)) and FSC Certified Total Chlorine Free wood pulp (cellulose, hemicellulose). The topsheet, backsheet, leakguard, and films are made with performance-driven nonwoven fabrics (polypropylene, polyethylene terephthalate, polythene, titanium dioxide, nylon and polyester, sodium dodecylbenzenesulfonate). Elastics (polypropylene, segmented polyurethaneurea, titanium dioxide) and adhesives (hydrocarbon resin, styrene-Isoprene-styrene copolymer, mineral oil, petroleum resin, rosin ester) are used to hold it all together - and we mean all.<br/><br/>Read more about our safety and testing <a href=\"https://freestyle.world/pages/safety-and-testing\" target=\"_blank\" title=\"Safety and Testing\">here</a>.</p>"
           }
         },
         "accordion_item_QDWeYg": {
           "type": "accordion_item",
           "settings": {
-            "title": "SkinShield’s performance",
-            "content": "<p>Lorem ipsum dolor sit amet</p>"
+            "title": "Skin ❤️ Shield™'s performance",
+            "content": "<p>SkinShield™ has been tested against leading competitors and is up to 14x more absorbent than a leading brand. This means better performance at the best price. Read more <a href=\"https://freestyle.world/pages/safety-and-testing\" target=\"_blank\" title=\"https://freestyle.world/pages/safety-and-testing\">here</a>.</p>"
           }
         },
         "accordion_item_ztzDDX": {
           "type": "accordion_item",
           "settings": {
             "title": "Where to shop",
-            "content": "<p>Lorem ipsum dolor sit amet</p>"
+            "content": "<p>SkinShield™ diapers are available at here at Freestyle.World, at <a href=\"https://www.walmart.com/ip/Freestyle-Diaper-Size-4-48CT/13932710597\" target=\"_blank\" title=\"https://www.walmart.com/ip/Freestyle-Diaper-Size-4-48CT/13932710597 \">Walmart.com </a>and select Walmart stores (find one <a href=\"https://freestyle.world/pages/about-us?view=store-locator\" title=\"https://freestyle.world/pages/about-us?view=store-locator\">here</a>).</p>"
           }
         }
       },
       "block_order": [
         "title_hijtjK",
+        "variant_text_JnAzJ8",
+        "richtext_czpjtz",
         "separator_NF3Aqz",
         "variants_EBNBwP",
-        "options_selector_JV8GyL",
+        "options_selector_grFjxn",
         "separator_WX87Ph",
         "description_RgQkN8",
         "tags_8BMpFw",
+        "subscription_form_z4dV3d",
+        "add_on_product_KMz7qM",
         "cta_MaBGF4",
         "product_features_jDgQVM",
-        "accordion_gjrxaL",
         "product_feature_eA7tTG",
         "product_feature_rDyETD",
         "product_feature_nUkWcM",
         "product_feature_HWGJLV",
+        "accordion_gjrxaL",
         "accordion_item_yWrVCC",
         "accordion_item_cWHA4e",
         "accordion_item_QDWeYg",
@@ -149,10 +184,13 @@
       ],
       "settings": {
         "sizes_accent_colors": "1 - F3B232 | FBECA6\n2 - F3B232 | FBECA6\n3 - CBDB2A| E2E66A\n4 - 8BB6E1 | C3D6EE\n5 - AC95C7 | C4B3D7\n6 - F04C5E | F6A1B2",
-        "review_numbers": "4.8 out of 5 (1000+ reviews)",
+        "review_numbers": "<p>4.8 based on <a href=\"#pdp-reviews\" title=\"#pdp-reviews\">1000+ Reviews</a></p>",
         "extra_product_for_bambootek": "",
-        "extra_product_quantity": 4,
-        "show_product_details": false
+        "extra_product_quantity": 0,
+        "show_product_details": false,
+        "show_store_locator": true,
+        "store_main_heading": "Find SkinShield™ near you",
+        "store_sub_heading": ""
       }
     },
     "174411240666086477": {
@@ -161,7 +199,9 @@
         "junip_junip_product_review_xLN8Xa": {
           "type": "shopify://apps/junip/blocks/junip-product-review/dc14f5a8-ed15-41b1-ad08-cfba23f9789b",
           "settings": {
-            "product": "{{product}}"
+            "product": "{{product}}",
+            "title": "",
+            "alignment": ""
           }
         }
       },

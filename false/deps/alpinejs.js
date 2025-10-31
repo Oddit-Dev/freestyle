@@ -2542,8 +2542,11 @@ directive("ignore", handler);
 directive("effect", skipDuringClone((el, { expression }, { effect: effect3 }) => {
   effect3(evaluateLater(el, expression));
 }));
+
 function on(el, event, modifiers, callback) {
   let listenerTarget = el;
+  console.log('aaaaa', listenerTarget);
+  
   let handler4 = (e) => callback(e);
   let options = {};
   let wrapHandler = (callback2, wrapper) => (e) => wrapper(callback2, e);
@@ -2615,6 +2618,9 @@ function on(el, event, modifiers, callback) {
   return () => {
     listenerTarget.removeEventListener(event, handler4, options);
   };
+
+ 
+
 }
 function dotSyntax(subject) {
   return subject.replace(/-/g, ".");
