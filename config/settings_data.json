@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "current": {
     "header_logo": "shopify://shop_images/Vector_2.svg",
     "header_bg": "#FFFFFF",
@@ -163,7 +163,7 @@
           "empty_size_title": "Choose a Size",
           "empty_size_text": "<p>Not sure which size is right for your little one? Check out our <a href=\"#\" title=\"#\">size chart</a></p>",
           "empty_plan_title": "Select plan",
-          "enable_product_feature": false,
+          "enable_product_feature": true,
           "product_feature_image": "shopify://shop_images/image_5303_8e6fac27-d71a-428b-b919-5cebffb17173.png",
           "product_feature_title": "<p>Skin $heart Shield™ <strong>Diapers</strong></p>",
           "product_feature_content": "<p>14x better absorption, 7-layer skin protection, and Total Chlorine Free materials</p>",
