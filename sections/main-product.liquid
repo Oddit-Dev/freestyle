@@ -441,7 +441,7 @@
                       {{ item.settings.title }}
                     </div>
                     <div class="product__accordion-content !pt-0 !pb-[16px]" x-show="open">
-                      {{ item.settings.content }}
+                      {{ item.settings.content | newline_to_br }}
                     </div>
                   </div>
                 {% endfor %}
