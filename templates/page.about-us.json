@@ -169,6 +169,107 @@
         "popup__trigger": ""
       }
     },
+    "multiple_marquee_cDJX9G": {
+      "type": "multiple-marquee",
+      "blocks": {
+        "first_marquee_cXTDn4": {
+          "type": "first_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Reviews_TCF_check.png",
+            "heading": "\"Best diapers ever\"",
+            "sub_heading": "@megcannette"
+          }
+        },
+        "first_marquee_RVzTHa": {
+          "type": "first_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Group_26713.png",
+            "heading": "\"Freestyle is THAT girl. I'll never use anything else\"",
+            "sub_heading": "@user2296160136252"
+          }
+        },
+        "first_marquee_XJNPrR": {
+          "type": "first_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Works_Overnight_8f001b9c-e0a9-48aa-9698-30b0f7bb474d.png",
+            "heading": "\"I swapped and am 🤯 changed to Freestyle for less than 24 hours and redness completely gone. Hope this helps someone\"",
+            "sub_heading": "@brooklyn_barton"
+          }
+        },
+        "second_marquee_JybiNX": {
+          "type": "second_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Group_26713.png",
+            "heading": "\"Switched and LOVE\"",
+            "sub_heading": "@emiley.childers"
+          }
+        },
+        "second_marquee_nQxGwU": {
+          "type": "second_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Works_Overnight_8f001b9c-e0a9-48aa-9698-30b0f7bb474d.png",
+            "heading": "\"Freestyle is literally amazing 😭\"",
+            "sub_heading": "@sarahemeck"
+          }
+        },
+        "second_marquee_9JDVTJ": {
+          "type": "second_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Reviews_TCF_check.png",
+            "heading": "\"I'm obsessed with them, I challenge any diaper to compare to Freestyle, they are so good\"",
+            "sub_heading": "@balancedbycass"
+          }
+        },
+        "third_marquee_UrVCkE": {
+          "type": "third_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Works_Overnight_8f001b9c-e0a9-48aa-9698-30b0f7bb474d.png",
+            "heading": "\"I started using Freestyle diapers and ever since I switched, my baby hasn't had a diaper rash. Thank you thank you thank you\"",
+            "sub_heading": "@bd2033"
+          }
+        },
+        "third_marquee_kFiBEm": {
+          "type": "third_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Reviews_TCF_check.png",
+            "heading": "\"I refuse to buy any other diaper now.\"",
+            "sub_heading": "@darbysmith8"
+          }
+        },
+        "third_marquee_7phDDr": {
+          "type": "third_marquee",
+          "settings": {
+            "image": "shopify://shop_images/Group_26713.png",
+            "heading": "\"They have outperformed every diaper, TCF or not, that I have ever tried\"",
+            "sub_heading": "@eliserivera0422"
+          }
+        }
+      },
+      "block_order": [
+        "first_marquee_cXTDn4",
+        "first_marquee_RVzTHa",
+        "first_marquee_XJNPrR",
+        "second_marquee_JybiNX",
+        "second_marquee_nQxGwU",
+        "second_marquee_9JDVTJ",
+        "third_marquee_UrVCkE",
+        "third_marquee_kFiBEm",
+        "third_marquee_7phDDr"
+      ],
+      "name": "Multiple Marquee",
+      "settings": {
+        "heading": "Thousands $heart Freestyle",
+        "first_marquee_hide_desktop": false,
+        "first_marquee_hide_mobile": false,
+        "first_marquee_direction": "-1",
+        "second_marquee_hide_desktop": false,
+        "second_marquee_hide_mobile": false,
+        "second_marquee_direction": "1",
+        "third_marquee_hide_desktop": false,
+        "third_marquee_hide_mobile": false,
+        "third_marquee_direction": "-1"
+      }
+    },
     "media_slider_tEDUFN": {
       "type": "media-slider",
       "blocks": {
@@ -254,6 +355,7 @@
     "c_3column_blocks_kprbKX",
     "c_image_aside_about_us_QpyCzL",
     "c_hero_banner_8zCmDY",
+    "multiple_marquee_cDJX9G",
     "c_hero_img_3b8kXN",
     "media_slider_tEDUFN"
   ]
