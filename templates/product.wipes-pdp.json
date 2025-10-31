@@ -143,6 +143,7 @@
         },
         "accordion_item_QDWeYg": {
           "type": "accordion_item",
+          "disabled": true,
           "settings": {
             "title": "Skin ❤️ Shield™'s performance",
             "content": "<p>SkinShield™ has been tested against leading competitors and is up to 14x more absorbent than a leading brand. This means better performance at the best price. Read more <a href=\"https://freestyle.world/pages/safety-and-testing\" target=\"_blank\" title=\"https://freestyle.world/pages/safety-and-testing\">here</a>.</p>"
@@ -152,7 +153,7 @@
           "type": "accordion_item",
           "settings": {
             "title": "Where to shop",
-            "content": "<p>SkinShield™ diapers are available at here at Freestyle.World, at <a href=\"https://www.walmart.com/ip/Freestyle-Diaper-Size-4-48CT/13932710597\" target=\"_blank\" title=\"https://www.walmart.com/ip/Freestyle-Diaper-Size-4-48CT/13932710597 \">Walmart.com </a>and select Walmart stores (find one <a href=\"https://freestyle.world/pages/about-us?view=store-locator\" title=\"https://freestyle.world/pages/about-us?view=store-locator\">here</a>).</p>"
+            "content": "<p>Ultra Clean 99% Water Wipes are available at here at Freestyle.World, at <a href=\"https://www.walmart.com/ip/FRSTYL-WIPES-216CT/14979954397\" target=\"_blank\" title=\"https://www.walmart.com/ip/FRSTYL-WIPES-216CT/14979954397\">Walmart.com</a> and select Walmart stores (find one <a href=\"https://freestyle.world/pages/stores\" title=\"https://freestyle.world/pages/stores\">here</a>).</p>"
           }
         }
       },
