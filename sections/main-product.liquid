@@ -63,12 +63,28 @@
                   </h1>
                 {% elsif block.settings.alternate_title != blank or product.metafields.custom.alternate_title != blank %}
                   <h1 class="product__title font-grotesk !font-medium !text-[52px] max-md:text-[32px] !leading-[1] !tracking-[-0.05em] text-scheme_one flex flex-wrap gap-[4px] [&_strong]:font-fkroman [&_strong]:font-normal mb-[20px]">
-                    {% assign bamboo_icon = settings.bamboo_icon | image_url: width: 100 | image_tag: class: 'w-[2.2rem] md:w-[3.6rem] inline-block translate-y-[-0.6rem] md:translate-y-[-1rem] mx-1'
+                    {% assign bamboo_icon = settings.bamboo_icon
+                      | image_url: width: 100
+                      | image_tag:
+                        class: 'w-[2.2rem] md:w-[3.6rem] inline-block translate-y-[-0.6rem] md:translate-y-[-1rem] mx-1'
                     %}
-                    {% assign heart_icon = settings.heart_icon | image_url: width: 100 | image_tag: class: 'w-[3rem] md:w-[5rem] inline-block translate-y-[-0.4rem] md:translate-y-[-0.7rem] mx-1'
+                    {% assign heart_icon = settings.heart_icon
+                      | image_url: width: 100
+                      | image_tag:
+                        class: 'w-[3rem] md:w-[5rem] inline-block translate-y-[-0.4rem] md:translate-y-[-0.7rem] mx-1'
                     %}
+                    {% assign water_icon = settings.water_icon
+                      | image_url: width: 100
+                      | image_tag:
+                        class: 'w-[3rem] md:w-[5rem] inline-block translate-y-[-0.4rem] md:translate-y-[-0.7rem] mx-1'
+                    %}
+                    {% assign alternate_title = block.settings.alternate_title | default: product.metafields.custom.alternate_title %}
                     {{
-                      block.settings.alternate_title | replace: '[bamboo]', bamboo_icon | replace: '[heart]', heart_icon
+                      alternate_title
+                      | replace: '[bamboo]', bamboo_icon
+                      | replace: '[heart]', heart_icon
+                      | replace: '[water]', water_icon
+                      | split: '(' | first
                     }}
                   </h1>
                 {% else %}
@@ -358,9 +374,39 @@
                         </div>
                         <div class="add-on-text w-full flex items-center gap-[18px] justify-between">
                           <div class="flex flex-col gap-[4px] w-full">
-                            <h2 class="title font-grotesk font-normal text-[16px] max-md:text-[13px] leading-[1.6] text-black-text !tracking-normal">
-                              {{ add_on_product.title }}
-                            </h2>
+                            {% if add_on_product.metafields.custom.alternate_title != blank %}
+                              <h2 class="title font-grotesk font-normal text-[16px] max-md:text-[13px] leading-[1.6] text-black-text !tracking-normal">
+                                {% assign bamboo_icon = settings.bamboo_icon
+                                  | image_url: width: 32
+                                  | image_tag:
+                                    class: 'inline-block translate-y-[-2px] mx-1',
+                                    style: 'width: 16px;'
+                                %}
+                                {% assign heart_icon = settings.heart_icon
+                                  | image_url: width: 32
+                                  | image_tag:
+                                    class: 'inline-block translate-y-[-2px] mx-1',
+                                    style: 'width: 16px;'
+                                %}
+                                {% assign water_icon = settings.water_icon
+                                  | image_url: width: 32
+                                  | image_tag:
+                                    class: 'inline-block translate-y-[-2px] mx-1',
+                                    style: 'width: 16px;'
+                                %}
+                                {% assign alternate_title = block.settings.alternate_title | default: add_on_product.metafields.custom.alternate_title %}
+                                {{
+                                  alternate_title
+                                  | replace: '[bamboo]', bamboo_icon
+                                  | replace: '[heart]', heart_icon
+                                  | replace: '[water]', water_icon
+                                }}
+                              </h2>
+                            {% else %}
+                              <h2 class="title font-grotesk font-normal text-[16px] max-md:text-[13px] leading-[1.6] text-black-text !tracking-normal">
+                                {{ add_on_product.title }}
+                              </h2>
+                            {% endif %}
                             <p class="price font-grotesk font-medium text-[15px] leading-[1.6] text-black-text">
                               {{ add_on_product.selected_or_first_available_variant.price | money }}
                             </p>
