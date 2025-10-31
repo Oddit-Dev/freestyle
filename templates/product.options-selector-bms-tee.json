@@ -25,7 +25,7 @@
         "richtext_czpjtz": {
           "type": "richtext",
           "settings": {
-            "richtext": "{{ section.settings.extra_product_for_bambootek.metafields.custom.product_specification | metafield_tag }}<ul><li>100% cotton</li><li>Premium screenprint</li><li>Oversized, boxy fit</li><li>Made in Los Angeles</li><li>Cloud-like softness</li><li>Designed for sport + lounging</li></ul>"
+            "richtext": "{{ section.settings.extra_product_for_bambootek.metafields.custom.product_specification | metafield_tag }}<ul><li>100% cotton</li><li>Premium screenprint</li><li>Oversized, boxy fit</li><li>Made in Los Angeles</li><li>Designed for sport + lounging</li></ul>"
           }
         },
         "separator_NF3Aqz": {
