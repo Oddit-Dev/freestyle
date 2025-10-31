@@ -291,6 +291,31 @@
         "third_marquee_direction": "-1"
       }
     },
+    "c_hero_img_9haRqn": {
+      "type": "c-hero-img",
+      "settings": {
+        "image": "shopify://shop_images/242A6894_6.jpg",
+        "heading": "Shop Skin Shield ™ <br>",
+        "heading_color": "#ffffff",
+        "heading_icon": "shopify://shop_images/hear-icon-2-light.svg",
+        "heading_weight": "normal",
+        "heading_icon_size": 94,
+        "description": "",
+        "description_color": "#ffffff",
+        "button_icon": "shopify://shop_images/wallmart-icon.svg",
+        "button_icon_size": 16,
+        "button_text_icon": "shopify://shop_images/heart-icon-text.svg",
+        "button_text_icon_size": 16,
+        "banner_height_desktop": "818",
+        "banner_height_mobile": "500",
+        "description_icon": "shopify://shop_images/heart-icon-violet.svg",
+        "description_icon_size": 36,
+        "button_label": "Shop Skin Shield™",
+        "button_link": "https://freestyle.world/products/skinshield-diapers",
+        "show_popup": false,
+        "popup__trigger": ""
+      }
+    },
     "perfect_info_mgPXdV": {
       "type": "perfect-info",
       "blocks": {
@@ -541,6 +566,7 @@
         "testimonial_DhWwBc",
         "testimonial_cyiB6m"
       ],
+      "disabled": true,
       "name": "Testimonial",
       "settings": {
         "heading": "Trusted by Real Families",
@@ -552,6 +578,7 @@
   "order": [
     "main",
     "multiple_marquee_4VUVyj",
+    "c_hero_img_9haRqn",
     "perfect_info_mgPXdV",
     "icon_with_text_Tirzyn",
     "174411240666086477",
