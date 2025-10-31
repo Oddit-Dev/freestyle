@@ -23,8 +23,8 @@
         "button_icon_size": 16,
         "button_text_icon": "shopify://shop_images/heart-icon-text.svg",
         "button_text_icon_size": 16,
-        "banner_height_desktop": "818",
-        "banner_height_mobile": "300",
+        "banner_height_desktop": "650",
+        "banner_height_mobile": "200",
         "description_icon": "shopify://shop_images/heart-icon-violet.svg",
         "description_icon_size": 36,
         "button_label": "",
@@ -56,7 +56,7 @@
         "padding_desktop": 40,
         "padding_mobile": 20,
         "banner_text_width": "760",
-        "banner_height_desktop": "500",
+        "banner_height_desktop": "400",
         "banner_height_mobile": "450"
       }
     },

@@ -43,7 +43,7 @@
     "subscription_upsell_product": [
       "wipes"
     ],
-    "cart_btm_content": "This order ships FREE",
+    "cart_btm_content": "Free shipping on diapers",
     "custom_upsell_heading": "Add 99% Water Sensitive Wipes",
     "custom_upsell_product": "wipes",
     "empty_cart_title": "Your cart is empty",
@@ -62,8 +62,8 @@
     "mobile_product_feature_content": "<p>14x better absorption, 7-layer skin protection, and Total Chlorine Free materials</p>",
     "mobile_product_feature_btn_txt": "Shop Skin $heart Shield™ Diapers",
     "mobile_product_feature_btn_url": "https://freestyle.world/products/skinshield-diapers",
-    "mobile_menu_shipping_text": "FREE SHIPPING ON ALL SUBSCRIPTION ORDERS",
-    "announcement_text": "Free shipping",
+    "mobile_menu_shipping_text": "FREE SHIPPING ON DIAPERS",
+    "announcement_text": "Free shipping on diapers",
     "announcement2_text": "Fast delivery",
     "announcement3_text": "<p><a href=\"/products/skinshield-diapers\" title=\"Skin❤️Shield™ Diapers\">Shop Ultra Premium TCF Diapers</a></p>",
     "link_url": "",
@@ -73,6 +73,7 @@
     "bamboo_icon": "shopify://shop_images/BambooTek.png",
     "heart_icon": "shopify://shop_images/heart-violet.svg",
     "heart_icon_white": "shopify://shop_images/Group_26613.svg",
+    "water_icon": "shopify://shop_images/Freestyle_Water_Drop_emoji.svg",
     "menu_image_1": "shopify://shop_images/Group_26612.jpg",
     "menu_link_1": "/products/bambootek®-diapers-glow",
     "menu_image_2": "shopify://shop_images/Group_26572.jpg",
@@ -169,16 +170,16 @@
           "product_feature_btn_txt": "Shop Skin $heart Shield™ Diapers",
           "product_feature_btn_url": "shopify://products/skinshield-diapers",
           "subscription_button_label": "Subscribe",
-          "empty_btm_walmart": "<p>Find a $walmart near <a href=\"https://freestyle.world/pages/about-us?view=store-locator\" title=\"https://freestyle.world/pages/about-us?view=store-locator\">you</a></p>",
+          "empty_btm_walmart": "<p>Find a store <a href=\"https://freestyle.world/pages/about-us?view=store-locator\" title=\"https://freestyle.world/pages/about-us?view=store-locator\">here</a></p>",
           "free_shipping_threshold": 80,
-          "free_shipping_text": "",
+          "free_shipping_text": "<p>This order ships FREE</p>",
           "enable_note": false,
           "note_heading": "Add gift message or order note",
           "addon_product": "",
           "addon_title": "",
           "addon_info": "",
           "enable_onetime_purchase": true,
-          "custom_upsell_heading": "Add Wipes",
+          "custom_upsell_heading": "Add wipes",
           "custom_upsell_product": "wipes"
         }
       }

@@ -616,6 +616,12 @@
         "info": "Use [heart_white] to display the icon"
       },
       {
+        "type": "image_picker",
+        "id": "water_icon",
+        "label": "Water Icon",
+        "info": "Use [water] to display the icon"
+      },
+      {
         "type": "header",
         "content": "Item Menu 1"
       },
