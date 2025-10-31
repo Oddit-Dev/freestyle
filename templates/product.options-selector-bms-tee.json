@@ -132,18 +132,18 @@
         },
         "accordion_gjrxaL": {
           "type": "accordion",
-          "disabled": true,
           "settings": {}
         },
         "accordion_item_yWrVCC": {
           "type": "accordion_item",
           "settings": {
-            "title": "Size & pack details",
-            "content": "<p>Find your best size:</p><ul><li>Size NB: Up to 10 lbs</li><li>Size 1: 6-12 lbs</li><li>Size 2: 9-18 lbs</li><li>Size 3: 14-24 lbs</li><li>Size 4: 22-34 lbs</li><li>Size 5: 28-40 lbs</li><li>Size 6: 34-44 lbs</li></ul><p>  </p><p>Each monthly shipment includes six packs of diapers (and three packs of wipes as an add on) for around one month’s use. <br/>&nbsp;</p><p>Size NB: 32 diapers per pack, 192 diapers total count<br/>Size 1: 34 diapers per pack, 204 diapers total count<br/>Size 2: 32 diapers per pack, 192 diapers total count<br/>Size 3: 28 diapers per pack, 168 diapers total count<br/>Size 4: 24 diapers per pack, 144 diapers total count<br/>Size 5: 22 diapers per pack, 132 diapers total count<br/>Size 6: 20 diapers per pack, 120 diapers total count<br/>3 packs of wipes: 72 wipes per pack; 216 wipes total count</p>"
+            "title": "About",
+            "content": "<p>It takes a village to raise a baby and if you’re part of the village you’re a Baby Maker. Now, take some active time for yourself in our unisex Baby Maker Sport Tee. Made in Los Angeles from 100% cotton, it features an oversized, boxy fit and premium screenprint lettering. Choose from two Freestyle-inspired colorways, Creme and Purple, depending on your mood, or treat yourself to both (you deserve it). For the full look, pair with the matching sweatpant. </p>"
           }
         },
         "accordion_item_cWHA4e": {
           "type": "accordion_item",
+          "disabled": true,
           "settings": {
             "title": "EWG Verified® non-toxic ingredients",
             "content": "<p>The Freestyle Formula<br/><br/>SkinShield™ diapers are EWG Verified® and Total Chlorine Free. <br/><br/>The core of this diaper is made with our proprietary SAP Matrix (super absorbent polymers (sodium acrylate, silicon dioxide, polyacrylic acid, water)) and FSC Certified Total Chlorine Free wood pulp (cellulose, hemicellulose). The topsheet, backsheet, leakguard, and films are made with performance-driven nonwoven fabrics (polypropylene, polyethylene terephthalate, polythene, titanium dioxide, nylon and polyester, sodium dodecylbenzenesulfonate). Elastics (polypropylene, segmented polyurethaneurea, titanium dioxide) and adhesives (hydrocarbon resin, styrene-Isoprene-styrene copolymer, mineral oil, petroleum resin, rosin ester) are used to hold it all together - and we mean all.<br/><br/>Read more about our safety and testing <a href=\"https://freestyle.world/pages/safety-and-testing\" target=\"_blank\" title=\"Safety and Testing\">here</a>.</p>"
@@ -151,6 +151,7 @@
         },
         "accordion_item_QDWeYg": {
           "type": "accordion_item",
+          "disabled": true,
           "settings": {
             "title": "Skin ❤️ Shield™'s performance",
             "content": "<p>SkinShield™ has been tested against leading competitors and is up to 14x more absorbent than a leading brand. This means better performance at the best price. Read more <a href=\"https://freestyle.world/pages/safety-and-testing\" target=\"_blank\" title=\"https://freestyle.world/pages/safety-and-testing\">here</a>.</p>"
@@ -158,6 +159,7 @@
         },
         "accordion_item_ztzDDX": {
           "type": "accordion_item",
+          "disabled": true,
           "settings": {
             "title": "Where to shop",
             "content": "<p>SkinShield™ diapers are available at here at Freestyle.World, at <a href=\"https://www.walmart.com/ip/Freestyle-Diaper-Size-4-48CT/13932710597\" target=\"_blank\" title=\"https://www.walmart.com/ip/Freestyle-Diaper-Size-4-48CT/13932710597 \">Walmart.com </a>and select Walmart stores (find one <a href=\"https://freestyle.world/pages/about-us?view=store-locator\" title=\"https://freestyle.world/pages/about-us?view=store-locator\">here</a>).</p>"
