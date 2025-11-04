@@ -746,7 +746,7 @@
             setupVariants() {
               let optionsName = '';
               window.optionsName = '';
-              if (this.templateName === 'product' || this.templateName === 'product-oddit-product') {
+              if (this.templateName && this.templateName.includes('product')) {
                 for (let i = 0; i < this.product.options.length; i++) {
                   optionsName += this.product.options[i];
                   if (i < this.product.options.length - 1) {
