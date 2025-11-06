@@ -11,6 +11,26 @@
   "type": "footer",
   "name": "Footer Group",
   "sections": {
+    "1762404763fe7a6502": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_83d7067_frcGMt": {
+          "type": "ai_gen_block_83d7067",
+          "settings": {
+            "custom_html": "<script type=\"text/javascript\">\n  // Get the email from the URL\n  var params = new URLSearchParams(window.location.search);\n  var email = params.get('customer_email');\n\n  // If an email is found, pre-fill it for Klaviyo\n  if (email) {\n    window._learnq = window._learnq || [];\n    window._learnq.push(['identify', {\n      '$email': email\n    }]);\n  }\n</script>\n\n<!-- The Klaviyo <div class=\"klaviyo-form-...\"> embed code goes right below this -->\n<div class=\"klaviyo-form-Vsz8BA\"></div>",
+            "max_width": 1200,
+            "padding_top": 40,
+            "padding_bottom": 40,
+            "padding_horizontal": 20
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_83d7067_frcGMt"
+      ],
+      "settings": {}
+    },
     "footer_custom_fPQhVk": {
       "type": "footer-custom",
       "blocks": {
@@ -75,6 +95,7 @@
     }
   },
   "order": [
+    "1762404763fe7a6502",
     "footer_custom_fPQhVk"
   ]
 }
