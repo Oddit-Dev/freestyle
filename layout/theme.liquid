@@ -130,13 +130,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     company_id: 'VRPjaA'
   }); 
   
-  klaviyo.enable("backinstock", {
-    trigger: {
-      product_page_class: "", 
-      alternate_anchor: "#klaviyo-bis-trigger", 
-      product_page_class: "b-product-add_to_cart", // Note: Klaviyo ignores duplicate keys, but best practice is to only define the necessary ones
-      move_anchor: true,
-      replace_anchor: true 
+klaviyo.enable("backinstock", {
+  trigger: {
+    alternate_anchor: "#klaviyo-bis-trigger", 
+    // ⚠️ CHANGE THIS LINE to a class the button definitely has when OOS:
+    product_page_class: "button", 
+    move_anchor: true,
+    replace_anchor: true 
+  }
+});
     }
   });
 </script>
