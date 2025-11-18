@@ -122,5 +122,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       {% render 'c-modal-window' %}
     </div> 
     <script src="{{ 'custom.js' | asset_url }}" defer></script>
+
+    <script>
+  var klaviyo = klaviyo || [];
+  klaviyo.init({
+    // ... (Your account ID and other settings)
+  });
+  klaviyo.enable("backinstock", {
+    trigger: {
+      product_page_class: "button", 
+      replace_anchor: true 
+    }
+  });
+</script>
   </body>
 </html>
