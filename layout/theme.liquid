@@ -123,18 +123,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div> 
     <script src="{{ 'custom.js' | asset_url }}" defer></script>
 
-    <script>
+<script>
   var klaviyo = klaviyo || [];
   klaviyo.init({
-    // ... (Your account ID and other settings)
+    // ⚠️ Place your Public API Key here (e.g., 'ABCXYZ'):
+    company_id: 'VRPjaA'
+  }); 
+  
+  klaviyo.enable("backinstock", {
+    trigger: {
+      product_page_class: "", 
+      alternate_anchor: "#klaviyo-bis-trigger", 
+      product_page_class: "b-product-add_to_cart", // Note: Klaviyo ignores duplicate keys, but best practice is to only define the necessary ones
+      move_anchor: true,
+      replace_anchor: true 
+    }
   });
- klaviyo.enable("backinstock", {
-  trigger: {
-    product_page_class: "", 
-    alternate_anchor: "#klaviyo-bis-trigger", 
-    replace_anchor: true 
-  }
-});
 </script>
   </body>
 </html>
