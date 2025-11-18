@@ -108,67 +108,72 @@
             {% when 'variant_text' %}
               <div class="variant-text-main"></div>
             {% when 'cta' %}
-              <div class="product__cta mb-[50px] max-md:mb-[30px]">
-                {% if block.settings.cta_type == 'add_to_cart' %}
-                  <div x-show="activeVariant.available">
-                    {% form 'product', product, class: 'product__cta' %}
-                      <input
-                        type="hidden"
-                        name="id"
-                        :value="activeVariant.id">
-                      <input
-                        type="hidden"
-                        name="selling_plan"
-                        :value="sellingPlan.id">
-                      <input
-                        type="hidden"
-                        name="quantity"
-                        value="1">
+  <div class="product__cta mb-[50px] max-md:mb-[30px]">
 
-                      <button class="btn !hidden">
-                        {{ block.settings.cta_label }}
-                      </button>
-                    {% endform %}
-                    {% comment %}
-                      <span class="button" @click="addToCart(activeVariant.id)">
-                      {{ block.settings.cta_label }}
-                      <span class="sale-price">
-                      {{ product.selected_or_first_available_variant.price | money }}
-                      </span>
-                      </span>
-                    {% endcomment %}
-                    <button
-                      class="button js-add-to-cart w-full gap-[6px] capitalize"
-                      data-selling-plan-id="{{ product.selected_or_first_available_variant.selling_plan_allocations.first.selling_plan.id }}"
-                      data-variant-id="{{ product.selected_or_first_available_variant.id }}">
-                      {{ block.settings.cta_label }}
-                      <span class="text-[8px]">•</span>
-                      <span class="sale-price">
-                        {{ product.selected_or_first_available_variant.price | money }}
-                      </span>
-                    </button>
-                  </div>
+    <div id="klaviyo-bis-trigger"></div> 
 
-                  <div x-show="!activeVariant.available" x-cloak>
-                    <button class="button m-disabled">Out of Stock</button>
-                  </div>
+    {% if block.settings.cta_type == 'add_to_cart' %}
+      <div x-show="activeVariant.available">
+        {% form 'product', product, class: 'product__cta' %}
+          <input
+            type="hidden"
+            name="id"
+            :value="activeVariant.id">
+          <input
+            type="hidden"
+            name="selling_plan"
+            :value="sellingPlan.id">
+          <input
+            type="hidden"
+            name="quantity"
+            value="1">
 
-                {% else %}
-                  <a
-                    href="{{ block.settings.cta_url }}"
-                    class="btn btn--walmart"
-                    target="_blank">
-                    {{ block.settings.cta_label }}
-                  </a>
-                {% endif %}
-                {% if block.settings.text != blank %}
-                  <div class="bottom-text mt-[12px] [&_ul]:flex [&_ul]:flex-wrap [&_ul]:justify-center [&_ul]:gap-[12px] [&_ul]:max-md:gap-[9px] [&_li]:flex [&_li]:items-center [&_li]:gap-[6px] [&_li]:font-grotesk [&_li]:font-normal [&_li]:text-[14px] [&_li]:max-md:text-[12px] [&_li]:leading-[1.6] [&_li]:text-black-text">
-                    {{ block.settings.text }}
-                  </div>
-                {% endif %}
-              </div>
+          <button class="btn !hidden">
+            {{ block.settings.cta_label }}
+          </button>
+        {% endform %}
+        
+        {% comment %}
+          <span class="button" @click="addToCart(activeVariant.id)">
+          {{ block.settings.cta_label }}
+          <span class="sale-price">
+          {{ product.selected_or_first_available_variant.price | money }}
+          </span>
+          </span>
+        {% endcomment %}
+        <button
+          class="button js-add-to-cart w-full gap-[6px] capitalize"
+          data-selling-plan-id="{{ product.selected_or_first_available_variant.selling_plan_allocations.first.selling_plan.id }}"
+          data-variant-id="{{ product.selected_or_first_available_variant.id }}">
+          {{ block.settings.cta_label }}
+          <span class="text-[8px]">•</span>
+          <span class="sale-price">
+            {{ product.selected_or_first_available_variant.price | money }}
+          </span>
+        </button>
+      </div>
 
-              <div class="custom-pdp-store-locater-mobile"></div>
+      <div x-show="!activeVariant.available" x-cloak>
+        <button class="button m-disabled">Out of Stock</button>
+      </div>
+
+    {% else %}
+      <a
+        href="{{ block.settings.cta_url }}"
+        class="btn btn--walmart"
+        target="_blank">
+        {{ block.settings.cta_label }}
+      </a>
+    {% endif %}
+    
+    {% if block.settings.text != blank %}
+      <div class="bottom-text mt-[12px] [&_ul]:flex [&_ul]:flex-wrap [&_ul]:justify-center [&_ul]:gap-[12px] [&_ul]:max-md:gap-[9px] [&_li]:flex [&_li]:items-center [&_li]:gap-[6px] [&_li]:font-grotesk [&_li]:font-normal [&_li]:text-[14px] [&_li]:max-md:text-[12px] [&_li]:leading-[1.6] [&_li]:text-black-text">
+        {{ block.settings.text }}
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="custom-pdp-store-locater-mobile"></div>
             {% when 'description' %}
               <div class="product__description">
                 <h4 class="mb-6">
