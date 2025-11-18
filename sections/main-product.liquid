@@ -111,7 +111,7 @@
              <div class="product__cta mb-[50px] max-md:mb-[30px]">
                {% if block.settings.cta_type == 'add_to_cart' %}
                  <div x-show="activeVariant.available">
-                   {% form 'product', product, class: 'product__cta' %}
+{% form 'product', product, class: 'product__cta product-form-main', id: 'product-form-{{ product.id }}' %}
                      <input
                        type="hidden"
                        name="id"
@@ -151,9 +151,9 @@
                  </div>
 
 
-                 <div x-show="!activeVariant.available" x-cloak>
-                   <button class="button m-disabled">Out of Stock</button>
-                 </div>
+                <div x-show="!activeVariant.available" x-cloak>
+  <button class="button m-disabled product-form__submit" disabled>Out of Stock</button>
+</div>
 
 
                {% else %}
@@ -356,15 +356,17 @@
                 {% endfor %}
               </div>
 
-            {% when 'add_on_product' %}
-              {% if block.settings.product != blank %}
-                {% assign add_on_product = block.settings.product %}
-                {% if product.id != add_on_product.id %}
-                  <div class="add-on-product mb-[40px] max-md:mb-[30px]">
+ {% when 'add_on_product' %}
+  {% if block.settings.product != blank %}
+    {% assign add_on_product = block.settings.product %}
+    {% if product.id != add_on_product.id %}
+      <div class="klaviyo-bis-exclude">
+        <div class="add-on-product mb-[40px] max-md:mb-[30px]">
                     {% if block.settings.heading != blank %}
                       <h2 class="heading font-grotesk !font-medium text-[16px] tracking-normal leading-[1.5] text-black-text mb-[12px]">
                         {{ block.settings.heading }}
                       </h2>
+                      
                     {% endif %}
                     <label for="add-on-product-{{ forloop.index }}" class="add-on-label p-[20px_14px] rounded-[12px] border border-solid border-[#E3E3E3] flex">
                       <div class="flex-add-on-details flex items-center gap-[18px] w-full">
