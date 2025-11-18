@@ -128,12 +128,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   klaviyo.init({
     // ... (Your account ID and other settings)
   });
-  klaviyo.enable("backinstock", {
-    trigger: {
-      product_page_class: "button m-disabled", 
-      replace_anchor: true 
-    }
-  });
+ klaviyo.enable("backinstock", {
+  trigger: {
+    product_page_class: "", 
+    alternate_anchor: "#klaviyo-bis-trigger", 
+    replace_anchor: true 
+  }
+});
 </script>
   </body>
 </html>
