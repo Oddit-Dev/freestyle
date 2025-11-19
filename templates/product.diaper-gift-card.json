@@ -30,7 +30,7 @@
         "richtext_kqgkj3": {
           "type": "richtext",
           "settings": {
-            "richtext": "<ul><li>Fragrance Free</li><li>99% Water</li><li>Plastic Free Fibers</li><li>Push to open lid</li><li>Made for Sensitive Skin</li><li>EWG Verified®</li></ul>"
+            "richtext": "<ul><li>Pre-pay first month of subscription</li><li>Receive a discount on your second order</li><li>Pre-Access: be the first to shop when your size is restocked</li></ul>"
           }
         },
         "variants_EBNBwP": {
@@ -78,11 +78,12 @@
             "cta_type": "add_to_cart",
             "cta_label": "Add to cart",
             "cta_url": "#",
-            "text": "<ul><li>Free shipping with diapers</li><li>Fast delivery</li></ul>"
+            "text": "<ul><li>Your diapers will ship free</li><li>Fast delivery</li></ul>"
           }
         },
         "product_features_jDgQVM": {
           "type": "product_features",
+          "disabled": true,
           "settings": {
             "note": ""
           }
@@ -130,12 +131,13 @@
         "accordion_item_yWrVCC": {
           "type": "accordion_item",
           "settings": {
-            "title": "Size & pack details",
-            "content": "<p>72 wipes per pack; 216 wipes total count in 3-pack sold on our site.</p>"
+            "title": "More details",
+            "content": "<p>Your size is out of stock, so you can pre-pay your first month of subscription and be the first to know when back in stock. Pre-payers will receive early access to set up their subscriptions plus a discount on their second order as a thank you for pre-paying. </p><p>After checking out, you will receive a gift card via email, and a second message when your size is available to shop again with your discount code for your second order.</p>"
           }
         },
         "accordion_item_cWHA4e": {
           "type": "accordion_item",
+          "disabled": true,
           "settings": {
             "title": "EWG Verified® non-toxic ingredients",
             "content": "<p>The Freestyle Formula<br/><br/>Ultra Clean 99% Water Wipes are EWG Verified® and Total Chlorine Free. <br/><br/>Water (Aqua), Sodium Benzoate, Caprylyl Glycol,\u0003Gluconolactone, Citric Acid, Ethylhexylglycerin, Decyl Glucoside, Chamomilla Recutita (Chamomile)\u0003Flower Extract.<br/><br/>Read more about our safety and testing <a href=\"https://freestyle.world/pages/safety-and-testing\" target=\"_blank\" title=\"Safety and Testing\">here</a>.</p>"
@@ -151,6 +153,7 @@
         },
         "accordion_item_ztzDDX": {
           "type": "accordion_item",
+          "disabled": true,
           "settings": {
             "title": "Where to shop",
             "content": "<p>Ultra Clean 99% Water Wipes are available at here at Freestyle.World, at <a href=\"https://www.walmart.com/ip/FRSTYL-WIPES-216CT/14979954397\" target=\"_blank\" title=\"https://www.walmart.com/ip/FRSTYL-WIPES-216CT/14979954397\">Walmart.com</a> and select Walmart stores (find one <a href=\"https://freestyle.world/pages/stores\" title=\"https://freestyle.world/pages/stores\">here</a>).</p>"
@@ -387,6 +390,7 @@
         "icon_JCck3C",
         "icon_wr7y76"
       ],
+      "disabled": true,
       "name": "Icon With Text",
       "settings": {
         "background_image": "shopify://shop_images/HEADER_F1F2F5.jpg",
@@ -410,6 +414,7 @@
       "block_order": [
         "junip_junip_product_review_QaUeLN"
       ],
+      "disabled": true,
       "settings": {}
     },
     "media_slider_AqMcEa": {
