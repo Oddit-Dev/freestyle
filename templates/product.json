@@ -184,9 +184,9 @@
         "store_main_heading": "Find SkinShield™ near you",
         "store_sub_heading": "",
         "enable_walmart_btn": true,
-        "walmart_btn_text": "Buy on Walmart",
+        "walmart_btn_text": "Buy at Walmart.com",
         "enable_target_btn": true,
-        "target_btn_text": "Buy on Target",
+        "target_btn_text": "Buy at Target.com",
         "enable_nearby_btn": true,
         "nearby_btn_text": "Find a Store Nearby"
       }
