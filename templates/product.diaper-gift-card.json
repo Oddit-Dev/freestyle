@@ -30,7 +30,7 @@
         "richtext_kqgkj3": {
           "type": "richtext",
           "settings": {
-            "richtext": "<ul><li>Pre-pay first month of subscription</li><li>Receive a discount on your second order</li><li>Pre-Access: be the first to shop when your size is restocked</li></ul>"
+            "richtext": "<ul><li>Pre-pay your first month of a diaper subscription</li><li>Receive a thank you discount for second order</li><li>Pre-Access: be the first to shop when restocked</li></ul>"
           }
         },
         "variants_EBNBwP": {
@@ -132,7 +132,7 @@
           "type": "accordion_item",
           "settings": {
             "title": "More details",
-            "content": "<p>Your size is out of stock, so you can pre-pay your first month of subscription and be the first to know when back in stock. Pre-payers will receive early access to set up their subscriptions plus a 25% discount on their second order as a thank you for pre-paying. </p><p>After checking out, you will receive a gift card via email, and a second message when your size is available to shop again with your discount code for your second order.</p>"
+            "content": "<p>Your size is out of stock, so you can pre-pay your first month of subscription and be the first to shop when back in stock. Pre-payers will receive early access to set up their diaper subscription plus a 25% discount on the second order of the subscription as a thank you for pre-paying.</p><p>After checking out, you will receive a digital gift card via email, and a second message when your size is available to shop again with your 25% discount code for your second order of your diaper subscription.</p>"
           }
         },
         "accordion_item_cWHA4e": {
