@@ -15,14 +15,15 @@
   x-data="product"
   x-init="init"
   {% if template contains 'bambootek' and section.settings.extra_product_for_bambootek %}
-    data-extra-product="{{ all_products[section.settings.extra_product_for_bambootek].first_available_variant.id }}"
-    data-extra-product-qty="{{ section.settings.extra_product_quantity }}"
+  data-extra-product="{{ all_products[section.settings.extra_product_for_bambootek].first_available_variant.id }}"
+  data-extra-product-qty="{{ section.settings.extra_product_quantity }}"
   {% endif %}>
   <div class="container !max-w-[1360px]">
     <div class="product__inner !gap-0">
       <div class="main-image-gallery-with-location overflow-auto max-md:mb-[20px] ">
         <div class="custom-gallery">
-          {% render 'product-gallery', product: product %}
+          {% render 'product-gallery'
+            , product: product %}
         </div>
         {% if section.settings.show_store_locator %}
           <div class="custom-pdp-store-locater-desktop">
@@ -64,27 +65,26 @@
                 {% elsif block.settings.alternate_title != blank or product.metafields.custom.alternate_title != blank %}
                   <h1 class="product__title font-grotesk !font-medium !text-[52px] max-md:text-[32px] !leading-[1] !tracking-[-0.05em] text-scheme_one flex flex-wrap gap-[4px] [&_strong]:font-fkroman [&_strong]:font-normal mb-[20px]">
                     {% assign bamboo_icon = settings.bamboo_icon
-                      | image_url: width: 100
-                      | image_tag:
-                        class: 'w-[2.2rem] md:w-[3.6rem] inline-block translate-y-[-0.6rem] md:translate-y-[-1rem] mx-1'
+ | image_url: width: 100
+ | image_tag:
+ class: 'w-[2.2rem] md:w-[3.6rem] inline-block translate-y-[-0.6rem] md:translate-y-[-1rem] mx-1'
                     %}
                     {% assign heart_icon = settings.heart_icon
-                      | image_url: width: 100
-                      | image_tag:
-                        class: 'w-[3rem] md:w-[5rem] inline-block translate-y-[-0.4rem] md:translate-y-[-0.7rem] mx-1'
+ | image_url: width: 100
+ | image_tag:
+ class: 'w-[3rem] md:w-[5rem] inline-block translate-y-[-0.4rem] md:translate-y-[-0.7rem] mx-1'
                     %}
                     {% assign water_icon = settings.water_icon
-                      | image_url: width: 100
-                      | image_tag:
-                        class: 'w-[3rem] md:w-[5rem] inline-block translate-y-[-0.4rem] md:translate-y-[-0.7rem] mx-1'
+ | image_url: width: 100
+ | image_tag:
+ class: 'w-[3rem] md:w-[5rem] inline-block translate-y-[-0.4rem] md:translate-y-[-0.7rem] mx-1'
                     %}
                     {% assign alternate_title = block.settings.alternate_title | default: product.metafields.custom.alternate_title %}
-                    {{
-                      alternate_title
-                      | replace: '[bamboo]', bamboo_icon
-                      | replace: '[heart]', heart_icon
-                      | replace: '[water]', water_icon
-                      | split: '(' | first
+                    {{ alternate_title
+ | replace: '[bamboo]', bamboo_icon
+ | replace: '[heart]', heart_icon
+ | replace: '[water]', water_icon
+ | split: '(' | first
                     }}
                   </h1>
                 {% else %}
@@ -99,7 +99,7 @@
                     , product: product %}
                 </div>
               </div>
-            {% when 'richtext' %}  
+            {% when 'richtext' %}
               {% if block.settings.richtext != blank %}
                 <div class="product-richtext">
                   {{ block.settings.richtext }}
@@ -108,67 +108,145 @@
             {% when 'variant_text' %}
               <div class="variant-text-main"></div>
             {% when 'cta' %}
-              <div class="product__cta mb-[50px] max-md:mb-[30px]">
-                {% if block.settings.cta_type == 'add_to_cart' %}
-                  <div x-show="activeVariant.available">
-                    {% form 'product', product, class: 'product__cta' %}
-                      <input
-                        type="hidden"
-                        name="id"
-                        :value="activeVariant.id">
-                      <input
-                        type="hidden"
-                        name="selling_plan"
-                        :value="sellingPlan.id">
-                      <input
-                        type="hidden"
-                        name="quantity"
-                        value="1">
 
-                      <button class="btn !hidden">
-                        {{ block.settings.cta_label }}
-                      </button>
-                    {% endform %}
-                    {% comment %}
-                      <span class="button" @click="addToCart(activeVariant.id)">
-                      {{ block.settings.cta_label }}
-                      <span class="sale-price">
-                      {{ product.selected_or_first_available_variant.price | money }}
-                      </span>
-                      </span>
-                    {% endcomment %}
-                    <button
-                      class="button js-add-to-cart w-full gap-[6px] capitalize"
-                      data-selling-plan-id="{{ product.selected_or_first_available_variant.selling_plan_allocations.first.selling_plan.id }}"
-                      data-variant-id="{{ product.selected_or_first_available_variant.id }}">
-                      {{ block.settings.cta_label }}
-                      <span class="text-[8px]">•</span>
-                      <span class="sale-price">
-                        {{ product.selected_or_first_available_variant.price | money }}
-                      </span>
-                    </button>
-                  </div>
+              <div class="product-form">
 
+                {% assign current_variant = product.selected_or_first_available_variant %}
+
+                {% assign walmart_url = current_variant.metafields.custom.walmart_url %}
+                {% assign target_url = current_variant.metafields.custom.target_url %}
+                {% assign nearby_url = current_variant.metafields.custom.store_nearby_url %}
+
+                {% assign has_external_links = false %}
+                {% if walmart_url != blank or target_url != blank or nearby_url != blank %}
+                  {% assign has_external_links = true %}
+                {% endif %}
+
+
+                <div class="external-purchase-buttons flex flex-col gap-[14px] {% if has_external_links != true %}hidden{% endif %}">
+
+                  {% if section.settings.enable_walmart_btn %}
+                    <a
+                      href="{{ walmart_url }}"
+                      class="button walmart-btn-url {% if walmart_url == blank %}hidden{% endif %}"
+                      target="_blank"
+                      rel="noopener">
+                      <span class="walmart-icon">
+                        {{ "cbi_walmart.svg" | inline_asset_content }}
+                      </span>
+                      {{ section.settings.walmart_btn_text | default: 'Buy on Walmart' }}
+                    </a>
+                  {% endif %}
+                  {% if section.settings.enable_target_btn %}
+                    <a
+                      href="{{ target_url }}"
+                      class="button target-btn {% if target_url == blank %}hidden{% endif %}"
+                      target="_blank"
+                      rel="noopener">
+                      <span class="target-icon">
+                        {{ "target-icon.svg" | inline_asset_content }}
+                      </span>
+                      {{ section.settings.target_btn_text | default: 'Buy on Target' }}
+                    </a>
+                  {% endif %}
+                  {% if section.settings.enable_nearby_btn %}
+                    <a
+                      href="{{ nearby_url }}"
+                      class="btn-text-only nearby-btn {% if nearby_url == blank %}hidden{% endif %}"
+                      target="_blank"
+                      rel="noopener">
+                      <span class="store-icon">
+                        {{ "store-icon.svg" | inline_asset_content }}
+                      </span>
+                      {{ section.settings.nearby_btn_text | default: 'Find in a Store' }}
+                    </a>
+                  {% endif %}
                   <div x-show="!activeVariant.available" x-cloak>
-                    <button class="button m-disabled">Out of Stock</button>
+                    <a href="#">
+                      <span class="store-icon">
+                        {{ "join-wishlist.svg" | inline_asset_content }}
+                      </span>
+                      Join the Waitlist
+                    </a>
                   </div>
+                </div>
 
-                {% else %}
-                  <a
-                    href="{{ block.settings.cta_url }}"
-                    class="btn btn--walmart"
-                    target="_blank">
-                    {{ block.settings.cta_label }}
-                  </a>
-                {% endif %}
-                {% if block.settings.text != blank %}
-                  <div class="bottom-text mt-[12px] [&_ul]:flex [&_ul]:flex-wrap [&_ul]:justify-center [&_ul]:gap-[12px] [&_ul]:max-md:gap-[9px] [&_li]:flex [&_li]:items-center [&_li]:gap-[6px] [&_li]:font-grotesk [&_li]:font-normal [&_li]:text-[14px] [&_li]:max-md:text-[12px] [&_li]:leading-[1.6] [&_li]:text-black-text">
-                    {{ block.settings.text }}
-                  </div>
-                {% endif %}
+
+                <div class="product__cta mb-[50px] max-md:mb-[30px] {% if has_external_links %}hidden{% endif %}">
+                  {% if block.settings.cta_type == 'add_to_cart' %}
+                    <div x-show="activeVariant.available">
+                      {% form 'product'
+                        , product
+                        , class: 'product__cta' %}
+                        <input
+                          type="hidden"
+                          name="id"
+                          :value="activeVariant.id">
+                        <input
+                          type="hidden"
+                          name="selling_plan"
+                          :value="sellingPlan.id">
+                        <input
+                          type="hidden"
+                          name="quantity"
+                          value="1">
+
+                        <button class="btn !hidden">
+                          {{ block.settings.cta_label }}
+                        </button>
+                      {% endform %}
+                      {% comment %} 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  <span class="button" @click="addToCart(activeVariant.id)">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  {{ block.settings.cta_label }}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  <span class="sale-price">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  {{ product.selected_or_first_available_variant.price | money }}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  </span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  </span> 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                {% endcomment %}
+                      <button
+                        class="button js-add-to-cart w-full gap-[6px] capitalize"
+                        data-selling-plan-id="{{ product.selected_or_first_available_variant.selling_plan_allocations.first.selling_plan.id }}"
+                        data-variant-id="{{ product.selected_or_first_available_variant.id }}">
+                        {{ block.settings.cta_label }}
+                        <span class="text-[8px]">•</span>
+                        <span class="sale-price">
+                          {{ product.selected_or_first_available_variant.price | money }}
+                        </span>
+                      </button>
+                    </div>
+
+                    <div x-show="!activeVariant.available" x-cloak>
+                      <button class="button m-disabled">Out of Stock</button>
+                    </div>
+                    <div x-show="!activeVariant.available" x-cloak>
+                      <a href="#">
+                        <span class="store-icon">
+                          {{ "join-wishlist.svg" | inline_asset_content }}
+                        </span>
+                        Join the Waitlist
+                      </a>
+                    </div>
+
+                  {% else %}
+                    <a
+                      href="{{ block.settings.cta_url }}"
+                      class="btn btn--walmart"
+                      target="_blank">
+                      {{ block.settings.cta_label }}
+                    </a>
+                  {% endif %}
+                  {% if block.settings.text != blank %}
+                    <div class="bottom-text mt-[12px] [&_ul]:flex [&_ul]:flex-wrap [&_ul]:justify-center [&_ul]:gap-[12px] [&_ul]:max-md:gap-[9px] [&_li]:flex [&_li]:items-center [&_li]:gap-[6px] [&_li]:font-grotesk [&_li]:font-normal [&_li]:text-[14px] [&_li]:max-md:text-[12px] [&_li]:leading-[1.6] [&_li]:text-black-text">
+                      {{ block.settings.text }}
+                    </div>
+                  {% endif %}
+                </div>
+
+                <div class="custom-pdp-store-locater-mobile"></div>
+
               </div>
 
-              <div class="custom-pdp-store-locater-mobile"></div>
+
             {% when 'description' %}
               <div class="product__description">
                 <h4 class="mb-6">
@@ -215,7 +293,9 @@
             {%- when 'subscription-form' -%}
               {% if product.selling_plan_groups.size > 0 %}
                 <div class="subscription-form my-[40px] max-md:my-[30px]">
-                  {% render 'selling-plans-integration', product: product, block: block %}
+                  {% render 'selling-plans-integration'
+                    , product: product
+                    , block: block %}
                 </div>
               {% endif %}
             {% when 'tags' %}
@@ -237,17 +317,17 @@
                   <div class="product__tag flex items-center gap-2">Free shipping when added to subscription</div>
                 </div>
               {% endif %}
-            {% comment %}
-              {% if product.tags.size > 0 %}
-              <div class="product__tags flex flex-wrap gap-4 mb-4">
-              {% for tag in product.tags %}
-              <div class="product__tag flex items-center gap-2">
-              {{ tag }}
-              </div>
-              {% endfor %}
-              </div>
-              {% endif %}
-            {% endcomment %}
+            {% comment %} 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              {% if product.tags.size > 0 %}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              <div class="product__tags flex flex-wrap gap-4 mb-4">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              {% for tag in product.tags %}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              <div class="product__tag flex items-center gap-2">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              {{ tag }}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              {% endfor %}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              {% endif %} 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            {% endcomment %}
             {% when 'variants' %}
               <div class="product__sizes" x-show="variants.length > 1">
                 <div class="title-with-size-chart flex items-center justify-between gap-[20px]">
@@ -286,19 +366,19 @@
                         name="size"
                         :value="item.id"
                         @change="updateActiveVariant(item.id)">
-                      <div
-                        class="product__size-content"
-                        :data-percent-off="item.compare_at_price > item.price ? percentOff(item.price, item.compare_at_price) : null">
-                        <div
-                          class="product__size-info"
-                          :style="{ backgroundColor: item.id === activeVariant.id ? item.accentTop : 'transparent' }">
+                      <div class="product__size-content" :data-percent-off="item.compare_at_price > item.price ? percentOff(item.price, item.compare_at_price) : null">
+                        <span class="variant-badge-out absolute" x-show="!item.available">
+                          LIMITED
+                        </span>
+                        <div class="product__size-info" :style="{ backgroundColor: item.id === activeVariant.id ? item.accentTop : 'transparent' }">
                           <div
                             class="product__size-title flex gap-x-[8px]"
                             x-show="item.size"
                             x-text="item.size"
                             x-html="item.size.includes(' / ') 
                             ? item.size.split(' / ').reverse().map(s => `<span class='option-item'>${s}</span>`).join('') 
-                            : `<span class='single-option-item block w-full'>${item.size}</span>`"></div>
+                            : `<span class='single-option-item block w-full'>${item.size}</span>`">
+</div>
                           <div
                             class="product__size-title m-small"
                             x-show="!item.size && item.title"
@@ -356,7 +436,10 @@
               {% if block.settings.product != blank %}
                 {% assign add_on_product = block.settings.product %}
                 {% if product.id != add_on_product.id %}
-                  <div class="add-on-product mb-[40px] max-md:mb-[30px]">
+                  <div
+                    class="add-on-product mb-[40px] max-md:mb-[30px]"
+                    x-show="!activeVariant.available"
+                    x-cloak>
                     {% if block.settings.heading != blank %}
                       <h2 class="heading font-grotesk !font-medium text-[16px] tracking-normal leading-[1.5] text-black-text mb-[12px]">
                         {{ block.settings.heading }}
@@ -377,29 +460,28 @@
                             {% if add_on_product.metafields.custom.alternate_title != blank %}
                               <h2 class="title font-grotesk font-normal text-[16px] max-md:text-[13px] leading-[1.6] text-black-text !tracking-normal">
                                 {% assign bamboo_icon = settings.bamboo_icon
-                                  | image_url: width: 32
-                                  | image_tag:
-                                    class: 'inline-block translate-y-[-2px] mx-1',
-                                    style: 'width: 16px;'
+ | image_url: width: 32
+ | image_tag:
+ class: 'inline-block translate-y-[-2px] mx-1',
+ style: 'width: 16px;'
                                 %}
                                 {% assign heart_icon = settings.heart_icon
-                                  | image_url: width: 32
-                                  | image_tag:
-                                    class: 'inline-block translate-y-[-2px] mx-1',
-                                    style: 'width: 16px;'
+ | image_url: width: 32
+ | image_tag:
+ class: 'inline-block translate-y-[-2px] mx-1',
+ style: 'width: 16px;'
                                 %}
                                 {% assign water_icon = settings.water_icon
-                                  | image_url: width: 32
-                                  | image_tag:
-                                    class: 'inline-block translate-y-[-2px] mx-1',
-                                    style: 'width: 16px;'
+ | image_url: width: 32
+ | image_tag:
+ class: 'inline-block translate-y-[-2px] mx-1',
+ style: 'width: 16px;'
                                 %}
                                 {% assign alternate_title = block.settings.alternate_title | default: add_on_product.metafields.custom.alternate_title %}
-                                {{
-                                  alternate_title
-                                  | replace: '[bamboo]', bamboo_icon
-                                  | replace: '[heart]', heart_icon
-                                  | replace: '[water]', water_icon
+                                {{ alternate_title
+ | replace: '[bamboo]', bamboo_icon
+ | replace: '[heart]', heart_icon
+ | replace: '[water]', water_icon
                                 }}
                               </h2>
                             {% else %}
@@ -431,9 +513,7 @@
             {% when 'accordion' %}
               <div class="product__accordion">
                 {% for item in accordionItems %}
-                  <div
-                    class="product__accordion-item last:!border-b first:border-t !py-0 !px-[10px]"
-                    x-data="{ open: false }">
+                  <div class="product__accordion-item last:!border-b first:border-t !py-0 !px-[10px]" x-data="{ open: false }">
                     <div
                       class="product__accordion-title py-[16px] font-grotesk !font-medium !text-[18px] !leading-[1.3] text-black-text pr-[34px]"
                       :class="{ 'product__accordion-title--active': open }"
@@ -463,6 +543,21 @@
       decoding="auto">
   </div>
 </template>
+<script id="product-variant-metafields" type="application/json">
+  {
+    "variants": {
+      {%- for v in product.variants -%}
+        "{{ v.id }}" : {
+          "walmart_url": {{ v.metafields.custom.walmart_url | strip_html | json }},
+          "target_url": {{ v.metafields.custom.target_url | strip_html | json }},
+          "nearby_url": {{ v.metafields.custom.store_nearby_url | strip_html | json }},
+          "price": {{ v.price | money | json }}
+        }{%- if forloop.last == false -%},{%- endif -%}
+      {%- endfor -%}
+    }
+  }
+</script>
+
 {% render 'entry' with '@/scripts/sections/main-product.js' %}
 <script>
     document.addEventListener('alpine:init', () => {
@@ -483,7 +578,7 @@
             product: {{ productCurrent | json }},
             linkToShowSizeMOdal: false,
             showWeight: true,
-
+  
             addCheckedAddons() {
               const checkedAddons = document.querySelectorAll('.addonproduct:checked');
               checkedAddons.forEach((addon) => {
@@ -496,7 +591,7 @@
                 }
               });
             },
-
+  
             updateSellingPlan(id) {
                 this.sellingPlan = this.activeVariant.selling_plan_allocations.find(item => item.id == id);
             },
@@ -506,7 +601,7 @@
               const simpleDiaperMatch = str.match(/Size (\d+)\s*\(([\d\+\-]+)\s*lbs\)/i);
               const simpleWipeMatch = str.match(/Size (\d+)\s*\((Packs?)\)/i);
               const justSizeMatch = str.match(/^(Size )?([a-zA-Z0-9]+)/i);
-
+  
               if (diaperMatch) {
                 return {
                   type: 'diaper',
@@ -565,11 +660,60 @@
             ],
            updateActiveVariant(id) {
             if (id) {
+             
+                console.log("Update Active Variant ID:", id);
+  
+                const variantMetaEl = document.getElementById('product-variant-metafields');
+                const variantMeta = JSON.parse(variantMetaEl.textContent).variants;
+  
+                const selected = variantMeta[id];
+                console.log("Selected Variant Metafield:", selected);
+                if (!selected) {
+                  console.warn("Variant metafield not found!");
+                  return;
+                }
+  
+                const walmartBtn = document.querySelector('.walmart-btn-url');
+                const targetBtn  = document.querySelector('.target-btn');
+                const nearbyBtn  = document.querySelector('.nearby-btn');
+  
+                const externalWrapper = document.querySelector('.external-purchase-buttons');
+                const ctaWrapper = document.querySelector('.product__cta');
+  
+                const hasAny =
+                selected.walmart_url ||
+                selected.target_url ||
+                selected.nearby_url;
+                
+                if (hasAny) {
+                  externalWrapper.classList.remove("hidden");
+                  ctaWrapper.classList.add("hidden");
+                } else {
+                  externalWrapper.classList.add("hidden");
+                  ctaWrapper.classList.remove("hidden");
+                }
+  
+                if (walmartBtn) {
+                  walmartBtn.classList.toggle("hidden", !selected.walmart_url);
+                  if (selected.walmart_url) walmartBtn.href = selected.walmart_url || '#';
+                }
+  
+                if (targetBtn) {
+                  targetBtn.classList.toggle("hidden", !selected.target_url);
+                  if (selected.target_url) targetBtn.href = selected.target_url || '#';
+                }
+  
+                if (nearbyBtn) {
+                  nearbyBtn.classList.toggle("hidden", !selected.nearby_url);
+                  if (selected.nearby_url) nearbyBtn.href = selected.nearby_url || '#';
+                }
+                
+  
                   this.activeVariant = this.variants.find(item => item.id == id);
                   const mainVariantTitle = this.activeVariant.title;
                   const regex = /Size\s(\d+)\s\(([\w-]+)\)\s-\s(\d+\s\w+)/;
                   const matches = mainVariantTitle.match(regex);
-
+  
                   if (matches) {
                     const size = matches[1];
                     const count = matches[3];
@@ -577,86 +721,86 @@
                     if(currentSizeElement){
                       currentSizeElement.innerText = size;
                     }
-
+  
                     const sizeDiv = document.createElement("div");
                     //sizeDiv.textContent = size + ' month supply';
                     sizeDiv.textContent = '1 month supply';
                     sizeDiv.classList.add("month-supply");
-
+  
                     const countDiv = document.createElement("div");
                     countDiv.textContent = count;
                     countDiv.classList.add("count-main");
-
+  
                     const variantTextMain = document.querySelector('.variant-text-main');
                     const oldCount = variantTextMain.querySelector('.count-main');
                     const oldSize = variantTextMain.querySelector('.month-supply');
-
+  
                     if (oldCount) oldCount.remove();
                     if (oldSize) oldSize.remove();
-
+  
                     variantTextMain.appendChild(countDiv);
                     variantTextMain.appendChild(sizeDiv);
-
+  
                   }
-
-
+  
+  
                   const addToCartBtn = document.querySelector(".js-add-to-cart");
                   addToCartBtn.setAttribute("data-variant-id", this.activeVariant.id);
-
+  
                   function updateSelectedSize() {
                     const checkedInput = document.querySelector('input[name="size"]:checked');
                     
                     if (!checkedInput) return;
-
+  
                     const label = checkedInput.closest('label.product__size');
                     if (!label) return;
-
+  
                     const sizeTitle = label.querySelector('.product__size-title');
                     if (!sizeTitle) return;
-
+  
                     const firstSpan = sizeTitle.querySelector('span.option-item') || sizeTitle;
                     if (!firstSpan || sizeTitle.querySelector('.main-div')) return;
-
+  
                     const variantTitle = document.querySelector('.product__sizes .product__sizes-title');
                     if (variantTitle) {
                       variantTitle.textContent ='Select ' + window.optionsName + ' : ' + firstSpan.textContent;
                     }
                   }
-
+  
                   const sizeRadios = document.querySelectorAll('input[name="size"]');
                   sizeRadios.forEach(radio => {
                   radio.addEventListener('change', updateSelectedSize);
                   });
-
+  
                   updateSelectedSize();
-
-
+  
+  
                   if(document.querySelectorAll('.selling_plan_app_container .selling_plan_theme_integration').length > 0){
                     document.querySelectorAll('.selling_plan_app_container .selling_plan_theme_integration').forEach((section) => {
                       section.classList.add('hidden', 'has-hidden');
                     });
                     document.querySelector(`.selling_plan_app_container .selling_plan_theme_integration[data-variant-id="${this.activeVariant.id}"]`).classList.remove('hidden', 'has-hidden');
-
+  
                     const variantPrice = document.querySelector(`.selling_plan_theme_integration:not(.has-hidden) [type="radio"]:checked`).dataset.variantPrice;
-
+  
                     document.querySelector('.product__cta .sale-price').textContent = variantPrice;
-
+  
                     if (document.querySelector('.current-variant-price')) {
                       document.querySelector('.current-variant-price').textContent = variantPrice;
                     }
-
+  
                     setTimeout(() => {
                       document.querySelector(`.selling_plan_theme_integration:not(.has-hidden) [type="radio"]:checked`).dispatchEvent(new Event('change'));
                     }, 300);
                   }
-
+  
                   this.slideToSlideByDataAttribute(this.activeVariant.id);
               } else {
                   this.activeVariant = this.variants[0];
                   const mainVariantTitle = this.activeVariant.title;
                   const regex = /Size\s(\d+)\s\(([\w-]+)\)\s-\s(\d+\s\w+)/;
                   const matches = mainVariantTitle.match(regex);
-
+  
                   if (matches) {
                     const size = matches[1];
                     const count = matches[3];
@@ -664,28 +808,28 @@
                     if(currentSizeElement){
                       currentSizeElement.innerText = size;
                     }
-
+  
                     const sizeDiv = document.createElement("div");
                     sizeDiv.textContent = '1 month supply';
                     sizeDiv.classList.add("month-supply");
-
+  
                     const countDiv = document.createElement("div");
                     countDiv.textContent = count;
                     countDiv.classList.add("count-main");
-
+  
                     const variantTextMain = document.querySelector('.variant-text-main');
                     const oldCount = variantTextMain.querySelector('.count-main');
                     const oldSize = variantTextMain.querySelector('.month-supply');
-
+  
                     if (oldCount) oldCount.remove();
                     if (oldSize) oldSize.remove();
-
+  
                     variantTextMain.appendChild(countDiv);
                     variantTextMain.appendChild(sizeDiv);
                   }
                   // this.slideToSlideByDataAttribute(this.activeVariant.id);
               }
-
+  
               function formatMoney(cents, format, currencySymbol = '$') {
                   cents = Number(cents);
                   let value = (cents / 100).toFixed(2);
@@ -696,7 +840,7 @@
               if(activeVariantPrice && addToCartPrice){
                 addToCartPrice.innerHTML = activeVariantPrice;
               }
-
+  
               if (this.templateName === 'product-bambootek') {
                 const defaultPlan = this.activeVariant?.selling_plan_allocations?.[0];
                 if (defaultPlan) {
@@ -753,7 +897,7 @@
                     const [sizePart, colorPart] = line.split(' - ');
                     const size = sizePart.trim();
                     const [accentTop, accentBottom] = colorPart.split('|').map(c => `#${c.trim()}`);
-
+  
                     return {
                       size,
                       accentTop,
@@ -761,7 +905,7 @@
                     };
                   });
             },
-
+  
             setupVariants() {
               let optionsName = '';
               window.optionsName = '';
@@ -780,7 +924,7 @@
                   variant.diapersQty = '345';
                   variant.wipesQty = '567';
                   variant.type = '789';
-
+  
                   const mainVariantTitle = variant.title;
                   const regex = /Size\s(\d+)\s\(([\w-]+)\)\s-\s(\d+\s\w+)/;
                   const matches = mainVariantTitle.match(regex);
@@ -789,29 +933,29 @@
                     const size = matches[1];
                     const weight = matches[2];
                     const count = matches[3];
-
+  
                     const mainDiv = document.createElement("div");
                     mainDiv.classList.add("main-div");
-
+  
                     const sizeDiv = document.createElement("div");
                     sizeDiv.textContent = size;
                     sizeDiv.classList.add("size-div");
-
+  
                     const weightDiv = document.createElement("div");
                     weightDiv.textContent = weight;
                     weightDiv.classList.add("weight-div");
-
+  
                     const countDiv = document.createElement("div");
                     countDiv.textContent = count;
                     countDiv.classList.add("count-div");
-
+  
                     mainDiv.appendChild(sizeDiv);
                     mainDiv.appendChild(weightDiv);
                     mainDiv.appendChild(countDiv);
-
+  
                     variant.size = mainDiv.outerHTML;
                   }
-
+  
                   variant.accentTop = this.sizesAccentColors.find(item => item.size == variant.size)?.accentTop;
                   variant.accentBottom = this.sizesAccentColors.find(item => item.size == variant.size)?.accentBottom;
                 });
@@ -896,7 +1040,7 @@
                 console.log("No slides found");
               }
             },
-
+  
             init() {
                 this.linkToShowSizeMOdal = document.querySelector('.product__accordion-content p em');
                 this.extraProductId = Number(this.$root.dataset.extraProduct);
@@ -918,7 +1062,7 @@
                 // console.log('product.variants', this.product.variants);
                 // console.log('this.variants', this.variants);
                 // console.log('this.templateName', this.templateName);
-
+  
                 // Only add event listener if the element exists
                 if (this.linkToShowSizeMOdal) {
                   this.linkToShowSizeMOdal.addEventListener('click', (e) => {
@@ -933,12 +1077,12 @@
             }
         }))
     })
-
+  
     document.addEventListener("DOMContentLoaded", () => {
   const btn = document.querySelector(".sizeChartBtn");
   const modal = document.querySelector(".sizeChartModal");
   const close = document.querySelector(".closeSizeChart");
-
+  
   if (btn && modal && close) {
     btn.addEventListener("click", () => {
       modal.classList.remove("hidden");
@@ -953,7 +1097,7 @@
     });
   }
   });
-
+  
   document.addEventListener("change", (e) => {
   if (e.target && e.target.classList.contains("addonproduct")) {
     const checkbox = e.target;
@@ -1037,6 +1181,39 @@
         "type": "image_picker",
         "id": "store_right_logo",
         "label": "Right Logo"
+      }, {
+        "type": "header",
+        "content": "External Buttons"
+      }, {
+        "type": "checkbox",
+        "id": "enable_walmart_btn",
+        "label": "Show Walmart Button",
+        "default": true
+      }, {
+        "type": "text",
+        "id": "walmart_btn_text",
+        "label": "Walmart Button Text",
+        "default": "Buy on Walmart"
+      }, {
+        "type": "checkbox",
+        "id": "enable_target_btn",
+        "label": "Show Target Button",
+        "default": true
+      }, {
+        "type": "text",
+        "id": "target_btn_text",
+        "label": "Target Button Text",
+        "default": "Buy on Target "
+      }, {
+        "type": "checkbox",
+        "id": "enable_nearby_btn",
+        "label": "Show Store Nearby Button",
+        "default": true
+      }, {
+        "type": "text",
+        "id": "nearby_btn_text",
+        "label": "Store Nearby Button Text",
+        "default": "Find a Store Nearby"
       }
     ],
     "blocks": [
@@ -1062,7 +1239,7 @@
         "settings": [
           {
             "type": "richtext",
-            "id":"richtext",
+            "id": "richtext",
             "label": "Content"
           }
         ]
@@ -1082,8 +1259,7 @@
             "label": "Text"
           }
         ]
-      },
-      {
+      }, {
         "type": "accordion",
         "name": "Accordion",
         "limit": 1

@@ -662,3 +662,6 @@ h2,
     font-size: 13px;
   }
 }
+  .external-purchase-buttons .hidden {
+	display: none !important;
+}
