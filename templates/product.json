@@ -188,7 +188,9 @@
         "enable_target_btn": true,
         "target_btn_text": "Buy at Target.com",
         "enable_nearby_btn": true,
-        "nearby_btn_text": "Find a Store Nearby"
+        "nearby_btn_text": "Find a Store Nearby",
+        "enable_waitlist_btn": true,
+        "waitlist_btn_text": "Join the Waitlist"
       }
     },
     "multiple_marquee_4VUVyj": {
