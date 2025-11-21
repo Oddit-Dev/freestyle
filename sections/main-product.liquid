@@ -118,67 +118,7 @@
               <div class="variant-text-main"></div>
             {% when 'cta' %}
               <div class="product-form">
-                {% assign current_variant = product.selected_or_first_available_variant %}
-
-                {% assign walmart_url = current_variant.metafields.custom.walmart_url %}
-                {% assign target_url = current_variant.metafields.custom.target_url %}
-                {% assign nearby_url = current_variant.metafields.custom.store_nearby_url %}
-
-                {% assign has_external_links = false %}
-                {% if walmart_url != blank or target_url != blank or nearby_url != blank %}
-                  {% assign has_external_links = true %}
-                {% endif %}
-
-                <div class="external-purchase-buttons flex flex-col gap-[14px] mb-[50px] max-md:mb-[30px] {% if has_external_links != true %}hidden{% endif %}">
-                  {% if section.settings.enable_walmart_btn %}
-                    <a
-                      href="{{ walmart_url }}"
-                      class="button walmart-btn-url flex items-center gap-[6px] {% if walmart_url == blank %}hidden{% endif %}"
-                      target="_blank"
-                      rel="noopener">
-                      <span class="walmart-icon  w-[24px] min-w-[24px] h-[24px] flex items-center justify-center [&_svg]:m-0">
-                        {{ 'cbi_walmart.svg' | inline_asset_content }}
-                      </span>
-                      {{ section.settings.walmart_btn_text | default: 'Buy on Walmart' }}
-                    </a>
-                  {% endif %}
-                  {% if section.settings.enable_target_btn %}
-                    <a
-                      href="{{ target_url }}"
-                      class="button target-btn flex items-center gap-[6px] {% if target_url == blank %}hidden{% endif %}"
-                      target="_blank"
-                      rel="noopener">
-                      <span class="target-icon w-[16px] min-w-[16px] h-[16px] flex items-center justify-center [&_svg]:m-0">
-                        {{ 'target-icon.svg' | inline_asset_content }}
-                      </span>
-                      {{ section.settings.target_btn_text | default: 'Buy on Target' }}
-                    </a>
-                  {% endif %}
-                  {% if section.settings.enable_nearby_btn %}
-                    <a
-                      href="{{ nearby_url }}"
-                      class="btn-text-only nearby-btn flex items-center justify-center gap-[6px] font-grotesk font-normal text-[14px] leading-[1.6] text-black-text {% if nearby_url == blank %}hidden{% endif %}"
-                      target="_blank"
-                      rel="noopener">
-                      <span class="store-icon w-auto h-[12px] flex items-center justify-center [&_svg]:m-0">
-                        {{ 'store-icon.svg' | inline_asset_content }}
-                      </span>
-                      {{ section.settings.nearby_btn_text | default: 'Find in a Store' }}
-                    </a>
-                  {% endif %}
-                  {% if section.settings.enable_waitlist_btn %}
-                    <div x-show="!activeVariant.available" x-cloak>
-                      <a href="#" class="flex items-center justify-center gap-[6px] font-grotesk font-normal text-[14px] leading-[1.6] text-black-text">
-                        <span class="store-icon h-[12px] w-auto flex items-center justify-center">
-                          {{ 'join-wishlist.svg' | inline_asset_content }}
-                        </span>
-                        Join the Waitlist
-                      </a>
-                    </div>
-                  {% endif %}
-                </div>
-
-                <div class="product__cta mb-[50px] max-md:mb-[30px] flex flex-col gap-[14px] {% if has_external_links %}hidden{% endif %}">
+                <div class="product__cta mb-[50px] max-md:mb-[30px] flex flex-col gap-[14px]">
                   {% if block.settings.cta_type == 'add_to_cart' %}
                     <div x-show="activeVariant.available">
                       {% form 'product'
@@ -202,13 +142,13 @@
                         </button>
                       {% endform %}
                       {% comment %} 
-                                                                                                                                                                        <span class="button" @click="addToCart(activeVariant.id)">
-                                                                                                                                                                        {{ block.settings.cta_label }}
-                                                                                                                                                                        <span class="sale-price">
-                                                                                                                                                                        {{ product.selected_or_first_available_variant.price | money }}
-                                                                                                                                                                        </span>
-                                                                                                                                                                        </span> 
-                                                                                                                                                          {% endcomment %}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <span class="button" @click="addToCart(activeVariant.id)">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                {{ block.settings.cta_label }}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <span class="sale-price">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                {{ product.selected_or_first_available_variant.price | money }}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </span> 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        {% endcomment %}
                       <button
                         class="button js-add-to-cart w-full gap-[6px] capitalize"
                         data-selling-plan-id="{{ product.selected_or_first_available_variant.selling_plan_allocations.first.selling_plan.id }}"
@@ -221,19 +161,72 @@
                       </button>
                     </div>
 
-                    <div x-show="!activeVariant.available" x-cloak>
+
+                    {% assign current_variant = product.selected_or_first_available_variant %}
+
+                    {% assign walmart_url = current_variant.metafields.custom.walmart_url %}
+                    {% assign target_url = current_variant.metafields.custom.target_url %}
+                    {% assign nearby_url = current_variant.metafields.custom.store_nearby_url %}
+
+
+                    <div
+                      class="custom-out-of-stock"
+                      x-show="!activeVariant.available"
+                      x-cloak>
                       <button class="button m-disabled">Out of Stock</button>
                     </div>
-                    {% if section.settings.enable_waitlist_btn %}
-                      <div x-show="!activeVariant.available" x-cloak>
-                        <a href="#" class="flex items-center justify-center gap-[6px] font-grotesk font-normal text-[14px] leading-[1.6] text-black-text">
-                          <span class="store-icon h-[12px] w-auto flex items-center justify-center">
-                            {{ 'join-wishlist.svg' | inline_asset_content }}
+
+                    <div
+                      class="external-purchase-buttons flex flex-col gap-[14px] mb-[50px] max-md:mb-[30px]"
+                      x-show="!activeVariant.available"
+                      x-cloak>
+                      {% if section.settings.enable_walmart_btn %}
+                        <a
+                          href="{{ walmart_url }}"
+                          class="button walmart-btn-url flex items-center gap-[6px] {% if walmart_url == blank %}hidden{% endif %}"
+                          target="_blank"
+                          rel="noopener">
+                          <span class="walmart-icon  w-[24px] min-w-[24px] h-[24px] flex items-center justify-center [&_svg]:m-0">
+                            {{ 'cbi_walmart.svg' | inline_asset_content }}
                           </span>
-                          Join the Waitlist
+                          {{ section.settings.walmart_btn_text | default: 'Buy on Walmart' }}
                         </a>
-                      </div>
-                    {% endif %}
+                      {% endif %}
+                      {% if section.settings.enable_target_btn %}
+                        <a
+                          href="{{ target_url }}"
+                          class="button target-btn flex items-center gap-[6px] {% if target_url == blank %}hidden{% endif %}"
+                          target="_blank"
+                          rel="noopener">
+                          <span class="target-icon w-[16px] min-w-[16px] h-[16px] flex items-center justify-center [&_svg]:m-0">
+                            {{ 'target-icon.svg' | inline_asset_content }}
+                          </span>
+                          {{ section.settings.target_btn_text | default: 'Buy on Target' }}
+                        </a>
+                      {% endif %}
+                      {% if section.settings.enable_nearby_btn %}
+                        <a
+                          href="{{ nearby_url }}"
+                          class="btn-text-only nearby-btn flex items-center justify-center gap-[6px] font-grotesk font-normal text-[14px] leading-[1.6] text-black-text {% if nearby_url == blank %}hidden{% endif %}"
+                          target="_blank"
+                          rel="noopener">
+                          <span class="store-icon w-auto h-[12px] flex items-center justify-center [&_svg]:m-0">
+                            {{ 'store-icon.svg' | inline_asset_content }}
+                          </span>
+                          {{ section.settings.nearby_btn_text | default: 'Find in a Store' }}
+                        </a>
+                      {% endif %}
+                      {% if section.settings.enable_waitlist_btn %}
+                        <div x-show="!activeVariant.available" x-cloak>
+                          <a href="#" class="flex items-center justify-center gap-[6px] font-grotesk font-normal text-[14px] leading-[1.6] text-black-text">
+                            <span class="store-icon h-[12px] w-auto flex items-center justify-center">
+                              {{ 'join-wishlist.svg' | inline_asset_content }}
+                            </span>
+                            Join the Waitlist
+                          </a>
+                        </div>
+                      {% endif %}
+                    </div>
 
                   {% else %}
                     <a
@@ -327,16 +320,16 @@
                 </div>
               {% endif %}
             {% comment %} 
-                                                                                                  {% if product.tags.size > 0 %}
-                                                                                                  <div class="product__tags flex flex-wrap gap-4 mb-4">
-                                                                                                  {% for tag in product.tags %}
-                                                                                                  <div class="product__tag flex items-center gap-2">
-                                                                                                  {{ tag }}
-                                                                                                  </div>
-                                                                                                  {% endfor %}
-                                                                                                  </div>
-                                                                                                  {% endif %} 
-                                                                                    {% endcomment %}
+                                                                                                                                                                                                                                                                                        {% if product.tags.size > 0 %}
+                                                                                                                                                                                                                                                                                        <div class="product__tags flex flex-wrap gap-4 mb-4">
+                                                                                                                                                                                                                                                                                        {% for tag in product.tags %}
+                                                                                                                                                                                                                                                                                        <div class="product__tag flex items-center gap-2">
+                                                                                                                                                                                                                                                                                        {{ tag }}
+                                                                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                                                                        {% endfor %}
+                                                                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                                                                        {% endif %} 
+                                                                                                                                                                                                                                                {% endcomment %}
             {% when 'variants' %}
               <div class="product__sizes" x-show="variants.length > 1">
                 <div class="title-with-size-chart flex items-center justify-between gap-[20px]">
@@ -692,8 +685,8 @@
                 const targetBtn  = document.querySelector('.target-btn');
                 const nearbyBtn  = document.querySelector('.nearby-btn');
   
-                const externalWrapper = document.querySelector('.external-purchase-buttons');
-                const ctaWrapper = document.querySelector('.product__cta');
+                //const externalWrapper = document.querySelector('.external-purchase-buttons');
+                const ctaWrapper = document.querySelector('.custom-out-of-stock');
   
                 const hasAny =
                 selected.walmart_url ||
@@ -701,10 +694,10 @@
                 selected.nearby_url;
                 
                 if (hasAny) {
-                  externalWrapper.classList.remove("hidden");
+                  //externalWrapper.classList.remove("hidden");
                   ctaWrapper.classList.add("hidden");
                 } else {
-                  externalWrapper.classList.add("hidden");
+                  //externalWrapper.classList.add("hidden");
                   ctaWrapper.classList.remove("hidden");
                 }
   
