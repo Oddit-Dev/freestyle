@@ -130,13 +130,13 @@
                         </button>
                       {% endform %}
                       {% comment %} 
-                                                                                                                                                                                                                                                                                                <span class="button" @click="addToCart(activeVariant.id)">
-                                                                                                                                                                                                                                                                                                {{ block.settings.cta_label }}
-                                                                                                                                                                                                                                                                                                <span class="sale-price">
-                                                                                                                                                                                                                                                                                                {{ product.selected_or_first_available_variant.price | money }}
-                                                                                                                                                                                                                                                                                                </span>
-                                                                                                                                                                                                                                                                                                </span> 
-                                                                                                                                                                                                                                                                        {% endcomment %}
+                                                                                                                                                                                                                                                                                                                        <span class="button" @click="addToCart(activeVariant.id)">
+                                                                                                                                                                                                                                                                                                                        {{ block.settings.cta_label }}
+                                                                                                                                                                                                                                                                                                                        <span class="sale-price">
+                                                                                                                                                                                                                                                                                                                        {{ product.selected_or_first_available_variant.price | money }}
+                                                                                                                                                                                                                                                                                                                        </span>
+                                                                                                                                                                                                                                                                                                                        </span> 
+                                                                                                                                                                                                                                                                                              {% endcomment %}
                       <button
                         class="button js-add-to-cart w-full gap-[6px] capitalize"
                         data-selling-plan-id="{{ product.selected_or_first_available_variant.selling_plan_allocations.first.selling_plan.id }}"
@@ -299,16 +299,16 @@
                 </div>
               {% endif %}
             {% comment %} 
-                                                                                                                                                                        {% if product.tags.size > 0 %}
-                                                                                                                                                                        <div class="product__tags flex flex-wrap gap-4 mb-4">
-                                                                                                                                                                        {% for tag in product.tags %}
-                                                                                                                                                                        <div class="product__tag flex items-center gap-2">
-                                                                                                                                                                        {{ tag }}
-                                                                                                                                                                        </div>
-                                                                                                                                                                        {% endfor %}
-                                                                                                                                                                        </div>
-                                                                                                                                                                        {% endif %} 
-                                                                                                                                                {% endcomment %}
+                                                                                                                                                                                      {% if product.tags.size > 0 %}
+                                                                                                                                                                                      <div class="product__tags flex flex-wrap gap-4 mb-4">
+                                                                                                                                                                                      {% for tag in product.tags %}
+                                                                                                                                                                                      <div class="product__tag flex items-center gap-2">
+                                                                                                                                                                                      {{ tag }}
+                                                                                                                                                                                      </div>
+                                                                                                                                                                                      {% endfor %}
+                                                                                                                                                                                      </div>
+                                                                                                                                                                                      {% endif %} 
+                                                                                                                                                            {% endcomment %}
             {% when 'options_selector' %}
               <div class="product__options-selector">
                 {% if block.settings.title != blank %}
@@ -349,7 +349,7 @@
                       Size Chart
                     </div>
 
-                    <div class="sizeChartModal hidden ">
+                    <div class="sizeChartModal hidden">
                       <div class="container-main fixed top-0 left-0 w-full h-full flex items-center justify-center p-[30px] max-md:p-[20px] bg-black/80 z-[99]">
                         <div class="image-main relative">
                           <button class="closeSizeChart absolute top-[-15px] right-[-15px] w-[30px] h-[30px] flex items-center justify-center bg-scheme_one text-white rounded-full">
@@ -363,7 +363,7 @@
                             ,
  sizes: '(max-width: 989px) 100vw, 45vw'
                             ,
- class: 'product-feature-image max-w-full max-h-full h-auto object-contain max-w-[500px]'
+ class: 'product-feature-image max-w-full max-h-full h-auto object-contain !max-w-[500px]'
                           %}
                         </div>
                       </div>
