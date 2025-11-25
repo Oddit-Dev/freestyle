@@ -10,6 +10,26 @@
 {% assign product_badge = product.metafields.custom.badge_product %}
 {% assign product_attributes = product.metafields.custom.product_attributes %}
 
+<style>
+  #klaviyo-bis-button-container button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    letter-spacing: 0.4px !important;
+  }
+
+  #klaviyo-bis-button-container button::before {
+    background-image: url('{{ 'icon-waitlist.svg' | asset_url }}');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 10px;
+    height: 12px;
+    content: '';
+  }
+</style>
+
 <div
   class="product"
   x-data="product"
@@ -202,7 +222,7 @@
                         </a>
                       {% endif %}
                       <div x-show="!activeVariant.available" x-cloak>
-                        <button href="#" class="klaviyo-bis-trigger flex items-center mx-auto justify-center gap-[6px] font-grotesk font-normal text-[14px] leading-[1.6] text-black-text">
+                        <button class="klaviyo-bis-trigger flex items-center mx-auto justify-center gap-[6px] font-grotesk font-normal text-[14px] leading-[1.6] text-black-text">
                           <span class="store-icon h-[12px] w-auto flex items-center justify-center">
                             {{ 'join-wishlist.svg' | inline_asset_content }}
                           </span>
