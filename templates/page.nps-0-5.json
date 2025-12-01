@@ -1,0 +1,47 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "1762563470052ebafa": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_83d7067_4DrqVY": {
+          "type": "ai_gen_block_83d7067",
+          "name": "Custom HTML",
+          "settings": {
+            "custom_html": "<script type=\"text/javascript\">\n  // Get the email from the URL\n  var params = new URLSearchParams(window.location.search);\n  var email = params.get('customer_email');\n\n  // If an email is found, pre-fill it for Klaviyo\n  if (email) {\n    window._learnq = window._learnq || [];\n    window._learnq.push(['identify', {\n      '$email': email\n    }]);\n  }\n</script>\n\n<!-- The Klaviyo <div class=\"klaviyo-form-...\"> embed code goes right below this -->\n<div class=\"klaviyo-form-Vsz8BA\"></div>",
+            "max_width": 1200,
+            "padding_top": 40,
+            "padding_bottom": 40,
+            "padding_horizontal": 20
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_83d7067_4DrqVY"
+      ],
+      "settings": {}
+    },
+    "main": {
+      "type": "main-404",
+      "disabled": true,
+      "settings": {
+        "heading": "",
+        "text": "",
+        "button_label": ""
+      }
+    }
+  },
+  "order": [
+    "1762563470052ebafa",
+    "main"
+  ]
+}

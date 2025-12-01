@@ -11,6 +11,10 @@
   "type": "footer",
   "name": "Footer Group",
   "sections": {
+    "1762404763fe7a6502": {
+      "type": "_blocks",
+      "settings": {}
+    },
     "footer_custom_fPQhVk": {
       "type": "footer-custom",
       "blocks": {
@@ -75,6 +79,7 @@
     }
   },
   "order": [
+    "1762404763fe7a6502",
     "footer_custom_fPQhVk"
   ]
 }

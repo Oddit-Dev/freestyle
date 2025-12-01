@@ -122,5 +122,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       {% render 'c-modal-window' %}
     </div> 
     <script src="{{ 'custom.js' | asset_url }}" defer></script>
+
+<script>
+  var klaviyo = klaviyo || [];
+  klaviyo.init({
+    // ⚠️ Place your Public API Key here (e.g., 'ABCXYZ'):
+    company_id: 'VRPjaA'
+  }); 
+  
+klaviyo.enable("backinstock", {
+  trigger: {
+    alternate_anchor: "#klaviyo-bis-trigger", 
+    // ⚠️ CHANGE THIS LINE to a class the button definitely has when OOS:
+    product_page_class: "button", 
+    move_anchor: true,
+    replace_anchor: true 
+  }
+});
+    }
+  });
+</script>
   </body>
 </html>
