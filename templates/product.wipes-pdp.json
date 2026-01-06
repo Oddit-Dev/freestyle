@@ -153,7 +153,7 @@
           "type": "accordion_item",
           "settings": {
             "title": "Where to shop",
-            "content": "<p>Ultra Clean 99% Water Wipes are available at here at Freestyle.World, at <a href=\"https://www.walmart.com/ip/FRSTYL-WIPES-216CT/14979954397\" target=\"_blank\" title=\"https://www.walmart.com/ip/FRSTYL-WIPES-216CT/14979954397\">Walmart.com</a> and select Walmart stores (find one <a href=\"https://freestyle.world/pages/stores\" title=\"https://freestyle.world/pages/stores\">here</a>).</p>"
+            "content": "<p>Ultra Clean 99% Water Wipes are available at here at Freestyle.World, at <a href=\"https://www.target.com/p/freestyle-soft-jumbo-wipes-for-sensitive-skin-unscented/-/A-94937681?preselect=94800620#lnk=sametab\" target=\"_blank\" title=\"https://www.target.com/p/freestyle-soft-jumbo-wipes-for-sensitive-skin-unscented/-/A-94937681?preselect=94800620#lnk=sametab\">Target.com</a>, <a href=\"https://www.walmart.com/ip/FRSTYL-WIPES-216CT/14979954397\" target=\"_blank\" title=\"https://www.walmart.com/ip/FRSTYL-WIPES-216CT/14979954397\">Walmart.com</a> and select Walmart stores (find one <a href=\"https://freestyle.world/pages/stores\" title=\"https://freestyle.world/pages/stores\">here</a>).</p>"
           }
         }
       },
@@ -188,7 +188,17 @@
         "show_product_details": false,
         "show_store_locator": true,
         "store_main_heading": "Find a store near you",
-        "store_sub_heading": ""
+        "store_sub_heading": "",
+        "enable_walmart_btn": true,
+        "walmart_btn_text": "Buy on Walmart",
+        "enable_target_btn": true,
+        "target_btn_text": "Buy on Target",
+        "enable_buy_at_target_btn": true,
+        "buy_at_target_btn_text": "Buy at Target",
+        "enable_nearby_btn": true,
+        "nearby_btn_text": "Find a Store Nearby",
+        "enable_waitlist_btn": true,
+        "waitlist_btn_text": "Join the Waitlist"
       }
     },
     "multiple_marquee_4VUVyj": {

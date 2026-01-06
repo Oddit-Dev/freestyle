@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{
+ {
   "sections": {
     "main": {
       "type": "main-product",
@@ -147,7 +147,7 @@
           "type": "accordion_item",
           "settings": {
             "title": "Where to shop",
-            "content": "<p>SkinShield™ diapers are available at here at Freestyle.World, at <a href=\"https://www.walmart.com/ip/Freestyle-Diaper-Size-4-48CT/13932710597\" target=\"_blank\" title=\"https://www.walmart.com/ip/Freestyle-Diaper-Size-4-48CT/13932710597 \">Walmart.com</a> and select Walmart stores (find one <a href=\"https://freestyle.world/pages/stores\" title=\"https://freestyle.world/pages/stores\">here</a>).</p>"
+            "content": "<p>SkinShield™ diapers are available at here at Freestyle.World, at <a href=\"https://www.target.com/p/freestyle-hyper-absorbent-ultra-soft-baby-diapers/-/A-94937680?preselect=94800623#lnk=sametab\" target=\"_blank\" title=\"https://www.target.com/p/freestyle-hyper-absorbent-ultra-soft-baby-diapers/-/A-94937680?preselect=94800623#lnk=sametab\">Target.com</a>, <a href=\"https://www.walmart.com/ip/Freestyle-Diaper-Size-4-48CT/13932710597\" target=\"_blank\" title=\"https://www.walmart.com/ip/Freestyle-Diaper-Size-4-48CT/13932710597 \">Walmart.com</a> and select Walmart stores (find one <a href=\"https://freestyle.world/pages/stores\" title=\"https://freestyle.world/pages/stores\">here</a>).</p>"
           }
         }
       },
@@ -187,6 +187,8 @@
         "walmart_btn_text": "Buy at Walmart.com",
         "enable_target_btn": true,
         "target_btn_text": "Shop the restock first",
+        "enable_buy_at_target_btn": true,
+        "buy_at_target_btn_text": "Buy at Target",
         "enable_nearby_btn": true,
         "nearby_btn_text": "Find a Store Nearby",
         "enable_waitlist_btn": true,
