@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{
+ {
   "sections": {
     "main": {
       "type": "main-product",
@@ -187,6 +187,8 @@
         "walmart_btn_text": "Buy at Walmart.com",
         "enable_target_btn": true,
         "target_btn_text": "Shop the restock first",
+        "enable_buy_at_target_btn": true,
+        "buy_at_target_btn_text": "Buy at Target",
         "enable_nearby_btn": true,
         "nearby_btn_text": "Find a Store Nearby",
         "enable_waitlist_btn": true,
