@@ -198,6 +198,9 @@
                           class="button but-at-target-btn flex items-center gap-[6px] {% if buy_at_target_url == blank %}hidden{% endif %}"
                           target="_blank"
                           rel="noopener">
+                          <span class="buy-at-target-icon  w-[24px] min-w-[24px] h-[24px] flex items-center justify-center [&_svg]:m-0">
+                            {{ 'buy-at-target.svg' | inline_asset_content }}
+                          </span>
                           {{ section.settings.buy_at_target_btn_text | default: 'Buy at Target' }}
                         </a>
                       {% endif %}
