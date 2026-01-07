@@ -193,6 +193,8 @@
         "walmart_btn_text": "Buy on Walmart",
         "enable_target_btn": true,
         "target_btn_text": "Buy on Target",
+        "enable_buy_at_target_btn": true,
+        "buy_at_target_btn_text": "Buy at Target",
         "enable_nearby_btn": true,
         "nearby_btn_text": "Find a Store Nearby",
         "enable_waitlist_btn": true,

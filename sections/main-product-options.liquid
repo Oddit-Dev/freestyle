@@ -185,12 +185,25 @@
 
                     {% assign walmart_url = current_variant.metafields.custom.walmart_url %}
                     {% assign target_url = current_variant.metafields.custom.target_url %}
+                    {% assign buy_at_target_url = current_variant.metafields.custom.buy_at_target_url %}
                     {% assign nearby_url = current_variant.metafields.custom.store_nearby_url %}
 
                     <div
                       class="external-purchase-buttons flex flex-col gap-[14px]"
                       x-show="!activeVariant.available"
                       x-cloak>
+                      {% if section.settings.enable_buy_at_target_btn %}
+                        <a
+                          href="{{ buy_at_target_url }}"
+                          class="button but-at-target-btn flex items-center gap-[6px] {% if buy_at_target_url == blank %}hidden{% endif %}"
+                          target="_blank"
+                          rel="noopener">
+                          <span class="buy-at-target-icon  w-[24px] min-w-[24px] h-[24px] flex items-center justify-center [&_svg]:m-0">
+                            {{ 'buy-at-target.svg' | inline_asset_content }}
+                          </span>
+                          {{ section.settings.buy_at_target_btn_text | default: 'Buy at Target' }}
+                        </a>
+                      {% endif %}
                       {% if section.settings.enable_walmart_btn %}
                         <a
                           href="{{ walmart_url }}"
@@ -560,6 +573,7 @@
         "{{ v.id }}" : {
           "walmart_url": {{ v.metafields.custom.walmart_url | strip_html | json }},
           "target_url": {{ v.metafields.custom.target_url | strip_html | json }},
+          "buy_at_target_url": {{ v.metafields.custom.buy_at_target_url | strip_html | json }},
           "nearby_url": {{ v.metafields.custom.store_nearby_url | strip_html | json }},
           "price": {{ v.price | money | json }}
         }{%- if forloop.last == false -%},{%- endif -%}
@@ -682,6 +696,7 @@
   
                 const walmartBtn = document.querySelector('.walmart-btn-url');
                 const targetBtn  = document.querySelector('.target-btn');
+                const buyattargetBtn  = document.querySelector('.but-at-target-btn');
                 const nearbyBtn  = document.querySelector('.nearby-btn');
   
                 //const externalWrapper = document.querySelector('.external-purchase-buttons');
@@ -690,6 +705,7 @@
                 const hasAny =
                 selected.walmart_url ||
                 selected.target_url ||
+                selected.buy_at_target_url ||
                 selected.nearby_url;
                 
                 if (hasAny) {
@@ -709,13 +725,17 @@
                   targetBtn.classList.toggle("hidden", !selected.target_url);
                   if (selected.target_url) targetBtn.href = selected.target_url || '#';
                 }
-  
+                
+                if (buyattargetBtn) {
+                  buyattargetBtn.classList.toggle("hidden", !selected.buy_at_target_url);
+                  if (selected.buy_at_target_url) buyattargetBtn.href = selected.buy_at_target_url || '#';
+                }
+
                 if (nearbyBtn) {
                   nearbyBtn.classList.toggle("hidden", !selected.nearby_url);
                   if (selected.nearby_url) nearbyBtn.href = selected.nearby_url || '#';
                 }
   
-                
                   this.activeVariant = this.variants.find(item => item.id == id);
                   const mainVariantTitle = this.activeVariant.title;
                   const regex = /Size\s(\d+)\s\(([\w-]+)\)\s-\s(\d+\s\w+)/;
@@ -1363,7 +1383,18 @@
         "type": "text",
         "id": "target_btn_text",
         "label": "Target Button Text",
-        "default": "Buy on Target "
+        "default": "Buy on Target"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_buy_at_target_btn",
+        "label": "Show Buy at Target Button",
+        "default": true
+      }, {
+        "type": "text",
+        "id": "buy_at_target_btn_text",
+        "label": "But at Button Text",
+        "default": "Buy at Target "
       }, {
         "type": "checkbox",
         "id": "enable_nearby_btn",
