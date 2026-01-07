@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "main": {
       "type": "main-product",
@@ -184,7 +184,7 @@
         "store_main_heading": "Find SkinShield™ near you",
         "store_sub_heading": "",
         "enable_walmart_btn": true,
-        "walmart_btn_text": "Buy at Walmart.com",
+        "walmart_btn_text": "Buy at Walmart",
         "enable_target_btn": true,
         "target_btn_text": "Shop the restock first",
         "enable_buy_at_target_btn": true,
