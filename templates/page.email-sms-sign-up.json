@@ -11,30 +11,41 @@
   "sections": {
     "main": {
       "type": "main-404",
+      "disabled": true,
       "settings": {
         "heading": "404 Page Not Found",
         "text": "The page you are looking for does not exist.",
         "button_label": "Go to Home"
       }
     },
-    "176232712660d79bda": {
-      "type": "apps",
+    "17678524857a87db68": {
+      "type": "_blocks",
       "blocks": {
-        "klaviyo_email_marketing_sms_form_embed_block_pC9nJB": {
-          "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/form-embed-block/2632fe16-c075-4321-a88b-50b567f42507",
+        "ai_gen_block_8ffec36_RyXr3f": {
+          "type": "ai_gen_block_8ffec36",
           "settings": {
-            "formId": ""
-          }
+            "custom_html": "<script type=\"text/javascript\">\n  // Get the email from the URL\n  var params = new URLSearchParams(window.location.search);\n  var email = params.get('customer_email');\n\n  // If an email is found, pre-fill it for Klaviyo\n  if (email) {\n    window._learnq = window._learnq || [];\n    window._learnq.push(['identify', {\n      '$email': email\n    }]);\n  }\n</script>\n\n<!-- The Klaviyo <div class=\"klaviyo-form-...\"> embed code goes right below this -->\n<div class=\"klaviyo-form-XfXKMZ\"></div>",
+            "max_width": 1200,
+            "desktop_width_percent": 100,
+            "padding_top": 40,
+            "padding_bottom": 40,
+            "padding_horizontal": 20,
+            "padding_top_mobile": 30,
+            "padding_bottom_mobile": 30,
+            "padding_horizontal_mobile": 15,
+            "background_color": "#ffffff"
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "klaviyo_email_marketing_sms_form_embed_block_pC9nJB"
+        "ai_gen_block_8ffec36_RyXr3f"
       ],
       "settings": {}
     }
   },
   "order": [
     "main",
-    "176232712660d79bda"
+    "17678524857a87db68"
   ]
 }
