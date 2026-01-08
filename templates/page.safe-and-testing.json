@@ -132,9 +132,9 @@
         "content_block_VnDb7Q": {
           "type": "content_block",
           "settings": {
-            "block_title": "Verified lab testing",
-            "richtext_1": "<p>Independently tested by third-party labs SGS and Vartest with published results</p>",
-            "richtext_2": "<p>Often not independently tested by third-party labs</p>"
+            "block_title": "Verified lab + dermatologist testing",
+            "richtext_1": "<p>Independently tested by third-party labs SGS and Vartest with published results, supported by dermatologist testing and clinician + pediatrician review</p>",
+            "richtext_2": "<p>Often not independently tested by third-party labs, dermatologists, clinicians, or pediatricians</p>"
           }
         },
         "content_block_rJiJWB": {
