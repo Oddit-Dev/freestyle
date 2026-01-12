@@ -16,7 +16,6 @@
             {% for image in product.images %}
               {% unless image.attached_to_variant? %}
                 <div class="swiper-slide" data-index="{{ slideIndex }}">
-                     {% render 'banner' %}
                   {{
                     image
                     | image_url: width: 800
