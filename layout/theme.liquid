@@ -1,8 +1,8 @@
 <!doctype html>
 <html class="no-js antialiased scroll-smooth" lang="{{ request.locale.iso_code }}">
   <head>
-{% if request.path == '/collections/all' %}
-    <meta name="robots" content="noindex, nofollow">
+{% if request.path == '/products' or request.path == '/collections/all' or request.path == '/collections/frontpage' %}
+  <meta name="robots" content="noindex, nofollow">
   <script>window.location.replace("/");</script>
 {% endif %}
     <!-- Google Tag Manager -->
