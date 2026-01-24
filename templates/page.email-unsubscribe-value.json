@@ -25,7 +25,7 @@
           "type": "ai_gen_block_83d7067",
           "name": "Custom HTML",
           "settings": {
-            "custom_html": "<script type=\"text/javascript\">\n  // Get the email from the URL\n  var params = new URLSearchParams(window.location.search);\n  var email = params.get('customer_email');\n\n  // If an email is found, pre-fill it for Klaviyo\n  if (email) {\n    window._learnq = window._learnq || [];\n    window._learnq.push(['identify', {\n      '$email': email\n    }]);\n  }\n</script>\n\n<!-- The Klaviyo <div class=\"klaviyo-form-...\"> embed code goes right below this -->\n<div class=\"klaviyo-form-YgQfSa\"></div>",
+            "custom_html": "<script type=\"text/javascript\">\n  // Get the email from the URL\n  var params = new URLSearchParams(window.location.search);\n  var email = params.get('customer_email');\n\n  // If an email is found, pre-fill it for Klaviyo\n  if (email) {\n    window._learnq = window._learnq || [];\n    window._learnq.push(['identify', {\n      '$email': email\n    }]);\n  }\n</script>\n\n<!-- The Klaviyo <div class=\"klaviyo-form-...\"> embed code goes right below this -->\n<div class=\"klaviyo-form-VFtW8i\"></div>",
             "max_width": 1200,
             "padding_top": 0,
             "padding_bottom": 0,
