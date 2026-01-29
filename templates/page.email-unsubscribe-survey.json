@@ -24,20 +24,9 @@
         "ai_gen_block_83d7067_hwATNn": {
           "type": "ai_gen_block_83d7067",
           "name": "Custom HTML",
+          "disabled": true,
           "settings": {
             "custom_html": "<script type=\"text/javascript\">\n  // Get the email from the URL\n  var params = new URLSearchParams(window.location.search);\n  var email = params.get('customer_email');\n\n  // If an email is found, pre-fill it for Klaviyo\n  if (email) {\n    window._learnq = window._learnq || [];\n    window._learnq.push(['identify', {\n      '$email': email\n    }]);\n  }\n</script>\n\n<!-- The Klaviyo <div class=\"klaviyo-form-...\"> embed code goes right below this -->\n<div class=\"klaviyo-form-YgQfSa\"></div>",
-            "max_width": 1200,
-            "padding_top": 0,
-            "padding_bottom": 0,
-            "padding_horizontal": 0
-          },
-          "blocks": {}
-        },
-        "ai_gen_block_83d7067_KTnHeF": {
-          "type": "ai_gen_block_83d7067",
-          "name": "Custom HTML",
-          "settings": {
-            "custom_html": "<style>\n  @media screen and (max-width: 768px) {\n    .klaviyo-form-YgQfSa * {\n      max-width: 100% !important;\n    }\n    \n    .klaviyo-form-YgQfSa form {\n      width: 100% !important;\n    }\n    \n    .klaviyo-form-YgQfSa input,\n    .klaviyo-form-YgQfSa button {\n      font-size: 14px !important;\n      padding: 12px !important;\n    }\n  }\n</style>",
             "max_width": 1200,
             "padding_top": 0,
             "padding_bottom": 0,
@@ -47,14 +36,29 @@
         }
       },
       "block_order": [
-        "ai_gen_block_83d7067_hwATNn",
-        "ai_gen_block_83d7067_KTnHeF"
+        "ai_gen_block_83d7067_hwATNn"
+      ],
+      "settings": {}
+    },
+    "1769661176e67e864a": {
+      "type": "apps",
+      "blocks": {
+        "klaviyo_email_marketing_sms_form_embed_block_GAPpeF": {
+          "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/form-embed-block/2632fe16-c075-4321-a88b-50b567f42507",
+          "settings": {
+            "formId": "YgQfSa"
+          }
+        }
+      },
+      "block_order": [
+        "klaviyo_email_marketing_sms_form_embed_block_GAPpeF"
       ],
       "settings": {}
     }
   },
   "order": [
     "main",
-    "17678524857a87db68"
+    "17678524857a87db68",
+    "1769661176e67e864a"
   ]
 }
