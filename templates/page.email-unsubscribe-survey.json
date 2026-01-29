@@ -32,10 +32,23 @@
             "padding_horizontal": 0
           },
           "blocks": {}
+        },
+        "ai_gen_block_83d7067_KTnHeF": {
+          "type": "ai_gen_block_83d7067",
+          "name": "Custom HTML",
+          "settings": {
+            "custom_html": "<script type=\"text/javascript\">\n  // Get the email from the URL\n  var params = new URLSearchParams(window.location.search);\n  var email = params.get('customer_email');\n  // If an email is found, pre-fill it for Klaviyo\n  if (email) {\n    window._learnq = window._learnq || [];\n    window._learnq.push(['identify', {\n      '$email': email\n    }]);\n  }\n</script>\n\n<!-- Klaviyo form container -->\n<div class=\"klaviyo-form-container\">\n  <div class=\"klaviyo-form-YgQfSa\"></div>\n</div>\n\n<style>\n  /* Container styling */\n  .klaviyo-form-container {\n    width: 100%;\n    max-width: 100%;\n    margin: 0 auto;\n  }\n\n  /* Desktop view - default */\n  .klaviyo-form-YgQfSa {\n    width: 100% !important;\n    max-width: 600px !important;\n    margin: 0 auto !important;\n  }\n\n  /* Mobile view - adjust for screens 768px and below */\n  @media screen and (max-width: 768px) {\n    .klaviyo-form-YgQfSa {\n      max-width: 100% !important;\n      padding: 0 15px !important;\n      transform: scale(1) !important;\n    }\n    \n    /* Target the iframe inside if Klaviyo uses one */\n    .klaviyo-form-YgQfSa iframe {\n      width: 100% !important;\n      max-width: 100% !important;\n    }\n  }\n\n  /* Smaller mobile devices */\n  @media screen and (max-width: 480px) {\n    .klaviyo-form-YgQfSa {\n      padding: 0 10px !important;\n    }\n  }\n</style>",
+            "max_width": 1200,
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "padding_horizontal": 0
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "ai_gen_block_83d7067_hwATNn"
+        "ai_gen_block_83d7067_hwATNn",
+        "ai_gen_block_83d7067_KTnHeF"
       ],
       "settings": {}
     }
