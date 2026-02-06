@@ -340,7 +340,6 @@
         "heading_icon_size": 94,
         "description": "",
         "description_color": "#ffffff",
-        "button_icon": "shopify://shop_images/wallmart-icon.svg",
         "button_icon_size": 16,
         "button_text_icon": "shopify://shop_images/heart-icon-text.svg",
         "button_text_icon_size": 16,
