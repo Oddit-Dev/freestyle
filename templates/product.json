@@ -181,7 +181,7 @@
         "extra_product_quantity": 0,
         "show_product_details": false,
         "show_store_locator": true,
-        "store_main_heading": "Find SkinShield™ near you",
+        "store_main_heading": "Find Skin❤️Shield™ near you",
         "store_sub_heading": "",
         "enable_walmart_btn": true,
         "walmart_btn_text": "Buy at Walmart",
@@ -431,7 +431,8 @@
           "settings": {
             "product": "{{product}}",
             "title": "",
-            "alignment": ""
+            "alignment": "",
+            "sortOrder": "mostRecent"
           }
         }
       },
