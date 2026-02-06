@@ -187,7 +187,17 @@
         "show_product_details": false,
         "show_store_locator": false,
         "store_main_heading": "Find SkinShield™ near you",
-        "store_sub_heading": ""
+        "store_sub_heading": "",
+        "enable_walmart_btn": true,
+        "walmart_btn_text": "Buy on Walmart",
+        "enable_target_btn": true,
+        "target_btn_text": "Buy on Target",
+        "enable_buy_at_target_btn": true,
+        "buy_at_target_btn_text": "Buy at Target",
+        "enable_nearby_btn": true,
+        "nearby_btn_text": "Find a Store Nearby",
+        "enable_waitlist_btn": true,
+        "waitlist_btn_text": "Join the Waitlist"
       }
     },
     "multiple_marquee_4VUVyj": {
@@ -302,7 +312,6 @@
         "heading_icon_size": 94,
         "description": "",
         "description_color": "#ffffff",
-        "button_icon": "shopify://shop_images/wallmart-icon.svg",
         "button_icon_size": 16,
         "button_text_icon": "shopify://shop_images/heart-icon-text.svg",
         "button_text_icon_size": 16,
@@ -428,7 +437,8 @@
           "settings": {
             "product": "{{product}}",
             "title": "",
-            "alignment": ""
+            "alignment": "",
+            "sortOrder": "mostRecent"
           }
         }
       },
