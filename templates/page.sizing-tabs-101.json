@@ -158,96 +158,12 @@
         "heading": "For parents, <strong>by parents</strong>",
         "description": "<p>Hear from our community why they love and trust Freestyle. Then try it for youself. </p>"
       }
-    },
-    "review_scroller_custom_CMUd3m": {
-      "type": "review-scroller-custom",
-      "blocks": {
-        "review_Aw7wkC": {
-          "type": "review",
-          "settings": {
-            "author_name": "@taylor.dyne",
-            "author_url": "https://www.instagram.com/taylor.dyne/",
-            "is_verified": false,
-            "author_handle": "",
-            "review_text": "\"I am literally so excited about these. They are so nice. If you are looking for a new TCF diaper and you want something more affordable...definitely check out Freestyle from Walmart.\"",
-            "review_video": "shopify://files/videos/Video.mov"
-          }
-        },
-        "review_3Briaz": {
-          "type": "review",
-          "settings": {
-            "author_name": "@cathrinmanningg",
-            "author_url": "https://www.instagram.com/cathrinmanningg/",
-            "is_verified": false,
-            "author_handle": "",
-            "review_text": "\"I still don't understand how the paper towel was completely dry!!! If you're looking for a super soft & very absorbent diaper, you need to try these Freestyle diapers!\"",
-            "review_video": "shopify://files/videos/Download(2).mp4"
-          }
-        },
-        "review_UGacVf": {
-          "type": "review",
-          "settings": {
-            "author_name": "@megtimmons",
-            "author_url": "https://www.instagram.com/megtimmons/",
-            "is_verified": false,
-            "author_handle": "",
-            "review_text": "\"If you are not using Freestyle diapers, you need to\"",
-            "review_video": "shopify://files/videos/f638ab6e9897459186a252843e0004d2.mov"
-          }
-        },
-        "review_Pw4aDj": {
-          "type": "review",
-          "settings": {
-            "author_name": "@nicolewebz",
-            "author_url": "https://www.instagram.com/nicolewebz/",
-            "is_verified": false,
-            "author_handle": "",
-            "review_text": "\"It is so absorbent you can use it as an overnight diaper. It is so soft. The best thing about the diaper is it is TCF...these are actually really cost effective and very comparable to some non-TCF diapers.\"",
-            "review_video": "shopify://files/videos/Download.mp4"
-          }
-        },
-        "review_hWVwfN": {
-          "type": "review",
-          "settings": {
-            "author_name": "@cathrinmanningg",
-            "author_url": "https://www.instagram.com/cathrinmanningg/",
-            "is_verified": false,
-            "author_handle": "",
-            "review_text": "\"These diapers are so dang soft...the price point is actually reasonable....I love them so much\"",
-            "review_video": "shopify://files/videos/Download (1).mp4"
-          }
-        },
-        "review_GAyDCY": {
-          "type": "review",
-          "settings": {
-            "author_name": "@emmsab",
-            "author_url": "https://www.instagram.com/emmsab/",
-            "is_verified": false,
-            "author_handle": "",
-            "review_text": "\"That's amazing. Wow.\"",
-            "review_video": "shopify://files/videos/copy_9479F2B8-C285-4D6C-A2DA-48DEE54C16B8.MOV"
-          }
-        }
-      },
-      "block_order": [
-        "review_Aw7wkC",
-        "review_3Briaz",
-        "review_UGacVf",
-        "review_Pw4aDj",
-        "review_hWVwfN",
-        "review_GAyDCY"
-      ],
-      "settings": {
-        "title": "For parents, by parents",
-        "subtitle": "Don’t just trust us. Hear from our community  why they love and trust Freestyle."
-      }
     }
   },
   "order": [
     "c_hero_img_3b7kXN",
     "c_hero_img_tV4cdU",
     "c_hero_img_3b8kXN",
-    "media_slider_kFytXC",
-    "review_scroller_custom_CMUd3m"
+    "media_slider_kFytXC"
   ]
 }
