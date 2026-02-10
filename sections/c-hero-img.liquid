@@ -22,6 +22,9 @@
           <span class="flex items-center flex-wrap gap-[24px] max-md:gap-[18px]">
             {% for word in heading_words %}
               {{ word }}
+               {% if forloop.first %}
+                  {% render 'banner' %}
+                {% endif %}
               {% if forloop.index == 2 and section.settings.heading_icon != blank %}
                 <img
                   src="{{ section.settings.heading_icon | image_url: width: section.settings.heading_icon_size }}"

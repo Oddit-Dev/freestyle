@@ -769,8 +769,10 @@
   
                   this.activeVariant = this.variants.find(item => item.id == id);
                   const mainVariantTitle = this.activeVariant.title;
-                  const regex = /Size\s(\d+)\s\(([\w-]+)\)\s-\s(\d+\s\w+)/;
-                  const matches = mainVariantTitle.match(regex);
+                  const regexNew = /Size\s*(NB|\d+)\s*\(([^)]+)\)\s*[-–]\s*(\d+\s*diapers)/i;
+                  const regexOld = /Size\s(\d+)\s*\(([\w–]+)\)\s–\s(\d+\s\w+)/;
+
+                  const matches = mainVariantTitle.match(regexNew) || mainVariantTitle.match(regexOld);
   
                   if (matches) {
                     const size = matches[1];
@@ -856,9 +858,11 @@
               } else {
                   this.activeVariant = this.variants[0];
                   const mainVariantTitle = this.activeVariant.title;
-                  const regex = /Size\s(\d+)\s\(([\w-]+)\)\s-\s(\d+\s\w+)/;
-                  const matches = mainVariantTitle.match(regex);
-  
+                  const regexNew = /Size\s*(NB|\d+)\s*\(([^)]+)\)\s*[-–]\s*(\d+\s*diapers)/i;
+                  const regexOld = /Size\s(\d+)\s*\(([\w–]+)\)\s–\s(\d+\s\w+)/;
+
+                  const matches = mainVariantTitle.match(regexNew) || mainVariantTitle.match(regexOld);
+                  
                   if (matches) {
                     const size = matches[1];
                     const count = matches[3];
@@ -984,9 +988,11 @@
                   variant.type = '789';
   
                   const mainVariantTitle = variant.title;
-                  const regex = /Size\s(\d+)\s\(([\w-]+)\)\s-\s(\d+\s\w+)/;
-                  const matches = mainVariantTitle.match(regex);
-                 
+                  const regexNew = /Size\s*(NB|\d+)\s*\(([^)]+)\)\s*[-–]\s*(\d+\s*diapers)/i;
+                  const regexOld = /Size\s(\d+)\s*\(([\w–]+)\)\s–\s(\d+\s\w+)/;
+
+                  const matches = mainVariantTitle.match(regexNew) || mainVariantTitle.match(regexOld);
+                  
                   if (matches) {
                     const size = matches[1];
                     const weight = matches[2];

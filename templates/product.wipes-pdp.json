@@ -405,6 +405,32 @@
         "text": "Freestyle products use non-toxic, lab-tested, clean materials that keep your baby protected and you worry-free."
       }
     },
+    "blocks_DhVzAD": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_1135611_WUgknY": {
+          "type": "ai_gen_block_1135611",
+          "settings": {
+            "custom_liquid": "{%render 'testimonials'%}",
+            "max_width": 1200,
+            "desktop_width_percent": 100,
+            "padding_top": 40,
+            "padding_bottom": 40,
+            "padding_horizontal": 20,
+            "padding_top_mobile": 30,
+            "padding_bottom_mobile": 30,
+            "padding_horizontal_mobile": 15,
+            "background_color": "#ffffff"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_1135611_WUgknY"
+      ],
+      "name": "Custom liquid",
+      "settings": {}
+    },
     "174411240666086477": {
       "type": "apps",
       "blocks": {
@@ -413,7 +439,8 @@
           "settings": {
             "product": "{{product}}",
             "title": "",
-            "alignment": ""
+            "alignment": "",
+            "sortOrder": "mostRecent"
           }
         }
       },
@@ -518,7 +545,7 @@
           "settings": {
             "image": "shopify://shop_images/Flores_family.png",
             "rating_image": "shopify://shop_images/Stars.png",
-            "text": "<p>\"We just tried the new SkinShield™ diapers and we LOVE them! We've tried almost every TCF diaper out there and these are definitely a new favorite!\"</p>",
+            "text": "<p>\"We just tried the new Skin❤️Shield™ diapers and we LOVE them! We've tried almost every TCF diaper out there and these are definitely a new favorite!\"</p>",
             "title": "McKenna",
             "verified_buyer": true
           }
@@ -563,6 +590,7 @@
     "multiple_marquee_4VUVyj",
     "perfect_info_mgPXdV",
     "icon_with_text_Tirzyn",
+    "blocks_DhVzAD",
     "174411240666086477",
     "media_slider_AqMcEa",
     "testimonial_dNiEWm"

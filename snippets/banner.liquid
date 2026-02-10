@@ -1,0 +1,56 @@
+{% if request.path contains 'safety-and-testing' or request.path contains '/products/skinshield-diapers' %}
+  <script async type="text/javascript" src="https://app.thefrontrowhealth.com/api/widgets/script?presentation_type=sticker&product_id=3018"></script>
+  <iframe data-state="max" class="iframe-frontrow-sticker" id="frontrow-sticker" frameborder="0" src="https://app.thefrontrowhealth.com/api/widgets?presentation_type=sticker&product_id=3018"></iframe>
+  
+{% elsif request.path contains '/products/wipes' %}
+  <script async type="text/javascript" src="https://app.thefrontrowhealth.com/api/widgets/script?presentation_type=sticker&product_id=3019"></script>
+  <iframe data-state="max" class="iframe-frontrow-sticker" id="frontrow-sticker" frameborder="0" src="https://app.thefrontrowhealth.com/api/widgets?presentation_type=sticker&product_id=3019"></iframe>
+
+{% endif %}
+
+<style>
+  #frontrow-sticker{
+    position:absolute;
+    z-index:3;
+    border-radius: 0 !important;
+  }
+  #frontrow-sticker {
+  position: absolute;
+  z-index: 3;
+  border-radius: 0 !important;
+  max-width: unset;
+transform: scale(0.80)!important;
+  transform-origin: 0px -20%!important; 
+}
+
+@media screen and (max-width: 768px) {
+  #frontrow-sticker {
+  position: absolute;
+  z-index: 3;
+  border-radius: 0 !important;
+  transform: scale(0.80)!important;
+  transform-origin: 0px -20%!important;
+  margin-top:16px!important;
+  }
+} 
+@media (max-width: 768px) {
+  .iframe-frontrow-sticker,
+  #frontrow-banner,
+  .frontrow-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+
+  /* Add padding to the top of main content so CTA isn’t covered */
+  .product,
+  .product-main,
+  .product__info-wrapper,
+  body.template-product {
+    padding-top: 80px !important; /* adjust based on banner height */
+  }
+}
+  .iframe.frontrow{display:none;position:fixed;left:0;top:0;z-index:99999997;right:0;bottom:0;width:100%;height:100%;overflow:hidden}
+</style>

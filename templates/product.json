@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "main": {
       "type": "main-product",
@@ -30,7 +30,7 @@
         "richtext_kqgkj3": {
           "type": "richtext",
           "settings": {
-            "richtext": "<ul><li>14x better absorption</li><li>Skin-safe</li><li>7-layer skin protection</li><li>EWG Verified®</li><li>TCF: Total chlorine free</li><li>Cloud-like softness</li></ul>"
+            "richtext": "<ul><li>14x better absorption</li><li>Skin-safe</li><li>7-layer skin protection</li><li>EWG Verified®</li><li>TCF: Total Chlorine Free</li><li>Cloud-like softness</li></ul>"
           }
         },
         "variants_EBNBwP": {
@@ -133,21 +133,21 @@
           "type": "accordion_item",
           "settings": {
             "title": "EWG Verified® non-toxic ingredients",
-            "content": "<p>The Freestyle Formula<br/><br/>SkinShield™ diapers are EWG Verified® and Total Chlorine Free. <br/><br/>The core of this diaper is made with our proprietary SAP Matrix (super absorbent polymers (sodium acrylate, silicon dioxide, polyacrylic acid, water)) and FSC Certified Total Chlorine Free wood pulp (cellulose, hemicellulose). The topsheet, backsheet, leakguard, and films are made with performance-driven nonwoven fabrics (polypropylene, polyethylene terephthalate, polythene, titanium dioxide, nylon and polyester, sodium dodecylbenzenesulfonate). Elastics (polypropylene, segmented polyurethaneurea, titanium dioxide) and adhesives (hydrocarbon resin, styrene-Isoprene-styrene copolymer, mineral oil, petroleum resin, rosin ester) are used to hold it all together - and we mean all.<br/><br/>Read more about our safety and testing <a href=\"https://freestyle.world/pages/safety-and-testing\" target=\"_blank\" title=\"Safety and Testing\">here</a>.</p>"
+            "content": "<p>The Freestyle Formula<br/><br/>Skin❤️Shield™ diapers are EWG Verified® and Total Chlorine Free. <br/><br/>The core of this diaper is made with our proprietary SAP Matrix (super absorbent polymers (sodium acrylate, silicon dioxide, polyacrylic acid, water)) and FSC Certified Total Chlorine Free wood pulp (cellulose, hemicellulose). The topsheet, backsheet, leakguard, and films are made with performance-driven nonwoven fabrics (polypropylene, polyethylene terephthalate, polythene, titanium dioxide, nylon and polyester, sodium dodecylbenzenesulfonate). Elastics (polypropylene, segmented polyurethaneurea, titanium dioxide) and adhesives (hydrocarbon resin, styrene-Isoprene-styrene copolymer, mineral oil, petroleum resin, rosin ester) are used to hold it all together - and we mean all.<br/><br/>Read more about our safety and testing <a href=\"https://freestyle.world/pages/safety-and-testing\" target=\"_blank\" title=\"Safety and Testing\">here</a>.</p>"
           }
         },
         "accordion_item_QDWeYg": {
           "type": "accordion_item",
           "settings": {
             "title": "Skin ❤️ Shield™'s performance",
-            "content": "<p>SkinShield™ has been tested against leading competitors and is up to 14x more absorbent than a leading brand. This means better performance at the best price. Read more <a href=\"https://freestyle.world/pages/safety-and-testing\" target=\"_blank\" title=\"https://freestyle.world/pages/safety-and-testing\">here</a>.</p>"
+            "content": "<p>Skin❤️Shield™ has been tested against leading competitors and is up to 14x more absorbent than a leading brand. This means better performance at the best price. Read more <a href=\"https://freestyle.world/pages/safety-and-testing\" target=\"_blank\" title=\"https://freestyle.world/pages/safety-and-testing\">here</a>.</p>"
           }
         },
         "accordion_item_ztzDDX": {
           "type": "accordion_item",
           "settings": {
             "title": "Where to shop",
-            "content": "<p>SkinShield™ diapers are available at here at Freestyle.World, at <a href=\"https://www.target.com/p/freestyle-hyper-absorbent-ultra-soft-baby-diapers/-/A-94937680?preselect=94800623#lnk=sametab\" target=\"_blank\" title=\"https://www.target.com/p/freestyle-hyper-absorbent-ultra-soft-baby-diapers/-/A-94937680?preselect=94800623#lnk=sametab\">Target.com</a>, <a href=\"https://www.walmart.com/ip/Freestyle-Diaper-Size-4-48CT/13932710597\" target=\"_blank\" title=\"https://www.walmart.com/ip/Freestyle-Diaper-Size-4-48CT/13932710597 \">Walmart.com</a> and select Walmart stores (find one <a href=\"https://freestyle.world/pages/stores\" title=\"https://freestyle.world/pages/stores\">here</a>).</p>"
+            "content": "<p>Skin❤️Shield™ diapers are available at here at Freestyle.World, at <a href=\"https://www.target.com/p/freestyle-hyper-absorbent-ultra-soft-baby-diapers/-/A-94937680?preselect=94800623#lnk=sametab\" target=\"_blank\" title=\"https://www.target.com/p/freestyle-hyper-absorbent-ultra-soft-baby-diapers/-/A-94937680?preselect=94800623#lnk=sametab\">Target.com</a>, <a href=\"https://www.walmart.com/ip/Freestyle-Diaper-Size-4-48CT/13932710597\" target=\"_blank\" title=\"https://www.walmart.com/ip/Freestyle-Diaper-Size-4-48CT/13932710597 \">Walmart.com</a> and select Walmart stores (find one <a href=\"https://freestyle.world/pages/stores\" title=\"https://freestyle.world/pages/stores\">here</a>).</p>"
           }
         }
       },
@@ -181,10 +181,10 @@
         "extra_product_quantity": 0,
         "show_product_details": false,
         "show_store_locator": true,
-        "store_main_heading": "Find SkinShield™ near you",
+        "store_main_heading": "Find Skin❤️Shield™ near you",
         "store_sub_heading": "",
         "enable_walmart_btn": true,
-        "walmart_btn_text": "Buy at Walmart.com",
+        "walmart_btn_text": "Buy at Walmart",
         "enable_target_btn": true,
         "target_btn_text": "Shop the restock first",
         "enable_buy_at_target_btn": true,
@@ -395,8 +395,33 @@
         "background_image": "shopify://shop_images/HEADER_F1F2F5.jpg",
         "background_image_mobile": "shopify://shop_images/HEADER_F1F2F5.jpg",
         "heading": "Safe & Soft Protection",
-        "text": "SkinShield™ diapers use non-toxic, lab-tested, clean materials that keep your baby protected and you worry-free."
+        "text": "Skin❤️Shield™ diapers use non-toxic, lab-tested, clean materials that keep your baby protected and you worry-free."
       }
+    },
+    "17682469627aab8134": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_1135611_n6PXVk": {
+          "type": "ai_gen_block_1135611",
+          "settings": {
+            "custom_liquid": "{%render 'testimonials'%}",
+            "max_width": 1200,
+            "desktop_width_percent": 100,
+            "padding_top": 40,
+            "padding_bottom": 40,
+            "padding_horizontal": 20,
+            "padding_top_mobile": 30,
+            "padding_bottom_mobile": 30,
+            "padding_horizontal_mobile": 15,
+            "background_color": "#ffffff"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_1135611_n6PXVk"
+      ],
+      "settings": {}
     },
     "174411240666086477": {
       "type": "apps",
@@ -406,7 +431,8 @@
           "settings": {
             "product": "{{product}}",
             "title": "",
-            "alignment": ""
+            "alignment": "",
+            "sortOrder": "mostRecent"
           }
         }
       },
@@ -511,7 +537,7 @@
           "settings": {
             "image": "shopify://shop_images/Flores_family.png",
             "rating_image": "shopify://shop_images/Stars.png",
-            "text": "<p>\"We just tried the new SkinShield™ diapers and we LOVE them! We've tried almost every TCF diaper out there and these are definitely a new favorite!\"</p>",
+            "text": "<p>\"We just tried the new Skin❤️Shield™ diapers and we LOVE them! We've tried almost every TCF diaper out there and these are definitely a new favorite!\"</p>",
             "title": "McKenna",
             "verified_buyer": true
           }
@@ -556,6 +582,7 @@
     "multiple_marquee_4VUVyj",
     "perfect_info_mgPXdV",
     "icon_with_text_Tirzyn",
+    "17682469627aab8134",
     "174411240666086477",
     "media_slider_AqMcEa",
     "testimonial_dNiEWm"
