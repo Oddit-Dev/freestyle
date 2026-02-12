@@ -513,10 +513,12 @@ function updateAddToCartButtonForProductInCart(btn) {
 
     if (inCart) {
       btn.disabled = true;
+      btn.style.pointerEvents = 'none';
       btn.classList.add('opacity-50', 'cursor-not-allowed');
       if (labelEl) labelEl.textContent = 'Order limit reached.';
     } else {
       btn.disabled = !!bundleDisabled;
+      btn.style.pointerEvents = bundleDisabled ? 'none' : '';
       btn.classList.toggle('opacity-50', bundleDisabled);
       btn.classList.toggle('cursor-not-allowed', bundleDisabled);
       if (labelEl) labelEl.textContent = defaultLabel;
@@ -545,10 +547,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     addToCartBtn.addEventListener("click", function () {
-      const productId = this.dataset.productId;
+      const btn = this;
+      btn.disabled = true;
+      btn.style.pointerEvents = 'none';
+      const productId = btn.dataset.productId;
       if (productId) {
         isProductInCart(Number(productId)).then((inCart) => {
-          if (inCart) return;
+          if (inCart) {
+            updateAddToCartButtonForProductInCart(btn);
+            return;
+          }
           handleAddToCartClick.call(this);
         });
       } else {
@@ -613,8 +621,14 @@ document.addEventListener("DOMContentLoaded", function () {
           },
           body: JSON.stringify({ items })
         })
-          .then(response => response.json())
-          .then(data => {
+          .then(response => response.json().then(data => ({ ok: response.ok, data })))
+          .then(({ ok, data }) => {
+            if (!ok) {
+              addToCartBtn.disabled = false;
+              addToCartBtn.style.pointerEvents = '';
+              updateAddToCartButtonForProductInCart(addToCartBtn);
+              return;
+            }
             const drawer = document.querySelector('cart-drawer');
             if (drawer) {
               drawer.refresh();
@@ -625,6 +639,9 @@ document.addEventListener("DOMContentLoaded", function () {
           })
           .catch(error => {
             console.error("Error adding bundle to cart:", error);
+            addToCartBtn.disabled = false;
+            addToCartBtn.style.pointerEvents = '';
+            updateAddToCartButtonForProductInCart(addToCartBtn);
           });
         return;
       }
@@ -668,8 +685,14 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         body: JSON.stringify({ items })
       })
-        .then(response => response.json())
-        .then(data => {
+        .then(response => response.json().then(data => ({ ok: response.ok, data })))
+        .then(({ ok }) => {
+          if (!ok) {
+            addToCartBtn.disabled = false;
+            addToCartBtn.style.pointerEvents = '';
+            updateAddToCartButtonForProductInCart(addToCartBtn);
+            return;
+          }
           const drawer = document.querySelector('cart-drawer');
           if (drawer) {
             drawer.refresh();
@@ -680,6 +703,9 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .catch(error => {
           console.error("Error adding to cart:", error);
+          addToCartBtn.disabled = false;
+          addToCartBtn.style.pointerEvents = '';
+          updateAddToCartButtonForProductInCart(addToCartBtn);
         });
   }
 });
