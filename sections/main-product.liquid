@@ -41,15 +41,14 @@
   x-data="product"
   x-init="init"
   {% if template contains 'bambootek' and section.settings.extra_product_for_bambootek %}
-  data-extra-product="{{ all_products[section.settings.extra_product_for_bambootek].first_available_variant.id }}"
-  data-extra-product-qty="{{ section.settings.extra_product_quantity }}"
+    data-extra-product="{{ all_products[section.settings.extra_product_for_bambootek].first_available_variant.id }}"
+    data-extra-product-qty="{{ section.settings.extra_product_quantity }}"
   {% endif %}>
   <div class="container !max-w-[1360px]">
     <div class="product__inner !gap-0">
       <div class="main-image-gallery-with-location overflow-auto max-md:mb-[20px] ">
         <div class="custom-gallery">
-          {% render 'product-gallery'
-            , product: product %}
+          {% render 'product-gallery', product: product %}
         </div>
         {% if section.settings.show_store_locator %}
           <div class="custom-pdp-store-locater-desktop">
@@ -58,15 +57,11 @@
               {% assign storetitle = section.settings.store_main_heading %}
               {% assign storesubtitle = section.settings.store_sub_heading %}
               {% assign rightlogo = section.settings.store_right_logo %}
-              {% render 'c-store-locator'
-                ,
- title: storetitle
-                ,
- text: storesubtitle
-                ,
- walmartlogo: walmartlogo
-                ,
- rightlogo: rightlogo
+              {% render 'c-store-locator',
+                title: storetitle,
+                text: storesubtitle,
+                walmartlogo: walmartlogo,
+                rightlogo: rightlogo
               %}
             </div>
           </div>
@@ -93,33 +88,34 @@
                     <img src="{{ block.settings.image | image_url }}" alt="{{ product.title }}">
                   </h1>
                 {% elsif block.settings.alternate_title != blank
- or product.metafields.custom.alternate_title != blank
+                  or product.metafields.custom.alternate_title != blank
                 %}
                   <h1 class="product__title font-grotesk !font-medium !text-[52px] max-md:text-[32px] !leading-[1] !tracking-[-0.05em] text-scheme_one flex flex-wrap gap-[4px] [&_strong]:font-fkroman [&_strong]:font-normal mb-[20px]">
                     {% assign bamboo_icon = settings.bamboo_icon
- | image_url: width: 100
- | image_tag:
- class: 'w-[2.2rem] md:w-[3.6rem] inline-block translate-y-[-0.6rem] md:translate-y-[-1rem] mx-1'
+                      | image_url: width: 100
+                      | image_tag:
+                        class: 'w-[2.2rem] md:w-[3.6rem] inline-block translate-y-[-0.6rem] md:translate-y-[-1rem] mx-1'
                     %}
                     {% assign heart_icon = settings.heart_icon
- | image_url: width: 100
- | image_tag:
- class: 'w-[3rem] md:w-[5rem] inline-block translate-y-[-0.4rem] md:translate-y-[-0.7rem] mx-1'
+                      | image_url: width: 100
+                      | image_tag:
+                        class: 'w-[3rem] md:w-[5rem] inline-block translate-y-[-0.4rem] md:translate-y-[-0.7rem] mx-1'
                     %}
                     {% assign water_icon = settings.water_icon
- | image_url: width: 100
- | image_tag:
- class: 'w-[3rem] md:w-[5rem] inline-block translate-y-[-0.4rem] md:translate-y-[-0.7rem] mx-1'
+                      | image_url: width: 100
+                      | image_tag:
+                        class: 'w-[3rem] md:w-[5rem] inline-block translate-y-[-0.4rem] md:translate-y-[-0.7rem] mx-1'
                     %}
                     {% assign alternate_title = block.settings.alternate_title
- | default: product.metafields.custom.alternate_title
+                      | default: product.metafields.custom.alternate_title
                     %}
-                    {{ alternate_title
- | replace: '[bamboo]', bamboo_icon
- | replace: '[heart]', heart_icon
- | replace: '[water]', water_icon
- | split: '('
- | first
+                    {{
+                      alternate_title
+                      | replace: '[bamboo]', bamboo_icon
+                      | replace: '[heart]', heart_icon
+                      | replace: '[water]', water_icon
+                      | split: '('
+                      | first
                     }}
                   </h1>
                 {% else %}
@@ -130,8 +126,7 @@
 
                 <div class="product__rating [&_svg_path]:fill-scheme_one">
                   {% comment %} {% render 'rating-stars', text: section.settings.review_numbers %} {% endcomment %}
-                  {% render 'product-rating'
-                    , product: product %}
+                  {% render 'product-rating', product: product %}
                 </div>
               </div>
             {% when 'richtext' %}
@@ -147,9 +142,7 @@
                 <div class="product__cta mb-[50px] max-md:mb-[30px] flex flex-col gap-[14px]">
                   {% if block.settings.cta_type == 'add_to_cart' %}
                     <div x-show="activeVariant.available">
-                      {% form 'product'
-                        , product
-                        , class: 'product__cta' %}
+                      {% form 'product', product, class: 'product__cta' %}
                         <input
                           type="hidden"
                           name="id"
@@ -167,26 +160,29 @@
                           {{ block.settings.cta_label }}
                         </button>
                       {% endform %}
-                      {% comment %} 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <span class="button" @click="addToCart(activeVariant.id)">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        {{ block.settings.cta_label }}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <span class="sale-price">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        {{ product.selected_or_first_available_variant.price | money }}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </span> 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      {% endcomment %}
+                      {% comment %}
+                        <span class="button" @click="addToCart(activeVariant.id)">
+                        {{ block.settings.cta_label }}
+                        <span class="sale-price">
+                        {{ product.selected_or_first_available_variant.price | money }}
+                        </span>
+                        </span>
+                      {% endcomment %}
                       <button
                         class="button js-add-to-cart w-full gap-[6px] capitalize"
+                        data-product-id="{{ product.id }}"
                         data-selling-plan-id="{{ product.selected_or_first_available_variant.selling_plan_allocations.first.selling_plan.id }}"
-                        data-variant-id="{{ product.selected_or_first_available_variant.id }}">
-                        {{ block.settings.cta_label }}
+                        data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+                        data-cta-label="{{ block.settings.cta_label }}"
+                        x-bind:disabled="bundleMode && selectedBundleVariants.length !== 2"
+                        x-bind:class="{ 'opacity-50 cursor-not-allowed': bundleMode && selectedBundleVariants.length !== 2 }">
+                        <span class="js-add-to-cart-label">{{ block.settings.cta_label }}</span>
                         <span class="text-[8px]">•</span>
                         <span class="sale-price">
                           {{ product.selected_or_first_available_variant.price | money }}
                         </span>
                       </button>
                     </div>
-
 
                     {% assign current_variant = product.selected_or_first_available_variant %}
 
@@ -206,7 +202,6 @@
                       class="external-purchase-buttons flex flex-col gap-[14px]"
                       x-show="!activeVariant.available"
                       x-cloak>
-
                       {% if section.settings.enable_buy_at_target_btn %}
                         <a
                           href="{{ buy_at_target_url }}"
@@ -238,9 +233,11 @@
                           class="button target-btn flex items-center gap-[6px] {% if target_url == blank %}hidden{% endif %}"
                           target="_blank"
                           rel="noopener">
-                          {% comment %} <span class="target-icon w-[16px] min-w-[16px] h-[16px] flex items-center justify-center [&_svg]:m-0">
-                                                                                                                {{ 'target-icon.svg' | inline_asset_content }}
-                                                                                                        </span> {% endcomment %}
+                          {% comment %}
+                            <span class="target-icon w-[16px] min-w-[16px] h-[16px] flex items-center justify-center [&_svg]:m-0">
+                                    {{ 'target-icon.svg' | inline_asset_content }}
+                            </span>
+                          {% endcomment %}
                           {{ section.settings.target_btn_text | default: 'Buy on Target' }}
                         </a>
                       {% endif %}
@@ -336,9 +333,7 @@
                   class="subscription-form my-[40px] max-md:my-[30px]"
                   x-show="activeVariant.available"
                   x-cloak>
-                  {% render 'selling-plans-integration'
-                    , product: product
-                    , block: block %}
+                  {% render 'selling-plans-integration', product: product, block: block %}
                 </div>
               {% endif %}
             {% when 'tags' %}
@@ -360,17 +355,17 @@
                   <div class="product__tag flex items-center gap-2">Free shipping when added to subscription</div>
                 </div>
               {% endif %}
-            {% comment %} 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                              {% if product.tags.size > 0 %}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                              <div class="product__tags flex flex-wrap gap-4 mb-4">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                              {% for tag in product.tags %}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                              <div class="product__tag flex items-center gap-2">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                              {{ tag }}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                              </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                              {% endfor %}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                              </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                              {% endif %} 
-                                                                                                                                                                                                                                                                                                                                                                                                            {% endcomment %}
+              {% comment %}
+                {% if product.tags.size > 0 %}
+                <div class="product__tags flex flex-wrap gap-4 mb-4">
+                {% for tag in product.tags %}
+                <div class="product__tag flex items-center gap-2">
+                {{ tag }}
+                </div>
+                {% endfor %}
+                </div>
+                {% endif %}
+              {% endcomment %}
             {% when 'variants' %}
               <div class="product__sizes" x-show="variants.length > 1">
                 <div class="title-with-size-chart flex items-center justify-between gap-[20px]">
@@ -389,35 +384,62 @@
                           <button class="closeSizeChart absolute top-[-15px] right-[-15px] w-[30px] h-[30px] flex items-center justify-center bg-scheme_one text-white rounded-full">
                             ✕
                           </button>
-                          {% render 'image-element'
-                            ,
- image: product.metafields.custom.size_chart
-                            ,
- widths: '100, 200, 300, 375, 550, 750, 1100, 1500, 1780'
-                            ,
- sizes: '(max-width: 989px) 100vw, 45vw'
-                            ,
- class: 'product-feature-image max-w-full max-h-full h-auto object-contain !max-w-[500px]'
+                          {% render 'image-element',
+                            image: product.metafields.custom.size_chart,
+                            widths: '100, 200, 300, 375, 550, 750, 1100, 1500, 1780',
+                            sizes: '(max-width: 989px) 100vw, 45vw',
+                            class: 'product-feature-image max-w-full max-h-full h-auto object-contain !max-w-[500px]'
                           %}
                         </div>
                       </div>
                     </div>
                   {% endif %}
                 </div>
+
+                {% if block.settings.enable_bundle_mode %}
+                  <div class="variant-bundle-toggle">
+                    <label class="variant-bundle-label" for="bundleMode">
+                      <input
+                        type="checkbox"
+                        id="bundleMode"
+                        class="variant-bundle-checkbox"
+                        x-model="bundleMode"
+                        @change="handleBundleModeChange">
+                      <span class="variant-bundle-text">
+                        {{ block.settings.bundle_label }}
+                      </span>
+                    </label>
+                    <div
+                      class="bundle-selection-info"
+                      x-show="bundleMode">
+                      <span x-text="selectedBundleVariants.length + ' of 2 variants selected'"></span>
+                    </div>
+                  </div>
+                {% endif %}
+
                 <div class="product__sizes-list mb-10 !grid !grid-cols-3 !gap-[8px] items-end">
                   <template x-for="item in variants" x-key="item.id">
-                    <label class="product__size !flex flex-col items-end">
-                      <span class="variant-badge-out bg-[#E3E3E3] p-[4px_10px_2px] rounded-t-[10px] text-[#909090] text-[12px] font-bold leading-[1.2] uppercase mr-[6px]" x-show="!item.available">
+                    <label
+                      class="product__size !flex flex-col items-end"
+                      :class="{ 'bundle-selected': bundleMode && isVariantInBundle(item.id), 'bundle-disabled': bundleMode && !isVariantInBundle(item.id) && selectedBundleVariants.length >= 2 && !isVariantInBundle(item.id) }">
+                      <span
+                        class="variant-badge-out bg-[#E3E3E3] p-[4px_10px_2px] rounded-t-[10px] text-[#909090] text-[12px] font-bold leading-[1.2] uppercase mr-[6px]"
+                        x-show="!item.available">
                         LIMITED
                       </span>
                       <input
-                        type="radio"
-                        :checked="item.id === activeVariant.id"
-                        name="size"
+                        :type="bundleMode ? 'checkbox' : 'radio'"
+                        :checked="bundleMode ? isVariantInBundle(item.id) : item.id === activeVariant.id"
+                        :name="bundleMode ? 'bundle-size' : 'size'"
                         :value="item.id"
-                        @change="updateActiveVariant(item.id)">
-                      <div class="product__size-content w-full" :data-percent-off="item.compare_at_price > item.price ? percentOff(item.price, item.compare_at_price) : null">
-                        <div class="product__size-info" :style="{ backgroundColor: item.id === activeVariant.id ? item.accentTop : 'transparent' }">
+                        :disabled="bundleMode && !isVariantInBundle(item.id) && selectedBundleVariants.length >= 2"
+                        @change="bundleMode ? toggleBundleVariant(item.id) : updateActiveVariant(item.id)">
+                      <div
+                        class="product__size-content w-full"
+                        :data-percent-off="item.compare_at_price > item.price ? percentOff(item.price, item.compare_at_price) : null">
+                        <div
+                          class="product__size-info"
+                          :style="{ backgroundColor: (bundleMode ? isVariantInBundle(item.id) : item.id === activeVariant.id) ? item.accentTop : 'transparent' }">
                           <div
                             class="product__size-title flex gap-x-[8px]"
                             x-show="item.size"
@@ -426,8 +448,7 @@
                               item.size.includes(' / ')
                               ? item.size.split(' / ').reverse().map(s => `<span class='option-item'>${s}</span>`).join('')
                               : `<span class='single-option-item block w-full'>${item.size}</span>`
-                            ">
-</div>
+                            "></div>
                           <div
                             class="product__size-title m-small"
                             x-show="!item.size && item.title"
@@ -445,7 +466,7 @@
                         </div>
                         <div
                           class="product__size-price hidden"
-                          :style="{ backgroundColor: item.id === activeVariant.id ? item.accentBottom : 'transparent' }"
+                          :style="{ backgroundColor: (bundleMode ? isVariantInBundle(item.id) : item.id === activeVariant.id) ? item.accentBottom : 'transparent' }"
                           x-text="price(item.price)"></div>
                       </div>
                     </label>
@@ -493,20 +514,17 @@
                       <h2 class="heading font-grotesk !font-medium text-[16px] tracking-normal leading-[1.5] text-black-text mb-[12px]">
                         {{ block.settings.heading }}
                       </h2>
-                      
                     {% endif %}
-                    <label for="add-on-product-{{ forloop.index }}" class="add-on-label p-[20px_14px] rounded-[12px] border border-solid border-[#E3E3E3] flex">
+                    <label
+                      for="add-on-product-{{ forloop.index }}"
+                      class="add-on-label p-[20px_14px] rounded-[12px] border border-solid border-[#E3E3E3] flex">
                       <div class="flex-add-on-details flex items-center gap-[18px] w-full">
                         <div class="add-on-image w-[70px] min-w-[70px] h-[70px] flex items-center justify-center">
-                          {%- render 'image-element'
-                            ,
- image: add_on_product.featured_image
-                            ,
- widths: '50,60,70,80'
-                            ,
- sizes: '(max-width: 749px) 100vw, 100vw'
-                            ,
- class: 'max-w-full max-h-full object-contain'
+                          {%- render 'image-element',
+                            image: add_on_product.featured_image,
+                            widths: '50,60,70,80',
+                            sizes: '(max-width: 749px) 100vw, 100vw',
+                            class: 'max-w-full max-h-full object-contain'
                           -%}
                         </div>
                         <div class="add-on-text w-full flex items-center gap-[18px] justify-between">
@@ -514,24 +532,25 @@
                             {% if add_on_product.metafields.custom.alternate_title != blank %}
                               <h2 class="title font-grotesk font-normal text-[16px] max-md:text-[13px] leading-[1.6] text-black-text !tracking-normal">
                                 {% assign bamboo_icon = settings.bamboo_icon
- | image_url: width: 32
- | image_tag: class: 'inline-block translate-y-[-2px] mx-1', style: 'width: 16px;'
+                                  | image_url: width: 32
+                                  | image_tag: class: 'inline-block translate-y-[-2px] mx-1', style: 'width: 16px;'
                                 %}
                                 {% assign heart_icon = settings.heart_icon
- | image_url: width: 32
- | image_tag: class: 'inline-block translate-y-[-2px] mx-1', style: 'width: 16px;'
+                                  | image_url: width: 32
+                                  | image_tag: class: 'inline-block translate-y-[-2px] mx-1', style: 'width: 16px;'
                                 %}
                                 {% assign water_icon = settings.water_icon
- | image_url: width: 32
- | image_tag: class: 'inline-block translate-y-[-2px] mx-1', style: 'width: 16px;'
+                                  | image_url: width: 32
+                                  | image_tag: class: 'inline-block translate-y-[-2px] mx-1', style: 'width: 16px;'
                                 %}
                                 {% assign alternate_title = block.settings.alternate_title
- | default: add_on_product.metafields.custom.alternate_title
+                                  | default: add_on_product.metafields.custom.alternate_title
                                 %}
-                                {{ alternate_title
- | replace: '[bamboo]', bamboo_icon
- | replace: '[heart]', heart_icon
- | replace: '[water]', water_icon
+                                {{
+                                  alternate_title
+                                  | replace: '[bamboo]', bamboo_icon
+                                  | replace: '[heart]', heart_icon
+                                  | replace: '[water]', water_icon
                                 }}
                               </h2>
                             {% else %}
@@ -563,7 +582,9 @@
             {% when 'accordion' %}
               <div class="product__accordion">
                 {% for item in accordionItems %}
-                  <div class="product__accordion-item last:!border-b first:border-t !py-0 !px-[10px]" x-data="{ open: false }">
+                  <div
+                    class="product__accordion-item last:!border-b first:border-t !py-0 !px-[10px]"
+                    x-data="{ open: false }">
                     <div
                       class="product__accordion-title py-[16px] font-grotesk !font-medium !text-[18px] !leading-[1.3] text-black-text pr-[34px]"
                       :class="{ 'product__accordion-title--active': open }"
@@ -629,6 +650,88 @@
             product: {{ productCurrent | json }},
             linkToShowSizeMOdal: false,
             showWeight: true,
+            bundleMode: false,
+            selectedBundleVariants: [],
+            enableBundleMode: {% assign variants_block = section.blocks | where: 'type', 'variants' | first %}{% if variants_block.settings.enable_bundle_mode %}true{% else %}false{% endif %},
+  
+            handleBundleModeChange() {
+              if (!this.bundleMode) {
+                this.selectedBundleVariants = [];
+                if (this.activeVariant) {
+                  this.updateActiveVariant(this.activeVariant.id);
+                }
+              } else {
+                this.selectedBundleVariants = [];
+              }
+              this.updateBundlePrice();
+            },
+  
+            toggleBundleVariant(variantId) {
+              const index = this.selectedBundleVariants.indexOf(variantId);
+              if (index > -1) {
+                this.selectedBundleVariants.splice(index, 1);
+              } else {
+                if (this.selectedBundleVariants.length < 2) {
+                  this.selectedBundleVariants.push(variantId);
+                }
+              }
+              this.updateBundlePrice();
+            },
+  
+            isVariantInBundle(variantId) {
+              return this.selectedBundleVariants.includes(variantId);
+            },
+  
+            updateBundlePrice() {
+              if (!this.bundleMode || this.selectedBundleVariants.length === 0) {
+                return;
+              }
+              
+              let totalPrice = 0;
+              this.selectedBundleVariants.forEach(variantId => {
+                const variant = this.variants.find(v => v.id === variantId);
+                if (variant) {
+                  const subscriptionPrice = this.getVariantSubscriptionPrice(variantId);
+                  totalPrice += subscriptionPrice || variant.price;
+                }
+              });
+              
+              const addonCheckbox = document.querySelector('.addonproduct');
+              if (addonCheckbox) {
+                addonCheckbox.setAttribute('data-plan-price', this.price(totalPrice));
+                if (addonCheckbox.checked) {
+                  const addonPriceStr = (addonCheckbox.dataset.variantPrice || '').replace(/[^0-9.]/g, '');
+                  const addonPriceCents = parseFloat(addonPriceStr || 0) * 100;
+                  totalPrice += addonPriceCents;
+                }
+              }
+              
+              const formattedPrice = this.price(totalPrice);
+              const addToCartPrice = document.querySelector('.product__cta .sale-price');
+              if (addToCartPrice) {
+                addToCartPrice.innerHTML = formattedPrice;
+              }
+              const currentVariantPriceEl = document.querySelector('.current-variant-price');
+              if (currentVariantPriceEl) {
+                currentVariantPriceEl.textContent = formattedPrice;
+              }
+              if (typeof window.updateSubscriptionFormBundlePrice === 'function') {
+                window.updateSubscriptionFormBundlePrice();
+              }
+            },
+  
+            getVariantSubscriptionPrice(variantId) {
+              const variantElement = document.querySelector(`.selling_plan_theme_integration[data-variant-id="${variantId}"]`);
+              if (variantElement) {
+                const checkedRadio = variantElement.querySelector('[type="radio"]:checked');
+                if (checkedRadio && checkedRadio.dataset.variantPrice) {
+                  const priceStr = checkedRadio.dataset.variantPrice.replace(/[^0-9.]/g, '');
+                  const price = parseFloat(priceStr) * 100;
+                  return price; 
+                }
+              }
+              return null;
+            },
   
             addCheckedAddons() {
               const checkedAddons = document.querySelectorAll('.addonproduct:checked');
@@ -777,8 +880,8 @@
                   if (matches) {
                     const size = matches[1];
                     const count = matches[3];
-                    const currentSizeElement = document.querySelector('.current-size');
-                    if(currentSizeElement){
+                    const currentSizeElement = document.querySelector('.product__sizes .current-size');
+                    if (currentSizeElement) {
                       currentSizeElement.innerText = size;
                     }
   
@@ -818,12 +921,23 @@
                     const sizeTitle = label.querySelector('.product__size-title');
                     if (!sizeTitle) return;
   
-                    const firstSpan = sizeTitle.querySelector('span.option-item') || sizeTitle;
+                    const firstSpan = sizeTitle.querySelector('span.option-item') || sizeTitle.querySelector('span.single-option-item') || sizeTitle;
                     if (!firstSpan || sizeTitle.querySelector('.main-div')) return;
   
+                    const sizeText = firstSpan.textContent;
                     const variantTitle = document.querySelector('.product__sizes .product__sizes-title');
-                    if (variantTitle) {
-                      variantTitle.textContent ='Select ' + window.optionsName + ' : ' + firstSpan.textContent;
+                    if (!variantTitle) return;
+                    let currentSizeEl = variantTitle.querySelector('.current-size');
+                    if (currentSizeEl) {
+                      currentSizeEl.textContent = sizeText;
+                      if (window.optionsName) {
+                        const prefix = 'Select ' + window.optionsName + ' : ';
+                        const textNode = Array.from(variantTitle.childNodes).find(n => n.nodeType === Node.TEXT_NODE);
+                        if (textNode) textNode.textContent = prefix;
+                      }
+                    } else {
+                      const prefix = (window.optionsName ? 'Select ' + window.optionsName + ' : ' : '');
+                      variantTitle.innerHTML = prefix + '<span class="current-size text-[#7A7A7A]">' + sizeText + '</span>';
                     }
                   }
   
@@ -866,26 +980,26 @@
                   if (matches) {
                     const size = matches[1];
                     const count = matches[3];
-                    const currentSizeElement = document.querySelector('.current-size');
-                    if(currentSizeElement){
+                    const currentSizeElement = document.querySelector('.product__sizes .current-size');
+                    if (currentSizeElement) {
                       currentSizeElement.innerText = size;
                     }
-  
+
                     const sizeDiv = document.createElement("div");
                     sizeDiv.textContent = '1 month supply';
                     sizeDiv.classList.add("month-supply");
-  
+
                     const countDiv = document.createElement("div");
                     countDiv.textContent = count;
                     countDiv.classList.add("count-main");
-  
+
                     const variantTextMain = document.querySelector('.variant-text-main');
                     const oldCount = variantTextMain.querySelector('.count-main');
                     const oldSize = variantTextMain.querySelector('.month-supply');
-  
+
                     if (oldCount) oldCount.remove();
                     if (oldSize) oldSize.remove();
-  
+
                     variantTextMain.appendChild(countDiv);
                     variantTextMain.appendChild(sizeDiv);
                   }
@@ -911,6 +1025,52 @@
               }
             },
             addToCart(variantID, redirect = false) {
+              if (this.bundleMode && this.selectedBundleVariants.length === 2) {
+                const itemsToAdd = [];
+                this.selectedBundleVariants.forEach(variantId => {
+                  const variant = this.variants.find(v => v.id === variantId);
+                  if (variant) {
+                    const sellingPlanId = this.getSellingPlanForVariant(variantId);
+                    itemsToAdd.push({
+                      id: variantId,
+                      quantity: 1,
+                      ...(sellingPlanId && { selling_plan: sellingPlanId })
+                    });
+                  }
+                });
+                
+                if (this.templateName == 'product-bambootek' && this.extraProductId) {
+                  itemsToAdd.push({
+                    id: this.extraProductId,
+                    quantity: this.extraProductQty || 4,
+                    ...(this.sellingPlan?.id && { selling_plan: this.sellingPlan.id })
+                  });
+                }
+                
+                fetch("/cart/add.js", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                  },
+                  body: JSON.stringify({ items: itemsToAdd })
+                })
+                .then(response => response.json())
+                .then(data => {
+                  const drawer = document.querySelector('cart-drawer');
+                  if (drawer) {
+                    drawer.refresh();
+                    drawer.hideLoader();
+                    drawer.open();
+                  }
+                  this.addCheckedAddons();
+                })
+                .catch(error => {
+                  console.error("Error adding bundle to cart:", error);
+                });
+                return;
+              }
+              
               if (!variantID) return;
               if (this.templateName == 'product-bambootek') {
                   const itemsToAdd = [
@@ -944,6 +1104,21 @@
                   this.addCheckedAddons();
               });
               }
+            },
+  
+            getSellingPlanForVariant(variantId) {
+              const variantElement = document.querySelector(`.selling_plan_theme_integration[data-variant-id="${variantId}"]`);
+              if (variantElement) {
+                const checkedRadio = variantElement.querySelector('[type="radio"]:checked');
+                if (checkedRadio && checkedRadio.dataset.radioType === 'selling_plan') {
+                  const selectElement = variantElement.querySelector('select.selling-plan-dropdown');
+                  if (selectElement && selectElement.value) {
+                    return parseInt(selectElement.value);
+                  }
+                  return parseInt(checkedRadio.dataset.sellingPlanId);
+                }
+              }
+              return null;
             },
             price(price) {
                 return `$${(price / 100).toFixed(2)}`;
@@ -1122,6 +1297,14 @@
                 }
                 this.initSwiperMain();
                 this.initSwiperPagination();
+                
+                if (this.enableBundleMode) {
+                  const bundleCheckbox = document.querySelector('.variant-bundle-checkbox');
+                  if (bundleCheckbox) {
+                    this.bundleMode = bundleCheckbox.checked;
+                  }
+                }
+                
                 // console.log('product', this.product);
                 // console.log('product.variants', this.product.variants);
                 // console.log('this.variants', this.variants);
@@ -1165,15 +1348,17 @@
   document.addEventListener("change", (e) => {
   if (e.target && e.target.classList.contains("addonproduct")) {
     const checkbox = e.target;
-    const addonPrice = parseFloat(checkbox.dataset.variantPrice.replace(/[^0-9.]/g, "")) || 0;
-    const planPrice = parseFloat(checkbox.dataset.planPrice.replace(/[^0-9.]/g, "")) || 0;
+    const addonPrice = parseFloat((checkbox.dataset.variantPrice || '').replace(/[^0-9.]/g, "")) || 0;
+    const planPrice = parseFloat((checkbox.dataset.planPrice || '').replace(/[^0-9.]/g, "")) || 0;
     const priceElement = document.querySelector(".product__cta .sale-price");
-    if (checkbox.checked) {
-      const newPrice = addonPrice + planPrice;
-      priceElement.textContent = `$${newPrice.toFixed(2)}`;
-    } else {
-      const newPrice = planPrice;
-      priceElement.textContent = `$${newPrice.toFixed(2)}`;
+    if (priceElement) {
+      if (checkbox.checked) {
+        const newPrice = addonPrice + planPrice;
+        priceElement.textContent = `$${newPrice.toFixed(2)}`;
+      } else {
+        const newPrice = planPrice;
+        priceElement.textContent = `$${newPrice.toFixed(2)}`;
+      }
     }
   }
   });
@@ -1181,324 +1366,503 @@
     if(document.querySelector('.product__content input:checked')){
       document.querySelector('.product__content input:checked').dispatchEvent(new Event('change'));
     }
+    
+    function getSizeLabelFromLabelEl(labelEl) {
+      if (!labelEl) return '';
+      const sizeTitle = labelEl.querySelector('.product__size-title');
+      if (!sizeTitle) return '';
+      const firstSpan = sizeTitle.querySelector('span.option-item') || sizeTitle.querySelector('span.single-option-item');
+      return (firstSpan ? firstSpan.textContent : sizeTitle.textContent || '').trim();
+    }
+
+    /** For bundle mode: return compact label (e.g. "1", "2") so title shows "1 + 2" instead of long text. */
+    function getShortSizeFromLabelEl(labelEl) {
+      if (!labelEl) return '';
+      const sizeTitle = labelEl.querySelector('.product__size-title');
+      if (!sizeTitle) return '';
+      const sizeDiv = sizeTitle.querySelector('.size-div');
+      if (sizeDiv) return (sizeDiv.textContent || '').trim();
+      const singleOption = sizeTitle.querySelector('span.single-option-item');
+      if (singleOption) return (singleOption.textContent || '').trim();
+      const firstOption = sizeTitle.querySelector('span.option-item');
+      if (firstOption) return (firstOption.textContent || '').trim();
+      return (sizeTitle.textContent || '').trim();
+    }
+
+    function updateBundleCurrentSize() {
+      const bundleCheckbox = document.querySelector('.variant-bundle-checkbox');
+      if (!bundleCheckbox || !bundleCheckbox.checked) return;
+      const variantTitle = document.querySelector('.product__sizes .product__sizes-title');
+      if (!variantTitle) return;
+      let currentSizeEl = variantTitle.querySelector('.current-size');
+      const checked = document.querySelectorAll('input[name="bundle-size"]:checked');
+      const parts = [];
+      checked.forEach(function(input) {
+        const label = input.closest('label.product__size');
+        const text = getShortSizeFromLabelEl(label);
+        if (text) parts.push(text);
+      });
+      const sizeText = parts.join(' + ');
+      if (!currentSizeEl) {
+        const prefix = (window.optionsName ? 'Select ' + window.optionsName + ' : ' : '');
+        variantTitle.innerHTML = prefix + '<span class="current-size text-[#7A7A7A]">' + sizeText + '</span>';
+      } else {
+        currentSizeEl.textContent = sizeText;
+      }
+    }
+
+    document.addEventListener('change', (e) => {
+      if (e.target && e.target.name === 'bundle-size') {
+        const bundleCheckbox = document.querySelector('.variant-bundle-checkbox');
+        if (bundleCheckbox && bundleCheckbox.checked) {
+          updateBundleCurrentSize();
+          updateBundlePrice();
+        } else if (typeof window.updateSubscriptionFormBundlePrice === 'function') {
+          window.updateSubscriptionFormBundlePrice();
+        }
+      }
+      if (e.target && e.target.classList.contains('variant-bundle-checkbox')) {
+        updateBundleCurrentSize();
+        if (typeof window.updateSubscriptionFormBundlePrice === 'function') {
+          window.updateSubscriptionFormBundlePrice();
+        }
+      }
+      if (e.target && (e.target.type === 'radio' || e.target.classList.contains('selling-plan-dropdown'))) {
+        const bundleCheckbox = document.querySelector('.variant-bundle-checkbox');
+        if (bundleCheckbox && bundleCheckbox.checked) {
+          setTimeout(() => updateBundlePrice(), 100);
+        }
+      }
+    });
+    
+    function updateBundlePrice() {
+      const bundleCheckbox = document.querySelector('.variant-bundle-checkbox');
+      if (!bundleCheckbox || !bundleCheckbox.checked) return;
+      
+      const bundleVariants = Array.from(document.querySelectorAll('input[name="bundle-size"]:checked')).map(cb => parseInt(cb.value));
+      if (bundleVariants.length > 0) {
+        let totalPrice = 0;
+        bundleVariants.forEach(variantId => {
+          const variantElement = document.querySelector(`.selling_plan_theme_integration[data-variant-id="${variantId}"]`);
+          if (variantElement) {
+            const checkedRadio = variantElement.querySelector('[type="radio"]:checked');
+            if (checkedRadio && checkedRadio.dataset.variantPrice) {
+              const priceStr = checkedRadio.dataset.variantPrice.replace(/[^0-9.]/g, '');
+              totalPrice += parseFloat(priceStr) || 0;
+            } else {
+              const variant = window.Alpine?.store('product')?.variants?.find(v => v.id === variantId);
+              if (variant) {
+                totalPrice += variant.price / 100;
+              }
+            }
+          }
+        });
+        
+        const addonCheckbox = document.querySelector('.addonproduct');
+        if (addonCheckbox) {
+          addonCheckbox.setAttribute('data-plan-price', `$${totalPrice.toFixed(2)}`);
+          if (addonCheckbox.checked) {
+            const addonPrice = parseFloat((addonCheckbox.dataset.variantPrice || '').replace(/[^0-9.]/g, '')) || 0;
+            totalPrice += addonPrice;
+          }
+        }
+        
+        const priceElement = document.querySelector('.product__cta .sale-price');
+        if (priceElement) {
+          priceElement.textContent = `$${totalPrice.toFixed(2)}`;
+        }
+        
+        if (document.querySelector('.current-variant-price')) {
+          document.querySelector('.current-variant-price').textContent = `$${totalPrice.toFixed(2)}`;
+        }
+        if (typeof window.updateSubscriptionFormBundlePrice === 'function') {
+          window.updateSubscriptionFormBundlePrice();
+        }
+      } else {
+        if (typeof window.updateSubscriptionFormBundlePrice === 'function') {
+          window.updateSubscriptionFormBundlePrice();
+        }
+      }
+    }
   });
 </script>
 <style></style>
 
 {% schema %}
-  {
-    "name": "Main Product",
-    "settings": [
-      {
-        "type": "textarea",
-        "id": "sizes_accent_colors",
-        "label": "Sizes Accent Colors",
-        "info": "size - accent_color_top|accent_color_bottom"
-      },
-      {
-        "type": "richtext",
-        "id": "review_numbers",
-        "label": "How many reviews?"
-      },
-      {
-        "type": "product",
-        "id": "extra_product_for_bambootek",
-        "label": "Extra Product for Bambootek",
-        "info": "This product will be used for the Bambootek template only. It will not be displayed in the product page."
-      },
-      {
-        "type": "number",
-        "id": "extra_product_quantity",
-        "label": "Extra Product Quantity",
-        "default": 4
-      }, {
-        "type": "image_picker",
-        "id": "size_chart_image",
-        "label": "Size Chart Image"
-      }, {
-        "type": "checkbox",
-        "id": "show_product_details",
-        "label": "Show Product Details",
-        "info": "Show the 'Box Contains' and 'Pack Contains' information below variant options",
-        "default": true
-      }, {
-        "type": "header",
-        "content": "Store Locator Detail"
-      }, {
-        "type": "checkbox",
-        "id": "show_store_locator",
-        "label": "Show Store Locator",
-        "default": true
-      }, {
-        "type": "image_picker",
-        "id": "store_main_logo",
-        "label": "Main Logo"
-      }, {
-        "type": "text",
-        "id": "store_main_heading",
-        "label": "Heading"
-      }, {
-        "type": "richtext",
-        "id": "store_sub_heading",
-        "label": "Heading"
-      }, {
-        "type": "image_picker",
-        "id": "store_right_logo",
-        "label": "Right Logo"
-      }, {
-        "type": "header",
-        "content": "External Buttons"
-      }, {
-        "type": "checkbox",
-        "id": "enable_walmart_btn",
-        "label": "Show Walmart Button",
-        "default": true
-      }, {
-        "type": "text",
-        "id": "walmart_btn_text",
-        "label": "Walmart Button Text",
-        "default": "Buy on Walmart"
-      }, {
-        "type": "checkbox",
-        "id": "enable_target_btn",
-        "label": "Show Target Button",
-        "default": true
-      }, {
-        "type": "text",
-        "id": "target_btn_text",
-        "label": "Target Button Text",
-        "default": "Buy on Target"
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_buy_at_target_btn",
-        "label": "Show Buy at Target Button",
-        "default": true
-      }, {
-        "type": "text",
-        "id": "buy_at_target_btn_text",
-        "label": "But at Button Text",
-        "default": "Buy at Target "
-      }, {
-        "type": "checkbox",
-        "id": "enable_nearby_btn",
-        "label": "Show Store Nearby Button",
-        "default": true
-      }, {
-        "type": "text",
-        "id": "nearby_btn_text",
-        "label": "Store Nearby Button Text",
-        "default": "Find a Store Nearby"
-      }, {
-        "type": "checkbox",
-        "id": "enable_waitlist_btn",
-        "label": "Show Join the Waitlist Button",
-        "default": true
-      }, {
-        "type": "text",
-        "id": "waitlist_btn_text",
-        "label": "Waitlist Button Text",
-        "default": "Join the Waitlist"
-      }
-    ],
-    "blocks": [
-      {
-        "type": "add_on_product",
-        "name": "Add On Product",
-        "limit": 1,
-        "settings": [
-          {
-            "type": "text",
-            "id": "heading",
-            "label": "Heading"
-          }, {
-            "type": "product",
-            "id": "product",
-            "label": "Product"
-          }
-        ]
-      },
-      {
-        "type": "richtext",
-        "name": "Richtext",
-        "settings": [
-          {
-            "type": "richtext",
-            "id": "richtext",
-            "label": "Content"
-          }
-        ]
-      },
-      {
-        "type": "specification",
-        "name": "Specification",
-        "limit": 1
-      },
-      {
-        "type": "specification_item",
-        "name": "Specification Item",
-        "settings": [
-          {
-            "type": "text",
-            "id": "text",
-            "label": "Text"
-          }
-        ]
-      }, {
-        "type": "accordion",
-        "name": "Accordion",
-        "limit": 1
-      }, {
-        "type": "accordion_item",
-        "name": "Accordion Item",
-        "settings": [
-          {
-            "type": "text",
-            "id": "title",
-            "label": "Title"
-          }, {
-            "type": "richtext",
-            "id": "content",
-            "label": "Content"
-          }
-        ]
-      }, {
-        "type": "cta",
-        "name": "CTA",
-        "limit": 1,
-        "settings": [
-          {
-            "type": "select",
-            "id": "cta_type",
-            "label": "CTA Type",
-            "options": [
-              {
-                "value": "add_to_cart",
-                "label": "Add to Cart"
-              }, {
-                "value": "external_link",
-                "label": "External Link"
-              }
-            ]
-          }, {
-            "type": "text",
-            "id": "cta_label",
-            "label": "CTA Label",
-            "default": "Add to Cart"
-          }, {
-            "type": "url",
-            "id": "cta_url",
-            "label": "CTA URL"
-          }, {
-            "type": "richtext",
-            "id": "text",
-            "label": "Text"
-          }
-        ]
-      }, {
-        "type": "description",
-        "name": "Description",
-        "limit": 1
-      }, {
-        "type": "variant_text",
-        "name": "Variant Text",
-        "limit": 1
-      }, {
-        "type": "product_features",
-        "name": "Product Features",
-        "limit": 1,
-        "settings": [
-          {
-            "type": "richtext",
-            "id": "note",
-            "label": "Note"
-          }
-        ]
-      }, {
-        "type": "product_feature",
-        "name": "Product Feature",
-        "settings": [
-          {
-            "type": "textarea",
-            "id": "icon",
-            "label": "Icon"
-          }, {
-            "type": "image_picker",
-            "id": "icon_image",
-            "label": "Icon Image"
-          }, {
-            "type": "richtext",
-            "id": "title",
-            "label": "Text"
-          }
-        ]
-      }, {
-        "type": "separator",
-        "name": "Separator"
-      }, {
-        "type": "tags",
-        "name": "Tags",
-        "limit": 1
-      }, {
-        "type": "title",
-        "name": "Title",
-        "limit": 1,
-        "settings": [
-          {
-            "type": "image_picker",
-            "id": "image",
-            "label": "Alternate Title Image"
-          }, {
-            "type": "text",
-            "id": "alternate_title",
-            "label": "Alternate Title"
-          }
-        ]
-      }, {
-        "type": "variants",
-        "name": "Variants",
-        "settings": [
-          {
-            "type": "text",
-            "id": "title",
-            "label": "Title"
-          }, {
-            "type": "textarea",
-            "id": "sizes_accent_colors",
-            "label": "Sizes Accent Colors",
-            "info": "size - accent_color_top|accent_color_bottom"
-          }, {
-            "type": "checkbox",
-            "id": "show_weight",
-            "label": "Show Weight",
-            "info": "Display the weight information for each variant",
-            "default": true
-          }
-        ],
-        "limit": 1
-      }, {
-        "type": "subscription-form",
-        "name": "Subscription Form",
-        "limit": 1,
-        "settings": [
-          {
-            "type": "text",
-            "id": "free_shipping",
-            "label": "Free Shipping text",
-            "default": "Free shipping on every order"
-          }, {
-            "type": "text",
-            "id": "cancel_text",
-            "label": "Cancellation Text",
-            "default": "Modify or cancel any time."
-          }, {
-            "type": "text",
-            "id": "plan_text",
-            "label": "Plan text",
-            "default": "Delivery"
-          }
-        ]
-      }
-    ]
-  }
+{
+  "name": "Main Product",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "sizes_accent_colors",
+      "label": "Sizes Accent Colors",
+      "info": "size - accent_color_top|accent_color_bottom"
+    },
+    {
+      "type": "richtext",
+      "id": "review_numbers",
+      "label": "How many reviews?"
+    },
+    {
+      "type": "product",
+      "id": "extra_product_for_bambootek",
+      "label": "Extra Product for Bambootek",
+      "info": "This product will be used for the Bambootek template only. It will not be displayed in the product page."
+    },
+    {
+      "type": "number",
+      "id": "extra_product_quantity",
+      "label": "Extra Product Quantity",
+      "default": 4
+    },
+    {
+      "type": "image_picker",
+      "id": "size_chart_image",
+      "label": "Size Chart Image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_details",
+      "label": "Show Product Details",
+      "info": "Show the 'Box Contains' and 'Pack Contains' information below variant options",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Store Locator Detail"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_store_locator",
+      "label": "Show Store Locator",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "store_main_logo",
+      "label": "Main Logo"
+    },
+    {
+      "type": "text",
+      "id": "store_main_heading",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "store_sub_heading",
+      "label": "Heading"
+    },
+    {
+      "type": "image_picker",
+      "id": "store_right_logo",
+      "label": "Right Logo"
+    },
+    {
+      "type": "header",
+      "content": "External Buttons"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_walmart_btn",
+      "label": "Show Walmart Button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "walmart_btn_text",
+      "label": "Walmart Button Text",
+      "default": "Buy on Walmart"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_target_btn",
+      "label": "Show Target Button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "target_btn_text",
+      "label": "Target Button Text",
+      "default": "Buy on Target"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_buy_at_target_btn",
+      "label": "Show Buy at Target Button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "buy_at_target_btn_text",
+      "label": "But at Button Text",
+      "default": "Buy at Target "
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_nearby_btn",
+      "label": "Show Store Nearby Button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "nearby_btn_text",
+      "label": "Store Nearby Button Text",
+      "default": "Find a Store Nearby"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_waitlist_btn",
+      "label": "Show Join the Waitlist Button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "waitlist_btn_text",
+      "label": "Waitlist Button Text",
+      "default": "Join the Waitlist"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "add_on_product",
+      "name": "Add On Product",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    },
+    {
+      "type": "richtext",
+      "name": "Richtext",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "richtext",
+          "label": "Content"
+        }
+      ]
+    },
+    {
+      "type": "specification",
+      "name": "Specification",
+      "limit": 1
+    },
+    {
+      "type": "specification_item",
+      "name": "Specification Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    },
+    {
+      "type": "accordion",
+      "name": "Accordion",
+      "limit": 1
+    },
+    {
+      "type": "accordion_item",
+      "name": "Accordion Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "name": "CTA",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "cta_type",
+          "label": "CTA Type",
+          "options": [
+            {
+              "value": "add_to_cart",
+              "label": "Add to Cart"
+            },
+            {
+              "value": "external_link",
+              "label": "External Link"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "cta_label",
+          "label": "CTA Label",
+          "default": "Add to Cart"
+        },
+        {
+          "type": "url",
+          "id": "cta_url",
+          "label": "CTA URL"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    },
+    {
+      "type": "description",
+      "name": "Description",
+      "limit": 1
+    },
+    {
+      "type": "variant_text",
+      "name": "Variant Text",
+      "limit": 1
+    },
+    {
+      "type": "product_features",
+      "name": "Product Features",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "note",
+          "label": "Note"
+        }
+      ]
+    },
+    {
+      "type": "product_feature",
+      "name": "Product Feature",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icon Image"
+        },
+        {
+          "type": "richtext",
+          "id": "title",
+          "label": "Text"
+        }
+      ]
+    },
+    {
+      "type": "separator",
+      "name": "Separator"
+    },
+    {
+      "type": "tags",
+      "name": "Tags",
+      "limit": 1
+    },
+    {
+      "type": "title",
+      "name": "Title",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Alternate Title Image"
+        },
+        {
+          "type": "text",
+          "id": "alternate_title",
+          "label": "Alternate Title"
+        }
+      ]
+    },
+    {
+      "type": "variants",
+      "name": "Variants",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "sizes_accent_colors",
+          "label": "Sizes Accent Colors",
+          "info": "size - accent_color_top|accent_color_bottom"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_weight",
+          "label": "Show Weight",
+          "info": "Display the weight information for each variant",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Variant Bundle Builder"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_bundle_mode",
+          "label": "Enable Multi-Variant Selection",
+          "info": "Allow customers to select two variants to create a bundle",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "bundle_label",
+          "label": "Bundle Checkbox Label",
+          "default": "select two sizes",
+          "info": "Text displayed beside the bundle mode checkbox"
+        }
+      ],
+      "limit": 1
+    },
+    {
+      "type": "subscription-form",
+      "name": "Subscription Form",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "free_shipping",
+          "label": "Free Shipping text",
+          "default": "Free shipping on every order"
+        },
+        {
+          "type": "text",
+          "id": "cancel_text",
+          "label": "Cancellation Text",
+          "default": "Modify or cancel any time."
+        },
+        {
+          "type": "text",
+          "id": "plan_text",
+          "label": "Plan text",
+          "default": "Delivery"
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}

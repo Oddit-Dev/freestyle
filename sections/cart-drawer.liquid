@@ -1,4 +1,5 @@
 {{ 'cart-drawer.css' | asset_url | stylesheet_tag }}
+
 <cart-drawer
   id="CartDrawer"
   class="cart-drawer"
@@ -62,18 +63,18 @@
 
       {% if cart.item_count == 0 %}
         <div class="px-[16px] empty-drawer-main h-full">
-          {% render 'empty-cart' section: section %}
+          {% render 'empty-cart', section: section %}
           {% if section.settings.enable_product_feature %}
             <div class="custom-product-feature mt-[22px] p-[85px_0_80px]">
               <div class="product-feature-main bg-[#DADAFF] rounded-[16px] p-[0_20px_24px] flex flex-col">
                 {% assign pro_feature_image = section.settings.product_feature_image %}
                 {% if pro_feature_image != blank %}
                   <div class="product-feature-image mt-[-71px] w-[160px] h-[160px] mx-auto mb-[10px] flex items-center justify-center">
-                    {% render 'image-element'
-                      , image: pro_feature_image
-                      , widths: '100, 200, 300, 375, 550, 750, 1100, 1500, 1780'
-                      , sizes: '(max-width: 989px) 100vw, 45vw'
-                      , class: 'product-feature-image max-w-full max-h-full h-auto object-contain'
+                    {% render 'image-element',
+                      image: pro_feature_image,
+                      widths: '100, 200, 300, 375, 550, 750, 1100, 1500, 1780',
+                      sizes: '(max-width: 989px) 100vw, 45vw',
+                      class: 'product-feature-image max-w-full max-h-full h-auto object-contain'
                     %}
                   </div>
                 {% endif %}
@@ -90,12 +91,15 @@
                       {{ section.settings.product_feature_content }}
                     </span>
                   {% endif %}
-                  {% if section.settings.product_feature_btn_url != blank and section.settings.product_feature_btn_txt != blank
+                  {% if section.settings.product_feature_btn_url != blank
+                    and section.settings.product_feature_btn_txt != blank
                   %}
                     <div class="mt-[12px]">
                       {% assign heart_svg = 'icon-heart.svg' | inline_asset_content %}
                       {% assign main_btn = section.settings.product_feature_btn_txt | replace: '$heart', heart_svg %}
-                      <a href="{{ section.settings.product_feature_btn_url }}" class="button button-primary !max-w-[390px] w-full max-md:mx-auto !px-[20px]">
+                      <a
+                        href="{{ section.settings.product_feature_btn_url }}"
+                        class="button button-primary !max-w-[390px] w-full max-md:mx-auto !px-[20px]">
                         {{ main_btn }}
                       </a>
                     </div>
@@ -108,7 +112,24 @@
       {% else %}
         {% capture product_ids %}{% endcapture %}
         {% for item in cart.items %}
-          <div class="cart-drawer__item p-[20px_16px] flex gap-[16px]" data-key="{{ item.key }}" data-item-id="{{ item.id }}" data-qty="{{ item.quantity }}">
+          {% assign is_variant_bundle = false %}
+          {% if item.product.tags contains 'Variant Bundle' or item.product.tags contains 'variant bundle' %}
+            {% assign is_variant_bundle = true %}
+          {% endif %}
+          {% if is_variant_bundle %}
+            <style>
+              .cart-drawer__item[data-key='{{ item.key }}'] .qty-box {
+                pointer-events: none;
+                opacity: 0.5;
+              }
+            </style>
+          {% endif %}
+
+          <div
+            class="cart-drawer__item p-[20px_16px] flex gap-[16px]"
+            data-key="{{ item.key }}"
+            data-item-id="{{ item.id }}"
+            data-qty="{{ item.quantity }}">
             <span class="w-[80px] min-w-[80px] h-[80px] flex items-center justify-center">
               <img
                 src="{{ item.image | image_url: width: 80 }}"
@@ -116,7 +137,9 @@
                 class="object-contain max-h-full">
             </span>
             <div class="cart-drawer__details w-full">
-              <a href="{{ item.product.url }}" class="cart-drawer__title font-grotesk font-medium text-[16px] leading-[1.2] tracking-[0.05em] text-scheme_two !mb-[8px] block">
+              <a
+                href="{{ item.product.url }}"
+                class="cart-drawer__title font-grotesk font-medium text-[16px] leading-[1.2] tracking-[0.05em] text-scheme_two !mb-[8px] block">
                 {{ item.product.title }}
               </a>
 
@@ -162,45 +185,67 @@
                   <span class="compare-price text-[#909090]">{{ compare_at | money }}</span>
                   {% assign discount = compare_at | minus: price | times: 100 | divided_by: compare_at %}
                   <span class="discount-badge bg-[#82E8D3] p-[3px_8px] rounded-[24px] font-grotesk font-bold text-[11px] leading-[1.2] tracking-[-0.05em] uppercase text-black">
-                    {{- discount }}% OFF</span>
+                    {{- discount }}% OFF</span
+                  >
                 {% endif %}
               </p>
 
               <div class="cart-drawer__quantity flex items-center justify-between gap-[10px] w-full">
-                <div class="qty-box max-w-[105px] w-full flex items-center border border-solid border-[#E3E3E3] rounded-[40px]">
-                  <button class="qty-btn minus w-[35px] min-w-[35px] h-[35px] flex items-center justify-center pl-[7px]">
+                <div class="qty-box max-w-[105px] w-full flex items-center border border-solid border-[#E3E3E3] rounded-[40px] {% if is_variant_bundle %}pointer-events-none opacity-50{% endif %}">
+                  <button
+                    class="qty-btn minus w-[35px] min-w-[35px] h-[35px] flex items-center justify-center pl-[7px]"
+                    {% if is_variant_bundle %}
+                      disabled
+                    {% endif %}>
                     {{ 'drawer-minus.svg' | inline_asset_content }}
                   </button>
+
                   <input
                     type="number"
                     value="{{ item.quantity }}"
                     min="1"
-                    class="w-[35px] min-w-[35px] h-[35px] flex items-center justify-center font-grotesk font-normal text-[13px] leading-[1] text-black text-center pt-[2px] pointer-events-none">
-                  <button class="qty-btn plus w-[35px] min-w-[35px] h-[35px] flex items-center justify-center pr-[7px]">
+                    class="w-[35px] min-w-[35px] h-[35px] flex items-center justify-center font-grotesk font-normal text-[13px] leading-[1] text-black text-center pt-[2px]"
+                    {% if is_variant_bundle %}
+                      readonly
+                    {% endif %}>
+
+                  <button
+                    class="qty-btn plus w-[35px] min-w-[35px] h-[35px] flex items-center justify-center pr-[7px]"
+                    {% if is_variant_bundle %}
+                      disabled
+                    {% endif %}>
                     {{ 'drawer-plus.svg' | inline_asset_content }}
                   </button>
                 </div>
+
                 <button class="cart-drawer__remove flex gap-[6px] items-center font-grotesk font-normal text-[13px] leading-[1.35] text-black underline underline-offset-2 [&_svg]:mb-[2px]">
                   {{ 'drawer-delete.svg' | inline_asset_content }}Remove
                 </button>
               </div>
-              {% if item.product.variants.size > 0 %}  
-                <custom-cart-variant-selector class="custom-variant-selector block ml-[-96px] w-[calc(100%+96px)] mt-[10px]" data-item-id="{{ item.id }}" data-line="{{ forloop.index }}" data-qty="{{ item.quantity }}">
-                  <button type="button" class="variant-select-button flex justify-between w-full text-[14px] gap-[16px] items-center bg-[#C5B4E326] p-[13px_12px] rounded-[8px] mt-[10px]">
+
+              {% if item.product.variants.size > 0 %}
+                <custom-cart-variant-selector
+                  class="custom-variant-selector block ml-[-96px] w-[calc(100%+96px)] mt-[10px]"
+                  data-item-id="{{ item.id }}"
+                  data-line="{{ forloop.index }}"
+                  data-qty="{{ item.quantity }}">
+                  <button
+                    type="button"
+                    class="variant-select-button flex justify-between w-full text-[14px] gap-[16px] items-center bg-[#C5B4E326] p-[13px_12px] rounded-[8px] mt-[10px]">
                     <div class="varaint-text-left flex items-center text-[14px] leading-[1] text-[#000000] pointer-events-none">
                       {% if item.variant.title contains 'Size' %}
-                        {%- assign variant_number = item.variant.title |  split: '(' | first |  split: ' ' | last -%}
-                        {%- assign variant_lbs = item.variant.title |  split: ')' | first |  split: '(' | last -%}
-                        {%- assign variant_size = item.variant.title |  split: '-' | last -%}
-                          {% if variant_number and variant_lbs %}
-                            <b class="mr-[8px]">{{ variant_number }}</b>
-                            <span class="text-[#909090] mr-[14px]">{{ variant_lbs }}</span>
-                          {% endif %}
-                          {% if variant_size %}
-                            <b class="lowercase">{{- variant_size | escape -}}</b>
-                          {% endif %}
-                      {% else %}  
-                      {{ item.variant.title }}
+                        {%- assign variant_number = item.variant.title | split: '(' | first | split: ' ' | last -%}
+                        {%- assign variant_lbs = item.variant.title | split: ')' | first | split: '(' | last -%}
+                        {%- assign variant_size = item.variant.title | split: '-' | last -%}
+                        {% if variant_number and variant_lbs %}
+                          <b class="mr-[8px]">{{ variant_number }}</b>
+                          <span class="text-[#909090] mr-[14px]">{{ variant_lbs }}</span>
+                        {% endif %}
+                        {% if variant_size %}
+                          <b class="lowercase">{{- variant_size | escape -}}</b>
+                        {% endif %}
+                      {% else %}
+                        {{ item.variant.title }}
                       {% endif %}
                     </div>
                     <span class="flex items-center gap-[6px] cursor-pointer text-[13px]">
@@ -211,42 +256,41 @@
                   <ul class="variant-option-list flex-wrap gap-[8px] mt-[10px]">
                     {% for variant in item.product.variants %}
                       {% if variant.available %}
-                      <li data-variant-id="{{ variant.id }}" class="w-[calc(33.33%-2/3*8px)] leading-[1] text-left border-[1px] border-solid border-[#E3E3E3] rounded-[8px] flex items-center justify-center p-[20px_8px] text-[13px] font-medium flex-col gap-[13px] {% if variant.id == item.variant.id %}active{% endif %}">
-                        {% if variant.title contains 'Size' %}
-                          {%- assign variant_number = variant.title |  split: '(' | first |  split: ' ' | last -%}
-                          {%- assign variant_lbs = variant.title |  split: ')' | first |  split: '(' | last -%}
-                          {%- assign variant_size = variant.title |  split: '-' | last -%}
-                          {% if variant_number and variant_lbs %}
+                        <li
+                          data-variant-id="{{ variant.id }}"
+                          class="w-[calc(33.33%-2/3*8px)] leading-[1] text-left border-[1px] border-solid border-[#E3E3E3] rounded-[8px] flex items-center justify-center p-[20px_8px] text-[13px] font-medium flex-col gap-[13px] {% if variant.id == item.variant.id %}active{% endif %}">
+                          {% if variant.title contains 'Size' %}
+                            {%- assign variant_number = variant.title | split: '(' | first | split: ' ' | last -%}
+                            {%- assign variant_lbs = variant.title | split: ')' | first | split: '(' | last -%}
+                            {%- assign variant_size = variant.title | split: '-' | last -%}
+                            {% if variant_number and variant_lbs %}
                               <span class="cart-v-top flex items-center gap-[8px] w-full leading-[1]">
-                                  <b class="font-bold text-[16px] leading-[13px]">{{ variant_number }}</b>
-                                  <span class="text-[#909090] text-[13px] font-normal">{{ variant_lbs }}</span>
+                                <b class="font-bold text-[16px] leading-[13px]">{{ variant_number }}</b>
+                                <span class="text-[#909090] text-[13px] font-normal">{{ variant_lbs }}</span>
                               </span>
-                          {% endif %}
-                          {% if variant_size %}
+                            {% endif %}
+                            {% if variant_size %}
                               <b class="cart-v-bottom lowercase">
-                                  {{- variant_size | escape -}}
+                                {{- variant_size | escape -}}
                               </b>
+                            {% endif %}
+                          {% else %}
+                            {{ variant.title }}
                           {% endif %}
-                        {% else %}  
-                        {{ variant.title }}
-                        {% endif %}  
-                      </li>
+                        </li>
                       {% endif %}
                     {% endfor %}
                   </ul>
                 </custom-cart-variant-selector>
               {% endif %}
               {% if item.selling_plan_allocation != null %}
-                {% if item.selling_plan_allocation
-                  or item.variant.product.selling_plan_groups.size > 0
-                %}
+                {% if item.selling_plan_allocation or item.variant.product.selling_plan_groups.size > 0 %}
                   <custom-cart-selling-plan-selector
                     class="custom-selling-plan-selector relative block ml-[-96px] w-[calc(100%+96px)]"
                     data-item-id="{{ item.id }}"
                     data-qty="{{ item.quantity }}"
                     data-line="{{ forloop.index }}"
-                    data-current-id="{{ item.variant.id }}"
-                  >
+                    data-current-id="{{ item.variant.id }}">
                     <div class="selling-plan-button product-option justify-between flex gap-[16px] text-[13px] items-center bg-[#C5B4E326] p-[13px_12px] rounded-[8px] mt-[10px]">
                       {% assign allocation = item.selling_plan_allocation %}
                       {% assign adjustment = allocation.selling_plan.price_adjustments | first %}
@@ -255,27 +299,27 @@
                       <div class="selling-plan-info flex items-center gap-[9px]">
                         <span class="plan-name">{{ allocation.selling_plan.name }}</span>
                         {% if save_value != 0 %}
-                          <span class="save-text bg-[#82E8D3] text-[11px] leading-[1.2] tracking-[-0.05em] p-[4px_8px] pb-[2px] rounded-full font-bold">Save {{ save_value }}%</span>
+                          <span class="save-text bg-[#82E8D3] text-[11px] leading-[1.2] tracking-[-0.05em] p-[4px_8px] pb-[2px] rounded-full font-bold"
+                            >Save {{ save_value }}%</span
+                          >
                         {% endif %}
-                      </div> 
+                      </div>
                       <span class="flex items-center gap-[6px] cursor-pointer text-[13px]">
                         {{ 'icon-edit.svg' | inline_asset_content }}
                         <span class="underline text-[13px] text-[#000000]">Edit Plan</span>
                       </span>
                     </div>
                     <ul
-                      class="selling-plan-list-ul absolute z-[2] top-[90%] left-0 min-w-max bg-white shadow p-[10px] flex flex-col gap-[8px] m-0 w-full"
-                    >
+                      class="selling-plan-list-ul absolute z-[2] top-[90%] left-0 min-w-max bg-white shadow p-[10px] flex flex-col gap-[8px] m-0 w-full">
                       <li
                         class="!font-primary !text-[12px] !leading-[1.2] !text-dark cursor-pointer"
                         data-value=""
                         {% unless item.selling_plan_allocation %}
                           selected
-                        {% endunless %}
-                      >
+                        {% endunless %}>
                         One-time purchase
                       </li>
-              
+
                       {% for group in item.variant.product.selling_plan_groups %}
                         {% for plan in group.selling_plans %}
                           <li
@@ -283,8 +327,7 @@
                             data-value="{{ plan.id }}"
                             {% if item.selling_plan_allocation.selling_plan.id == plan.id %}
                               selected
-                            {% endif %}
-                          >
+                            {% endif %}>
                             {{ plan.name }}
                           </li>
                         {% endfor %}
@@ -293,11 +336,9 @@
                   </custom-cart-selling-plan-selector>
                 {% endif %}
               {% endif %}
-              
+
               <div class="subscription-main ml-[-96px] w-[calc(100%+96px)]">
-                {% render 'subscription-form'
-                  , item: item
-                  , forloop: forloop %}
+                {% render 'subscription-form', item: item, forloop: forloop %}
               </div>
             </div>
           </div>
@@ -318,7 +359,9 @@
                     {{ section.settings.custom_upsell_heading }}
                   </h4>
                 {% endif %}
-                <label for="custom-drawer-upsell" class="add-on-label p-[20px_14px] rounded-[12px] border border-solid border-[#E3E3E3]">
+                <label
+                  for="custom-drawer-upsell"
+                  class="add-on-label p-[20px_14px] rounded-[12px] border border-solid border-[#E3E3E3]">
                   <div class="flex-add-on-details flex items-center gap-[18px]">
                     <div class="cdp-img w-[70px] min-w-[70px] h-[70px] flex items-center justify-center">
                       <img
@@ -421,181 +464,181 @@
 </cart-drawer>
 <div class="cart-drawer__overlay"></div>
 {% schema %}
-  {
-    "name": "Cart Drawer",
-    "settings": [
-      {
-        "type": "header",
-        "content": "Empty Cart"
-      },
-      {
-        "type": "text",
-        "id": "empty_cart_title",
-        "label": "Empty Cart Heading"
-      },
-      {
-        "type": "richtext",
-        "id": "empty_cart_content",
-        "label": "Sub Content"
-      },
-      {
-        "type": "product_list",
-        "id": "empty_cart_product_list",
-        "label": "Empty Cart Product List",
-        "limit": 4
-      },
-      {
-        "type": "header",
-        "content": "Choose size content"
-      },
-      {
-        "type": "text",
-        "id": "empty_size_title",
-        "label": "Empty Size Heading",
-        "default": "Choose a Size"
-      },
-      {
-        "type": "richtext",
-        "id": "empty_size_text",
-        "label": "Sub Content"
-      },
-      {
-        "type": "header",
-        "content": "Select plan content"
-      },
-      {
-        "type": "text",
-        "id": "empty_plan_title",
-        "label": "Empty Plan Heading",
-        "default": "Select plan"
-      },
-      {
-        "type": "header",
-        "content": "Product Featured"
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_product_feature",
-        "label": "Enable Product Feature",
-        "default": true
-      },  
-      {
-        "type": "image_picker",
-        "id": "product_feature_image",
-        "label": "Choose Image"
-      }, 
-      {
-        "type": "richtext",
-        "id": "product_feature_title",
-        "label": "Heading"
-      }, 
-      {
-        "type": "richtext",
-        "id": "product_feature_content",
-        "label": "Content"
-      }, 
-      {
-        "type": "text",
-        "id": "product_feature_btn_txt",
-        "label": "Button Text"
-      }, 
-      {
-        "type": "url",
-        "id": "product_feature_btn_url",
-        "label": "URL"
-      }, 
-      {
-        "type": "header",
-        "content": "Subscription Product"
-      }, 
-      {
-        "type": "text",
-        "id": "subscription_button_label",
-        "label": "Subscription Button Label"
-      }, 
-      {
-        "type": "header",
-        "content": "Button Content"
-      }, 
-      {
-        "type": "richtext",
-        "id": "empty_btm_walmart",
-        "label": "Content"
-      }, 
-      {
-        "type": "header",
-        "content": "Free shipping content"
-      }, 
-      {
-        "type": "number",
-        "id": "free_shipping_threshold",
-        "label": "Free shipping threshold",
-        "default": 150
-      }, 
-      {
-        "type": "richtext",
-        "id": "free_shipping_text",
-        "label": "Free shipping text",
-        "default": "<p>Free Shipping on Orders Over $150</p>"
-      }, 
-      {
-        "type": "header",
-        "content": "Cart note"
-      }, 
-      {
-        "type": "checkbox",
-        "id": "enable_note",
-        "label": "Enable note"
-      }, 
-      {
-        "type": "text",
-        "id": "note_heading",
-        "label": "Note title",
-        "default": "Add gift message or order note"
-      }, 
-      {
-        "type": "header",
-        "content": "Addon Product"
-      }, 
-      {
-        "type": "product",
-        "id": "addon_product",
-        "label": "Select Product"
-      }, 
-      {
-        "type": "image_picker",
-        "id": "addon_image",
-        "label": "Addon Product Image"
-      }, 
-      {
-        "type": "text",
-        "id": "addon_title",
-        "label": "Addon Product Title"
-      }, 
-      {
-        "type": "richtext",
-        "id": "addon_info",
-        "label": "Addon Product Info"
-      }, 
-      {
-        "type": "header",
-        "content": "Addon with Checkbox"
-      }, 
-      {
-        "type": "checkbox",
-        "id": "enable_onetime_purchase",
-        "label": "Enable Onetime Purchase"
-      }, 
-      {
-        "type": "text",
-        "id": "custom_upsell_heading",
-        "label": "Upsell Heading"
-      }, 
-      {
-        "type": "product",
-        "id": "custom_upsell_product",
-        "label": "Choose Product"
-      }
-    ]
-  }
+{
+  "name": "Cart Drawer",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Empty Cart"
+    },
+    {
+      "type": "text",
+      "id": "empty_cart_title",
+      "label": "Empty Cart Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "empty_cart_content",
+      "label": "Sub Content"
+    },
+    {
+      "type": "product_list",
+      "id": "empty_cart_product_list",
+      "label": "Empty Cart Product List",
+      "limit": 4
+    },
+    {
+      "type": "header",
+      "content": "Choose size content"
+    },
+    {
+      "type": "text",
+      "id": "empty_size_title",
+      "label": "Empty Size Heading",
+      "default": "Choose a Size"
+    },
+    {
+      "type": "richtext",
+      "id": "empty_size_text",
+      "label": "Sub Content"
+    },
+    {
+      "type": "header",
+      "content": "Select plan content"
+    },
+    {
+      "type": "text",
+      "id": "empty_plan_title",
+      "label": "Empty Plan Heading",
+      "default": "Select plan"
+    },
+    {
+      "type": "header",
+      "content": "Product Featured"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_product_feature",
+      "label": "Enable Product Feature",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "product_feature_image",
+      "label": "Choose Image"
+    },
+    {
+      "type": "richtext",
+      "id": "product_feature_title",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "product_feature_content",
+      "label": "Content"
+    },
+    {
+      "type": "text",
+      "id": "product_feature_btn_txt",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "product_feature_btn_url",
+      "label": "URL"
+    },
+    {
+      "type": "header",
+      "content": "Subscription Product"
+    },
+    {
+      "type": "text",
+      "id": "subscription_button_label",
+      "label": "Subscription Button Label"
+    },
+    {
+      "type": "header",
+      "content": "Button Content"
+    },
+    {
+      "type": "richtext",
+      "id": "empty_btm_walmart",
+      "label": "Content"
+    },
+    {
+      "type": "header",
+      "content": "Free shipping content"
+    },
+    {
+      "type": "number",
+      "id": "free_shipping_threshold",
+      "label": "Free shipping threshold",
+      "default": 150
+    },
+    {
+      "type": "richtext",
+      "id": "free_shipping_text",
+      "label": "Free shipping text",
+      "default": "<p>Free Shipping on Orders Over $150</p>"
+    },
+    {
+      "type": "header",
+      "content": "Cart note"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_note",
+      "label": "Enable note"
+    },
+    {
+      "type": "text",
+      "id": "note_heading",
+      "label": "Note title",
+      "default": "Add gift message or order note"
+    },
+    {
+      "type": "header",
+      "content": "Addon Product"
+    },
+    {
+      "type": "product",
+      "id": "addon_product",
+      "label": "Select Product"
+    },
+    {
+      "type": "image_picker",
+      "id": "addon_image",
+      "label": "Addon Product Image"
+    },
+    {
+      "type": "text",
+      "id": "addon_title",
+      "label": "Addon Product Title"
+    },
+    {
+      "type": "richtext",
+      "id": "addon_info",
+      "label": "Addon Product Info"
+    },
+    {
+      "type": "header",
+      "content": "Addon with Checkbox"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_onetime_purchase",
+      "label": "Enable Onetime Purchase"
+    },
+    {
+      "type": "text",
+      "id": "custom_upsell_heading",
+      "label": "Upsell Heading"
+    },
+    {
+      "type": "product",
+      "id": "custom_upsell_product",
+      "label": "Choose Product"
+    }
+  ]
+}
 {% endschema %}

@@ -685,3 +685,59 @@ h2,
 .external-purchase-buttons .hidden {
   display: none !important;
 }
+
+/* PDP toggle css */
+.variant-bundle-toggle {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 10px;
+  align-items: flex-start;
+}
+.variant-bundle-label .variant-bundle-text {
+  display: flex;
+  position: relative;
+  padding-left: 50px;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.variant-bundle-label .variant-bundle-text:before {
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 0;
+  width: 40px;
+  height: 24px;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #515151;
+  border-radius: 20px;
+}
+
+.variant-bundle-label .variant-bundle-text:after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  width: 16px;
+  height: 16px;
+  background: #666;
+  border-radius: 50%;
+  transition: all 0.3s ease 0s;
+}
+
+.variant-bundle-label input[type="checkbox"]:checked + .variant-bundle-text:after {
+  left: 20px;
+  background: #6638b4;
+}
+
+.variant-bundle-label input[type="checkbox"]:checked + .variant-bundle-text:before {
+  border-color: #6638b4;
+}
+
+.variant-bundle-label input {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+}
