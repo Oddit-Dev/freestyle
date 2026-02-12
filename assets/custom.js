@@ -6,7 +6,7 @@ class CartDrawer extends HTMLElement {
     this.loader = this.querySelector('.cart-drawer__loader');
 
     // Empty cart flow elements
-    
+
     this.selectedProduct = null;
     this.selectedVariant = null;
     this.selectedPlan = null;
@@ -25,7 +25,7 @@ class CartDrawer extends HTMLElement {
     this.overlay.addEventListener('click', () => this.close());
     this.closeBtn.addEventListener('click', () => this.close());
     this.delegateEvents(); // Attach event delegation
-    this.emptyDelegateEvents(); 
+    this.emptyDelegateEvents();
   }
 
   showLoader() {
@@ -38,7 +38,7 @@ class CartDrawer extends HTMLElement {
 
   delegateEvents() {
     this.querySelectorAll('.qty-btn').forEach((btn) => btn.addEventListener('click', this.handleQtyClick));
-    
+
     this.querySelectorAll('.cart-drawer__quantity input').forEach((input) =>
       input.addEventListener('change', this.inputHandleQtyClick)
     );
@@ -94,22 +94,22 @@ class CartDrawer extends HTMLElement {
             document.querySelectorAll('.sp-variant-list .sp-variant-item').forEach((el) => {
               el.classList.remove('active');
             });
-            event.currentTarget.classList.add('active'); 
-            if(this.querySelector('.sp-variant-list .sp-variant-item.active')) {
+            event.currentTarget.classList.add('active');
+            if (this.querySelector('.sp-variant-list .sp-variant-item.active')) {
               this.querySelector('.choose_size_btn').removeAttribute('disabled');
-            } 
+            }
           });
         });
-        setTimeout(()=>{
+        setTimeout(() => {
           this.showStep('variant');
-        },100)
+        }, 100)
 
-        document.querySelector('.choose_size_btn').addEventListener('click', ()=> {
+        document.querySelector('.choose_size_btn').addEventListener('click', () => {
           this.handleChoosePlan();
           this.showStep('plan');
         });
 
-        document.querySelector('.cart-single-product-info .sp-remove').addEventListener('click', ()=> {
+        document.querySelector('.cart-single-product-info .sp-remove').addEventListener('click', () => {
           this.showStep('product-list');
         });
 
@@ -117,59 +117,59 @@ class CartDrawer extends HTMLElement {
         this.handleSizeModal();
 
       })
-    .catch((error) => console.error('Error fetching section:', error));
+      .catch((error) => console.error('Error fetching section:', error));
   }
 
   handleChoosePlan(el) {
-      const handle = this.querySelector('.sp-variant-list .sp-variant-item.active').dataset.productHandle;
-      const variant = this.querySelector('.sp-variant-list .sp-variant-item.active').dataset.variantId;
-      
-      fetch(`/products/${handle}?variant=${variant}&section_id=product-selling-plan`)
-        .then((response) => response.text())
-        .then((data) => {
-          const html = new DOMParser().parseFromString(data, 'text/html');
-          const singleProduct = html.querySelector('.cart-selling-plan-info');
-          const existingSingleProduct = document.querySelector('.cart-selling-plan-info');
-          if (singleProduct && existingSingleProduct) {
-            existingSingleProduct.replaceWith(singleProduct);
+    const handle = this.querySelector('.sp-variant-list .sp-variant-item.active').dataset.productHandle;
+    const variant = this.querySelector('.sp-variant-list .sp-variant-item.active').dataset.variantId;
+
+    fetch(`/products/${handle}?variant=${variant}&section_id=product-selling-plan`)
+      .then((response) => response.text())
+      .then((data) => {
+        const html = new DOMParser().parseFromString(data, 'text/html');
+        const singleProduct = html.querySelector('.cart-selling-plan-info');
+        const existingSingleProduct = document.querySelector('.cart-selling-plan-info');
+        if (singleProduct && existingSingleProduct) {
+          existingSingleProduct.replaceWith(singleProduct);
+        }
+
+        const qtyInput = document.querySelector('.cart-single-product-info .sp-qty-block input[name="quantity"]');
+        if (qtyInput) {
+          this.selectedQty = qtyInput.value;
+          const planQtyInput = document.querySelector('.cart-selling-plan-info .sp-qty-block input[name="quantity"]');
+          if (planQtyInput) {
+            planQtyInput.value = this.selectedQty;
           }
+        }
 
-          const qtyInput = document.querySelector('.cart-single-product-info .sp-qty-block input[name="quantity"]');
-          if(qtyInput){
-            this.selectedQty = qtyInput.value;
-            const planQtyInput = document.querySelector('.cart-selling-plan-info .sp-qty-block input[name="quantity"]');
-            if(planQtyInput){
-              planQtyInput.value = this.selectedQty;
-            }            
+        document.querySelector('.custom-cart-flow .choose_plan_btn').addEventListener('click', () => {
+          const planWrapper = document.querySelector('.custom-cart-flow .selling_plan-item');
+          let variantId = null;
+          let selling_plan = '';
+          if (planWrapper) {
+            variantId = planWrapper.querySelector('.cart-subscription-list.check-active input[type=radio]:checked').dataset.variantId;
+            selling_plan = planWrapper.querySelector('.cart-subscription-list.check-active input[type=radio]:checked').dataset.sellingPlanId;
+          } else {
+            variantId = document.querySelector('.cart-selling-plan-info .cart-sp-main').dataset.variantId || null;
           }
+          const qty = parseInt(document.querySelector('.cart-selling-plan-info input[type="number"]').value);
+          if (variantId) {
+            this.addSelectedProduct(variantId, qty, selling_plan);
+          }
+        });
 
-          document.querySelector('.custom-cart-flow .choose_plan_btn').addEventListener('click', ()=> {
-            const planWrapper = document.querySelector('.custom-cart-flow .selling_plan-item');
-            let variantId = null;
-            let selling_plan = '';
-            if(planWrapper){
-              variantId = planWrapper.querySelector('.cart-subscription-list.check-active input[type=radio]:checked').dataset.variantId;
-              selling_plan = planWrapper.querySelector('.cart-subscription-list.check-active input[type=radio]:checked').dataset.sellingPlanId;
-            } else {
-              variantId = document.querySelector('.cart-selling-plan-info .cart-sp-main').dataset.variantId || null;
-            }
-            const qty = parseInt(document.querySelector('.cart-selling-plan-info input[type="number"]').value);
-            if(variantId){
-              this.addSelectedProduct(variantId, qty, selling_plan);
-            }
-          }); 
+        document.querySelector('.custom-cart-flow .variant-edit-btn').addEventListener('click', () => {
+          this.showStep('variant');
+        });
 
-          document.querySelector('.custom-cart-flow .variant-edit-btn').addEventListener('click', ()=> {
-            this.showStep('variant');
-          });
+        document.querySelector('.cart-selling-plan-info .sp-remove').addEventListener('click', () => {
+          this.showStep('product-list');
+        });
 
-          document.querySelector('.cart-selling-plan-info .sp-remove').addEventListener('click', ()=> {
-            this.showStep('product-list');
-          });
+        this.handleEmptyQty();
 
-          this.handleEmptyQty();
-          
-        })
+      })
       .catch((error) => console.error('Error fetching section:', error));
   }
 
@@ -195,18 +195,18 @@ class CartDrawer extends HTMLElement {
     }
   }
 
-  handleEmptyQty(){
+  handleEmptyQty() {
     document.querySelectorAll('.sp-qty-block').forEach(block => {
       const input = block.querySelector('input[type="number"]');
       const minusBtn = block.querySelector('.sp-qty-minus');
       const plusBtn = block.querySelector('.sp-qty-plus');
-    
+
       minusBtn.addEventListener('click', () => {
         let current = parseInt(input.value) || 1;
         const min = parseInt(input.min) || 1;
         if (current > min) input.value = current - 1;
       });
-    
+
       plusBtn.addEventListener('click', () => {
         let current = parseInt(input.value) || 1;
         const max = parseInt(input.max) || Infinity;
@@ -215,12 +215,12 @@ class CartDrawer extends HTMLElement {
     });
   }
 
-  handleSizeModal(){
+  handleSizeModal() {
     const btn = document.querySelector(".custom-cart-flow .empty-subheading a");
     const modal = document.querySelector(".cart-size-chart-modal");
     const close = document.querySelector(".cart-close-modal");
-    if(!modal){
-      if(btn){
+    if (!modal) {
+      if (btn) {
         btn.closest('.empty-subheading').classList.add('hidden');
       }
     }
@@ -334,12 +334,12 @@ class CartDrawer extends HTMLElement {
     this.querySelector('#CartDrawerBody').replaceWith(newBody);
     this.querySelector('.subtotal').textContent = newSubtotal.textContent;
     const countElm = this.querySelector('#CartCount');
-    if(countElm){
+    if (countElm) {
       const qty = parseInt(newCount.textContent, 10) || 0;
       countElm.textContent = newCount.textContent;
-      if(qty > 0){
+      if (qty > 0) {
         countElm.classList.add('active');
-      }else {
+      } else {
         countElm.classList.remove('active');
       }
     }
@@ -365,7 +365,7 @@ class CartDrawer extends HTMLElement {
 
       if (threshold === 100) {
         shippingText.classList.remove("hidden");
-      }else{
+      } else {
         shippingText.classList.add("hidden");
       }
     }
@@ -381,7 +381,8 @@ class CartDrawer extends HTMLElement {
     }
 
     this.delegateEvents(); // Re-delegate events after refresh
-    
+
+    this.dispatchEvent(new CustomEvent('cart:refreshed', { bubbles: true }));
   }
 
   updateQuantity(e) {
@@ -482,20 +483,152 @@ class CartIcon extends HTMLElement {
 }
 customElements.define('cart-icon', CartIcon);
 
+/**
+ * Check if a product (by product ID) is already in the cart.
+ * Validation is by product ID, not variant ID.
+ */
+function isProductInCart(productId) {
+  if (!productId) return Promise.resolve(false);
+  return fetch('/cart.js')
+    .then((res) => res.json())
+    .then((cart) => cart.items.some((item) => Number(item.product_id) === Number(productId)));
+}
+
+/**
+ * Update Add to Cart button: disable and set label to "Order limit reached."
+ * when the product is already in the cart (by product ID).
+ */
+function updateAddToCartButtonForProductInCart(btn) {
+  if (!btn || !btn.classList.contains('js-add-to-cart')) return;
+  const productId = btn.dataset.productId;
+  if (!productId) return;
+  const labelEl = btn.querySelector('.js-add-to-cart-label');
+  const defaultLabel = (btn.dataset.ctaLabel || 'Add to Cart').trim();
+
+  isProductInCart(Number(productId)).then((inCart) => {
+    const bundleCheckbox = document.querySelector('.variant-bundle-checkbox');
+    const bundleMode = bundleCheckbox && bundleCheckbox.checked;
+    const bundleVariants = bundleMode ? Array.from(document.querySelectorAll('input[name="bundle-size"]:checked')).map((cb) => parseInt(cb.value, 10)) : [];
+    const bundleDisabled = bundleMode && bundleVariants.length !== 2;
+
+    if (inCart) {
+      btn.disabled = true;
+      btn.classList.add('opacity-50', 'cursor-not-allowed');
+      if (labelEl) labelEl.textContent = 'Order limit reached.';
+    } else {
+      btn.disabled = !!bundleDisabled;
+      btn.classList.toggle('opacity-50', bundleDisabled);
+      btn.classList.toggle('cursor-not-allowed', bundleDisabled);
+      if (labelEl) labelEl.textContent = defaultLabel;
+    }
+  });
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   if (!customElements.get('cart-drawer')) {
     customElements.define('cart-drawer', CartDrawer);
   }
-   const drawer = document.querySelector('cart-drawer');
-    if (drawer) {
-      drawer.refresh();
-    }
+  const drawer = document.querySelector('cart-drawer');
+  if (drawer) {
+    drawer.refresh();
+  }
 
   const addToCartBtn = document.querySelector(".js-add-to-cart");
   const addonCheckbox = document.querySelector(".addonproduct");
-  
+
   if (addToCartBtn) {
+    updateAddToCartButtonForProductInCart(addToCartBtn);
+    if (drawer) {
+      drawer.addEventListener('cart:refreshed', function () {
+        updateAddToCartButtonForProductInCart(document.querySelector('.js-add-to-cart'));
+      });
+    }
+
     addToCartBtn.addEventListener("click", function () {
+      const productId = this.dataset.productId;
+      if (productId) {
+        isProductInCart(Number(productId)).then((inCart) => {
+          if (inCart) return;
+          handleAddToCartClick.call(this);
+        });
+      } else {
+        handleAddToCartClick.call(this);
+      }
+    });
+  }
+
+  function handleAddToCartClick() {
+    const addToCartBtn = this;
+    const bundleCheckbox = document.querySelector('.variant-bundle-checkbox');
+      const bundleMode = bundleCheckbox && bundleCheckbox.checked;
+      const bundleVariants = bundleMode ? Array.from(document.querySelectorAll('input[name="bundle-size"]:checked')).map(cb => parseInt(cb.value)) : [];
+
+      if (bundleMode && bundleVariants.length === 2) {
+
+        const items = [];
+        bundleVariants.forEach(variantId => {
+          const variantElement = document.querySelector(`.selling_plan_theme_integration[data-variant-id="${variantId}"]`);
+          let sellingPlanId = null;
+
+          if (variantElement) {
+            const checkedRadio = variantElement.querySelector('[type="radio"]:checked');
+            if (checkedRadio && checkedRadio.dataset.radioType === 'selling_plan') {
+              const selectElement = variantElement.querySelector('select.selling-plan-dropdown');
+              if (selectElement && selectElement.value) {
+                sellingPlanId = parseInt(selectElement.value);
+              } else {
+                sellingPlanId = parseInt(checkedRadio.dataset.sellingPlanId);
+              }
+            }
+          }
+
+          items.push({
+            id: variantId,
+            quantity: 1,
+            ...(sellingPlanId && { selling_plan: sellingPlanId })
+          });
+        });
+
+        if (addonCheckbox && addonCheckbox.checked) {
+          let addonItem = {
+            id: addonCheckbox.dataset.variantId,
+            quantity: 1
+          };
+          if (document.querySelector(".selected-plan")) {
+            const selectedPlan = document.querySelector(".selected-plan").textContent;
+            if (selectedPlan != 'One-Time Purchase') {
+              if (addonCheckbox.dataset.sellingPlanId) {
+                addonItem.selling_plan = addonCheckbox.dataset.sellingPlanId;
+              }
+            }
+          }
+          items.push(addonItem);
+        }
+
+        fetch("/cart/add.js", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify({ items })
+        })
+          .then(response => response.json())
+          .then(data => {
+            const drawer = document.querySelector('cart-drawer');
+            if (drawer) {
+              drawer.refresh();
+              drawer.hideLoader();
+              drawer.open();
+            }
+            updateAddToCartButtonForProductInCart(addToCartBtn);
+          })
+          .catch(error => {
+            console.error("Error adding bundle to cart:", error);
+          });
+        return;
+      }
+
       const mainVariantId = this.dataset.variantId;
       const sellingPlanId = this.dataset.sellingPlanId;
 
@@ -514,7 +647,7 @@ document.addEventListener("DOMContentLoaded", function () {
           id: addonCheckbox.dataset.variantId,
           quantity: 1
         };
-        if(document.querySelector(".selected-plan")){
+        if (document.querySelector(".selected-plan")) {
           const selectedPlan = document.querySelector(".selected-plan").textContent;
           if (selectedPlan != 'One-Time Purchase') {
             if (addonCheckbox.dataset.sellingPlanId) {
@@ -535,19 +668,19 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         body: JSON.stringify({ items })
       })
-      .then(response => response.json())
-      .then(data => {
+        .then(response => response.json())
+        .then(data => {
           const drawer = document.querySelector('cart-drawer');
           if (drawer) {
             drawer.refresh();
             drawer.hideLoader();
             drawer.open();
           }
-      })
-      .catch(error => {
-        console.error("Error adding to cart:", error);
-      });
-    });
+          updateAddToCartButtonForProductInCart(addToCartBtn);
+        })
+        .catch(error => {
+          console.error("Error adding to cart:", error);
+        });
   }
 });
 
@@ -582,7 +715,7 @@ class AddVariantCheckbox extends HTMLElement {
 
     this.drawer.showLoader();
     //const updates = {};
-   // updates[this.variantId] = this.checkbox.checked ? 1 : 0;
+    // updates[this.variantId] = this.checkbox.checked ? 1 : 0;
 
     try {
 
@@ -590,7 +723,7 @@ class AddVariantCheckbox extends HTMLElement {
         id: this.variantId,
         quantity: 1
       };
-      
+
       if (this.onetimePurchase == 'false') {
         if (this.sellingPlanId) {
           mainItem.selling_plan = this.sellingPlanId;
@@ -600,13 +733,13 @@ class AddVariantCheckbox extends HTMLElement {
       let items = [mainItem];
 
       const cart = await fetch("/cart/add.js", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-          },
-          body: JSON.stringify({ items })
-        }).then(res => res.json());
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({ items })
+      }).then(res => res.json());
 
       const exists = cart.items.some(item => item.variant_id === this.variantId && item.quantity > 0);
       this.checkbox.checked = exists;
@@ -639,13 +772,13 @@ class ChangeCart extends HTMLElement {
   }
 
   selectPlan(event) {
-   
+
     const selectedId = event.currentTarget.dataset.sellingId;
     const qty = this.dataset.qty;
     const line = this.dataset.line;
 
     this.classList.add('has-loading');
-    
+
     fetch(`/cart/change.js`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -659,7 +792,7 @@ class ChangeCart extends HTMLElement {
       .then(() => {
         const drawerSectionId = document.querySelector('cart-drawer')?.dataset.id;
         if (!drawerSectionId) return;
-        
+
         return fetch(`/cart?section_id=${drawerSectionId}`);
       })
       .then((response) => response?.text())
@@ -686,120 +819,381 @@ class ChangeCart extends HTMLElement {
 
 customElements.define('item-change', ChangeCart);
 
- /* custom selling plan start */
-  document.addEventListener("DOMContentLoaded", () => {
-    const checked = document.querySelector('.selling_plan_app_container input[type="radio"]:checked');
-    if (checked) updateSelectedPlan(checked);
-  });
-  function updateSelectedPlan(radio) {
-    const subscriptionList = radio.closest('.subscription-list');
-    const titleText = subscriptionList?.querySelector(".title-text");
-    const mergedText = titleText?.innerText.trim();
-    const selectedPlanSpan = document.querySelector(".selected-plan");
-    const allocationPrice = radio.dataset.variantPrice;
-    const checkbox = document.querySelector(".addonproduct");
-    checkbox.setAttribute("data-plan-price", allocationPrice);
-    if (mergedText && selectedPlanSpan) {
-      selectedPlanSpan.textContent = mergedText;
+/* custom selling plan start */
+document.addEventListener("DOMContentLoaded", () => {
+  const checked = document.querySelector('.selling_plan_app_container input[type="radio"]:checked');
+  if (checked) updateSelectedPlan(checked);
+});
+function updateSelectedPlan(radio) {
+  const subscriptionList = radio.closest('.subscription-list');
+  const titleText = subscriptionList?.querySelector(".title-text");
+  const mergedText = titleText?.innerText.trim();
+  const selectedPlanSpan = document.querySelector(".selected-plan");
+  const allocationPrice = radio.dataset.variantPrice;
+  const checkbox = document.querySelector(".addonproduct");
+  checkbox.setAttribute("data-plan-price", allocationPrice);
+  if (mergedText && selectedPlanSpan) {
+    selectedPlanSpan.textContent = mergedText;
+  }
+}
+
+function updateSubscriptionFormBundlePrice() {
+  const bundleCheckbox = document.querySelector('.variant-bundle-checkbox');
+  const bundleMode = bundleCheckbox && bundleCheckbox.checked;
+  const bundleVariants = bundleMode ? Array.from(document.querySelectorAll('input[name="bundle-size"]:checked')).map(cb => parseInt(cb.value, 10)) : [];
+
+  const parsePrice = (str) => {
+    if (!str) return 0;
+    return parseFloat(String(str).replace(/[^0-9.]/g, '')) || 0;
+  };
+
+  const formatPrice = (num) => `$${Number(num).toFixed(2)}`;
+
+  if (bundleMode && bundleVariants.length === 2) {
+    let subscriptionTotal = 0;
+    let oneTimeTotal = 0;
+    bundleVariants.forEach(variantId => {
+      const section = document.querySelector(`.selling_plan_theme_integration[data-variant-id="${variantId}"]`);
+      if (section) {
+        const subscriptionRadio = section.querySelector('[data-radio-type="selling_plan"]');
+        if (subscriptionRadio && subscriptionRadio.dataset.variantPrice) {
+          subscriptionTotal += parsePrice(subscriptionRadio.dataset.variantPrice);
+        }
+        const oneTimeRadio = section.querySelector('[data-radio-type="one_time_purchase"]');
+        if (oneTimeRadio && oneTimeRadio.dataset.variantPrice) {
+          oneTimeTotal += parsePrice(oneTimeRadio.dataset.variantPrice);
+        }
+      }
+    });
+
+    const visibleSection = document.querySelector('.selling_plan_theme_integration:not(.has-hidden)');
+    if (visibleSection) {
+      visibleSection.querySelectorAll('.subscription-list').forEach((list) => {
+        const radio = list.querySelector('input[data-radio-type]');
+        if (!radio) return;
+        const allocationEl = list.querySelector('.allocation-price');
+        if (!allocationEl) return;
+        const variantPriceEl = list.querySelector('.selling-price .variant-price');
+        if (radio.dataset.radioType === 'selling_plan') {
+          allocationEl.textContent = formatPrice(subscriptionTotal);
+          if (variantPriceEl) variantPriceEl.textContent = formatPrice(oneTimeTotal);
+        } else if (radio.dataset.radioType === 'one_time_purchase') {
+          allocationEl.textContent = formatPrice(oneTimeTotal);
+          if (variantPriceEl) variantPriceEl.textContent = formatPrice(oneTimeTotal);
+        }
+      });
     }
+  } else {
+    document.querySelectorAll('.selling_plan_theme_integration .allocation-price').forEach((el) => {
+      const original = el.getAttribute('data-original-price');
+      if (original) el.textContent = original;
+    });
+    document.querySelectorAll('.selling_plan_theme_integration').forEach((section) => {
+      const oneTimeRadio = section.querySelector('[data-radio-type="one_time_purchase"]');
+      const variantPriceEl = section.querySelector('.selling-price .variant-price');
+      if (variantPriceEl && oneTimeRadio?.dataset?.variantPrice) {
+        variantPriceEl.textContent = oneTimeRadio.dataset.variantPrice;
+      }
+    });
   }
+}
 
-  const radioButtons = document.querySelectorAll('.selling_plan_app_container input[type="radio"]');
+if (typeof window !== 'undefined') window.updateSubscriptionFormBundlePrice = updateSubscriptionFormBundlePrice;
 
-  radioButtons.forEach((radioButton) => {
-    radioButton.addEventListener('change', (event) => {
-      const subscriptionList = event.target.closest('.subscription-list');
-      const selectElement = subscriptionList?.querySelector('select');
-      const selectedValue = selectElement?.value;
-      const productCard = event.target.closest('.product__content');
-      const titleText = subscriptionList?.querySelector(".title-text");
-      const mergedText = titleText.innerText.trim();
-      const selectedPlanSpan = document.querySelector(".selected-plan");
-      selectedPlanSpan.textContent = mergedText;
-      if (subscriptionList) {
-        document.querySelectorAll('.subscription-list').forEach(list => {
-          list.classList.remove('check-active');
+const radioButtons = document.querySelectorAll('.selling_plan_app_container input[type="radio"]');
+
+radioButtons.forEach((radioButton) => {
+  radioButton.addEventListener('change', (event) => {
+    const subscriptionList = event.target.closest('.subscription-list');
+    const selectElement = subscriptionList?.querySelector('select');
+    const selectedValue = selectElement?.value;
+    const productCard = event.target.closest('.product__content');
+    const titleText = subscriptionList?.querySelector(".title-text");
+    const mergedText = titleText.innerText.trim();
+    const selectedPlanSpan = document.querySelector(".selected-plan");
+    selectedPlanSpan.textContent = mergedText;
+    if (subscriptionList) {
+      document.querySelectorAll('.subscription-list').forEach(list => {
+        list.classList.remove('check-active');
+      });
+      subscriptionList.classList.add('check-active');
+    }
+
+    if (selectedValue && selectedValue !== '') {
+      if (productCard) {
+        productCard.querySelector('.product__cta [name="selling_plan"]').value = selectedValue;
+        productCard.querySelector('.product__cta .js-add-to-cart').setAttribute("data-selling-plan-id", selectedValue);
+      }
+    } else {
+      if (productCard) {
+        productCard.querySelector('.product__cta [name="selling_plan"]').value = '';
+        productCard.querySelector('.product__cta .js-add-to-cart').setAttribute("data-selling-plan-id", '');
+      }
+    }
+
+    const variantPrice = productCard.querySelector('.selling_plan_theme_integration:not(.has-hidden) [type="radio"]:checked').dataset.variantPrice;
+
+    const bundleCheckbox = document.querySelector('.variant-bundle-checkbox');
+    const bundleMode = bundleCheckbox && bundleCheckbox.checked;
+    const bundleVariants = bundleMode ? Array.from(document.querySelectorAll('input[name="bundle-size"]:checked')).map(cb => parseInt(cb.value)) : [];
+
+    if (bundleMode && bundleVariants.length > 0) {
+      const selectedRadioType = event.target.dataset.radioType;
+      const selectedSellingPlanId = event.target.dataset.sellingPlanId;
+      const changedVariantId = event.target.dataset.variantId;
+
+      bundleVariants.forEach(variantId => {
+        if (variantId.toString() !== changedVariantId) {
+          const variantElement = document.querySelector(`.selling_plan_theme_integration[data-variant-id="${variantId}"]`);
+          if (variantElement) {
+            let targetRadio = null;
+
+            if (selectedRadioType === 'one_time_purchase') {
+              targetRadio = variantElement.querySelector('[data-radio-type="one_time_purchase"]');
+            } else if (selectedRadioType === 'selling_plan' && selectedSellingPlanId) {
+              targetRadio = variantElement.querySelector(`[data-radio-type="selling_plan"][data-selling-plan-id="${selectedSellingPlanId}"]`);
+              if (!targetRadio) {
+                targetRadio = variantElement.querySelector('[data-radio-type="selling_plan"]');
+              }
+            }
+
+            if (targetRadio && !targetRadio.checked) {
+              targetRadio.checked = true;
+              const targetSubscriptionList = targetRadio.closest('.subscription-list');
+              if (targetSubscriptionList) {
+                const variantContainer = targetRadio.closest('.selling_plan_theme_integration');
+                if (variantContainer) {
+                  variantContainer.querySelectorAll('.subscription-list').forEach(list => {
+                    list.classList.remove('check-active');
+                  });
+                }
+                targetSubscriptionList.classList.add('check-active');
+
+                const titleText = targetSubscriptionList.querySelector(".title-text");
+                if (titleText) {
+                  const selectedPlanSpan = document.querySelector(".selected-plan");
+                  if (selectedPlanSpan) {
+                    selectedPlanSpan.textContent = titleText.innerText.trim();
+                  }
+                }
+
+                const variantProductCard = targetRadio.closest('.product__content');
+                if (variantProductCard) {
+                  const selectElement = targetSubscriptionList.querySelector('select');
+                  const selectedValue = selectElement?.value;
+
+                  if (selectedValue && selectedValue !== '') {
+                    const sellingPlanInput = variantProductCard.querySelector('[name="selling_plan"]');
+                    const addToCartButton = variantProductCard.querySelector('.js-add-to-cart');
+                    if (sellingPlanInput) sellingPlanInput.value = selectedValue;
+                    if (addToCartButton) addToCartButton.setAttribute("data-selling-plan-id", selectedValue);
+                  } else {
+                    const sellingPlanInput = variantProductCard.querySelector('[name="selling_plan"]');
+                    const addToCartButton = variantProductCard.querySelector('.js-add-to-cart');
+                    if (sellingPlanInput) sellingPlanInput.value = '';
+                    if (addToCartButton) addToCartButton.setAttribute("data-selling-plan-id", '');
+                  }
+                }
+              }
+            }
+          }
+        }
+      });
+    }
+
+    if (bundleMode && bundleVariants.length > 0) {
+      setTimeout(() => {
+        let totalPrice = 0;
+        bundleVariants.forEach(variantId => {
+          const variantElement = document.querySelector(`.selling_plan_theme_integration[data-variant-id="${variantId}"]`);
+          if (variantElement) {
+            const checkedRadio = variantElement.querySelector('[type="radio"]:checked');
+            if (checkedRadio && checkedRadio.dataset.variantPrice) {
+              const priceStr = checkedRadio.dataset.variantPrice.replace(/[^0-9.]/g, '');
+              totalPrice += parseFloat(priceStr) || 0;
+            }
+          }
         });
-        subscriptionList.classList.add('check-active');
-      }
 
-      if (selectedValue && selectedValue !== '') {
-        if (productCard) {
-          productCard.querySelector('.product__cta [name="selling_plan"]').value = selectedValue;
-          productCard.querySelector('.product__cta .js-add-to-cart').setAttribute("data-selling-plan-id", selectedValue);
+        const priceElement = productCard?.querySelector('.product__cta .sale-price');
+        if (priceElement) {
+          priceElement.textContent = `$${totalPrice.toFixed(2)}`;
         }
+
+        const currentVariantPrice = document.querySelector('.current-variant-price');
+        if (currentVariantPrice) {
+          currentVariantPrice.textContent = `$${totalPrice.toFixed(2)}`;
+        }
+
+        const alpineProduct = document.querySelector('[x-data*="product"]');
+        if (alpineProduct && alpineProduct._x_dataStack && alpineProduct._x_dataStack[0]) {
+          const productData = alpineProduct._x_dataStack[0];
+          if (productData.updateBundlePrice) {
+            productData.updateBundlePrice();
+          }
+        }
+        updateSubscriptionFormBundlePrice();
+      }, 50);
+    } else {
+      if (productCard) {
+        const salePriceEl = productCard.querySelector('.product__cta .sale-price');
+        if (salePriceEl) salePriceEl.textContent = variantPrice;
+      }
+      const currentVariantPriceEl = document.querySelector('.current-variant-price');
+      if (currentVariantPriceEl) {
+        currentVariantPriceEl.textContent = variantPrice;
+      }
+      updateSubscriptionFormBundlePrice();
+    }
+
+    let selectedVal = '';
+    if (selectElement) {
+      selectedVal = selectElement.options[selectElement.selectedIndex].text;
+    } else if (subscriptionList.querySelector('.title-text')) {
+      selectedVal = subscriptionList.querySelector('.title-text').textContent;
+    }
+    if (document.querySelector('.sticky-add-to-cart .selling-label')) {
+      document.querySelector('.sticky-add-to-cart .selling-label').textContent = selectedVal;
+    }
+
+    const checkbox = document.querySelector(".addonproduct");
+    if (checkbox) {
+      let planPriceForAddon = variantPrice;
+      if (bundleMode && bundleVariants.length > 0) {
+        setTimeout(() => {
+          let bundleTotalPrice = 0;
+          bundleVariants.forEach(variantId => {
+            const variantElement = document.querySelector(`.selling_plan_theme_integration[data-variant-id="${variantId}"]`);
+            if (variantElement) {
+              const checkedRadio = variantElement.querySelector('[type="radio"]:checked');
+              if (checkedRadio && checkedRadio.dataset.variantPrice) {
+                const priceStr = checkedRadio.dataset.variantPrice.replace(/[^0-9.]/g, '');
+                bundleTotalPrice += parseFloat(priceStr) || 0;
+              }
+            }
+          });
+          planPriceForAddon = `$${bundleTotalPrice.toFixed(2)}`;
+          checkbox.setAttribute("data-plan-price", planPriceForAddon);
+
+          const addonPrice = parseFloat(checkbox.dataset.variantPrice.replace(/[^0-9.]/g, "")) || 0;
+          const planPrice = parseFloat(checkbox.dataset.planPrice.replace(/[^0-9.]/g, "")) || 0;
+
+          if (checkbox.checked) {
+            const newPrice = addonPrice + planPrice;
+            productCard.querySelector('.product__cta .sale-price').textContent = `$${newPrice.toFixed(2)}`;
+          }
+        }, 60);
       } else {
-        if (productCard) {
-          productCard.querySelector('.product__cta [name="selling_plan"]').value = '';
-          productCard.querySelector('.product__cta .js-add-to-cart').setAttribute("data-selling-plan-id", '');
+        checkbox.setAttribute("data-plan-price", variantPrice);
+        const addonPrice = parseFloat(checkbox.dataset.variantPrice.replace(/[^0-9.]/g, "")) || 0;
+        const planPrice = parseFloat(checkbox.dataset.planPrice.replace(/[^0-9.]/g, "")) || 0;
+
+        if (checkbox.checked) {
+          const newPrice = addonPrice + planPrice;
+          productCard.querySelector('.product__cta .sale-price').textContent = `$${newPrice.toFixed(2)}`;
+        } else {
+          const newPrice = planPrice;
+          productCard.querySelector('.product__cta .sale-price').textContent = `$${newPrice.toFixed(2)}`;
         }
       }
-
-      const variantPrice = productCard.querySelector('.selling_plan_theme_integration:not(.has-hidden) [type="radio"]:checked').dataset.variantPrice;
-      productCard.querySelector('.product__cta .sale-price').textContent = variantPrice;
-      
-      if (document.querySelector('.current-variant-price')) {
-        document.querySelector('.current-variant-price').textContent = variantPrice;
-      }
-
-      let selectedVal = '';
-      if (selectElement) {
-        selectedVal = selectElement.options[selectElement.selectedIndex].text;
-      } else if (subscriptionList.querySelector('.title-text')) {
-        selectedVal = subscriptionList.querySelector('.title-text').textContent;
-      }
-      if (document.querySelector('.sticky-add-to-cart .selling-label')) {
-        document.querySelector('.sticky-add-to-cart .selling-label').textContent = selectedVal;
-      }
-
-      const checkbox = document.querySelector(".addonproduct");
-      checkbox.setAttribute("data-plan-price", variantPrice);
-      const addonPrice = parseFloat(checkbox.dataset.variantPrice.replace(/[^0-9.]/g, "")) || 0;
-      const planPrice = parseFloat(checkbox.dataset.planPrice.replace(/[^0-9.]/g, "")) || 0;
-     
-      if (checkbox.checked) {
-        const newPrice = addonPrice + planPrice;  
-        productCard.querySelector('.product__cta .sale-price').textContent = `$${newPrice.toFixed(2)}`;
-      } else {
-        const newPrice = planPrice;
-        productCard.querySelector('.product__cta .sale-price').textContent = `$${newPrice.toFixed(2)}`;
-      }
-    });
+    }
   });
+});
 
-  const selectElements = document.querySelectorAll('.selling_plan_theme_integration select[name="selling-plan"]');
-  selectElements.forEach((selectElement) => {
-    selectElement.addEventListener('change', (event) => {
-      const selectedValue = event.target.value;
+const selectElements = document.querySelectorAll('.selling_plan_theme_integration select[name="selling-plan"]');
+selectElements.forEach((selectElement) => {
+  selectElement.addEventListener('change', (event) => {
+    const selectedValue = event.target.value;
 
-      if (event.target?.closest('.subscription-list')?.querySelectorAll('input:checked').length == 0) {
-        return false;
+    if (event.target?.closest('.subscription-list')?.querySelectorAll('input:checked').length == 0) {
+      return false;
+    }
+
+    if (event.target?.closest('.subscription-list')?.querySelector('label input:checked')) {
+      event.target.closest('.product__content').querySelector('[name="selling_plan"]').value = selectedValue;
+
+    }
+    const variantPrice = event.target.closest('.product__content').querySelector('.selling_plan_theme_integration [type="radio"]:checked').dataset.variantPrice;
+
+    const bundleCheckbox = document.querySelector('.variant-bundle-checkbox');
+    const bundleMode = bundleCheckbox && bundleCheckbox.checked;
+    const bundleVariants = bundleMode ? Array.from(document.querySelectorAll('input[name="bundle-size"]:checked')).map(cb => parseInt(cb.value)) : [];
+
+    if (bundleMode && bundleVariants.length > 0) {
+      const changedVariantId = event.target.closest('.selling_plan_theme_integration')?.dataset?.variantId;
+      if (changedVariantId) {
+        bundleVariants.forEach(variantId => {
+          if (variantId.toString() !== changedVariantId) {
+            const variantElement = document.querySelector(`.selling_plan_theme_integration[data-variant-id="${variantId}"]`);
+            if (variantElement) {
+              const variantSelect = variantElement.querySelector('select[name="selling-plan"]');
+              if (variantSelect && variantSelect.value !== selectedValue) {
+                variantSelect.value = selectedValue;
+                const variantProductCard = variantSelect.closest('.product__content');
+                if (variantProductCard) {
+                  const sellingPlanInput = variantProductCard.querySelector('[name="selling_plan"]');
+                  const addToCartButton = variantProductCard.querySelector('.js-add-to-cart');
+                  if (sellingPlanInput) sellingPlanInput.value = selectedValue;
+                  if (addToCartButton) addToCartButton.setAttribute("data-selling-plan-id", selectedValue);
+                }
+              }
+            }
+          }
+        });
       }
 
-      if (event.target?.closest('.subscription-list')?.querySelector('label input:checked')) {
-        event.target.closest('.product__content').querySelector('[name="selling_plan"]').value = selectedValue;
-        
-      }
-      const variantPrice = event.target.closest('.product__content').querySelector('.selling_plan_theme_integration [type="radio"]:checked').dataset.variantPrice;
-      event.target.closest('.product__content').querySelector('.product__cta .sale-price').textContent = variantPrice;
+      setTimeout(() => {
+        let totalPrice = 0;
+        bundleVariants.forEach(variantId => {
+          const variantElement = document.querySelector(`.selling_plan_theme_integration[data-variant-id="${variantId}"]`);
+          if (variantElement) {
+            const checkedRadio = variantElement.querySelector('[type="radio"]:checked');
+            if (checkedRadio && checkedRadio.dataset.variantPrice) {
+              const priceStr = checkedRadio.dataset.variantPrice.replace(/[^0-9.]/g, '');
+              totalPrice += parseFloat(priceStr) || 0;
+            }
+          }
+        });
 
-      const currentOptionText = event.target.options[event.target.selectedIndex].text;
-      if (document.querySelector('.sticky-add-to-cart .selling-label')) {
-        document.querySelector('.sticky-add-to-cart .selling-label').textContent = currentOptionText;
-      }
+        const productContent = event.target.closest('.product__content');
+        if (productContent) {
+          const priceElement = productContent.querySelector('.product__cta .sale-price');
+          if (priceElement) {
+            priceElement.textContent = `$${totalPrice.toFixed(2)}`;
+          }
+        }
 
-      if (document.querySelector('.current-variant-price')) {
-        document.querySelector('.current-variant-price').textContent = variantPrice;
+        if (document.querySelector('.current-variant-price')) {
+          document.querySelector('.current-variant-price').textContent = `$${totalPrice.toFixed(2)}`;
+        }
+        updateSubscriptionFormBundlePrice();
+      }, 50);
+    } else {
+      const productContent = event.target.closest('.product__content');
+      if (productContent) {
+        const salePriceEl = productContent.querySelector('.product__cta .sale-price');
+        if (salePriceEl) salePriceEl.textContent = variantPrice;
       }
-    });
+      const currentVariantPriceEl = document.querySelector('.current-variant-price');
+      if (currentVariantPriceEl) {
+        currentVariantPriceEl.textContent = variantPrice;
+      }
+      updateSubscriptionFormBundlePrice();
+    }
+
+    const currentOptionText = event.target.options[event.target.selectedIndex].text;
+    if (document.querySelector('.sticky-add-to-cart .selling-label')) {
+      document.querySelector('.sticky-add-to-cart .selling-label').textContent = currentOptionText;
+    }
   });
+});
 
-  if (document.querySelectorAll('.product__content select[name="selling-plan"]')) {
-    document.querySelectorAll('.product__content select[name="selling-plan"]').forEach((select) => {
-      select.dispatchEvent(new Event('change'));
-    });
-  }
-  /* custom selling plan end */
+if (document.querySelectorAll('.product__content select[name="selling-plan"]')) {
+  document.querySelectorAll('.product__content select[name="selling-plan"]').forEach((select) => {
+    select.dispatchEvent(new Event('change'));
+  });
+}
+/* custom selling plan end */
 document.addEventListener("DOMContentLoaded", () => {
   const link = document.querySelector('a[href="#pdp-reviews"]');
   const target = document.querySelector(".junip-product-review");
