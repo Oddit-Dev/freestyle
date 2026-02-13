@@ -175,7 +175,7 @@
                         data-variant-id="{{ product.selected_or_first_available_variant.id }}"
                         data-cta-label="{{ block.settings.cta_label }}"
                         x-bind:disabled="bundleMode && selectedBundleVariants.length !== 2"
-                        x-bind:class="{ 'opacity-50 cursor-not-allowed': bundleMode && selectedBundleVariants.length !== 2 }">
+                        x-bind:class="{ 'cursor-not-allowed': bundleMode && selectedBundleVariants.length !== 2 }">
                         <span class="js-add-to-cart-label">{{ block.settings.cta_label }}</span>
                         <span class="text-[8px]">•</span>
                         <span class="sale-price">

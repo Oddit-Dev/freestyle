@@ -483,10 +483,6 @@ class CartIcon extends HTMLElement {
 }
 customElements.define('cart-icon', CartIcon);
 
-/**
- * Check if a product (by product ID) is already in the cart.
- * Validation is by product ID, not variant ID.
- */
 function isProductInCart(productId) {
   if (!productId) return Promise.resolve(false);
   return fetch('/cart.js')
@@ -494,10 +490,6 @@ function isProductInCart(productId) {
     .then((cart) => cart.items.some((item) => Number(item.product_id) === Number(productId)));
 }
 
-/**
- * Update Add to Cart button: disable and set label to "Order limit reached."
- * when the product is already in the cart (by product ID).
- */
 function updateAddToCartButtonForProductInCart(btn) {
   if (!btn || !btn.classList.contains('js-add-to-cart')) return;
   const productId = btn.dataset.productId;
@@ -568,97 +560,35 @@ document.addEventListener("DOMContentLoaded", function () {
   function handleAddToCartClick() {
     const addToCartBtn = this;
     const bundleCheckbox = document.querySelector('.variant-bundle-checkbox');
-      const bundleMode = bundleCheckbox && bundleCheckbox.checked;
-      const bundleVariants = bundleMode ? Array.from(document.querySelectorAll('input[name="bundle-size"]:checked')).map(cb => parseInt(cb.value)) : [];
+    const bundleMode = bundleCheckbox && bundleCheckbox.checked;
+    const bundleVariants = bundleMode ? Array.from(document.querySelectorAll('input[name="bundle-size"]:checked')).map(cb => parseInt(cb.value)) : [];
 
-      if (bundleMode && bundleVariants.length === 2) {
+    if (bundleMode && bundleVariants.length === 2) {
 
-        const items = [];
-        bundleVariants.forEach(variantId => {
-          const variantElement = document.querySelector(`.selling_plan_theme_integration[data-variant-id="${variantId}"]`);
-          let sellingPlanId = null;
+      const items = [];
+      bundleVariants.forEach(variantId => {
+        const variantElement = document.querySelector(`.selling_plan_theme_integration[data-variant-id="${variantId}"]`);
+        let sellingPlanId = null;
 
-          if (variantElement) {
-            const checkedRadio = variantElement.querySelector('[type="radio"]:checked');
-            if (checkedRadio && checkedRadio.dataset.radioType === 'selling_plan') {
-              const selectElement = variantElement.querySelector('select.selling-plan-dropdown');
-              if (selectElement && selectElement.value) {
-                sellingPlanId = parseInt(selectElement.value);
-              } else {
-                sellingPlanId = parseInt(checkedRadio.dataset.sellingPlanId);
-              }
+        if (variantElement) {
+          const checkedRadio = variantElement.querySelector('[type="radio"]:checked');
+          if (checkedRadio && checkedRadio.dataset.radioType === 'selling_plan') {
+            const selectElement = variantElement.querySelector('select.selling-plan-dropdown');
+            if (selectElement && selectElement.value) {
+              sellingPlanId = parseInt(selectElement.value);
+            } else {
+              sellingPlanId = parseInt(checkedRadio.dataset.sellingPlanId);
             }
           }
-
-          items.push({
-            id: variantId,
-            quantity: 1,
-            ...(sellingPlanId && { selling_plan: sellingPlanId })
-          });
-        });
-
-        if (addonCheckbox && addonCheckbox.checked) {
-          let addonItem = {
-            id: addonCheckbox.dataset.variantId,
-            quantity: 1
-          };
-          if (document.querySelector(".selected-plan")) {
-            const selectedPlan = document.querySelector(".selected-plan").textContent;
-            if (selectedPlan != 'One-Time Purchase') {
-              if (addonCheckbox.dataset.sellingPlanId) {
-                addonItem.selling_plan = addonCheckbox.dataset.sellingPlanId;
-              }
-            }
-          }
-          items.push(addonItem);
         }
 
-        fetch("/cart/add.js", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-          },
-          body: JSON.stringify({ items })
-        })
-          .then(response => response.json().then(data => ({ ok: response.ok, data })))
-          .then(({ ok, data }) => {
-            if (!ok) {
-              addToCartBtn.disabled = false;
-              addToCartBtn.style.pointerEvents = '';
-              updateAddToCartButtonForProductInCart(addToCartBtn);
-              return;
-            }
-            const drawer = document.querySelector('cart-drawer');
-            if (drawer) {
-              drawer.refresh();
-              drawer.hideLoader();
-              drawer.open();
-            }
-            updateAddToCartButtonForProductInCart(addToCartBtn);
-          })
-          .catch(error => {
-            console.error("Error adding bundle to cart:", error);
-            addToCartBtn.disabled = false;
-            addToCartBtn.style.pointerEvents = '';
-            updateAddToCartButtonForProductInCart(addToCartBtn);
-          });
-        return;
-      }
+        items.push({
+          id: variantId,
+          quantity: 1,
+          ...(sellingPlanId && { selling_plan: sellingPlanId })
+        });
+      });
 
-      const mainVariantId = this.dataset.variantId;
-      const sellingPlanId = this.dataset.sellingPlanId;
-
-      let mainItem = {
-        id: mainVariantId,
-        quantity: 1
-      };
-
-      if (sellingPlanId) {
-        mainItem.selling_plan = sellingPlanId;
-      }
-
-      let items = [mainItem];
       if (addonCheckbox && addonCheckbox.checked) {
         let addonItem = {
           id: addonCheckbox.dataset.variantId,
@@ -675,8 +605,6 @@ document.addEventListener("DOMContentLoaded", function () {
         items.push(addonItem);
       }
 
-      items.reverse();
-
       fetch("/cart/add.js", {
         method: "POST",
         headers: {
@@ -686,7 +614,7 @@ document.addEventListener("DOMContentLoaded", function () {
         body: JSON.stringify({ items })
       })
         .then(response => response.json().then(data => ({ ok: response.ok, data })))
-        .then(({ ok }) => {
+        .then(({ ok, data }) => {
           if (!ok) {
             addToCartBtn.disabled = false;
             addToCartBtn.style.pointerEvents = '';
@@ -702,11 +630,75 @@ document.addEventListener("DOMContentLoaded", function () {
           updateAddToCartButtonForProductInCart(addToCartBtn);
         })
         .catch(error => {
-          console.error("Error adding to cart:", error);
+          console.error("Error adding bundle to cart:", error);
           addToCartBtn.disabled = false;
           addToCartBtn.style.pointerEvents = '';
           updateAddToCartButtonForProductInCart(addToCartBtn);
         });
+      return;
+    }
+
+    const mainVariantId = this.dataset.variantId;
+    const sellingPlanId = this.dataset.sellingPlanId;
+
+    let mainItem = {
+      id: mainVariantId,
+      quantity: 1
+    };
+
+    if (sellingPlanId) {
+      mainItem.selling_plan = sellingPlanId;
+    }
+
+    let items = [mainItem];
+    if (addonCheckbox && addonCheckbox.checked) {
+      let addonItem = {
+        id: addonCheckbox.dataset.variantId,
+        quantity: 1
+      };
+      if (document.querySelector(".selected-plan")) {
+        const selectedPlan = document.querySelector(".selected-plan").textContent;
+        if (selectedPlan != 'One-Time Purchase') {
+          if (addonCheckbox.dataset.sellingPlanId) {
+            addonItem.selling_plan = addonCheckbox.dataset.sellingPlanId;
+          }
+        }
+      }
+      items.push(addonItem);
+    }
+
+    items.reverse();
+
+    fetch("/cart/add.js", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({ items })
+    })
+      .then(response => response.json().then(data => ({ ok: response.ok, data })))
+      .then(({ ok }) => {
+        if (!ok) {
+          addToCartBtn.disabled = false;
+          addToCartBtn.style.pointerEvents = '';
+          updateAddToCartButtonForProductInCart(addToCartBtn);
+          return;
+        }
+        const drawer = document.querySelector('cart-drawer');
+        if (drawer) {
+          drawer.refresh();
+          drawer.hideLoader();
+          drawer.open();
+        }
+        updateAddToCartButtonForProductInCart(addToCartBtn);
+      })
+      .catch(error => {
+        console.error("Error adding to cart:", error);
+        addToCartBtn.disabled = false;
+        addToCartBtn.style.pointerEvents = '';
+        updateAddToCartButtonForProductInCart(addToCartBtn);
+      });
   }
 });
 
