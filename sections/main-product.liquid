@@ -40,6 +40,7 @@
   class="product"
   x-data="product"
   x-init="init"
+  {% if product.tags contains 'Variant Bundle' or product.tags contains 'variant bundle' %}data-is-variant-bundle="true"{% endif %}
   {% if template contains 'bambootek' and section.settings.extra_product_for_bambootek %}
     data-extra-product="{{ all_products[section.settings.extra_product_for_bambootek].first_available_variant.id }}"
     data-extra-product-qty="{{ section.settings.extra_product_quantity }}"
@@ -681,12 +682,29 @@
             isVariantInBundle(variantId) {
               return this.selectedBundleVariants.includes(variantId);
             },
-  
+            getSalePriceQty() {
+              const tags = this.product && this.product.tags ? this.product.tags : [];
+              const isVariantBundle = tags.some(t => t === 'Variant Bundle' || t === 'variant bundle');
+              return (!this.bundleMode && isVariantBundle) ? 2 : 1;
+            },
             updateBundlePrice() {
-              if (!this.bundleMode || this.selectedBundleVariants.length === 0) {
+              if (this.bundleMode && this.selectedBundleVariants.length === 0) {
                 return;
               }
-              
+              if (!this.bundleMode) {
+                const qty = this.getSalePriceQty();
+                if (qty === 1) return;
+                const unitPriceCents = this.getVariantSubscriptionPrice(this.activeVariant.id) || this.activeVariant.price;
+                const totalCents = unitPriceCents * qty;
+                const formattedPrice = this.price(totalCents);
+                const addToCartPrice = document.querySelector('.product__cta .sale-price');
+                if (addToCartPrice) addToCartPrice.innerHTML = formattedPrice;
+                const currentVariantPriceEl = document.querySelector('.current-variant-price');
+                if (currentVariantPriceEl) currentVariantPriceEl.textContent = formattedPrice;
+                const addonCheckbox = document.querySelector('.addonproduct');
+                if (addonCheckbox) addonCheckbox.setAttribute('data-plan-price', formattedPrice);
+                return;
+              }
               let totalPrice = 0;
               this.selectedBundleVariants.forEach(variantId => {
                 const variant = this.variants.find(v => v.id === variantId);
@@ -956,11 +974,12 @@
                     document.querySelector(`.selling_plan_app_container .selling_plan_theme_integration[data-variant-id="${this.activeVariant.id}"]`).classList.remove('hidden', 'has-hidden');
   
                     const variantPrice = document.querySelector(`.selling_plan_theme_integration:not(.has-hidden) [type="radio"]:checked`).dataset.variantPrice;
-  
-                    document.querySelector('.product__cta .sale-price').textContent = variantPrice;
-  
+                    const qty = this.getSalePriceQty();
+                    const priceNum = parseFloat(String(variantPrice || '0').replace(/[^0-9.]/g, '')) || 0;
+                    const displayPrice = '$' + (priceNum * qty).toFixed(2);
+                    document.querySelector('.product__cta .sale-price').textContent = displayPrice;
                     if (document.querySelector('.current-variant-price')) {
-                      document.querySelector('.current-variant-price').textContent = variantPrice;
+                      document.querySelector('.current-variant-price').textContent = displayPrice;
                     }
   
                     setTimeout(() => {
@@ -1011,7 +1030,8 @@
                   let value = (cents / 100).toFixed(2);
                   return format.replace('{{amount}}', currencySymbol + value);
               }
-              const activeVariantPrice = formatMoney(this.activeVariant.price, "{{amount}}", "$");
+              const qty = this.getSalePriceQty();
+              const activeVariantPrice = formatMoney((this.activeVariant.price || 0) * qty, "{{amount}}", "$");
               const addToCartPrice = document.querySelector('.product__cta .sale-price');
               if(activeVariantPrice && addToCartPrice){
                 addToCartPrice.innerHTML = activeVariantPrice;
@@ -1072,11 +1092,14 @@
               }
               
               if (!variantID) return;
+              const tags = this.product && this.product.tags ? this.product.tags : [];
+              const isVariantBundle = tags.some(t => t === 'Variant Bundle' || t === 'variant bundle');
+              const singleVariantQty = (!this.bundleMode && isVariantBundle) ? 2 : 1;
               if (this.templateName == 'product-bambootek') {
                   const itemsToAdd = [
                     {
                       id: this.activeVariant.id,
-                      quantity: 1,
+                      quantity: singleVariantQty,
                       ...(this.sellingPlan?.id && { selling_plan: this.sellingPlan.id })
                     }
                   ];
@@ -1098,7 +1121,7 @@
                 } else {
                   Alpine.store('cart').addToCart({
                   variantId: this.activeVariant.id,
-                  quantity: 1,
+                  quantity: singleVariantQty,
                   sellingPlanId: this.sellingPlan?.id || null
                 }, true, redirect).then(() => {
                   this.addCheckedAddons();
@@ -1437,8 +1460,42 @@
     
     function updateBundlePrice() {
       const bundleCheckbox = document.querySelector('.variant-bundle-checkbox');
-      if (!bundleCheckbox || !bundleCheckbox.checked) return;
-      
+      const productEl = document.querySelector('.product');
+      const isVariantBundle = productEl && productEl.dataset.isVariantBundle === 'true';
+      if (!bundleCheckbox) return;
+      if (!bundleCheckbox.checked) {
+        if (isVariantBundle) {
+          const visibleSection = document.querySelector('.selling_plan_theme_integration:not(.has-hidden)');
+          let unitPrice = 0;
+          if (visibleSection) {
+            const checkedRadio = visibleSection.querySelector('[type="radio"]:checked');
+            if (checkedRadio && checkedRadio.dataset.variantPrice) {
+              unitPrice = parseFloat(String(checkedRadio.dataset.variantPrice).replace(/[^0-9.]/g, '')) || 0;
+            }
+          }
+          if (unitPrice === 0 && window.Alpine) {
+            const alpineProduct = document.querySelector('[x-data*="product"]');
+            if (alpineProduct && alpineProduct._x_dataStack && alpineProduct._x_dataStack[0]) {
+              const productData = alpineProduct._x_dataStack[0];
+              if (productData.activeVariant && productData.activeVariant.price) {
+                unitPrice = productData.activeVariant.price / 100;
+              }
+            }
+          }
+          const displayPrice = `$${(unitPrice * 2).toFixed(2)}`;
+          const priceElement = document.querySelector('.product__cta .sale-price');
+          if (priceElement) priceElement.textContent = displayPrice;
+          if (document.querySelector('.current-variant-price')) {
+            document.querySelector('.current-variant-price').textContent = displayPrice;
+          }
+          const addonCheckbox = document.querySelector('.addonproduct');
+          if (addonCheckbox) addonCheckbox.setAttribute('data-plan-price', displayPrice);
+        }
+        if (typeof window.updateSubscriptionFormBundlePrice === 'function') {
+          window.updateSubscriptionFormBundlePrice();
+        }
+        return;
+      }
       const bundleVariants = Array.from(document.querySelectorAll('input[name="bundle-size"]:checked')).map(cb => parseInt(cb.value));
       if (bundleVariants.length > 0) {
         let totalPrice = 0;
@@ -1484,6 +1541,7 @@
         }
       }
     }
+    setTimeout(updateBundlePrice, 50);
   });
 </script>
 <style></style>
