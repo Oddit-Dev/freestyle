@@ -640,10 +640,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const mainVariantId = this.dataset.variantId;
     const sellingPlanId = this.dataset.sellingPlanId;
+    const productEl = this.closest('.product');
+    const isVariantBundle = productEl && productEl.dataset.isVariantBundle === 'true';
+    const mainQuantity = (!bundleMode && isVariantBundle) ? 2 : 1;
 
     let mainItem = {
       id: mainVariantId,
-      quantity: 1
+      quantity: mainQuantity
     };
 
     if (sellingPlanId) {
@@ -859,6 +862,9 @@ function updateSubscriptionFormBundlePrice() {
   const bundleCheckbox = document.querySelector('.variant-bundle-checkbox');
   const bundleMode = bundleCheckbox && bundleCheckbox.checked;
   const bundleVariants = bundleMode ? Array.from(document.querySelectorAll('input[name="bundle-size"]:checked')).map(cb => parseInt(cb.value, 10)) : [];
+  const productEl = document.querySelector('.product');
+  const isVariantBundle = productEl && productEl.dataset.isVariantBundle === 'true';
+  const salePriceMultiplier = (!bundleMode && isVariantBundle) ? 2 : 1;
 
   const parsePrice = (str) => {
     if (!str) return 0;
@@ -904,13 +910,17 @@ function updateSubscriptionFormBundlePrice() {
   } else {
     document.querySelectorAll('.selling_plan_theme_integration .allocation-price').forEach((el) => {
       const original = el.getAttribute('data-original-price');
-      if (original) el.textContent = original;
+      if (original) {
+        const priceNum = parsePrice(original);
+        el.textContent = formatPrice(priceNum * salePriceMultiplier);
+      }
     });
     document.querySelectorAll('.selling_plan_theme_integration').forEach((section) => {
       const oneTimeRadio = section.querySelector('[data-radio-type="one_time_purchase"]');
       const variantPriceEl = section.querySelector('.selling-price .variant-price');
       if (variantPriceEl && oneTimeRadio?.dataset?.variantPrice) {
-        variantPriceEl.textContent = oneTimeRadio.dataset.variantPrice;
+        const priceNum = parsePrice(oneTimeRadio.dataset.variantPrice);
+        variantPriceEl.textContent = formatPrice(priceNum * salePriceMultiplier);
       }
     });
   }
@@ -1053,13 +1063,18 @@ radioButtons.forEach((radioButton) => {
         updateSubscriptionFormBundlePrice();
       }, 50);
     } else {
+      const productEl = productCard?.closest('.product');
+      const isVariantBundle = productEl && productEl.dataset.isVariantBundle === 'true';
+      const salePriceMultiplier = (!bundleMode && isVariantBundle) ? 2 : 1;
+      const priceNum = parseFloat(String(variantPrice || '0').replace(/[^0-9.]/g, '')) || 0;
+      const displayPrice = `$${(priceNum * salePriceMultiplier).toFixed(2)}`;
       if (productCard) {
         const salePriceEl = productCard.querySelector('.product__cta .sale-price');
-        if (salePriceEl) salePriceEl.textContent = variantPrice;
+        if (salePriceEl) salePriceEl.textContent = displayPrice;
       }
       const currentVariantPriceEl = document.querySelector('.current-variant-price');
       if (currentVariantPriceEl) {
-        currentVariantPriceEl.textContent = variantPrice;
+        currentVariantPriceEl.textContent = displayPrice;
       }
       updateSubscriptionFormBundlePrice();
     }
@@ -1076,6 +1091,9 @@ radioButtons.forEach((radioButton) => {
 
     const checkbox = document.querySelector(".addonproduct");
     if (checkbox) {
+      const productEl = productCard?.closest('.product');
+      const isVariantBundle = productEl && productEl.dataset.isVariantBundle === 'true';
+      const salePriceMultiplier = (!bundleMode && isVariantBundle) ? 2 : 1;
       let planPriceForAddon = variantPrice;
       if (bundleMode && bundleVariants.length > 0) {
         setTimeout(() => {
@@ -1102,7 +1120,9 @@ radioButtons.forEach((radioButton) => {
           }
         }, 60);
       } else {
-        checkbox.setAttribute("data-plan-price", variantPrice);
+        const priceNum = parseFloat(String(variantPrice || '0').replace(/[^0-9.]/g, '')) || 0;
+        planPriceForAddon = `$${(priceNum * salePriceMultiplier).toFixed(2)}`;
+        checkbox.setAttribute("data-plan-price", planPriceForAddon);
         const addonPrice = parseFloat(checkbox.dataset.variantPrice.replace(/[^0-9.]/g, "")) || 0;
         const planPrice = parseFloat(checkbox.dataset.planPrice.replace(/[^0-9.]/g, "")) || 0;
 
@@ -1188,13 +1208,18 @@ selectElements.forEach((selectElement) => {
       }, 50);
     } else {
       const productContent = event.target.closest('.product__content');
+      const productEl = event.target.closest('.product');
+      const isVariantBundle = productEl && productEl.dataset.isVariantBundle === 'true';
+      const salePriceMultiplier = (!bundleMode && isVariantBundle) ? 2 : 1;
+      const priceNum = parseFloat(String(variantPrice || '0').replace(/[^0-9.]/g, '')) || 0;
+      const displayPrice = `$${(priceNum * salePriceMultiplier).toFixed(2)}`;
       if (productContent) {
         const salePriceEl = productContent.querySelector('.product__cta .sale-price');
-        if (salePriceEl) salePriceEl.textContent = variantPrice;
+        if (salePriceEl) salePriceEl.textContent = displayPrice;
       }
       const currentVariantPriceEl = document.querySelector('.current-variant-price');
       if (currentVariantPriceEl) {
-        currentVariantPriceEl.textContent = variantPrice;
+        currentVariantPriceEl.textContent = displayPrice;
       }
       updateSubscriptionFormBundlePrice();
     }
