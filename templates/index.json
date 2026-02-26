@@ -582,10 +582,10 @@
       "type": "image-hero-banner",
       "name": "Image Hero Banner",
       "settings": {
-        "image": "shopify://shop_images/Freestyle-Boxes-345-0676_1.png",
-        "image_mobile": "shopify://shop_images/Freestyle-Boxes-345-0676_1_1.png",
-        "heading": "Find $logo at a",
-        "heading2": "store near you",
+        "image": "shopify://shop_images/FREESTYLE_Store_Locator_Desktop.jpg",
+        "image_mobile": "shopify://shop_images/FREESTYLE_Store_Locator_Mobile.jpg",
+        "heading": "Find $logo at",
+        "heading2": "a store near you",
         "button": "Find a Store",
         "link": "https://freestyle.world/pages/stores"
       }
