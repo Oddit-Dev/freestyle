@@ -1512,6 +1512,15 @@
                 totalPrice += variant.price / 100;
               }
             }
+          } else {
+            const alpineProduct = document.querySelector('.product[x-data*="product"]');
+            if (alpineProduct && alpineProduct._x_dataStack && alpineProduct._x_dataStack[0]) {
+              const productData = alpineProduct._x_dataStack[0];
+              const variant = productData.variants && productData.variants.find(v => v.id == variantId);
+              if (variant) {
+                totalPrice += variant.price / 100;
+              }
+            }
           }
         });
         
