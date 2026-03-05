@@ -17,6 +17,7 @@
     "social_media_menu": "",
     "header_walmart_text": "<p>Find a store</p>",
     "header_walmart_text_url": "https://freestyle.world/pages/stores",
+    "header_account_login_url": "/account/login",
     "is_enabled_featured_blocks_mobile": false,
     "footer_menu_1": "footer-contant",
     "footer_menu_2": "footer-about",
