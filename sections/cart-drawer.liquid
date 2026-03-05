@@ -32,6 +32,14 @@
       {% assign free_shipping_threshold = section.settings.free_shipping_threshold | times: 100 | default: 15000 %}
       {% assign cart_total = cart.total_price %}
       {% assign progress = cart_total | times: 100 | divided_by: free_shipping_threshold %}
+      {% assign has_trial_pack = false %}
+      {% for item in cart.items %}
+        {% assign item_tags_downcase = item.product.tags | join: ',' | downcase %}
+        {% if item_tags_downcase contains 'trial pack' %}
+          {% assign has_trial_pack = true %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
       {% if progress > 100 %}
         {% assign progress = 100 %}
       {% endif %}
@@ -42,7 +50,7 @@
       id="CartDrawerBody"
       data-cart-total="{{ cart_total }}"
       data-free-shipping-threshold="{{ progress }}">
-      {% if cart.item_count != 0 %}
+      {% if cart.item_count != 0 and has_trial_pack == false %}
         <div class="cart-drawer__progress bg-[#F1F2F5] p-[18px_16px_16px]">
           {% if cart_total >= free_shipping_threshold %}
             <p class="progress-message font-grotesk font-normal text-[13px] leading-[1.6] text-center text-black mb-[12px]">
