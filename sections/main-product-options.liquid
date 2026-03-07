@@ -738,7 +738,7 @@
   
                   this.activeVariant = this.variants.find(item => item.id == id);
                   const mainVariantTitle = this.activeVariant.title;
-                  const regex = /Size\s*(.+?)\s*\(([^)]+)\)\s*[-–]\s*(\d+\s*diapers)/i;
+                  const regex = /Size\s(\d+)\s*\(([\w–]+)\)\s–\s(\d+\s\w+)/;
                   const matches = mainVariantTitle.match(regex);
   
                   if (matches) {
@@ -825,7 +825,7 @@
               } else {
                   this.activeVariant = this.variants[0];
                   const mainVariantTitle = this.activeVariant.title;
-                  const regex = /Size\s*(.+?)\s*\(([^)]+)\)\s*[-–]\s*(\d+\s*diapers)/i;
+                  const regex = /Size\s(\d+)\s*\(([\w–]+)\)\s–\s(\d+\s\w+)/;
                   const matches = mainVariantTitle.match(regex);
   
                   if (matches) {
@@ -953,7 +953,7 @@
                   variant.type = '789';
   
                   const mainVariantTitle = variant.title;
-                  const regex = /Size\s*(.+?)\s*\(([^)]+)\)\s*[-–]\s*(\d+\s*diapers)/i;
+                  const regex = /Size\s(\d+)\s*\(([\w–]+)\)\s–\s(\d+\s\w+)/;
                   const matches = mainVariantTitle.match(regex);
                  
                   if (matches) {
