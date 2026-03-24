@@ -30,7 +30,7 @@
         "richtext_kqgkj3": {
           "type": "richtext",
           "settings": {
-            "richtext": "<ul><li>100% heavyweight cotton</li><li>Premium screenprint</li><li>20 x 9\"</li><li>Made in Los Angeles</li></ul>"
+            "richtext": "<ul><li>Proprietary GripClip™ tech</li><li>Holds up to 5 lbs</li><li>7 layers of support & stability</li><li>Ergonomic design</li><li>Rotational chaos advantage</li><li>Adjustable straps</li></ul>"
           }
         },
         "variants_EBNBwP": {
@@ -127,24 +127,22 @@
         "accordion_item_yWrVCC": {
           "type": "accordion_item",
           "settings": {
-            "title": "About",
-            "content": "<p>It takes a village to raise a baby and if you’re part of the village you’re a Baby Maker. Stay active and well-prepared with our 100% cotton, premium screenprinted Baby Maker Sport Gym Bag. Whether you’re headed to the gym or the baby gym, it’s designed to fit everything you need, from sneakers, a water bottle, and a change of clothes to diapers, wipes, and…multiple changes of clothes. </p>"
+            "title": "How it works",
+            "content": "<p>The Grip🤏Clip™ Extra Hand is a wearable mini-hand built specifically for parent life. Designed with articulated fingers, ergonomic flex zones, and adjustable straps, it stabilizes squirming babies, rogue toys, snack containers, and bath chaos, giving parents the leverage they’ve always dreamed of. Attach it to your wrist, forearm, or diaper bag - one  Extra Hand goes wherever you go.</p><p></p><p>- Clip the Extra Hand™ to your wrist, forearm, or bag strap</p><p>- Adjust the fingers to hold wipes, diapers, bottles, or small toys</p><p>- Keep one hand free while the Extra Hand™ holds something stable</p><p>- When not in use, it can stay clipped on your bag as a playful accessory</p>"
           }
         },
         "accordion_item_cWHA4e": {
           "type": "accordion_item",
-          "disabled": true,
           "settings": {
-            "title": "EWG Verified® non-toxic ingredients",
-            "content": "<p>The Freestyle Formula<br/><br/>SkinShield™ diapers are EWG Verified® and Total Chlorine Free. <br/><br/>The core of this diaper is made with our proprietary SAP Matrix (super absorbent polymers (sodium acrylate, silicon dioxide, polyacrylic acid, water)) and FSC Certified Total Chlorine Free wood pulp (cellulose, hemicellulose). The topsheet, backsheet, leakguard, and films are made with performance-driven nonwoven fabrics (polypropylene, polyethylene terephthalate, polythene, titanium dioxide, nylon and polyester, sodium dodecylbenzenesulfonate). Elastics (polypropylene, segmented polyurethaneurea, titanium dioxide) and adhesives (hydrocarbon resin, styrene-Isoprene-styrene copolymer, mineral oil, petroleum resin, rosin ester) are used to hold it all together - and we mean all.<br/><br/>Read more about our safety and testing <a href=\"https://freestyle.world/pages/safety-and-testing\" target=\"_blank\" title=\"Safety and Testing\">here</a>.</p>"
+            "title": "Grip🤏Clip™ Technology",
+            "content": "<p>Proprietary engineering designed to:<br/>- Mimic human hand movement with flexible, articulated fingers</p><p>- Provide ergonomic support for grabbing, stabilizing, and holding</p><p>- Flex and adapt to toys, bottles, wipes, diapers, or anything that escapes your grip</p><p>- Perform under high-risk household conditions</p><p>- Tested in real homes. Engineered for real life</p>"
           }
         },
         "accordion_item_QDWeYg": {
           "type": "accordion_item",
-          "disabled": true,
           "settings": {
-            "title": "Skin ❤️ Shield™'s performance",
-            "content": "<p>SkinShield™ has been tested against leading competitors and is up to 14x more absorbent than a leading brand. This means better performance at the best price. Read more <a href=\"https://freestyle.world/pages/safety-and-testing\" target=\"_blank\" title=\"https://freestyle.world/pages/safety-and-testing\">here</a>.</p>"
+            "title": "Fit",
+            "content": "<p>- Adjustable straps fit snugly without restricting movement</p><p>- Lightweight and compact — easy to store or travel with</p><p>- Worn on dominant or non-dominant arm, or clipped to bag</p><p>- Fully adjustable for parents of all sizes</p>"
           }
         },
         "accordion_item_ztzDDX": {
