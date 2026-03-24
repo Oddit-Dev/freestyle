@@ -128,7 +128,7 @@
           "type": "accordion_item",
           "settings": {
             "title": "How it works",
-            "content": "<p>The Grip🤏Clip™ Extra Hand is a wearable mini-hand built specifically for parent life. Designed with articulated fingers, ergonomic flex zones, and adjustable straps, it stabilizes squirming babies, rogue toys, snack containers, and bath chaos, giving parents the leverage they’ve always dreamed of. Attach it to your wrist, forearm, or diaper bag - one  Extra Hand goes wherever you go.</p><p></p><p>- Clip the Extra Hand™ to your wrist, forearm, or bag strap</p><p>- Adjust the fingers to hold wipes, diapers, bottles, or small toys</p><p>- Keep one hand free while the Extra Hand™ holds something stable</p><p>- When not in use, it can stay clipped on your bag as a playful accessory</p>"
+            "content": "<p>The Grip🤏Clip™ Extra Hand is a wearable mini-hand built specifically for parent life. Designed with articulated fingers, ergonomic flex zones, and adjustable straps, it stabilizes squirming babies, rogue toys, snack containers, and bath chaos, giving parents the leverage they’ve always dreamed of. Attach it to your wrist, forearm, or diaper bag - one  Extra Hand goes wherever you go.</p><p></p><p>- Clip the Extra Hand™ to your wrist, forearm, or bag strap</p><p>- Adjust the fingers to hold wipes, diapers, bottles, or small toys</p><p>- Keep one hand free while the Extra Hand™ holds something stable</p><p>- When not in use, it can stay clipped on your bag as a playful accessory</p><p></p><p>The fit</p><p>- Adjustable straps fit snugly without restricting movement</p><p>- Lightweight and compact — easy to store or travel with</p><p>- Worn on dominant or non-dominant arm, or clipped to bag</p><p>- Fully adjustable for parents of all sizes</p>"
           }
         },
         "accordion_item_cWHA4e": {
@@ -140,8 +140,9 @@
         },
         "accordion_item_QDWeYg": {
           "type": "accordion_item",
+          "disabled": true,
           "settings": {
-            "title": "Fit",
+            "title": "The fit",
             "content": "<p>- Adjustable straps fit snugly without restricting movement</p><p>- Lightweight and compact — easy to store or travel with</p><p>- Worn on dominant or non-dominant arm, or clipped to bag</p><p>- Fully adjustable for parents of all sizes</p>"
           }
         },
