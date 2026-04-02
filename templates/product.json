@@ -428,7 +428,6 @@
       "blocks": {
         "junip_junip_product_review_QaUeLN": {
           "type": "shopify://apps/junip/blocks/junip-product-review/dc14f5a8-ed15-41b1-ad08-cfba23f9789b",
-          "disabled": true,
           "settings": {
             "product": "{{product}}",
             "title": "",
