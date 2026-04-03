@@ -15,9 +15,9 @@
       "settings": {
         "image": "shopify://shop_images/Homepage_hero_desktop.png",
         "mobile_image": "shopify://shop_images/Homepage_hero_mobile.png",
-        "heading": "<p>Ultra Soft <br/>Skin $heart  Shield™ <br/><strong>Diapers</strong></p>",
+        "heading": "<p>Ultra Soft <br/>Skin $heart  Shield <br/><strong>Diapers</strong></p>",
         "text": "14x Better Absorption  <strong>•</strong>  7-Layer Skin Protection  <strong>•</strong>  Total Chlorine Free",
-        "button_text": "Shop Skin $heart Shield™ Diapers",
+        "button_text": "Shop Skin $heart Shield Diapers",
         "button_link": "shopify://products/skinshield-diapers",
         "text_alignment": "align-left"
       }
