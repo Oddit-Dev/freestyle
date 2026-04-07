@@ -34,7 +34,7 @@
         "banner_height_desktop": "700",
         "banner_height_mobile": "300",
         "description_icon_size": 36,
-        "button_label": "Shop Skin Shield™",
+        "button_label": "Shop Skin Shield",
         "button_link": "https://freestyle.world/products/skinshield-diapers",
         "show_popup": false,
         "popup__trigger": ""
@@ -44,7 +44,7 @@
       "type": "c-hero-text",
       "settings": {
         "title": "Safer choices, always",
-        "subtitle": "<p>As parents, we know that nothing is more important than the safety of our kids. So, we’re committed to only using clean, non-toxic, Total Chlorine Free materials in our Skin❤️Shield™ diapers and wipes and lab testing our products for safety to make sure. What’s more, we test for performance to ensure you don’t have to make any compromises.</p>",
+        "subtitle": "<p>As parents, we know that nothing is more important than the safety of our kids. So, we’re committed to only using clean, non-toxic, Total Chlorine Free materials in our Skin❤️Shield diapers and wipes and lab testing our products for safety to make sure. What’s more, we test for performance to ensure you don’t have to make any compromises.</p>",
         "baner_button": "",
         "baner_button_link": "",
         "bg_color": "#6638b6",
