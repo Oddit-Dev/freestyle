@@ -890,7 +890,7 @@
   
                   this.activeVariant = this.variants.find(item => item.id == id);
                   const mainVariantTitle = this.activeVariant.title;
-                  const regexNew = /Size\s*(NB|\d+)\s*\(([^)]+)\)\s*[-–]\s*(\d+\s*diapers)/i;
+                  const regexNew = /Size\s*([A-Za-z0-9+]+)\s*\(([^)]+)\)\s*[-–]\s*(\d+\s*diapers)/i;
                   const regexOld = /Size\s(\d+)\s*\(([\w–]+)\)\s–\s(\d+\s\w+)/;
 
                   const matches = mainVariantTitle.match(regexNew) || mainVariantTitle.match(regexOld);
@@ -991,7 +991,7 @@
               } else {
                   this.activeVariant = this.variants[0];
                   const mainVariantTitle = this.activeVariant.title;
-                  const regexNew = /Size\s*(NB|\d+)\s*\(([^)]+)\)\s*[-–]\s*(\d+\s*diapers)/i;
+                  const regexNew = /Size\s*([A-Za-z0-9+]+)\s*\(([^)]+)\)\s*[-–]\s*(\d+\s*diapers)/i;
                   const regexOld = /Size\s(\d+)\s*\(([\w–]+)\)\s–\s(\d+\s\w+)/;
 
                   const matches = mainVariantTitle.match(regexNew) || mainVariantTitle.match(regexOld);
@@ -1186,7 +1186,7 @@
                   variant.type = '789';
   
                   const mainVariantTitle = variant.title;
-                  const regexNew = /Size\s*(NB|\d+)\s*\(([^)]+)\)\s*[-–]\s*(\d+\s*diapers)/i;
+                  const regexNew = /Size\s*([A-Za-z0-9+]+)\s*\(([^)]+)\)\s*[-–]\s*(\d+\s*diapers)/i;
                   const regexOld = /Size\s(\d+)\s*\(([\w–]+)\)\s–\s(\d+\s\w+)/;
 
                   const matches = mainVariantTitle.match(regexNew) || mainVariantTitle.match(regexOld);

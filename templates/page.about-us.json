@@ -145,30 +145,6 @@
         "banner_height_mobile": "350"
       }
     },
-    "c_hero_img_3b8kXN": {
-      "type": "c-hero-img",
-      "settings": {
-        "image": "shopify://shop_images/242A6894_6.jpg",
-        "heading": "Shop Skin Shield™",
-        "heading_color": "#ffffff",
-        "heading_icon": "shopify://shop_images/hear-icon-2-light.svg",
-        "heading_weight": "normal",
-        "heading_icon_size": 94,
-        "description": "",
-        "description_color": "#ffffff",
-        "button_icon_size": 16,
-        "button_text_icon": "shopify://shop_images/heart-icon-text.svg",
-        "button_text_icon_size": 16,
-        "banner_height_desktop": "818",
-        "banner_height_mobile": "350",
-        "description_icon": "shopify://shop_images/heart-icon-violet.svg",
-        "description_icon_size": 36,
-        "button_label": "Shop Skin Shield™",
-        "button_link": "https://freestyle.world/products/skinshield-diapers",
-        "show_popup": false,
-        "popup__trigger": ""
-      }
-    },
     "multiple_marquee_cDJX9G": {
       "type": "multiple-marquee",
       "blocks": {
@@ -268,6 +244,30 @@
         "third_marquee_hide_desktop": false,
         "third_marquee_hide_mobile": false,
         "third_marquee_direction": "-1"
+      }
+    },
+    "c_hero_img_3b8kXN": {
+      "type": "c-hero-img",
+      "settings": {
+        "image": "shopify://shop_images/242A6894_6.jpg",
+        "heading": "Shop Skin Shield",
+        "heading_color": "#ffffff",
+        "heading_icon": "shopify://shop_images/hear-icon-2-light.svg",
+        "heading_weight": "normal",
+        "heading_icon_size": 94,
+        "description": "",
+        "description_color": "#ffffff",
+        "button_icon_size": 16,
+        "button_text_icon": "shopify://shop_images/heart-icon-text.svg",
+        "button_text_icon_size": 16,
+        "banner_height_desktop": "818",
+        "banner_height_mobile": "350",
+        "description_icon": "shopify://shop_images/heart-icon-violet.svg",
+        "description_icon_size": 36,
+        "button_label": "Shop Skin Shield",
+        "button_link": "https://freestyle.world/products/skinshield-diapers",
+        "show_popup": false,
+        "popup__trigger": ""
       }
     },
     "media_slider_tEDUFN": {

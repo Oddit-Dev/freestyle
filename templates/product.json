@@ -126,7 +126,7 @@
           "type": "accordion_item",
           "settings": {
             "title": "Size & pack details",
-            "content": "<p>Find your best size:</p><p>Size NB: Up to 10 lbs</p><p>Size 1: 6-12 lbs</p><p>Size 2: 9-18 lbs</p><p>Size 3: 14-24 lbs</p><p>Size 4: 22-34 lbs</p><p>Size 5: 28-40 lbs</p><p>Size 6: 34-44 lbs</p><p></p><p>We optimize monthly quantities according to the average number of diaper changes babies need as they grow. Each monthly shipment includes six packs of diapers (and three packs of wipes as an add on) for around a month’s use. </p><p></p><p>Size NB: 32 diapers per pack, 192 diapers total count</p><p>Size 1: 34 diapers per pack, 204 diapers total count</p><p>Size 2: 32 diapers per pack, 192 diapers total count</p><p>Size 3: 28 diapers per pack, 168 diapers total count</p><p>Size 4: 24 diapers per pack, 144 diapers total count</p><p>Size 5: 22 diapers per pack, 132 diapers total count</p><p>Size 6: 20 diapers per pack, 120 diapers total count</p><p>3 packs of wipes: 72 wipes per pack; 216 wipes total count</p>"
+            "content": "<p>Find your best size:</p><p>Size NB: Up to 10 lbs</p><p>Size 1: 6-12 lbs</p><p>Size 2: 9-18 lbs</p><p>Size 3: 14-24 lbs</p><p>Size 4: 22-34 lbs</p><p>Size 5: 28-40 lbs</p><p>Size 6: 34-44 lbs</p><p></p><p>We optimize monthly quantities according to the average number of diaper changes babies need as they grow. Each monthly shipment includes six packs of diapers (and three packs of wipes as an add on) for around a month’s use. </p><p>NB + 1 subscriptions will automatically convert to a size 1 subscription for order 2. You likely will not need more NB diapers, however should you want more, write us at hello@freestyle.world so we can help.<br/></p><p>Size NB + 1 : 3 x 32 diapers per pack, 96 size NB diapers total count + 3 x 34 diapers per pack, 102 size 1 diapers total count; 198 diapers total count</p><p>Size 1: 34 diapers per pack, 204 diapers total count</p><p>Size 2: 32 diapers per pack, 192 diapers total count</p><p>Size 3: 28 diapers per pack, 168 diapers total count</p><p>Size 4: 24 diapers per pack, 144 diapers total count</p><p>Size 5: 22 diapers per pack, 132 diapers total count</p><p>Size 6: 20 diapers per pack, 120 diapers total count</p><p>3 packs of wipes: 72 wipes per pack; 216 wipes total count</p>"
           }
         },
         "accordion_item_cWHA4e": {
@@ -139,15 +139,15 @@
         "accordion_item_QDWeYg": {
           "type": "accordion_item",
           "settings": {
-            "title": "Skin ❤️ Shield™'s performance",
-            "content": "<p>Skin❤️Shield™ has been tested against leading competitors and is up to 14x more absorbent than a leading brand. This means better performance at the best price. Read more <a href=\"https://freestyle.world/pages/safety-and-testing\" target=\"_blank\" title=\"https://freestyle.world/pages/safety-and-testing\">here</a>.</p>"
+            "title": "Skin ❤️ Shield's performance",
+            "content": "<p>Skin❤️Shield has been tested against leading competitors and offers 14x better absorption. This means better performance at the best price. Read more <a href=\"https://freestyle.world/pages/safety-and-testing\" target=\"_blank\" title=\"https://freestyle.world/pages/safety-and-testing\">here</a>.</p><p>*Up to 14x better absorption as measured by rewet testing compared to a leading brand</p>"
           }
         },
         "accordion_item_ztzDDX": {
           "type": "accordion_item",
           "settings": {
             "title": "Where to shop",
-            "content": "<p>Skin❤️Shield™ diapers are available at here at Freestyle.World, at <a href=\"https://www.target.com/p/freestyle-hyper-absorbent-ultra-soft-baby-diapers/-/A-94937680?preselect=94800623#lnk=sametab\" target=\"_blank\" title=\"https://www.target.com/p/freestyle-hyper-absorbent-ultra-soft-baby-diapers/-/A-94937680?preselect=94800623#lnk=sametab\">Target.com</a>, <a href=\"https://www.walmart.com/ip/Freestyle-Diaper-Size-4-48CT/13932710597\" target=\"_blank\" title=\"https://www.walmart.com/ip/Freestyle-Diaper-Size-4-48CT/13932710597 \">Walmart.com</a> and select Walmart stores (find one <a href=\"https://freestyle.world/pages/stores\" title=\"https://freestyle.world/pages/stores\">here</a>).</p>"
+            "content": "<p>Find Skin❤️Shield™ diapers on our website, at <a href=\"https://www.target.com/p/freestyle-hyper-absorbent-ultra-soft-baby-diapers/-/A-94937680?preselect=94800621#lnk=sametab\"><span style=\"text-decoration:underline\">Target.com,</span></a> <a href=\"https://www.walmart.com/ip/Freestyle-Diaper-Size-NB-56CT/13911911502?classType=VARIANT&from=/search\"><span style=\"text-decoration:underline\">Walmart.com</span></a>, and in Target and Walmart stores nationwide. Check our <a href=\"https://freestyle.world/pages/stores\"><span style=\"text-decoration:underline\">Store Locator </span></a>to find your nearest location.</p>"
           }
         }
       },
@@ -181,7 +181,7 @@
         "extra_product_quantity": 0,
         "show_product_details": false,
         "show_store_locator": true,
-        "store_main_heading": "Find Skin❤️Shield™ near you",
+        "store_main_heading": "Find Skin❤️Shield near you",
         "store_sub_heading": "",
         "enable_walmart_btn": true,
         "walmart_btn_text": "Buy at Walmart",
@@ -304,7 +304,7 @@
           "settings": {
             "image": "shopify://shop_images/Frame.png",
             "heading": "14x better absorption",
-            "description": "Better protection and fewer changes. Skin $heart Shield™ ‘s superior absorption technology keeps your baby’s skin dry.",
+            "description": "Better protection and fewer changes. Skin $heart Shield ‘s superior absorption technology keeps your baby’s skin dry.",
             "text": "*Up to 14x better absorption as measured by rewet testing compared to a leading brand"
           }
         },
@@ -395,7 +395,7 @@
         "background_image": "shopify://shop_images/HEADER_F1F2F5.jpg",
         "background_image_mobile": "shopify://shop_images/HEADER_F1F2F5.jpg",
         "heading": "Safe & Soft Protection",
-        "text": "Skin❤️Shield™ diapers use non-toxic, lab-tested, clean materials that keep your baby protected and you worry-free."
+        "text": "Skin❤️Shield diapers use non-toxic, lab-tested, clean materials that keep your baby protected and you worry-free."
       }
     },
     "17682469627aab8134": {
@@ -537,7 +537,7 @@
           "settings": {
             "image": "shopify://shop_images/Flores_family.png",
             "rating_image": "shopify://shop_images/Stars.png",
-            "text": "<p>\"We just tried the new Skin❤️Shield™ diapers and we LOVE them! We've tried almost every TCF diaper out there and these are definitely a new favorite!\"</p>",
+            "text": "<p>\"We just tried the new Skin❤️Shield diapers and we LOVE them! We've tried almost every TCF diaper out there and these are definitely a new favorite!\"</p>",
             "title": "McKenna",
             "verified_buyer": true
           }
@@ -572,7 +572,7 @@
       "name": "Testimonial",
       "settings": {
         "heading": "Trusted by Real Families",
-        "button": "Shop Skin $heart Shield™ Diapers",
+        "button": "Shop Skin $heart Shield Diapers",
         "link": "shopify://products/skinshield-diapers"
       }
     }
