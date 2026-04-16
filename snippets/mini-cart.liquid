@@ -1,6 +1,14 @@
 {% assign upsell_functionality = settings.activate_upsell_functionality %}
 {% assign onetime_upsell_products = settings.onetime_upsell_product %}
 {% assign subscription_upsell_products = settings.subscription_upsell_product %}
+{% assign has_trial_pack_in_cart = false %}
+{% for item in cart.items %}
+  {% assign item_tags_downcase = item.product.tags | join: ',' | downcase %}
+  {% if item_tags_downcase contains 'trial pack' %}
+    {% assign has_trial_pack_in_cart = true %}
+    {% break %}
+  {% endif %}
+{% endfor %}
 
 <section
   class="b-mini_cart"
@@ -32,10 +40,12 @@
         :style="{ width: `${$store.cart.shippingDiscount.shippingProgress}%` }"></div>
     </div> {% endcomment %}
 
-    <div class="drawer__header-row progress-bar-row" x-show="$store.cart.items.length > 0">
-      {% comment %} {% render 'progress-bar' data: 'cart' %} {% endcomment %}
-      {% render 'custom-progress-bar' data: 'cart' %}
-    </div>
+    {% if has_trial_pack_in_cart == false %}
+      <div class="drawer__header-row progress-bar-row" x-show="$store.cart.items.length > 0">
+        {% comment %} {% render 'progress-bar' data: 'cart' %} {% endcomment %}
+        {% render 'custom-progress-bar' data: 'cart' %}
+      </div>
+    {% endif %}
 
   
 
