@@ -44,7 +44,7 @@
       "type": "c-hero-text",
       "settings": {
         "title": "Safer choices, always",
-        "subtitle": "<p>As parents, we know that nothing is more important than the safety of our kids. So, we’re committed to only using clean, non-toxic, Total Chlorine Free materials in our Skin❤️Shield diapers and wipes and lab testing our products for safety to make sure. What’s more, we test for performance to ensure you don’t have to make any compromises.</p>",
+        "subtitle": "<p>As parents, we know that nothing is more important than the safety of our kids. So, we’re committed to only using clean, non-toxic, Total Chlorine Free materials in our Skin❤️Shield diapers and lab testing all of our products for safety to make sure. What’s more, we test for performance to ensure you don’t have to make any compromises.</p>",
         "baner_button": "",
         "baner_button_link": "",
         "bg_color": "#6638b6",
@@ -98,7 +98,7 @@
         "logo_block_3KHCn9"
       ],
       "settings": {
-        "main_text": "Our products are",
+        "main_text": "Skin❤️Shield diapers are",
         "additional_text": ""
       }
     },
@@ -247,7 +247,7 @@
         "content_block_9REBWz": {
           "type": "content_block",
           "settings": {
-            "text_left": "Freestyle SkinShield",
+            "text_left": "Freestyle Skin❤️Shield",
             "text_right": "0.033"
           }
         },
