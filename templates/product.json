@@ -18,12 +18,6 @@
             "alternate_title": ""
           }
         },
-        "richtext_9Fwbhx": {
-          "type": "richtext",
-          "settings": {
-            "richtext": "<p>Buying the Trial Pack gives you $10 off on your first purchase of a month's supply of SkinShield Diapers. </p>"
-          }
-        },
         "variant_text_JnAzJ8": {
           "type": "variant_text",
           "settings": {}
@@ -128,13 +122,6 @@
           "type": "accordion",
           "settings": {}
         },
-        "accordion_item_yWrVCC": {
-          "type": "accordion_item",
-          "settings": {
-            "title": "How to redeem your $10 off",
-            "content": "<p>Buying the trial pack:<br/><br/>Step 1: Choose the size or sizes you want to try. You can select the same size twice, or one of each size that you want to receive. You will receive a discount code via email after purchasing.<br/><br/>Step 2: Try the diapers and determine the right size for your baby.<br/><br/>Step 3: Go to Freestyle.world and order the full month's supply of SkinShield diapers.<br/><br/>Step 4: Fill in the code you received from us at check-out to redeem your $10. </p>"
-          }
-        },
         "accordion_item_HX747m": {
           "type": "accordion_item",
           "settings": {
@@ -166,7 +153,6 @@
       },
       "block_order": [
         "title_hijtjK",
-        "richtext_9Fwbhx",
         "variant_text_JnAzJ8",
         "separator_NF3Aqz",
         "richtext_kqgkj3",
@@ -183,7 +169,6 @@
         "product_feature_nUkWcM",
         "product_feature_HWGJLV",
         "accordion_gjrxaL",
-        "accordion_item_yWrVCC",
         "accordion_item_HX747m",
         "accordion_item_cWHA4e",
         "accordion_item_QDWeYg",
