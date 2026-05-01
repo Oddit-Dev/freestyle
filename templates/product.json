@@ -313,6 +313,56 @@
         "third_marquee_direction": "-1"
       }
     },
+    "icon_with_text_Tirzyn": {
+      "type": "icon-with-text",
+      "blocks": {
+        "icon_8XwHGp": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Frame_26680.png",
+            "heading": "",
+            "text": "Pick the sizes you want to try and complete the purchase"
+          }
+        },
+        "icon_cPwWet": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Frame_26681.png",
+            "heading": "",
+            "text": "Try the diapers and determine the right size for your baby"
+          }
+        },
+        "icon_JCck3C": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Frame_26682.png",
+            "heading": "",
+            "text": "Order a full month's supply and apply the discount code"
+          }
+        },
+        "icon_wr7y76": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Frame_26683.png",
+            "heading": "",
+            "text": "Enjoy SkinShield knowing you've got the perfect size"
+          }
+        }
+      },
+      "block_order": [
+        "icon_8XwHGp",
+        "icon_cPwWet",
+        "icon_JCck3C",
+        "icon_wr7y76"
+      ],
+      "name": "Icon With Text",
+      "settings": {
+        "background_image": "shopify://shop_images/HEADER_F1F2F5.jpg",
+        "background_image_mobile": "shopify://shop_images/HEADER_F1F2F5.jpg",
+        "heading": "Trial & get $10 off!",
+        "text": "You want to be sure your baby is wearing the perfect size. Ordering the trial pack allows you to try Skin❤️Shield diapers before purchasing a full month's supply."
+      }
+    },
     "perfect_info_mgPXdV": {
       "type": "perfect-info",
       "blocks": {
@@ -365,10 +415,10 @@
         "heading": "<strong>Your baby is perfect, </strong>now their diaper is too."
       }
     },
-    "icon_with_text_Tirzyn": {
+    "icon_with_text_atBt9L": {
       "type": "icon-with-text",
       "blocks": {
-        "icon_8XwHGp": {
+        "icon_BGWdkB": {
           "type": "icon",
           "settings": {
             "image": "shopify://shop_images/Vector_e70b4c88-8309-486e-abd3-84fa4cb5271e.png",
@@ -376,7 +426,7 @@
             "text": "Hypoallergenic, fragrance- and lotion-free materials free from PFAS, BPAs, and phthalates."
           }
         },
-        "icon_cPwWet": {
+        "icon_GA78XV": {
           "type": "icon",
           "settings": {
             "image": "shopify://shop_images/Works_Overnight.png",
@@ -384,7 +434,7 @@
             "text": "No use of chlorine or chlorine derivatives."
           }
         },
-        "icon_JCck3C": {
+        "icon_PpW7dT": {
           "type": "icon",
           "settings": {
             "image": "shopify://shop_images/EWGV_black_480x480_1_1.png",
@@ -392,7 +442,7 @@
             "text": "Free from 1,500+ known chemicals of concern with full ingredient transparency."
           }
         },
-        "icon_wr7y76": {
+        "icon_MKymEn": {
           "type": "icon",
           "settings": {
             "image": "shopify://shop_images/microscope-pictogram-3_svgrepo.com.png",
@@ -402,10 +452,10 @@
         }
       },
       "block_order": [
-        "icon_8XwHGp",
-        "icon_cPwWet",
-        "icon_JCck3C",
-        "icon_wr7y76"
+        "icon_BGWdkB",
+        "icon_GA78XV",
+        "icon_PpW7dT",
+        "icon_MKymEn"
       ],
       "name": "Icon With Text",
       "settings": {
@@ -597,8 +647,9 @@
   "order": [
     "main",
     "multiple_marquee_4VUVyj",
-    "perfect_info_mgPXdV",
     "icon_with_text_Tirzyn",
+    "perfect_info_mgPXdV",
+    "icon_with_text_atBt9L",
     "17682469627aab8134",
     "174411240666086477",
     "media_slider_AqMcEa",
