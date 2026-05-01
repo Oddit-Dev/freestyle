@@ -18,6 +18,12 @@
             "alternate_title": ""
           }
         },
+        "richtext_9Fwbhx": {
+          "type": "richtext",
+          "settings": {
+            "richtext": "<p>Buying the Trial Pack gives you $10 off on your first purchase of a month's supply. </p>"
+          }
+        },
         "variant_text_JnAzJ8": {
           "type": "variant_text",
           "settings": {}
@@ -125,6 +131,13 @@
         "accordion_item_yWrVCC": {
           "type": "accordion_item",
           "settings": {
+            "title": "How to redeem your $10 off",
+            "content": "<p>Buying the trial pack:<br/><br/>Step 1: Choose the size or sizes you want to try. You can select the same size twice, or one of each size that you want to receive. You will receive a discount code via email after purchasing.<br/><br/>Step 2: Try the diapers and determine the right size for your baby.<br/><br/>Step 3: Go to Freestyle.world and order the full month's supply of SkinShield diapers.<br/><br/>Step 4: Fill in the code you received from us at check-out to redeem your $10. </p>"
+          }
+        },
+        "accordion_item_HX747m": {
+          "type": "accordion_item",
+          "settings": {
             "title": "Size & pack details",
             "content": "<p>Find your best size:</p><p>Size NB: Up to 10 lbs</p><p>Size 1: 6-12 lbs</p><p>Size 2: 9-18 lbs</p><p>Size 3: 14-24 lbs</p><p>Size 4: 22-34 lbs</p><p>Size 5: 28-40 lbs</p><p>Size 6: 34-44 lbs</p><p></p><p>We optimize monthly quantities according to the average number of diaper changes babies need as they grow. Each monthly shipment includes six packs of diapers (and three packs of wipes as an add on) for around a month’s use. </p><p>NB + 1 subscriptions will automatically convert to a size 1 subscription for order 2. You likely will not need more NB diapers, however should you want more, write us at hello@freestyle.world so we can help.<br/></p><p>Size NB + 1 : 3 x 32 diapers per pack, 96 size NB diapers total count + 3 x 34 diapers per pack, 102 size 1 diapers total count; 198 diapers total count</p><p>Size 1: 34 diapers per pack, 204 diapers total count</p><p>Size 2: 32 diapers per pack, 192 diapers total count</p><p>Size 3: 28 diapers per pack, 168 diapers total count</p><p>Size 4: 24 diapers per pack, 144 diapers total count</p><p>Size 5: 22 diapers per pack, 132 diapers total count</p><p>Size 6: 20 diapers per pack, 120 diapers total count</p><p>3 packs of wipes: 72 wipes per pack; 216 wipes total count</p>"
           }
@@ -153,6 +166,7 @@
       },
       "block_order": [
         "title_hijtjK",
+        "richtext_9Fwbhx",
         "variant_text_JnAzJ8",
         "separator_NF3Aqz",
         "richtext_kqgkj3",
@@ -170,6 +184,7 @@
         "product_feature_HWGJLV",
         "accordion_gjrxaL",
         "accordion_item_yWrVCC",
+        "accordion_item_HX747m",
         "accordion_item_cWHA4e",
         "accordion_item_QDWeYg",
         "accordion_item_ztzDDX"
