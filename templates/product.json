@@ -212,6 +212,56 @@
         "waitlist_btn_text": "Join the Waitlist"
       }
     },
+    "icon_with_text_Tirzyn": {
+      "type": "icon-with-text",
+      "blocks": {
+        "icon_8XwHGp": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Frame_26680.png",
+            "heading": "",
+            "text": "Pick the sizes you want to try and complete the purchase"
+          }
+        },
+        "icon_cPwWet": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Frame_26681.png",
+            "heading": "",
+            "text": "Try the diapers and determine the right size for your baby"
+          }
+        },
+        "icon_JCck3C": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Frame_26682.png",
+            "heading": "",
+            "text": "Order a full month's supply and apply the discount code"
+          }
+        },
+        "icon_wr7y76": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/Frame_26683.png",
+            "heading": "",
+            "text": "Enjoy SkinShield knowing you've got the perfect size"
+          }
+        }
+      },
+      "block_order": [
+        "icon_8XwHGp",
+        "icon_cPwWet",
+        "icon_JCck3C",
+        "icon_wr7y76"
+      ],
+      "name": "Icon With Text",
+      "settings": {
+        "background_image": "shopify://shop_images/HEADER_F1F2F5.jpg",
+        "background_image_mobile": "shopify://shop_images/HEADER_F1F2F5.jpg",
+        "heading": "Trial & get $10 off!",
+        "text": "You want to be sure your baby is wearing the perfect size. Ordering the trial pack allows you to trySkin❤️Shield diapers before purchasing a full month's supply."
+      }
+    },
     "multiple_marquee_4VUVyj": {
       "type": "multiple-marquee",
       "blocks": {
@@ -311,56 +361,6 @@
         "third_marquee_hide_desktop": false,
         "third_marquee_hide_mobile": false,
         "third_marquee_direction": "-1"
-      }
-    },
-    "icon_with_text_Tirzyn": {
-      "type": "icon-with-text",
-      "blocks": {
-        "icon_8XwHGp": {
-          "type": "icon",
-          "settings": {
-            "image": "shopify://shop_images/Frame_26680.png",
-            "heading": "",
-            "text": "Pick the sizes you want to try and complete the purchase"
-          }
-        },
-        "icon_cPwWet": {
-          "type": "icon",
-          "settings": {
-            "image": "shopify://shop_images/Frame_26681.png",
-            "heading": "",
-            "text": "Try the diapers and determine the right size for your baby"
-          }
-        },
-        "icon_JCck3C": {
-          "type": "icon",
-          "settings": {
-            "image": "shopify://shop_images/Frame_26682.png",
-            "heading": "",
-            "text": "Order a full month's supply and apply the discount code"
-          }
-        },
-        "icon_wr7y76": {
-          "type": "icon",
-          "settings": {
-            "image": "shopify://shop_images/Frame_26683.png",
-            "heading": "",
-            "text": "Enjoy SkinShield knowing you've got the perfect size"
-          }
-        }
-      },
-      "block_order": [
-        "icon_8XwHGp",
-        "icon_cPwWet",
-        "icon_JCck3C",
-        "icon_wr7y76"
-      ],
-      "name": "Icon With Text",
-      "settings": {
-        "background_image": "shopify://shop_images/HEADER_F1F2F5.jpg",
-        "background_image_mobile": "shopify://shop_images/HEADER_F1F2F5.jpg",
-        "heading": "Trial & get $10 off!",
-        "text": "You want to be sure your baby is wearing the perfect size. Ordering the trial pack allows you to try Skin❤️Shield diapers before purchasing a full month's supply."
       }
     },
     "perfect_info_mgPXdV": {
