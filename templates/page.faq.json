@@ -21,6 +21,28 @@
     "custom_faq_jA7H93": {
       "type": "custom-faq",
       "blocks": {
+        "faq_BjkBE4": {
+          "type": "faq",
+          "settings": {
+            "title": "Subscription price change",
+            "question": "Why did the price drop?",
+            "answer": "<p>We’ve always believed premium diapers should raise expectations, not prices. As we’ve grown, we’re now able to make Freestyle more accessible while keeping the same premium materials, comfort, and performance families know and trust. <strong>💜</strong></p>",
+            "question-1": "Is the product changing?",
+            "answer-1": "<p>Nope, still the same Freestyle you know and love at a new price on Freestyle.world. <a href=\"https://emojipedia.org/smiling-face-with-smiling-eyes/\">😊</a></p>",
+            "question-2": "Is this a sale or permanent?",
+            "answer-2": "<p>This isn’t a temporary promo or limited-time sale. It’s a long-term pricing update rooted in something we’ve always believed: premium diapers should raise expectations, not prices.</p>",
+            "question-3": "Will retail prices change too?",
+            "answer-3": "<p>While pricing may vary slightly by retailer and format, our goal across every channel is the same: making premium diapers more accessible to more families. For families shopping online at Freestyle.world, that includes added flexibility and convenience like subscription options, free shipping, and the peace of mind of never running out.</p>",
+            "question-4": "",
+            "answer-4": "",
+            "question-5": "",
+            "answer-5": "",
+            "question-6": "",
+            "answer-6": "",
+            "question-7": "",
+            "answer-7": ""
+          }
+        },
         "faq_QrEh8D": {
           "type": "faq",
           "settings": {
@@ -133,6 +155,7 @@
         }
       },
       "block_order": [
+        "faq_BjkBE4",
         "faq_QrEh8D",
         "faq_hyY7pj",
         "faq_iGcwTm",
