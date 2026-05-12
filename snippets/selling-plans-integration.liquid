@@ -59,17 +59,17 @@
                           data-variant-compare-at-price="{{ allocationComparedAtPrice }}"
                           checked>
                         <div class="title-price w-[calc(100%-20px)] pl-[16px] flex items-center justify-between gap-[10px]">
-                          {% assign save_value = allocation.selling_plan.price_adjustments[0].value | divided_by: 100 | round: 2 %}
+                          {% assign save_value = variant.price | minus: allocation.price %}
                           <p class="title-text text-[18px] max-md:text-[15px] text-black-bg font-medium font-grotesk leading-none">
                             Subscribe
-                            {% if save_value != 0 %}
+                            {% if save_value > 0 %}
                               &
-                              <span class="save-text">Save {{ save_value }}%</span>
+                              <span class="save-text">Save {{ save_value | money_without_trailing_zeros }}</span>
                             {% endif %}
                           </p>
                           <div class="selling-price-box">
                             <div class="selling-price flex items-center gap-[6px]">
-                              {% if save_value != 0 %}
+                              {% if save_value > 0 %}
                                 <span class="variant-price text-scheme_two/50 line-through text-[14px] max-md:text-[13px] font-normal font-grotesk leading-none">
                                   {{- variant.price | money_without_trailing_zeros -}}
                                 </span>
