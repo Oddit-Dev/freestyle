@@ -74,7 +74,7 @@
                                   {{- variant.price | money_without_trailing_zeros -}}
                                 </span>
                               {% endif %}
-                              <span class="allocation-price text-[18px] max-md:text-[16px] text-black-bg font-medium font-grotesk leading-none">
+                              <span class="allocation-price text-[18px] max-md:text-[16px] text-black-bg font-medium font-grotesk leading-none" data-original-price="{{ allocation.price | money_without_trailing_zeros | escape }}">
                                 {{- allocation.price | money_without_trailing_zeros -}}
                               </span>
                             </div>
@@ -161,7 +161,7 @@
                         </p>
                         <div class="selling-price-box">
                           <div class="selling-price flex items-center gap-[6px]">
-                            <span class="allocation-price text-[18px] max-md:text-[16px] text-black-bg font-medium font-grotesk leading-none">
+                            <span class="allocation-price text-[18px] max-md:text-[16px] text-black-bg font-medium font-grotesk leading-none" data-original-price="{{ variant.price | money_without_trailing_zeros | escape }}">
                               {{- variant.price | money_without_trailing_zeros -}}
                             </span>
                           </div>

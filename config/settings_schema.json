@@ -89,6 +89,11 @@
         "type": "url",
         "id": "header_walmart_text_url",
         "label": "Header Walmart URL"
+      },
+      {
+        "type": "url",
+        "id": "header_account_login_url",
+        "label": "Header Account Login URL"
       }
     ]
   },
