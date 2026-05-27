@@ -21,6 +21,28 @@
     "custom_faq_jA7H93": {
       "type": "custom-faq",
       "blocks": {
+        "faq_BjkBE4": {
+          "type": "faq",
+          "settings": {
+            "title": "Subscription price change",
+            "question": "Why did the price drop?",
+            "answer": "<p>We’ve always believed premium diapers should raise expectations, not prices. As we’ve grown, we’re now able to make Freestyle more accessible while keeping the same premium materials, comfort, and performance families know and trust. <strong>💜</strong></p>",
+            "question-1": "Is the product changing?",
+            "answer-1": "<p>Nope, still the same Freestyle you know and love at a new price on Freestyle.world. <a href=\"https://emojipedia.org/smiling-face-with-smiling-eyes/\">😊</a></p>",
+            "question-2": "Is this a sale or permanent?",
+            "answer-2": "<p>This isn’t a temporary promo or limited-time sale. It’s a long-term pricing update rooted in something we’ve always believed: premium diapers should raise expectations, not prices.</p>",
+            "question-3": "Will retail prices change too?",
+            "answer-3": "<p>While pricing may vary slightly by retailer and format, our goal across every channel is the same: making premium diapers more accessible to more families. For families shopping online at Freestyle.world, that includes added flexibility and convenience like subscription options, free shipping, and the peace of mind of never running out.</p>",
+            "question-4": "",
+            "answer-4": "",
+            "question-5": "",
+            "answer-5": "",
+            "question-6": "",
+            "answer-6": "",
+            "question-7": "",
+            "answer-7": ""
+          }
+        },
         "faq_QrEh8D": {
           "type": "faq",
           "settings": {
@@ -92,11 +114,11 @@
           "settings": {
             "title": "Shipping",
             "question": "When will I receive my order?",
-            "answer": "<p>Orders take 1-2 business days to process and typically arrive in 3-4 business days. You will receive tracking info so you can follow your package every step of the way. </p><p>Orders are typically shipped via UPS Ground, and sometimes handed off to a local courier for the final delivery leg.</p>",
+            "answer": "<p>Orders take 1-2 business days to process and typically arrive in 3-4 business days. You will receive tracking info so you can follow your package every step of the way. </p><p>Orders are shipped via UPS Ground, and sometimes handed off to a local courier for the final delivery leg. <br/><br/>If you do not receive tracking or have any additional questions, please email hello@freestyl.world </p>",
             "question-1": "How much does shipping cost?",
             "answer-1": "<p>Shipping is free for any order with diapers. </p><p>Shipping fees are noted at checkout for orders without diapers. </p>",
             "question-2": "Where do you ship?",
-            "answer-2": "<p>We ship throughout the contiguous United States. </p><p>Please note we are unable to ship to PO boxes.</p><p>We’re hoping to expand to Hawaii and Alaska, and internationally, soon. If we don’t ship to you, email us and let us know where we should ship to next.</p>",
+            "answer-2": "<p>We ship throughout the contiguous United States. </p><p>Please note we are unable to ship to PO boxes.</p><p>We’re hoping to expand to Hawaii and Alaska, and internationally, soon. If we don’t ship to you, email us (hello@freestyle.world) and let us know where we should ship to next!</p>",
             "question-3": "",
             "answer-3": "",
             "question-4": "",
@@ -114,9 +136,9 @@
           "settings": {
             "title": "Returns and Exchanges",
             "question": "What’s your return and exchange policy?",
-            "answer": "<p>If you have any concerns about the diapers, or you want to ask for a refund, email us at hello@freestyle.world and we'll do what we can to take care of it.<br/><br/>If you purchased Freestyle products at other retailers, their return/refund policies apply. </p>",
+            "answer": "<p>Given the nature of our products, we do not accept returns but are always happy to try to accommodate your needs! <br/><br/>For support, please email us at hello@freestyle.world<br/><br/>If you purchased Freestyle products at other retailers, their return/refund policies apply. </p>",
             "question-1": "When will I receive my refund?",
-            "answer-1": "<p>If we issue a refund, you will see it reflected in your account immediately. It may take a few days to show up on your credit card statement depending on your financial institution and their policies.</p>",
+            "answer-1": "<p>If we issue a refund, it may take a few days to show up on your credit card statement depending on your financial institution and their policies. If you need any additional support, please contact hello@freestyle.world and we will do our best to answer your questions. </p>",
             "question-2": "",
             "answer-2": "",
             "question-3": "",
@@ -133,6 +155,7 @@
         }
       },
       "block_order": [
+        "faq_BjkBE4",
         "faq_QrEh8D",
         "faq_hyY7pj",
         "faq_iGcwTm",

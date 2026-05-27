@@ -301,15 +301,12 @@
                     data-current-id="{{ item.variant.id }}">
                     <div class="selling-plan-button product-option justify-between flex gap-[16px] text-[13px] items-center bg-[#C5B4E326] p-[13px_12px] rounded-[8px] mt-[10px]">
                       {% assign allocation = item.selling_plan_allocation %}
-                      {% assign adjustment = allocation.selling_plan.price_adjustments | first %}
-                      {% assign save_value = adjustment.value | divided_by: 100 | round: 2 %}
+                      {% assign save_value = item.variant.price | minus: allocation.price %}
 
                       <div class="selling-plan-info flex items-center gap-[9px]">
                         <span class="plan-name">{{ allocation.selling_plan.name }}</span>
-                        {% if save_value != 0 %}
-                          <span class="save-text bg-[#82E8D3] text-[11px] leading-[1.2] tracking-[-0.05em] p-[4px_8px] pb-[2px] rounded-full font-bold"
-                            >Save {{ save_value }}%</span
-                          >
+                        {% if save_value > 0 %}
+                          <span class="save-text bg-[#82E8D3] text-[11px] leading-[1.2] tracking-[-0.05em] p-[4px_8px] pb-[2px] rounded-full font-bold">Save {{ save_value | money_without_trailing_zeros }}</span>
                         {% endif %}
                       </div>
                       <span class="flex items-center gap-[6px] cursor-pointer text-[13px]">
