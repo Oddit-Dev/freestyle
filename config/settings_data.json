@@ -181,7 +181,7 @@
           "addon_info": "",
           "enable_onetime_purchase": true,
           "custom_upsell_heading": "Add wipes",
-          "custom_upsell_product": ""
+          "custom_upsell_product": "wipes"
         }
       }
     },
