@@ -4781,7 +4781,7 @@ html body.template-product {
   -moz-column-gap: 7px;
        column-gap: 7px;
   row-gap: 4px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   font-family: GroteskNeue, system-ui;
   justify-content: space-between;
   width: 100%;
