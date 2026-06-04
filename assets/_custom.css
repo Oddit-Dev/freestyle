@@ -4782,12 +4782,17 @@ html body.template-product {
   row-gap: 4px;
   flex-wrap: nowrap;
   font-family: GroteskNeue, system-ui;
-  justify-content: space-between;
+  justify-content: flex-start;
   width: 100%;
 }
 
 .product .product__content .product__sizes-list .product__size-content .main-div .weight-div {
   white-space: nowrap;
+}
+
+.product .product__content .product__sizes-list .product__size-content .main-div .count-div {
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .product .product__content .product__sizes-list .product__size-content .main-div .size-div {
