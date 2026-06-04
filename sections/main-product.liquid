@@ -914,7 +914,13 @@
                     sizeDiv.classList.add("month-supply");
   
                     const countDiv = document.createElement("div");
-                    countDiv.textContent = count;
+
+                    {% if product.handle == 'skinshield-trial-pack' %}
+                      countDiv.textContent = '8 diapers';
+                    {% else %}
+                      countDiv.textContent = count;
+                    {% endif %}
+
                     countDiv.classList.add("count-main");
   
                     const variantTextMain = document.querySelector('.variant-text-main');
@@ -1010,11 +1016,23 @@
                     }
 
                     const sizeDiv = document.createElement("div");
-                    sizeDiv.textContent = '1 month supply';
+
+                    {% if product.handle == 'skinshield-trial-pack' %}
+                      sizeDiv.textContent = 'Risk-free trial';
+                    {% else %}
+                      sizeDiv.textContent = '1 month supply';
+                    {% endif %}
+
                     sizeDiv.classList.add("month-supply");
 
                     const countDiv = document.createElement("div");
-                    countDiv.textContent = count;
+
+                    {% if product.handle == 'skinshield-trial-pack' %}
+                      countDiv.textContent = '8 diapers';
+                    {% else %}
+                      countDiv.textContent = count;
+                    {% endif %}
+
                     countDiv.classList.add("count-main");
 
                     const variantTextMain = document.querySelector('.variant-text-main');
