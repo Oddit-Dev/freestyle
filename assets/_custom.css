@@ -4849,8 +4849,13 @@ html body.template-product {
   }
 
   .product .product__content .product__sizes-list .product__size-content .main-div {
-    justify-content: unset;
-    row-gap: 2px;
+  flex-wrap: wrap;
+  justify-content: unset;
+  row-gap: 2px;
+  }
+
+  .product .product__content .product__sizes-list .product__size-content .main-div .weight-div {
+    white-space: normal;
   }
 
   .product .product__inner .storepoint-container.storepoint-layout-default .storepoint-results,
@@ -4863,8 +4868,10 @@ html body.template-product {
   }
 
   .product .product__content .product__sizes-list .product__size-content .main-div .count-div {
-    margin-left: 0;
-    width: 100%;
+  white-space: normal;
+  flex-shrink: 1;
+  margin-left: 0;
+  width: 100%;
   }
 
   .junip-write-review-cta-container {
