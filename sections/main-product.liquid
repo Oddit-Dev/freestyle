@@ -904,8 +904,13 @@
                     }
   
                     const sizeDiv = document.createElement("div");
-                    //sizeDiv.textContent = size + ' month supply';
-                    sizeDiv.textContent = '1 month supply';
+
+                    {% if product.handle == 'skinshield-trial-pack' %}
+                      sizeDiv.textContent = 'Risk-free trial';
+                    {% else %}
+                      sizeDiv.textContent = '1 month supply';
+                    {% endif %}
+
                     sizeDiv.classList.add("month-supply");
   
                     const countDiv = document.createElement("div");
@@ -1005,7 +1010,13 @@
                     }
 
                     const sizeDiv = document.createElement("div");
-                    sizeDiv.textContent = '1 month supply';
+
+                    {% if product.handle == 'skinshield-trial-pack' %}
+                      sizeDiv.textContent = 'Risk-free trial';
+                    {% else %}
+                      sizeDiv.textContent = '1 month supply';
+                    {% endif %}
+
                     sizeDiv.classList.add("month-supply");
 
                     const countDiv = document.createElement("div");
