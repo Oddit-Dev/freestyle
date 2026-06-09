@@ -483,39 +483,24 @@ class CartIcon extends HTMLElement {
 }
 customElements.define('cart-icon', CartIcon);
 
-function isProductInCart(productId) {
-  if (!productId) return Promise.resolve(false);
-  return fetch('/cart.js')
-    .then((res) => res.json())
-    .then((cart) => cart.items.some((item) => Number(item.product_id) === Number(productId)));
-}
-
 function updateAddToCartButtonForProductInCart(btn) {
   if (!btn || !btn.classList.contains('js-add-to-cart')) return;
-  const productId = btn.dataset.productId;
-  if (!productId) return;
   const labelEl = btn.querySelector('.js-add-to-cart-label');
   const defaultLabel = (btn.dataset.ctaLabel || 'Add to Cart').trim();
 
-  isProductInCart(Number(productId)).then((inCart) => {
-    const bundleCheckbox = document.querySelector('.variant-bundle-checkbox');
-    const bundleMode = bundleCheckbox && bundleCheckbox.checked;
-    const bundleVariants = bundleMode ? Array.from(document.querySelectorAll('input[name="bundle-size"]:checked')).map((cb) => parseInt(cb.value, 10)) : [];
-    const bundleDisabled = bundleMode && bundleVariants.length !== 2;
+  // The only condition that disables the button is the bundle picker requiring
+  // exactly two variants. There is no per-order limit on the main product, so
+  // having it already in the cart must not lock the button.
+  const bundleCheckbox = document.querySelector('.variant-bundle-checkbox');
+  const bundleMode = bundleCheckbox && bundleCheckbox.checked;
+  const bundleVariants = bundleMode ? Array.from(document.querySelectorAll('input[name="bundle-size"]:checked')).map((cb) => parseInt(cb.value, 10)) : [];
+  const bundleDisabled = bundleMode && bundleVariants.length !== 2;
 
-    if (inCart) {
-      btn.disabled = true;
-      btn.style.pointerEvents = 'none';
-      btn.classList.add('opacity-50', 'cursor-not-allowed');
-      if (labelEl) labelEl.textContent = 'Order limit reached.';
-    } else {
-      btn.disabled = !!bundleDisabled;
-      btn.style.pointerEvents = bundleDisabled ? 'none' : '';
-      btn.classList.toggle('opacity-50', bundleDisabled);
-      btn.classList.toggle('cursor-not-allowed', bundleDisabled);
-      if (labelEl) labelEl.textContent = defaultLabel;
-    }
-  });
+  btn.disabled = !!bundleDisabled;
+  btn.style.pointerEvents = bundleDisabled ? 'none' : '';
+  btn.classList.toggle('opacity-50', bundleDisabled);
+  btn.classList.toggle('cursor-not-allowed', bundleDisabled);
+  if (labelEl) labelEl.textContent = defaultLabel;
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -542,18 +527,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const btn = this;
       btn.disabled = true;
       btn.style.pointerEvents = 'none';
-      const productId = btn.dataset.productId;
-      if (productId) {
-        isProductInCart(Number(productId)).then((inCart) => {
-          if (inCart) {
-            updateAddToCartButtonForProductInCart(btn);
-            return;
-          }
-          handleAddToCartClick.call(this);
-        });
-      } else {
-        handleAddToCartClick.call(this);
-      }
+      handleAddToCartClick.call(this);
     });
   }
 
