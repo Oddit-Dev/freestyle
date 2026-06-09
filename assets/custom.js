@@ -490,32 +490,45 @@ function isProductInCart(productId) {
     .then((cart) => cart.items.some((item) => Number(item.product_id) === Number(productId)));
 }
 
+function applyBundlePickerState(btn, labelEl, defaultLabel) {
+  const bundleCheckbox = document.querySelector('.variant-bundle-checkbox');
+  const bundleMode = bundleCheckbox && bundleCheckbox.checked;
+  const bundleVariants = bundleMode ? Array.from(document.querySelectorAll('input[name="bundle-size"]:checked')).map((cb) => parseInt(cb.value, 10)) : [];
+  const bundleDisabled = bundleMode && bundleVariants.length !== 2;
+
+  btn.disabled = !!bundleDisabled;
+  btn.style.pointerEvents = bundleDisabled ? 'none' : '';
+  btn.classList.toggle('opacity-50', bundleDisabled);
+  btn.classList.toggle('cursor-not-allowed', bundleDisabled);
+  if (labelEl) labelEl.textContent = defaultLabel;
+}
+
 function updateAddToCartButtonForProductInCart(btn) {
   if (!btn || !btn.classList.contains('js-add-to-cart')) return;
-  const productId = btn.dataset.productId;
-  if (!productId) return;
   const labelEl = btn.querySelector('.js-add-to-cart-label');
   const defaultLabel = (btn.dataset.ctaLabel || 'Add to Cart').trim();
 
-  isProductInCart(Number(productId)).then((inCart) => {
-    const bundleCheckbox = document.querySelector('.variant-bundle-checkbox');
-    const bundleMode = bundleCheckbox && bundleCheckbox.checked;
-    const bundleVariants = bundleMode ? Array.from(document.querySelectorAll('input[name="bundle-size"]:checked')).map((cb) => parseInt(cb.value, 10)) : [];
-    const bundleDisabled = bundleMode && bundleVariants.length !== 2;
+  // The per-order limit ("Order limit reached.") only applies to Variant Bundle
+  // products — they can be purchased once per order. All other products have no
+  // such limit, so being in the cart must not lock their button.
+  const isVariantBundle = !!btn.closest('[data-is-variant-bundle="true"]');
+  const productId = btn.dataset.productId;
 
-    if (inCart) {
-      btn.disabled = true;
-      btn.style.pointerEvents = 'none';
-      btn.classList.add('opacity-50', 'cursor-not-allowed');
-      if (labelEl) labelEl.textContent = 'Order limit reached.';
-    } else {
-      btn.disabled = !!bundleDisabled;
-      btn.style.pointerEvents = bundleDisabled ? 'none' : '';
-      btn.classList.toggle('opacity-50', bundleDisabled);
-      btn.classList.toggle('cursor-not-allowed', bundleDisabled);
-      if (labelEl) labelEl.textContent = defaultLabel;
-    }
-  });
+  if (isVariantBundle && productId) {
+    isProductInCart(Number(productId)).then((inCart) => {
+      if (inCart) {
+        btn.disabled = true;
+        btn.style.pointerEvents = 'none';
+        btn.classList.add('opacity-50', 'cursor-not-allowed');
+        if (labelEl) labelEl.textContent = 'Order limit reached.';
+      } else {
+        applyBundlePickerState(btn, labelEl, defaultLabel);
+      }
+    });
+    return;
+  }
+
+  applyBundlePickerState(btn, labelEl, defaultLabel);
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -542,17 +555,19 @@ document.addEventListener("DOMContentLoaded", function () {
       const btn = this;
       btn.disabled = true;
       btn.style.pointerEvents = 'none';
+      // Enforce the once-per-order limit only for Variant Bundle products.
+      const isVariantBundle = !!btn.closest('[data-is-variant-bundle="true"]');
       const productId = btn.dataset.productId;
-      if (productId) {
+      if (isVariantBundle && productId) {
         isProductInCart(Number(productId)).then((inCart) => {
           if (inCart) {
             updateAddToCartButtonForProductInCart(btn);
             return;
           }
-          handleAddToCartClick.call(this);
+          handleAddToCartClick.call(btn);
         });
       } else {
-        handleAddToCartClick.call(this);
+        handleAddToCartClick.call(btn);
       }
     });
   }
