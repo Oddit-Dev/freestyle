@@ -9,6 +9,27 @@
  */
 {
   "sections": {
+    "image_with_text_custom_EXbBQ9": {
+      "type": "image-with-text-custom",
+      "blocks": {
+        "ingredient_Q38eyN": {
+          "type": "ingredient",
+          "settings": {
+            "name": "For the mama doing it all — this one's for you.",
+            "use_line_break": false
+          }
+        }
+      },
+      "block_order": [
+        "ingredient_Q38eyN"
+      ],
+      "name": "Image with text custom",
+      "settings": {
+        "title": "For the Mamas Giveaway",
+        "description": "From premium diapers to postpartum wellness, sleep solutions to mama self-care — this is the ultimate Walmart haul, gifted to one lucky winner. Proof that premium doesn't have to mean expensive. We partnered with some of our favorite brands to put together a prize package worth over $900, because you and your little one deserve the best.",
+        "image": "shopify://shop_images/Family_GIF.1.gif"
+      }
+    },
     "1762563577038acad4": {
       "type": "_blocks",
       "blocks": {
@@ -39,31 +60,69 @@
         "button_label": ""
       }
     },
-    "image_with_text_custom_EXbBQ9": {
-      "type": "image-with-text-custom",
+    "custom_faq_w8RbFi": {
+      "type": "custom-faq",
       "blocks": {
-        "ingredient_Q38eyN": {
-          "type": "ingredient",
+        "faq_arJLyT": {
+          "type": "faq",
           "settings": {
-            "name": "For the mama doing it all — this one's for you.",
-            "use_line_break": false
+            "title": "Frequently Asked Questions",
+            "question": "WHAT YOU COULD WIN",
+            "answer": "<p><strong>$100 Walmart Gift Card</strong> Shop whatever your family needs most.</p><p><strong>Freestyle SkinShield Diapers + Wipes</strong> — <em>$180 value</em> 2 months of the cleanest, most absorbent diapers available at Walmart. 14x better absorption, 7-layer skin protection, Total Chlorine Free.</p><p><strong>Pipette Full Walmart Lineup</strong> Clean, dermatologist-tested baby essentials the whole family will love.</p><p><strong>Yumi — $200 Gift Card</strong> Premium baby and toddler food, delivered.</p><p><strong>Hatch Baby Sleep Trainer</strong> — <em>$79.99 value</em> The sleep tool every parent swears by.</p><p><strong>Owala Water Bottles</strong> — <em>$50 value</em> One for mama, one for the little — hydration upgrade unlocked.</p><p><strong>Shark SpeedStyle RapidGloss Hair Dryer</strong> — <em>$230 value</em> Because you deserve a good hair day too.</p><p><strong>Nutrafol Postpartum Hair Growth Supplements</strong> — <em>$88 value</em> Clinically tested postpartum support, now at Walmart.</p><p><strong>TOTAL VALUE: $927.99+</strong></p>",
+            "question-1": "HOW TO ENTER",
+            "answer-1": "<ol><li>Follow: @freestyle.world, @6.lair, @pipettebaby, @yumi</li><li>Like & save the post</li><li>Tag a friend in the comments — each additional tag = one extra entry</li><li>Enter your email on this landing page</li><li>Maximum 10 entries per person</li></ol><p><strong>Entry Period: June 15–22, 2026</strong></p><h6></h6>",
+            "question-2": "",
+            "answer-2": "",
+            "question-3": "",
+            "answer-3": "",
+            "question-4": "",
+            "answer-4": "",
+            "question-5": "",
+            "answer-5": "",
+            "question-6": "",
+            "answer-6": "",
+            "question-7": "",
+            "answer-7": ""
           }
         }
       },
       "block_order": [
-        "ingredient_Q38eyN"
+        "faq_arJLyT"
       ],
-      "name": "Image with text custom",
+      "name": "Custom FAQ",
       "settings": {
-        "title": "For the Mamas Giveaway",
-        "description": "From premium diapers to postpartum wellness, sleep solutions to mama self-care — this is the ultimate Walmart haul, gifted to one lucky winner. Proof that premium doesn't have to mean expensive. We partnered with some of our favorite brands to put together a prize package worth over $900, because you and your little one deserve the best.",
-        "image": "shopify://shop_images/Family_GIF.1.gif"
+        "show_title": true,
+        "main_title": "Frequently Asked Questions",
+        "faq_section_title": ""
       }
+    },
+    "blocks_R3qPgt": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_83d7067_bQKid8": {
+          "type": "ai_gen_block_83d7067",
+          "settings": {
+            "custom_html": "<style>\n  .fine-print-disclaimer {\n    margin: 0;\n    padding: 0;\n    font-size: 11px;\n    line-height: 1.5;\n    font-family: inherit;\n    color: inherit;\n  }\n</style>\n<div class=\"fine-print-disclaimer\">\n  No purchase necessary. Open to US residents 18+. See full Official Rules for details.\n</div>",
+            "max_width": 1200,
+            "padding_top": 40,
+            "padding_bottom": 40,
+            "padding_horizontal": 20
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_83d7067_bQKid8"
+      ],
+      "name": "Custom HTML",
+      "settings": {}
     }
   },
   "order": [
     "image_with_text_custom_EXbBQ9",
     "1762563577038acad4",
-    "main"
+    "main",
+    "custom_faq_w8RbFi",
+    "blocks_R3qPgt"
   ]
 }
