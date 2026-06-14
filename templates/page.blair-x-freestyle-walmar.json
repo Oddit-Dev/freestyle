@@ -38,9 +38,31 @@
         "text": "",
         "button_label": ""
       }
+    },
+    "image_with_text_custom_EXbBQ9": {
+      "type": "image-with-text-custom",
+      "blocks": {
+        "ingredient_Q38eyN": {
+          "type": "ingredient",
+          "settings": {
+            "name": "For the mama doing it all — this one's for you.",
+            "use_line_break": false
+          }
+        }
+      },
+      "block_order": [
+        "ingredient_Q38eyN"
+      ],
+      "name": "Image with text custom",
+      "settings": {
+        "title": "For the Mamas Giveaway",
+        "description": "From premium diapers to postpartum wellness, sleep solutions to mama self-care — this is the ultimate Walmart haul, gifted to one lucky winner. Proof that premium doesn't have to mean expensive. We partnered with some of our favorite brands to put together a prize package worth over $900, because you and your little one deserve the best.",
+        "image": "shopify://shop_images/Family_GIF.1.gif"
+      }
     }
   },
   "order": [
+    "image_with_text_custom_EXbBQ9",
     "1762563577038acad4",
     "main"
   ]
