@@ -30,27 +30,6 @@
         "image": "shopify://shop_images/Family_GIF.1.gif"
       }
     },
-    "1762563577038acad4": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_83d7067_KYH7Uc": {
-          "type": "ai_gen_block_83d7067",
-          "name": "Custom HTML",
-          "settings": {
-            "custom_html": "<style>\n  /* Remove all padding and margins from section wrappers */\n  .shopify-section {\n    padding-top: 0 !important;\n    padding-bottom: 0 !important;\n    margin-top: 0 !important;\n    margin-bottom: 0 !important;\n  }\n  \n  /* Specifically target sections on this page */\n  [data-section-id=\"template--22387955728643__image_with_text_custom_EXbBQ9\"],\n  [data-section-id=\"template--22387955728643__1762563577038acad4\"],\n  [data-section-id=\"template--22387955728643__main\"],\n  [data-section-id=\"template--22387955728643__custom_faq_w8RbFi\"],\n  [data-section-id=\"template--22387955728643__blocks_R3qPgt\"] {\n    padding-top: 0 !important;\n    padding-bottom: 0 !important;\n    margin-top: 0 !important;\n    margin-bottom: 0 !important;\n  }\n  \n  /* Remove margins from Klaviyo form */\n  .klaviyo-form-QSpugC {\n    margin-top: 0 !important;\n    margin-bottom: 0 !important;\n  }\n  \n  /* Remove margins from section inner containers */\n  .shopify-section > * {\n    margin-top: 0 !important;\n    margin-bottom: 0 !important;\n  }\n</style>\n\n<script type=\"text/javascript\">\n  // Get the email from the URL\n  var params = new URLSearchParams(window.location.search);\n  var email = params.get('customer_email');\n\n  // If an email is found, pre-fill it for Klaviyo\n  if (email) {\n    window._learnq = window._learnq || [];\n    window._learnq.push(['identify', {\n      '$email': email\n    }]);\n  }\n</script>\n\n<!-- The Klaviyo <div class=\"klaviyo-form-...\"> embed code goes right below this -->\n<div class=\"klaviyo-form-QSpugC\"></div>",
-            "max_width": 800,
-            "padding_top": 0,
-            "padding_bottom": 0,
-            "padding_horizontal": 0
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_83d7067_KYH7Uc"
-      ],
-      "settings": {}
-    },
     "main": {
       "type": "main-404",
       "disabled": true,
@@ -116,13 +95,34 @@
       ],
       "name": "Custom HTML",
       "settings": {}
+    },
+    "1762563577038acad4": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_83d7067_KYH7Uc": {
+          "type": "ai_gen_block_83d7067",
+          "name": "Custom HTML",
+          "settings": {
+            "custom_html": "<style>\n  /* Remove all padding and margins from section wrappers */\n  .shopify-section {\n    padding-top: 0 !important;\n    padding-bottom: 0 !important;\n    margin-top: 0 !important;\n    margin-bottom: 0 !important;\n  }\n  \n  /* Specifically target sections on this page */\n  [data-section-id=\"template--22387955728643__image_with_text_custom_EXbBQ9\"],\n  [data-section-id=\"template--22387955728643__1762563577038acad4\"],\n  [data-section-id=\"template--22387955728643__main\"],\n  [data-section-id=\"template--22387955728643__custom_faq_w8RbFi\"],\n  [data-section-id=\"template--22387955728643__blocks_R3qPgt\"] {\n    padding-top: 0 !important;\n    padding-bottom: 0 !important;\n    margin-top: 0 !important;\n    margin-bottom: 0 !important;\n  }\n  \n  /* Remove margins from Klaviyo form */\n  .klaviyo-form-QSpugC {\n    margin-top: 0 !important;\n    margin-bottom: 0 !important;\n  }\n  \n  /* Remove margins from section inner containers */\n  .shopify-section > * {\n    margin-top: 0 !important;\n    margin-bottom: 0 !important;\n  }\n</style>\n\n<script type=\"text/javascript\">\n  // Get the email from the URL\n  var params = new URLSearchParams(window.location.search);\n  var email = params.get('customer_email');\n\n  // If an email is found, pre-fill it for Klaviyo\n  if (email) {\n    window._learnq = window._learnq || [];\n    window._learnq.push(['identify', {\n      '$email': email\n    }]);\n  }\n</script>\n\n<!-- The Klaviyo <div class=\"klaviyo-form-...\"> embed code goes right below this -->\n<div class=\"klaviyo-form-QSpugC\"></div>",
+            "max_width": 800,
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "padding_horizontal": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_83d7067_KYH7Uc"
+      ],
+      "settings": {}
     }
   },
   "order": [
     "image_with_text_custom_EXbBQ9",
-    "1762563577038acad4",
     "main",
     "custom_faq_w8RbFi",
+    "1762563577038acad4",
     "blocks_R3qPgt"
   ]
 }
