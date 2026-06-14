@@ -102,7 +102,7 @@
         "ai_gen_block_83d7067_bQKid8": {
           "type": "ai_gen_block_83d7067",
           "settings": {
-            "custom_html": "<style>\n  .fine-print-disclaimer {\n    margin: 0;\n    padding: 0;\n    font-size: 11px;\n    line-height: 1.5;\n    font-family: inherit;\n    color: inherit;\n  }\n</style>\n<div class=\"fine-print-disclaimer\">\n  No purchase necessary. Open to US residents 18+. See full Official Rules for details. <a href=\"#\">Terms and Conditions apply.</a>\n</div>",
+            "custom_html": "<style>\n  .fine-print-disclaimer {\n    margin: 0;\n    padding: 0;\n    font-size: 11px;\n    line-height: 1.5;\n    font-family: inherit;\n    color: inherit;\n  }\n  .fine-print-disclaimer a.rules-link {\n    color: #6638B7;\n    text-decoration: underline;\n    cursor: pointer;\n  }\n  .fine-print-disclaimer a.rules-link:hover {\n    opacity: 0.8;\n  }\n</style>\n<div class=\"fine-print-disclaimer\">\n  No purchase necessary. Open to US residents 18+. <a href=\"https://www.freestyle.world/pages/for-the-mamas-giveaway-terms-and-conditions\" class=\"rules-link\">See full Official Rules for details</a>. <a href=\"https://www.freestyle.world/pages/for-the-mamas-giveaway-terms-and-conditions\"></a>\n</div>",
             "max_width": 1200,
             "padding_top": 8,
             "padding_bottom": 8,
