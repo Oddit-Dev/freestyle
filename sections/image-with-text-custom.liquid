@@ -12,7 +12,7 @@
                 {% if block.settings.icon != blank %}
                   <img src="{{ block.settings.icon | img_url: '100x100' }}" alt="{{ block.settings.name }}" width="100" height="100" class="w-28 h-28 mx-auto mb-4">
                 {% endif %}
-                <p class="font-bold leading-9 text-base uppercase">
+                <p class="font-medium leading-9 text-base uppercase">
                   {% if block.settings.use_line_break %}
                     {{ block.settings.name | split: ' ' | first }}<br>{{ block.settings.name | split: ' ' | last }}
                   {% else %}
