@@ -104,8 +104,8 @@
           "settings": {
             "custom_html": "<style>\n  .fine-print-disclaimer {\n    margin: 0;\n    padding: 0;\n    font-size: 11px;\n    line-height: 1.5;\n    font-family: inherit;\n    color: inherit;\n  }\n</style>\n<div class=\"fine-print-disclaimer\">\n  No purchase necessary. Open to US residents 18+. See full Official Rules for details. <a href=\"#\">Terms and Conditions apply.</a>\n</div>",
             "max_width": 1200,
-            "padding_top": 40,
-            "padding_bottom": 40,
+            "padding_top": 8,
+            "padding_bottom": 8,
             "padding_horizontal": 20
           },
           "blocks": {}
