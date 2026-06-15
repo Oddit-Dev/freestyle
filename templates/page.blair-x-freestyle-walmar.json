@@ -92,7 +92,7 @@
       "name": "Custom FAQ",
       "settings": {
         "show_title": true,
-        "main_title": "Frequently Asked Questions",
+        "main_title": "Learn More",
         "faq_section_title": ""
       }
     },
