@@ -11,6 +11,42 @@
   "type": "footer",
   "name": "Footer Group",
   "sections": {
+    "custom_faq_wgykhK": {
+      "type": "custom-faq",
+      "blocks": {
+        "faq_UWTYpW": {
+          "type": "faq",
+          "settings": {
+            "title": "Frequently Asked Questions",
+            "question": "Should I size up for overnight use?",
+            "answer": "<p>In most cases, no. If your baby is sleeping soundly and waking up leak-free, stick with the size that's working. Our SkinShield diapers are designed to deliver exceptional overnight performance without needing to size up. Featuring 7 layers of skin protection and up to 14x better absorption*, they're built to handle long nights while maintaining a comfortable, secure fit.</p><p>*as measured by rewet testing compared to a leading brand.</p>",
+            "question-1": "What if my baby falls between sizes?",
+            "answer-1": "<p>Welcome to parenthood! Babies rarely fit neatly into a chart. If your little one falls between sizes, think about their unique shape. Chunky thighs? You may want to size up. Slimmer build? The smaller size may provide a more secure fit. When in doubt, look for a diaper that fits snugly around the waist and legs without leaving marks. Don’t hesitate to reach out to our customer service team for more advice.</p>",
+            "question-2": "Can my baby still have leaks even though the diaper seems to fit?",
+            "answer-2": "<p>We've all been there. Sometimes the culprit isn't the size, it's the fit. Make sure the diaper is pulled up fully, the leg cuffs are fluffed out, and the tabs are secured evenly. If everything looks right and leaks keep happening, your baby may be ready for the next size up, especially if the leaks happen overnight or after longer wear.</p>",
+            "question-3": "Can diaper size affect comfort and sleep?",
+            "answer-3": "<p>Absolutely. Just like adults, babies sleep best when they're comfortable. A diaper that's too tight can feel restrictive, while one that's too loose can shift around and lead to leaks. SkinShield’s Custom Stretch helps your baby stay comfortable, protected, and ready for whatever adventure the day brings.</p>",
+            "question-4": "",
+            "answer-4": "",
+            "question-5": "",
+            "answer-5": "",
+            "question-6": "",
+            "answer-6": "",
+            "question-7": "",
+            "answer-7": ""
+          }
+        }
+      },
+      "block_order": [
+        "faq_UWTYpW"
+      ],
+      "name": "Custom FAQ",
+      "settings": {
+        "show_title": true,
+        "main_title": "Frequently Asked Questions",
+        "faq_section_title": ""
+      }
+    },
     "1762404763fe7a6502": {
       "type": "_blocks",
       "settings": {}
@@ -79,6 +115,7 @@
     }
   },
   "order": [
+    "custom_faq_wgykhK",
     "1762404763fe7a6502",
     "footer_custom_fPQhVk"
   ]
