@@ -40,6 +40,7 @@
       "block_order": [
         "faq_UWTYpW"
       ],
+      "disabled": true,
       "name": "Custom FAQ",
       "settings": {
         "show_title": true,
