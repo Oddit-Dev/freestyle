@@ -15,8 +15,8 @@
       "settings": {
         "image": "shopify://shop_images/FREESTYLE_Header_2026_Desktop_V2.jpg",
         "mobile_image": "shopify://shop_images/Homepage_hero_mobile_2.png",
-        "heading": "<p>Ultra Soft <br/>Skin $heart  Shield <br/><strong>Diapers</strong></p>",
-        "text": "14x Better Absorption  <strong>•</strong>  7-Layer Skin Protection  <strong>•</strong>  Total Chlorine Free",
+        "heading": "<p>Try Your First Month Of <br/>Ultra Soft <br/>Skin $heart  Shield <br/><strong>Diapers</strong></p>",
+        "text": "14x Better Absorption  <strong>•</strong>  7-Layer Skin Protection  <strong>•</strong>  Total Chlorine Free <strong>•</strong>  Monthly Supply + Free Shipping",
         "button_text": "Shop Skin $heart Shield Diapers",
         "button_link": "shopify://products/skinshield-diapers",
         "text_alignment": "align-left"
@@ -111,7 +111,7 @@
       ],
       "name": "Multiple Marquee",
       "settings": {
-        "heading": "Thousands $heart Freestyle",
+        "heading": "Thousands Are Switching to Freestyle",
         "first_marquee_hide_desktop": false,
         "first_marquee_hide_mobile": false,
         "first_marquee_direction": "-1",
