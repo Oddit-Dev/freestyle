@@ -76,8 +76,8 @@
         "cta_MaBGF4": {
           "type": "cta",
           "settings": {
-            "cta_type": "add_to_cart",
-            "cta_label": "Add to cart",
+            "cta_type": "external_link",
+            "cta_label": "Shop at Walmart",
             "cta_url": "#",
             "text": "<ul><li>Free shipping on diapers</li><li>Fast delivery</li></ul>"
           }
