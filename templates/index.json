@@ -143,12 +143,19 @@
           "settings": {
             "text": "7-LAYER SKIN PROTECTION"
           }
+        },
+        "text_wyEKEN": {
+          "type": "text",
+          "settings": {
+            "text": "EWG VERIFIED®"
+          }
         }
       },
       "block_order": [
         "text_NxaLb6",
         "text_3JHpwi",
-        "text_bwDgBB"
+        "text_bwDgBB",
+        "text_wyEKEN"
       ],
       "name": "Image Banner",
       "settings": {
