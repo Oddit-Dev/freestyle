@@ -284,6 +284,7 @@
         "third_marquee_DwBKDn",
         "third_marquee_rW3YnR"
       ],
+      "disabled": true,
       "name": "Multiple Marquee",
       "settings": {
         "heading": "Thousands $heart Freestyle",
@@ -441,6 +442,7 @@
       "block_order": [
         "junip_junip_product_review_QaUeLN"
       ],
+      "disabled": true,
       "settings": {}
     },
     "media_slider_AqMcEa": {
@@ -515,6 +517,7 @@
         "media_aFmUzD",
         "media_Km6dba"
       ],
+      "disabled": true,
       "name": "Media Slider",
       "settings": {
         "heading": "For parents, <strong>by parents</strong>",
@@ -571,6 +574,7 @@
         "testimonial_DhWwBc",
         "testimonial_cyiB6m"
       ],
+      "disabled": true,
       "name": "Testimonial",
       "settings": {
         "heading": "Trusted by Real Families",
