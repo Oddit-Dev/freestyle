@@ -317,6 +317,15 @@
             "text": "*Up to 10x better absorption as measured by rewet testing compared to a leading brand"
           }
         },
+        "text_gPi7eD": {
+          "type": "text",
+          "settings": {
+            "image": "shopify://shop_images/Frame_2.png",
+            "heading": "Cloud-like softness engineered for skin comfort",
+            "description": "Made with a 360° stretch waistband and 16 elastic strands. Easy up, easy down for everyday milestones, with a secure underwear-like fit that stays put without sagging or slipping.",
+            "text": ""
+          }
+        },
         "text_Y6cYEm": {
           "type": "text",
           "settings": {
@@ -334,22 +343,13 @@
             "description": "The first accessibly priced EWG Verified® diaper made from Total Chlorine Free, lab-tested non-toxic materials.",
             "text": "Read more about our ingredients and see testing results <a href=\"https://freestyle.world/pages/safety-and-testing\" target=\"_blank\" title=\"https://freestyle.world/pages/safety-and-testing\">here</a>"
           }
-        },
-        "text_gPi7eD": {
-          "type": "text",
-          "settings": {
-            "image": "shopify://shop_images/Frame_2.png",
-            "heading": "Cloud-like softness engineered for skin comfort",
-            "description": "We found the softest materials available inside and out to keep them comfortable all day and all night.",
-            "text": ""
-          }
         }
       },
       "block_order": [
         "text_w4pAFR",
+        "text_gPi7eD",
         "text_Y6cYEm",
-        "text_4VrKDj",
-        "text_gPi7eD"
+        "text_4VrKDj"
       ],
       "name": "Perfect Info",
       "settings": {
