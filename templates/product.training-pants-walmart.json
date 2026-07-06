@@ -139,6 +139,7 @@
         },
         "accordion_item_cWHA4e": {
           "type": "accordion_item",
+          "disabled": true,
           "settings": {
             "title": "EWG Verified® non-toxic ingredients",
             "content": "<p>The Freestyle Formula<br/><br/>Skin❤️Shield diapers are EWG Verified® and Total Chlorine Free. <br/><br/>The core of this diaper is made with our proprietary SAP Matrix (super absorbent polymers (sodium acrylate, silicon dioxide, polyacrylic acid, water)) and FSC Certified Total Chlorine Free wood pulp (cellulose, hemicellulose). The topsheet, backsheet, leakguard, and films are made with performance-driven nonwoven fabrics (polypropylene, polyethylene terephthalate, polythene, titanium dioxide, nylon and polyester, sodium dodecylbenzenesulfonate). Elastics (polypropylene, segmented polyurethaneurea, titanium dioxide) and adhesives (hydrocarbon resin, styrene-Isoprene-styrene copolymer, mineral oil, petroleum resin, rosin ester) are used to hold it all together - and we mean all.<br/><br/>Read more about our safety and testing <a href=\"https://freestyle.world/pages/safety-and-testing\" target=\"_blank\" title=\"Safety and Testing\">here</a>.</p>"
@@ -339,9 +340,9 @@
           "type": "text",
           "settings": {
             "image": "shopify://shop_images/EWGV_black_480x480_1.png",
-            "heading": "Safer, for longer, than leading brands",
-            "description": "The first accessibly priced EWG Verified® diaper made from Total Chlorine Free, lab-tested non-toxic materials.",
-            "text": "Read more about our ingredients and see testing results <a href=\"https://freestyle.world/pages/safety-and-testing\" target=\"_blank\" title=\"https://freestyle.world/pages/safety-and-testing\">here</a>"
+            "heading": "Made for growing independence",
+            "description": "Easy pull-on design helps toddlers practice independence with confidence, while tear-off sides make changes quick and easy for parents on the go.",
+            "text": ""
           }
         }
       },
