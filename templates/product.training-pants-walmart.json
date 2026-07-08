@@ -379,6 +379,7 @@
         },
         "icon_JCck3C": {
           "type": "icon",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/EWGV_black_480x480_1_1.png",
             "heading": "EWG Verified®",
