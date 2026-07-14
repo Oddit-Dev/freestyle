@@ -38,34 +38,28 @@
       {% if section.settings.heading != blank or section.settings.text != blank %}
   <div class="header-wrapper mb-[60px] max-md:mb-[34px] max-w-[466px] w-full mx-auto">
     {% assign bamboo_icon_h2 = settings.bamboo_icon
-      | image_url: width: 100
-      | image_tag:
-        class: 'w-[0.75em] inline-block translate-y-[-0.1em] mx-[0.1em]'
+      | image_url: width: 60
+      | image_tag: style: 'width: 0.75em; height: auto; display: inline-block; vertical-align: -0.1em; margin: 0 0.1em;'
     %}
     {% assign heart_icon_h2 = settings.heart_icon
-      | image_url: width: 100
-      | image_tag:
-        class: 'w-[1em] inline-block translate-y-[-0.05em] mx-[0.1em]'
+      | image_url: width: 60
+      | image_tag: style: 'width: 1em; height: auto; display: inline-block; vertical-align: -0.1em; margin: 0 0.1em;'
     %}
     {% assign water_icon_h2 = settings.water_icon
-      | image_url: width: 100
-      | image_tag:
-        class: 'w-[1em] inline-block translate-y-[-0.05em] mx-[0.1em]'
+      | image_url: width: 60
+      | image_tag: style: 'width: 1em; height: auto; display: inline-block; vertical-align: -0.1em; margin: 0 0.1em;'
     %}
     {% assign bamboo_icon_p = settings.bamboo_icon
-      | image_url: width: 60
-      | image_tag:
-        class: 'w-[0.75em] inline-block translate-y-[-0.1em] mx-[0.1em]'
+      | image_url: width: 40
+      | image_tag: style: 'width: 0.75em; height: auto; display: inline-block; vertical-align: -0.1em; margin: 0 0.1em;'
     %}
     {% assign heart_icon_p = settings.heart_icon
-      | image_url: width: 60
-      | image_tag:
-        class: 'w-[1em] inline-block translate-y-[-0.05em] mx-[0.1em]'
+      | image_url: width: 40
+      | image_tag: style: 'width: 1em; height: auto; display: inline-block; vertical-align: -0.1em; margin: 0 0.1em;'
     %}
     {% assign water_icon_p = settings.water_icon
-      | image_url: width: 60
-      | image_tag:
-        class: 'w-[1em] inline-block translate-y-[-0.05em] mx-[0.1em]'
+      | image_url: width: 40
+      | image_tag: style: 'width: 1em; height: auto; display: inline-block; vertical-align: -0.1em; margin: 0 0.1em;'
     %}
     {% if section.settings.heading != blank %}
       <h2 class="heading mb-[20px] font-grotesk font-medium text-[40px] max-md:text-[32px] leading-[1.2] tracking-[-0.05em] text-scheme_one text-center">
