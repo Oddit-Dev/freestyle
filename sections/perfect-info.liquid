@@ -12,6 +12,35 @@
             </div>
           {% endif %} {% endcomment %}
 
+          {% if section.settings.heading != blank %}
+  <div class="header-wrapper mb-[60px] max-md:mb-[30px] lg:pr-[32px]">
+    {% assign bamboo_icon = settings.bamboo_icon
+      | image_url: width: 100
+      | image_tag:
+        class: 'w-[2.2rem] md:w-[3.6rem] inline-block translate-y-[-0.6rem] md:translate-y-[-1rem] mx-1'
+    %}
+    {% assign heart_icon = settings.heart_icon
+      | image_url: width: 100
+      | image_tag:
+        class: 'w-[3rem] md:w-[5rem] inline-block translate-y-[-0.4rem] md:translate-y-[-0.7rem] mx-1'
+    %}
+    {% assign water_icon = settings.water_icon
+      | image_url: width: 100
+      | image_tag:
+        class: 'w-[3rem] md:w-[5rem] inline-block translate-y-[-0.4rem] md:translate-y-[-0.7rem] mx-1'
+    %}
+    <h2 class="heading font-fkroman font-normal text-[60px] max-lg:text-[40px] max-md:text-[32px] leading-[1.2] tracking-[-0.05em] text-scheme_one [&_strong]:font-grotesk 
+    [&_strong]:!font-medium max-md:max-w-[350px]">
+      {{
+        section.settings.heading
+        | replace: '[bamboo]', bamboo_icon
+        | replace: '[heart]', heart_icon
+        | replace: '[water]', water_icon
+      }}
+    </h2>
+  </div>
+{% endif %}
+
           {% if section.settings.heading != blank or section.settings.text != blank %}
   <div class="header-wrapper mb-[60px] max-md:mb-[34px] max-w-[466px] w-full mx-auto">
     {% assign bamboo_icon_h2 = settings.bamboo_icon
