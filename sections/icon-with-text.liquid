@@ -20,7 +20,7 @@
   {% endif %}
   <div class="icon-with-text icon-with-text--{{ section.id }} relative bg-[#F1F2F5] bg-no-repeat bg-center bg-cover py-[80px] max-md:py-[40px] after:absolute after:content-[''] after:top-0 after:left-0 after:w-full after:h-full  after:bg-[#D9D9D9] after:opacity-[14%] before:absolute before:content-[''] before:top-0 before:left-0 before:w-full before:h-full before:opacity-[14%]">
     <div class="container relative z-[1]">
-      {% if section.settings.heading != blank or section.settings.text != blank %}
+      {% comment %} {% if section.settings.heading != blank or section.settings.text != blank %}
         <div class="header-wrapper mb-[60px] max-md:mb-[34px] max-w-[466px] w-full mx-auto">
           {% if section.settings.heading != blank %}
             <h2 class="heading mb-[20px] font-grotesk font-medium text-[40px] max-md:text-[32px] leading-[1.2] tracking-[-0.05em] text-scheme_one text-center">
@@ -33,7 +33,47 @@
             </p>
           {% endif %}
         </div>
-      {% endif %}
+      {% endif %} {% endcomment %}
+
+      {% if section.settings.heading != blank or section.settings.text != blank %}
+  <div class="header-wrapper mb-[60px] max-md:mb-[34px] max-w-[466px] w-full mx-auto">
+    {% assign bamboo_icon = settings.bamboo_icon
+      | image_url: width: 100
+      | image_tag:
+        class: 'w-[2.2rem] md:w-[3.6rem] inline-block translate-y-[-0.6rem] md:translate-y-[-1rem] mx-1'
+    %}
+    {% assign heart_icon = settings.heart_icon
+      | image_url: width: 100
+      | image_tag:
+        class: 'w-[3rem] md:w-[5rem] inline-block translate-y-[-0.4rem] md:translate-y-[-0.7rem] mx-1'
+    %}
+    {% assign water_icon = settings.water_icon
+      | image_url: width: 100
+      | image_tag:
+        class: 'w-[3rem] md:w-[5rem] inline-block translate-y-[-0.4rem] md:translate-y-[-0.7rem] mx-1'
+    %}
+    {% if section.settings.heading != blank %}
+      <h2 class="heading mb-[20px] font-grotesk font-medium text-[40px] max-md:text-[32px] leading-[1.2] tracking-[-0.05em] text-scheme_one text-center">
+        {{
+          section.settings.heading
+          | replace: '[bamboo]', bamboo_icon
+          | replace: '[heart]', heart_icon
+          | replace: '[water]', water_icon
+        }}
+      </h2>
+    {% endif %}
+    {% if section.settings.text != blank %}
+      <p class="text font-grotesk font-normal text-[18px] max-md:text-[16px] leading-[1.6] text-scheme_one text-center">
+        {{
+          section.settings.text
+          | replace: '[bamboo]', bamboo_icon
+          | replace: '[heart]', heart_icon
+          | replace: '[water]', water_icon
+        }}
+      </p>
+    {% endif %}
+  </div>
+{% endif %}
       <div class="multiple-icon-with-text grid grid-cols-4 max-md:grid-cols-1 gap-[20px] max-lg:gap-[16px] max-md:gap-[50px]">
         {% for block in section.blocks %}
           <div class="icon-text-details flex md:flex-col md:items-center gap-[30px] max-md:gap-[24px]">
