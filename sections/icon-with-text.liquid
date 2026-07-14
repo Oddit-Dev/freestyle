@@ -62,7 +62,7 @@
       | image_tag: style: 'width: 1em; height: auto; display: inline-block; vertical-align: -0.1em; margin: 0 0.1em;'
     %}
     {% if section.settings.heading != blank %}
-      <h2 class="heading mb-[20px] font-grotesk font-medium text-[40px] max-md:text-[32px] leading-[1.2] tracking-[-0.05em] text-scheme_one text-center">
+      <h2 class="heading mb-[20px] font-grotesk font-medium text-[40px] max-md:text-[32px] leading-[1.2] tracking-[-0.05em] text-scheme_one text-center" style="display: inline-block;margin: 0;">
         {{
           section.settings.heading
           | replace: '[bamboo]', bamboo_icon_h2
