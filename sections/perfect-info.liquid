@@ -12,8 +12,7 @@
             </div>
           {% endif %} {% endcomment %}
 
-       
-   {% if section.settings.heading != blank or section.settings.text != blank %}
+           {% if section.settings.heading != blank or section.settings.text != blank %}
   <div class="header-wrapper mb-[60px] max-md:mb-[30px] lg:pr-[32px]">
     {% assign bamboo_icon_h2 = settings.bamboo_icon
       | image_url: width: 60
