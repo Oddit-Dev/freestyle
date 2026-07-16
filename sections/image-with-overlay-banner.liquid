@@ -3,31 +3,57 @@
     {% assign desktop_image = section.settings.image %}
     {% assign mobile_image = section.settings.mobile_image | default: desktop_image %}
 
-    {% if desktop_image %}
-      {%- render 'image-element'
-        ,
- image: desktop_image
-        ,
- widths: '375, 550, 750, 950,1150, 1500, 1780, 2000, 2500'
-        ,
- sizes: '(max-width: 749px) 100vw, 100vw'
-        ,
- class: 'w-full block object-cover h-full max-md:hidden h-auto'
-      -%}
-    {% endif %}
+    {%- comment -%}
+      Use a single <picture> with a media-switched <source> so only ONE hero image
+      downloads (previously both desktop and mobile images loaded on every device and
+      were merely CSS-hidden, which does not stop the download). Only the first section
+      on the page (the LCP hero) is eager/high-priority and preloaded.
+    {%- endcomment -%}
+    {%- if section.index == 1 -%}
+      {%- assign hero_loading = 'eager' -%}
+      {%- assign hero_priority = 'high' -%}
+    {%- else -%}
+      {%- assign hero_loading = 'lazy' -%}
+      {%- assign hero_priority = 'auto' -%}
+    {%- endif -%}
 
-    {% if mobile_image %}
-      {%- render 'image-element'
-        ,
- image: mobile_image
-        ,
- widths: '300, 480, 640, 750'
-        ,
- sizes: '(max-width: 749px) 100vw, 750px'
-        ,
- class: 'w-full block object-cover h-full md:hidden h-auto'
-      -%}
-    {% endif %}
+    {%- if desktop_image -%}
+      {%- assign dwidths = '750,1150,1500,1780,2000,2500' | split: ',' -%}
+      {%- capture desktop_srcset -%}{%- for w in dwidths -%}{{ desktop_image | image_url: width: w }} {{ w }}w{%- unless forloop.last -%}, {%- endunless -%}{%- endfor -%}{%- endcapture -%}
+    {%- endif -%}
+    {%- if mobile_image -%}
+      {%- capture mobile_srcset -%}{%- assign mwidths = '375,480,640,750,900' | split: ',' -%}{%- for w in mwidths -%}{{ mobile_image | image_url: width: w }} {{ w }}w{%- unless forloop.last -%}, {%- endunless -%}{%- endfor -%}{%- endcapture -%}
+    {%- endif -%}
+
+    {%- assign hero_alt = desktop_image.alt | default: section.settings.heading | strip_html | default: shop.name | escape -%}
+
+    {%- if section.index == 1 -%}
+      {%- if mobile_image -%}
+        <link rel="preload" as="image" href="{{ mobile_image | image_url: width: 750 }}" imagesrcset="{{ mobile_srcset }}" imagesizes="100vw" media="(max-width: 749px)" fetchpriority="high">
+      {%- endif -%}
+      {%- if desktop_image -%}
+        <link rel="preload" as="image" href="{{ desktop_image | image_url: width: 1500 }}" imagesrcset="{{ desktop_srcset }}" imagesizes="100vw" media="(min-width: 750px)" fetchpriority="high">
+      {%- endif -%}
+    {%- endif -%}
+
+    <picture>
+      {%- if desktop_image -%}
+        <source media="(min-width: 750px)" srcset="{{ desktop_srcset }}" sizes="100vw" width="{{ desktop_image.width }}" height="{{ desktop_image.height }}">
+      {%- endif -%}
+      {%- if mobile_image -%}
+        <img
+          src="{{ mobile_image | image_url: width: 750 }}"
+          srcset="{{ mobile_srcset }}"
+          sizes="100vw"
+          alt="{{ hero_alt }}"
+          width="{{ mobile_image.width }}"
+          height="{{ mobile_image.height }}"
+          class="w-full block object-cover h-full h-auto"
+          loading="{{ hero_loading }}"
+          fetchpriority="{{ hero_priority }}"
+          decoding="async">
+      {%- endif -%}
+    </picture>
   </div>
   {% capture 'caption_alignment' %}
     {% if section.settings.text_alignment == 'align-left' %}text-left md:justify-start

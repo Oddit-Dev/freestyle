@@ -30,8 +30,11 @@ export default defineConfig({
   ],
   build: {
     outDir: 'assets', // Output directory for the build
-    emptyOutDir: true, // Don't delete the outDir before building
-    sourcemap: true, // Enable sourcemaps
+    // MUST stay false: `assets/` holds hand-maintained files (_custom.css, custom.js,
+    // the SVG icon set) alongside Vite output, and `true` empties the whole directory
+    // before each build, deleting them. Stale Vite output is pruned by the cleanup() plugin.
+    emptyOutDir: false,
+    sourcemap: false, // Do not ship source maps to production (dead weight on the storefront)
     // rollupOptions: {
     //   input: {
     //     main:       path.resolve(__dirname, 'frontend/entrypoints/main.theme.js'),

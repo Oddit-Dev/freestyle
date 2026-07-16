@@ -19,27 +19,42 @@
 
   assign lazyload = lazyload | default: false
   assign widths = widths | default: '100,200,300,400,500,600,700,800,1000,1200,1400,1600,1800,2000'
+  assign sizes = sizes | default: '100vw'
   assign priority = 'auto'
   assign decoding = 'auto'
 
-  if lazyload
+  # Honor an explicit lazy request from the caller (`lazyload: true` or `loading: 'lazy'`).
+  # Otherwise default to eager/high — this snippet is used for above-the-fold heroes
+  # (e.g. c-hero-img) and blog/article lead images, so below-the-fold callers must opt
+  # into lazy at the call site.
+  if lazyload == true or loading == 'lazy'
     assign loading = 'lazy'
+    assign priority = 'auto'
     assign decoding = 'async'
   else
     assign loading = 'eager'
     assign priority = 'high'
   endif
+
+  # Cap the fallback src so non-srcset clients/crawlers never pull the full-native
+  # image; srcset from `widths` still scales up for high-DPR screens.
+  assign src_width = image.width | at_most: 1500
+  # Explicit height (from intrinsic ratio) + width prevents layout shift (CLS).
+  assign image_height = image.width | divided_by: image.aspect_ratio
 %}
 
 <picture class="{{ class }}">
   {% if image and image != blank %}
     {{
       image
-      | image_url: width: image.width
+      | image_url: width: src_width
       | image_tag:
         alt: alt,
         class: class,
         widths: widths,
+        sizes: sizes,
+        width: image.width,
+        height: image_height,
         loading: loading,
         fetchpriority: priority,
         decoding: decoding

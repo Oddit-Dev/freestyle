@@ -32,7 +32,9 @@
                 {% if article.image %}
                   {% render 'image' with article.image,
                     class: "object-cover rounded-t-lg absolute top-0 left-0 w-full h-full",
-                    alt: article.title
+                    alt: article.title,
+                    lazyload: true,
+                    sizes: '(max-width: 749px) 100vw, 33vw'
                   %}
                 {% endif %}
               </a>

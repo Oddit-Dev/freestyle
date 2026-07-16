@@ -17,10 +17,14 @@
     >
       <div class="swiper-wrapper">
         {% for image in product.images %}
+          {%- comment -%} First slide is the LCP; eager-load it and lazy-load the rest of the carousel. {%- endcomment -%}
+          {%- assign gallery_lazy = true -%}
+          {%- if forloop.first -%}{%- assign gallery_lazy = false -%}{%- endif -%}
           <div class="swiper-slide pb-[100%]">
             {% render 'image' with image,
               class: "object-cover rounded-t-lg absolute top-0 left-0 w-full h-full",
-              alt: image.title
+              alt: image.title,
+              lazyload: gallery_lazy
             %}
             {% comment %} <img
               src="{{ image.src | img_url: '1024x1024', scale: 2 }}"
