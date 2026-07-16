@@ -3,14 +3,64 @@
     <div class="container">
       <div class="flex-image-with-content">
         <div class="left-content-wrapper md:w-1/2 relative z-[1]">
-          {% if section.settings.heading != blank %}
+          {% comment %} {% if section.settings.heading != blank %}
             <div class="header-wrapper mb-[60px] max-md:mb-[30px] lg:pr-[32px]">
               <h2 class="heading font-fkroman font-normal text-[60px] max-lg:text-[40px] max-md:text-[32px] leading-[1.2] tracking-[-0.05em] text-scheme_one [&_strong]:font-grotesk 
               [&_strong]:!font-medium max-md:max-w-[350px]">
                 {{ section.settings.heading }}
               </h2>
             </div>
-          {% endif %}
+          {% endif %} {% endcomment %}
+
+           {% if section.settings.heading != blank or section.settings.text != blank %}
+  <div class="header-wrapper mb-[60px] max-md:mb-[30px] lg:pr-[32px]">
+    {% assign bamboo_icon_h2 = settings.bamboo_icon
+      | image_url: width: 60
+      | image_tag: style: 'width: 0.75em; height: auto; display: inline-block; vertical-align: -0.1em; margin: 0 0.1em;'
+    %}
+    {% assign heart_icon_h2 = settings.heart_icon
+      | image_url: width: 60
+      | image_tag: style: 'width: 1em; height: auto; display: inline-block; vertical-align: -0.1em; margin: 0 0.1em;'
+    %}
+    {% assign water_icon_h2 = settings.water_icon
+      | image_url: width: 60
+      | image_tag: style: 'width: 1em; height: auto; display: inline-block; vertical-align: -0.1em; margin: 0 0.1em;'
+    %}
+    {% assign bamboo_icon_p = settings.bamboo_icon
+      | image_url: width: 40
+      | image_tag: style: 'width: 0.75em; height: auto; display: inline-block; vertical-align: -0.1em; margin: 0 0.1em;'
+    %}
+    {% assign heart_icon_p = settings.heart_icon
+      | image_url: width: 40
+      | image_tag: style: 'width: 1em; height: auto; display: inline-block; vertical-align: -0.1em; margin: 0 0.1em;'
+    %}
+    {% assign water_icon_p = settings.water_icon
+      | image_url: width: 40
+      | image_tag: style: 'width: 1em; height: auto; display: inline-block; vertical-align: -0.1em; margin: 0 0.1em;'
+    %}
+    {% if section.settings.heading != blank %}
+      <h2 class="heading font-fkroman font-normal text-[60px] max-lg:text-[40px] max-md:text-[32px] leading-[1.2] tracking-[-0.05em] text-scheme_one [&_strong]:font-grotesk [&_strong]:!font-medium max-md:max-w-[350px]" style="display: inline-block;margin: 0;">
+        {{
+          section.settings.heading
+          | replace: '[bamboo]', bamboo_icon_h2
+          | replace: '[heart]', heart_icon_h2
+          | replace: '[water]', water_icon_h2
+        }}
+      </h2>
+    {% endif %}
+    {% if section.settings.text != blank %}
+      <p class="text font-grotesk font-normal text-[18px] max-md:text-[16px] leading-[1.6] text-scheme_one text-center">
+        {{
+          section.settings.text
+          | replace: '[bamboo]', bamboo_icon_p
+          | replace: '[heart]', heart_icon_p
+          | replace: '[water]', water_icon_p
+        }}
+      </p>
+    {% endif %}
+  </div>
+{% endif %}
+
           {% if section.blocks.size > 0 %}
             <div class="multiple-information flex flex-col gap-[16px]">
               {% for block in section.blocks %}
