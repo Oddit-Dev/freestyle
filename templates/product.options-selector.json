@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "main": {
       "type": "main-product-options",
@@ -48,6 +48,15 @@
             "title": ""
           }
         },
+        "cta_9J6G6T": {
+          "type": "cta",
+          "settings": {
+            "cta_type": "add_to_cart",
+            "cta_label": "Add to Cart",
+            "cta_url": "",
+            "text": ""
+          }
+        },
         "separator_WX87Ph": {
           "type": "separator",
           "disabled": true,
@@ -73,18 +82,10 @@
         },
         "add_on_product_KMz7qM": {
           "type": "add_on_product",
+          "disabled": true,
           "settings": {
             "heading": "Add 99% Water Sensitive Wipes",
             "product": "wipes"
-          }
-        },
-        "cta_MaBGF4": {
-          "type": "cta",
-          "settings": {
-            "cta_type": "add_to_cart",
-            "cta_label": "Add to cart",
-            "cta_url": "#",
-            "text": "<ul><li>Free shipping with subscription</li><li>Fast delivery</li></ul>"
           }
         },
         "product_features_jDgQVM": {
@@ -165,12 +166,12 @@
         "separator_NF3Aqz",
         "variants_EBNBwP",
         "options_selector_grFjxn",
+        "cta_9J6G6T",
         "separator_WX87Ph",
         "description_RgQkN8",
         "tags_8BMpFw",
         "subscription_form_z4dV3d",
         "add_on_product_KMz7qM",
-        "cta_MaBGF4",
         "product_features_jDgQVM",
         "product_feature_eA7tTG",
         "product_feature_rDyETD",
@@ -190,7 +191,15 @@
         "show_product_details": false,
         "show_store_locator": true,
         "store_main_heading": "Find SkinShield™ near you",
-        "store_sub_heading": ""
+        "store_sub_heading": "",
+        "enable_walmart_btn": true,
+        "walmart_btn_text": "Buy on Walmart",
+        "enable_target_btn": true,
+        "target_btn_text": "Buy on Target",
+        "enable_buy_at_target_btn": true,
+        "buy_at_target_btn_text": "Buy at Target",
+        "enable_nearby_btn": true,
+        "nearby_btn_text": "Find a Store Nearby"
       }
     },
     "174411240666086477": {
@@ -201,7 +210,8 @@
           "settings": {
             "product": "{{product}}",
             "title": "",
-            "alignment": ""
+            "alignment": "",
+            "sortOrder": "mostRecent"
           }
         }
       },
