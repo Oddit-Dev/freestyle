@@ -76,7 +76,6 @@
         },
         "cta_MaBGF4": {
           "type": "cta",
-          "disabled": true,
           "settings": {
             "cta_type": "external_link",
             "cta_label": "Shop at Walmart",
