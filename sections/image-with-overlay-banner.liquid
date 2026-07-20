@@ -1,5 +1,5 @@
 <div class="hero-banner-section relative overflow-hidden pt-[167%] sm:pt-[120%] md:pt-[41.7%] md:min-h-[500px]">
-  <div class="hero-banner-image absolute inset-0 h-full w-full overflow-hidden"{% if mobile_image %} style="height: fit-content;"{% endif %}>
+  <div class="hero-banner-image absolute inset-0 h-full w-full overflow-hidden"{% if mobile_image %} style="height: fit-content !important;"{% endif %}>
     {% assign desktop_image = section.settings.image %}
     {% assign mobile_image = section.settings.mobile_image | default: desktop_image %}
 
