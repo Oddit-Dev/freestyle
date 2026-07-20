@@ -588,12 +588,35 @@
         "button": "Shop Skin $heart Shield Diapers",
         "link": "shopify://products/skinshield-diapers"
       }
+    },
+    "c_hero_img_c7Tb6H": {
+      "type": "c-hero-img",
+      "name": "Hero Image",
+      "settings": {
+        "image": "shopify://shop_images/FREESTYLE_Training_Pants_Sizing_module_2160x900_39067927-e0ca-4599-944c-008a1bdcf4a9.jpg",
+        "heading": "",
+        "heading_color": "#FFFFFF",
+        "heading_weight": "medium",
+        "heading_icon_size": 12,
+        "description": "",
+        "description_color": "#FFFFFF",
+        "button_icon_size": 24,
+        "button_text_icon_size": 24,
+        "banner_height_desktop": "450",
+        "banner_height_mobile": "500",
+        "description_icon_size": 36,
+        "button_label": "",
+        "button_link": "",
+        "show_popup": false,
+        "popup__trigger": ""
+      }
     }
   },
   "order": [
     "main",
     "multiple_marquee_4VUVyj",
     "perfect_info_mgPXdV",
+    "c_hero_img_c7Tb6H",
     "icon_with_text_Tirzyn",
     "17682469627aab8134",
     "174411240666086477",
