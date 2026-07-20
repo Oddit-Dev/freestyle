@@ -435,6 +435,7 @@
       "blocks": {
         "ai_gen_block_1135611_n6PXVk": {
           "type": "ai_gen_block_1135611",
+          "disabled": true,
           "settings": {
             "custom_liquid": "{%render 'testimonials'%}",
             "max_width": 1200,
