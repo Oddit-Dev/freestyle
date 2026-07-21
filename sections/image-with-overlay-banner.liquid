@@ -27,14 +27,11 @@
 
     {%- assign hero_alt = desktop_image.alt | default: section.settings.heading | strip_html | default: shop.name | escape -%}
 
-    {%- if section.index == 1 -%}
-      {%- if mobile_image -%}
-        <link rel="preload" as="image" href="{{ mobile_image | image_url: width: 750 }}" imagesrcset="{{ mobile_srcset }}" imagesizes="100vw" media="(max-width: 749px)" fetchpriority="high">
-      {%- endif -%}
-      {%- if desktop_image -%}
-        <link rel="preload" as="image" href="{{ desktop_image | image_url: width: 1500 }}" imagesrcset="{{ desktop_srcset }}" imagesizes="100vw" media="(min-width: 750px)" fetchpriority="high">
-      {%- endif -%}
-    {%- endif -%}
+    {%- comment -%}
+      The hero LCP preload now lives in <head> via snippets/lcp-preload.liquid (discovered
+      by the preload scanner before the render-blocking CSS). It is intentionally NOT
+      emitted here in the body anymore.
+    {%- endcomment -%}
 
     <picture>
       {%- if desktop_image -%}

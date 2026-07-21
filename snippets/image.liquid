@@ -29,7 +29,7 @@
   # into lazy at the call site.
   if lazyload == true or loading == 'lazy'
     assign loading = 'lazy'
-    assign priority = 'auto'
+    assign priority = 'low'
     assign decoding = 'async'
   else
     assign loading = 'eager'

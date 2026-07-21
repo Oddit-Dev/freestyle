@@ -26,13 +26,13 @@
         assign fetch_priority = 'high'
       elsif loading == 'lazy' or lazyload == true
         assign lazy_loading = 'lazy'
-        assign fetch_priority = 'auto'
+        assign fetch_priority = 'low'
       elsif section.index == 1
         assign lazy_loading = 'eager'
         assign fetch_priority = 'high'
       else
         assign lazy_loading = 'lazy'
-        assign fetch_priority = 'auto'
+        assign fetch_priority = 'low'
       endif
     endif
     assign image_class = class

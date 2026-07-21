@@ -1,0 +1,64 @@
+{%- comment -%}
+  LCP image preloads — emitted as high in <head> as possible so the browser's preload
+  scanner starts fetching the largest-contentful image BEFORE the render-blocking CSS.
+  (Per the Shopify speed guide: preload the LCP image, position it high in the HTML.)
+
+  ⚠️ THE HOMEPAGE HERO IS HARD-CODED below. The layout can't read a section's
+  image_picker setting, so these filenames are pinned to the current
+  `image-with-overlay-banner` hero. If the homepage hero image is swapped in the theme
+  editor, UPDATE the two filenames here — and confirm in the Network tab that the hero
+  is fetched ONCE (the widths/media below must match the section's <picture>).
+{%- endcomment -%}
+
+{%- if template == 'index' -%}
+  {%- comment -%} Mobile hero (matches image-with-overlay-banner's <img>). {%- endcomment -%}
+  <link
+    rel="preload"
+    as="image"
+    href="{{ 'Homepage_hero_mobile_2.png' | file_img_url: 'master' }}"
+    imagesizes="100vw"
+    media="(max-width: 749px)"
+    fetchpriority="high">
+  {%- comment -%} Desktop hero (matches the <source media="(min-width: 750px)">). {%- endcomment -%}
+  <link
+    rel="preload"
+    as="image"
+    href="{{ 'FREESTYLE_Header_2026_Desktop_V2.jpg' | file_img_url: 'master' }}"
+    imagesizes="100vw"
+    media="(min-width: 750px)"
+    fetchpriority="high">
+
+{%- elsif template contains 'product' -%}
+  {%- comment -%}
+    PDP LCP = the first product-gallery slide. The gallery SKIPS variant-attached images
+    ({% unless image.attached_to_variant? %}), so preload the first NON-variant-attached
+    image — not product.images.first, which may be a variant image the gallery never shows.
+    Build the srcset from the SAME width list and SAME sizes as product-gallery.liquid, and —
+    exactly like Shopify's image_tag — omit any width larger than the source image, so the
+    preload's chosen candidate matches the <img>'s and the LCP image is fetched once.
+  {%- endcomment -%}
+  {%- assign lcp_img = blank -%}
+  {%- for image in product.images -%}
+    {%- unless image.attached_to_variant? -%}
+      {%- assign lcp_img = image -%}
+      {%- break -%}
+    {%- endunless -%}
+  {%- endfor -%}
+  {%- if lcp_img != blank -%}
+  {%- assign lcp_widths = '450, 650, 832, 1000, 1300' | split: ', ' -%}
+  {%- capture lcp_srcset -%}
+    {%- assign sep = '' -%}
+    {%- for w in lcp_widths -%}
+      {%- assign wnum = w | plus: 0 -%}
+      {%- if wnum <= lcp_img.width -%}{{ sep }}{{ lcp_img | image_url: width: wnum }} {{ wnum }}w{%- assign sep = ', ' -%}{%- endif -%}
+    {%- endfor -%}
+  {%- endcapture -%}
+  <link
+    rel="preload"
+    as="image"
+    href="{{ lcp_img | image_url: width: 832 }}"
+    imagesrcset="{{ lcp_srcset | strip }}"
+    imagesizes="(min-width: 1156px) 832px, (min-width: 500px) 650px, 450px"
+    fetchpriority="high">
+  {%- endif -%}
+{%- endif -%}

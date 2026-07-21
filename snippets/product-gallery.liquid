@@ -17,10 +17,27 @@
               {% unless image.attached_to_variant? %}
                 <div class="swiper-slide" data-index="{{ slideIndex }}">
                   {% render 'banner' %}
+                  {%- comment -%}
+                    First SHOWN slide is the LCP (slideIndex 0 — not forloop.first, since
+                    variant-attached images are skipped above): eager/high + responsive sizes.
+                    Rest lazy/low. Kept in sync with snippets/lcp-preload.liquid.
+                  {%- endcomment -%}
+                  {%- if slideIndex == 0 -%}
+                    {%- assign img_loading = 'eager' -%}{%- assign img_priority = 'high' -%}
+                  {%- else -%}
+                    {%- assign img_loading = 'lazy' -%}{%- assign img_priority = 'low' -%}
+                  {%- endif -%}
                   {{
                     image
-                    | image_url: width: 800
-                    | image_tag: width: 619, height: 619, class: 'w-full h-full object-contain'
+                    | image_url: width: 832
+                    | image_tag:
+                      width: 619,
+                      height: 619,
+                      widths: '450, 650, 832, 1000, 1300',
+                      sizes: '(min-width: 1156px) 832px, (min-width: 500px) 650px, 450px',
+                      loading: img_loading,
+                      fetchpriority: img_priority,
+                      class: 'w-full h-full object-contain'
                   }}
                 </div>
                 {% assign slideIndex = slideIndex | plus: 1 %}

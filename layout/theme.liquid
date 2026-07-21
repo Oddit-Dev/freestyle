@@ -5,24 +5,13 @@
   <meta name="robots" content="noindex, nofollow">
   <script>window.location.replace("/");</script>
 {% endif %}
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-5M425KF');</script>
-<!-- End Google Tag Manager -->   
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-N2XLGS4W');</script>
-<!-- End Google Tag Manager -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="canonical" href="{{ canonical_url }}">
+
+    {%- comment -%} LCP image preload — kept as high in <head> as possible (before GTM/CSS). {%- endcomment -%}
+    {% render 'lcp-preload' %}
 
     {% comment %}
       {% if shop.brand.logo != blank %}
@@ -36,6 +25,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     {% if page_description %}
       <meta name="description" content="{{ page_description | escape }}">
     {% endif %}
+
+    {%- comment -%} GTM moved below metadata + LCP preload so it doesn't delay hero discovery. {%- endcomment -%}
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5M425KF');</script>
+    <!-- End Google Tag Manager -->
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-N2XLGS4W');</script>
+    <!-- End Google Tag Manager -->
+
     <style>
       /* todo: 1) move this to a separate scss file but with imported settings */
       /* todo: 2) think about what exact variables are needed for the theme */
@@ -130,21 +136,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <script src="{{ 'custom.js' | asset_url }}" defer></script>
 
 <script>
-  var klaviyo = klaviyo || [];
-  klaviyo.init({
-    // ⚠️ Place your Public API Key here (e.g., 'ABCXYZ'):
-    company_id: 'VRPjaA'
-  }); 
-  
-klaviyo.enable("backinstock", {
-  trigger: {
-    alternate_anchor: "#klaviyo-bis-trigger",
-    // ⚠️ CHANGE THIS LINE to a class the button definitely has when OOS:
-    product_page_class: "button",
-    move_anchor: true,
-    replace_anchor: true
-  }
-});
+  // Initialize Klaviyo off the critical path (at idle) so it doesn't add main-thread
+  // work during the initial load. The back-in-stock trigger still binds well before a
+  // user could interact with an out-of-stock button (idle fires within ~ms; 3s cap).
+  (function () {
+    function initKlaviyo() {
+      var klaviyo = window.klaviyo = window.klaviyo || [];
+      klaviyo.init({
+        // ⚠️ Place your Public API Key here (e.g., 'ABCXYZ'):
+        company_id: 'VRPjaA'
+      });
+      klaviyo.enable('backinstock', {
+        trigger: {
+          alternate_anchor: '#klaviyo-bis-trigger',
+          // ⚠️ CHANGE THIS LINE to a class the button definitely has when OOS:
+          product_page_class: 'button',
+          move_anchor: true,
+          replace_anchor: true
+        }
+      });
+    }
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(initKlaviyo, { timeout: 3000 });
+    } else {
+      window.addEventListener('load', function () { setTimeout(initKlaviyo, 1200); });
+    }
+  })();
 </script>
   <script src="{{ 'tiny-img-link-preloader.js' | asset_url }}" defer></script>
 </body>
