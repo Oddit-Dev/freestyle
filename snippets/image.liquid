@@ -40,7 +40,10 @@
   # image; srcset from `widths` still scales up for high-DPR screens.
   assign src_width = image.width | at_most: 1500
   # Explicit height (from intrinsic ratio) + width prevents layout shift (CLS).
-  assign image_height = image.width | divided_by: image.aspect_ratio
+  # Use the image's intrinsic height rather than deriving it from aspect_ratio: that
+  # derivation returns nil when aspect_ratio is nil/0 (e.g. some SVG uploads), which drops
+  # the height attribute and makes the browser unable to reserve space ("Unsized image" CLS).
+  assign image_height = image.height
 %}
 
 <picture class="{{ class }}">

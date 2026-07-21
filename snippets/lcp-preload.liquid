@@ -30,35 +30,54 @@
 
 {%- elsif template contains 'product' -%}
   {%- comment -%}
-    PDP LCP = the first product-gallery slide. The gallery SKIPS variant-attached images
-    ({% unless image.attached_to_variant? %}), so preload the first NON-variant-attached
-    image — not product.images.first, which may be a variant image the gallery never shows.
-    Build the srcset from the SAME width list and SAME sizes as product-gallery.liquid, and —
-    exactly like Shopify's image_tag — omit any width larger than the source image, so the
-    preload's chosen candidate matches the <img>'s and the LCP image is fetched once.
+    PDP LCP = the SELECTED VARIANT's featured image. On load the gallery's swiper slides to
+    the selected variant's slide (updateActiveVariant -> slideToSlideByDataAttribute in
+    sections/main-product.liquid), so that image is what the shopper ends up looking at.
+
+    ⚠️ URL MUST MATCH THE RENDERED <img>. The variant slide in product-gallery.liquid renders
+    at a FIXED width of 581 with NO srcset:
+        variant.featured_image | image_url: width: 581 | image_tag: width: 581, height: 619
+    so this preload is a plain width-581 href with NO imagesrcset/imagesizes. Adding a srcset
+    here would make the browser pick a different candidate than the <img> does, which
+    double-downloads and triggers a "preloaded but not used" console warning.
+
+    FALLBACK: if the selected variant has no featured image, preload the first NON-variant
+    gallery slide instead (the gallery skips attached_to_variant images), matching that
+    slide's responsive widths/sizes exactly — including image_tag's drop-widths-over-native.
   {%- endcomment -%}
-  {%- assign lcp_img = blank -%}
-  {%- for image in product.images -%}
-    {%- unless image.attached_to_variant? -%}
-      {%- assign lcp_img = image -%}
-      {%- break -%}
-    {%- endunless -%}
-  {%- endfor -%}
-  {%- if lcp_img != blank -%}
-  {%- assign lcp_widths = '450, 650, 832, 1000, 1300' | split: ', ' -%}
-  {%- capture lcp_srcset -%}
-    {%- assign sep = '' -%}
-    {%- for w in lcp_widths -%}
-      {%- assign wnum = w | plus: 0 -%}
-      {%- if wnum <= lcp_img.width -%}{{ sep }}{{ lcp_img | image_url: width: wnum }} {{ wnum }}w{%- assign sep = ', ' -%}{%- endif -%}
+  {%- assign variant_img = product.selected_or_first_available_variant.featured_image -%}
+
+  {%- if variant_img != blank -%}
+    <link
+      rel="preload"
+      as="image"
+      href="{{ variant_img | image_url: width: 581 }}"
+      fetchpriority="high">
+
+  {%- else -%}
+    {%- assign lcp_img = blank -%}
+    {%- for image in product.images -%}
+      {%- unless image.attached_to_variant? -%}
+        {%- assign lcp_img = image -%}
+        {%- break -%}
+      {%- endunless -%}
     {%- endfor -%}
-  {%- endcapture -%}
-  <link
-    rel="preload"
-    as="image"
-    href="{{ lcp_img | image_url: width: 832 }}"
-    imagesrcset="{{ lcp_srcset | strip }}"
-    imagesizes="(min-width: 1156px) 832px, (min-width: 500px) 650px, 450px"
-    fetchpriority="high">
+    {%- if lcp_img != blank -%}
+      {%- assign lcp_widths = '450, 650, 832, 1000, 1300' | split: ', ' -%}
+      {%- capture lcp_srcset -%}
+        {%- assign sep = '' -%}
+        {%- for w in lcp_widths -%}
+          {%- assign wnum = w | plus: 0 -%}
+          {%- if wnum <= lcp_img.width -%}{{ sep }}{{ lcp_img | image_url: width: wnum }} {{ wnum }}w{%- assign sep = ', ' -%}{%- endif -%}
+        {%- endfor -%}
+      {%- endcapture -%}
+      <link
+        rel="preload"
+        as="image"
+        href="{{ lcp_img | image_url: width: 832 }}"
+        imagesrcset="{{ lcp_srcset | strip }}"
+        imagesizes="(min-width: 1156px) 832px, (min-width: 500px) 650px, 450px"
+        fetchpriority="high">
+    {%- endif -%}
   {%- endif -%}
 {%- endif -%}

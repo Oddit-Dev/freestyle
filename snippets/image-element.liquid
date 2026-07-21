@@ -9,7 +9,6 @@
 
 {%- if image != blank -%}
   {%- liquid
-    assign image_height = image.width | divided_by: image.aspect_ratio
     assign sizes = sizes | default: '100vw'
     if ignore_auto_priority != true
       comment
@@ -36,10 +35,18 @@
       endif
     endif
     assign image_class = class
-    if image_width
-      assign image_width = image_width
-    else
-      assign image_width = image.width
+    comment
+      Always emit BOTH width and height so the browser can reserve space (prevents CLS).
+      This previously derived height as `image.width | divided_by: image.aspect_ratio`,
+      which returns nil whenever aspect_ratio is nil or 0 (e.g. some SVG uploads). That
+      dropped both attributes and DevTools flagged the result as an "Unsized image"
+      layout-shift culprit. Prefer the image's own intrinsic height, and only derive a
+      height when the caller has explicitly scaled the width.
+    endcomment
+    assign image_width = image_width | default: image.width
+    assign image_height = image.height
+    if image_width != image.width and image.aspect_ratio > 0
+      assign image_height = image_width | divided_by: image.aspect_ratio
     endif
     comment
       Cap the fallback src at a sane resolution so non-srcset clients (and crawlers)

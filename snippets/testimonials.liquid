@@ -11,5 +11,31 @@
   
   {% endif %}
 
-  <style>iframe.iframe-frontrow-testimonials { width: 100%; } iframe.iframe-modal-testimonials { z-index: 99999998; }</style>
+  <style>
+    /*
+      Reserve the widget's height so it can't expand-and-shift when it loads.
+      This is what makes loading="lazy" safe here: with no reserved height the iframe
+      renders at ~0px and the Front Row script then resizes it. Because this sits below
+      the fold, a lazy load makes that expansion happen while it is ON SCREEN — the worst
+      case for CLS (an eager load expands off-screen, which CLS does not count).
+
+      Measured rendered heights (iframe width -> height):
+        747px -> 1684px   (~787px viewport)
+        511px -> 1755px   (~541px viewport)
+        360px -> 1870px   (~390px viewport)
+
+      Height is ~stable (11% spread) while width swings 107%, so a per-breakpoint
+      min-height works here. aspect-ratio does NOT: the ratio ranges 2.25 -> 5.19,
+      because the height is driven by text reflow, not geometry.
+
+      ⚠️ CONTENT-DEPENDENT: adding/removing testimonials changes the real height. If the
+      widget ever grows past these values the shift returns — re-measure and bump them.
+      Values are rounded UP so the widget never has to grow (a slightly short widget just
+      leaves a little blank space, which costs nothing in CLS).
+    */
+    iframe.iframe-frontrow-testimonials { width: 100%; min-height: 1900px; }
+    @media (min-width: 480px) { iframe.iframe-frontrow-testimonials { min-height: 1780px; } }
+    @media (min-width: 768px) { iframe.iframe-frontrow-testimonials { min-height: 1700px; } }
+    iframe.iframe-modal-testimonials { z-index: 99999998; }
+  </style>
 </section>
