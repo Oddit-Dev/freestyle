@@ -1,3 +1,17 @@
+ {% style %}
+ @media (max-width: 768px) {
+  .hero-banner-section {
+  padding-top: 185% !important;
+}
+.hero-banner-image {
+ height: fit-content !important;
+}
+.hero-banner-image img {
+  object-fit: contain !important;
+}
+ }
+ {% endstyle %}
+
 <div class="hero-banner-section relative overflow-hidden pt-[167%] sm:pt-[120%] md:pt-[41.7%] md:min-h-[500px]">
   <div class="hero-banner-image absolute inset-0 h-full w-full overflow-hidden">
     {% assign desktop_image = section.settings.image %}

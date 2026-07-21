@@ -76,7 +76,6 @@
         },
         "cta_MaBGF4": {
           "type": "cta",
-          "disabled": true,
           "settings": {
             "cta_type": "external_link",
             "cta_label": "Shop at Walmart",
@@ -321,7 +320,7 @@
         "text_gPi7eD": {
           "type": "text",
           "settings": {
-            "image": "shopify://shop_images/Frame_2.png",
+            "image": "shopify://shop_images/FREESTYLE_Movement_icon_cf981b69-da0a-4450-b59c-99a7f568cb94.png",
             "heading": "Built for busy movers",
             "description": "Made with a 360° stretch waistband and 16 elastic strands. Easy up, easy down for everyday milestones, with a secure underwear-like fit that stays put without sagging or slipping.",
             "text": ""
@@ -339,7 +338,7 @@
         "text_4VrKDj": {
           "type": "text",
           "settings": {
-            "image": "shopify://shop_images/EWGV_black_480x480_1.png",
+            "image": "shopify://shop_images/FREESTYLE_Growing_icon_e8c05af1-a2ce-4679-bc81-4cd1b5f540b4.png",
             "heading": "Made for growing independence",
             "description": "Easy pull-on design helps toddlers practice independence with confidence, while tear-off sides make changes quick and easy for parents on the go.",
             "text": ""
@@ -356,6 +355,28 @@
       "settings": {
         "image": "shopify://shop_images/Group_26714_2x_3576ab57-560c-434f-8d5f-4a47caacdc01_V2.png",
         "heading": "<strong>The same Skin[heart]Shield protection, </strong>made for the next stage."
+      }
+    },
+    "c_hero_img_c7Tb6H": {
+      "type": "c-hero-img",
+      "name": "Hero Image",
+      "settings": {
+        "image": "shopify://shop_images/FREESTYLE_Training_Pants_Sizing_module_2160x900_39067927-e0ca-4599-944c-008a1bdcf4a9.jpg",
+        "heading": "",
+        "heading_color": "#FFFFFF",
+        "heading_weight": "medium",
+        "heading_icon_size": 12,
+        "description": "",
+        "description_color": "#FFFFFF",
+        "button_icon_size": 24,
+        "button_text_icon_size": 24,
+        "banner_height_desktop": "450",
+        "banner_height_mobile": "500",
+        "description_icon_size": 36,
+        "button_label": "",
+        "button_link": "",
+        "show_popup": false,
+        "popup__trigger": ""
       }
     },
     "icon_with_text_Tirzyn": {
@@ -414,6 +435,7 @@
       "blocks": {
         "ai_gen_block_1135611_n6PXVk": {
           "type": "ai_gen_block_1135611",
+          "disabled": true,
           "settings": {
             "custom_liquid": "{%render 'testimonials'%}",
             "max_width": 1200,
@@ -595,6 +617,7 @@
     "main",
     "multiple_marquee_4VUVyj",
     "perfect_info_mgPXdV",
+    "c_hero_img_c7Tb6H",
     "icon_with_text_Tirzyn",
     "17682469627aab8134",
     "174411240666086477",

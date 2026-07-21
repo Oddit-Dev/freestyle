@@ -116,23 +116,27 @@
       </div> {% endcomment %}
 
 {% assign block_count = section.blocks.size %}
+
 {% style %}
   /*
-    Desktop-only column definition. This MUST NOT be an inline style attribute: inline styles
-    beat class selectors, so `grid-template-columns: repeat(N, ...)` was overriding the
-    `max-md:grid-cols-1` class on mobile. That forced N columns into a ~375px viewport where
-    each icon has min-w-[60px] + text + gaps, which overflowed the page horizontally.
+    Keep these column rules in a stylesheet, NOT an inline style attribute: inline styles
+    outrank class selectors, so a `style="grid-template-columns: repeat(N, ...)"` here
+    overrode the mobile single-column rule and forced N columns into a ~375px viewport
+    (each icon is min-w-[60px] plus text and gaps), overflowing the page horizontally.
   */
-  @media (min-width: 768px) {
-    .multiple-icon-with-text--{{ section.id }} {
-      grid-template-columns: repeat({{ block_count }}, minmax(0, 1fr));
-      max-width: {{ block_count | times: 260 }}px;
+  .icon-grid-{{ section.id }} {
+    grid-template-columns: repeat({{ block_count }}, minmax(0, 1fr));
+    max-width: {{ block_count | times: 260 }}px;
+  }
+  @media (max-width: 767px) {
+    .icon-grid-{{ section.id }} {
+      grid-template-columns: 1fr;
+      max-width: 100%;
     }
   }
 {% endstyle %}
-<div
-  class="multiple-icon-with-text multiple-icon-with-text--{{ section.id }} grid max-md:grid-cols-1 gap-[20px] max-lg:gap-[16px] max-md:gap-[50px] mx-auto"
->
+
+<div class="multiple-icon-with-text icon-grid-{{ section.id }} grid gap-[20px] max-lg:gap-[16px] max-md:gap-[50px] mx-auto">
   {% for block in section.blocks %}
     <div class="icon-text-details flex md:flex-col md:items-center gap-[30px] max-md:gap-[24px]">
       {% if block.settings.image != blank %}
