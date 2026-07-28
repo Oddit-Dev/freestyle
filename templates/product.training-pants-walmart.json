@@ -360,6 +360,7 @@
     },
     "c_hero_img_c7Tb6H": {
       "type": "c-hero-img",
+      "disabled": true,
       "name": "Hero Image",
       "settings": {
         "image": "shopify://shop_images/FREESTYLE_Training_Pants_Sizing_module_2160x900_39067927-e0ca-4599-944c-008a1bdcf4a9.jpg",
