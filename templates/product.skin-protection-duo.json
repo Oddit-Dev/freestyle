@@ -68,6 +68,7 @@
         },
         "add_on_product_KMz7qM": {
           "type": "add_on_product",
+          "disabled": true,
           "settings": {
             "heading": "Add wipes",
             "product": "wipes"
