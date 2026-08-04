@@ -3,6 +3,23 @@
     .image-hero--{{ section.id }} .image-with-text-content .button:hover svg path {
       fill: #6638B6;
     }
+
+    {%- comment -%}
+      Mobile text scrim. Was a `max-md:bg-[linear-gradient(...)]` utility class, which
+      shipped broken: the CSS minifier rewrites `rgba(238,239,234,0)` to `#eeefea00`
+      and, with no space before the colour stop, emits the invalid token
+      `#eeefea006.15%`, so the whole declaration was dropped. Same defect as the one
+      fixed in image-with-overlay-banner.liquid. Keep the space before every stop.
+    {%- endcomment -%}
+    @media not all and (min-width: 768px) {
+      .image-hero--{{ section.id }} .content-wrapper {
+        background-image: linear-gradient(
+          180deg,
+          rgba(238, 239, 234, 0) 6.15%,
+          #eeefea 20.38%
+        );
+      }
+    }
   {% endstyle %}
   <div class="image-hero-banner image-hero--{{ section.id }} pt-[80px] pb-[100px] max-md:py-[40px]">
     <div class="container">
@@ -33,7 +50,7 @@
           </div>
         {% endif %}
         {% if section.settings.button != blank or section.settings.heading != blank or section.settings.heading2 != blank %}
-          <div class="content-wrapper px-[60px] max-[1199px]:px-[40px] py-[30px] max-md:px-[16px] md:absolute md:left-0 md:top-1/2 md:-translate-y-1/2 w-full md:max-w-[622px] max-md:bg-[linear-gradient(180deg,rgba(238,239,234,0)6.15%,#EEEFEA_20.38%)] max-md:mt-[-38px] ">
+          <div class="content-wrapper px-[60px] max-[1199px]:px-[40px] py-[30px] max-md:px-[16px] md:absolute md:left-0 md:top-1/2 md:-translate-y-1/2 w-full md:max-w-[622px] max-md:mt-[-38px] ">
             {% if section.settings.heading != blank %}
               {% assign logo_svg = 'icon-logo.svg' | inline_asset_content %}
               {% assign main_heading = section.settings.heading | replace: '$logo', logo_svg %}

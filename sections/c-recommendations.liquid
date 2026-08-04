@@ -1,7 +1,11 @@
 
 
-{% if section.blocks.size > 4 %}<script src="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.js" defer></script>{% endif %}
-{% if section.blocks.size > 4 %}<link href="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.css" rel="stylesheet">{% endif %}
+  {%- comment -%}
+    Swiper is provided globally (v11) by the main theme bundle (window.Swiper) and its
+    layout CSS is vendored in _custom.css — same as every other carousel in this theme.
+    The old per-section unpkg Swiper 6 copy was a redundant download that also clobbered
+    the global Swiper on pages where this section renders, so it has been removed.
+  {%- endcomment -%}
   <section class="recommendations bg-gray-100 py-12">
     <div class="container mx-auto px-6 relative {% if section.blocks.size > 4 %}px-0 md:px-6{% endif %}">
       <h2 class="heading-3 text-color_1 text-center">{{ section.settings.heading }}</h2>

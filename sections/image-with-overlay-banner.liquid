@@ -1,47 +1,153 @@
- {% style %}
- @media (max-width: 768px) {
-  .hero-banner-section {
-  padding-top: 185% !important;
-}
-.hero-banner-image {
- height: fit-content !important;
-}
-.hero-banner-image img {
-  object-fit: contain !important;
-}
- }
- {% endstyle %}
+{% style %}
+  {%- comment -%}
+    Two layouts, switched at the `md` breakpoint (768px):
 
-<div class="hero-banner-section relative overflow-hidden pt-[167%] sm:pt-[120%] md:pt-[41.7%] md:min-h-[500px]">
+    - Mobile stacks — the image sits in normal flow and the copy follows underneath.
+      Nothing is absolutely positioned, so the section is simply as tall as its
+      contents and the image can be any aspect ratio. (This replaced an overlay that
+      needed a hard-coded `padding-top: 185%` aspect-ratio box and only worked with a
+      tall portrait image that had empty space at the bottom to drop the copy into.)
+    - Desktop keeps the overlay — the image fills the section and the copy floats over
+      its left-hand side on top of the scrim gradient below.
+
+    The markup below carries the DESKTOP classes; the mobile stack is done here rather
+    than with `md:` utilities on purpose. assets/_custom.css is a committed Tailwind
+    build artifact, and `md:inset-0` / `md:object-cover` / `md:bottom-0` are not in it —
+    using them would silently do nothing until someone reran the Tailwind build. These
+    rules are scoped to the section id, so they outrank the utilities without
+    `!important` and without needing a rebuild.
+
+    The scrim used to be a Tailwind arbitrary-value class
+    (`md:bg-[linear-gradient(...)]`) and shipped broken: the CSS minifier rewrites
+    `rgba(241,242,245,0)` to `#f1f2f500` and, with no space before the colour stop,
+    emits the invalid token `#f1f2f5007.25%`, so the whole `background-image`
+    declaration was dropped and the rule shipped empty. Declaring it here keeps it out
+    of the minified utility sheet. Keep the space before every colour stop.
+  {%- endcomment -%}
+
+  @media (max-width: 767.98px) {
+    /* Nothing is positioned: the section is just as tall as the image plus the copy,
+       so the image can be any aspect ratio (square, portrait, landscape). */
+    #shopify-section-{{ section.id }} .hero-banner-section {
+      padding-top: 0;
+    }
+
+    #shopify-section-{{ section.id }} .hero-banner-image {
+      position: static;
+    }
+
+    /* Full-bleed at the image's own aspect ratio. The width/height attributes on the
+       <img> keep the space reserved before it loads, so dropping the section's
+       aspect-ratio padding box does not reintroduce layout shift. */
+    #shopify-section-{{ section.id }} .hero-banner-image,
+    #shopify-section-{{ section.id }} .hero-banner-image img {
+      height: auto;
+    }
+
+    #shopify-section-{{ section.id }} .hero-banner-image img {
+      object-fit: fill;
+    }
+
+    #shopify-section-{{ section.id }} .hero-banner-content {
+      /* Still in normal flow — `relative` adds no offset, it is only here so the panel
+         reliably paints ON TOP of the image it is pulled up over (painting order for a
+         block-level replaced element vs. a later sibling's background is not something
+         to leave to chance). */
+      position: relative;
+      z-index: 1;
+
+      /* Pull the panel up over the last 64px of the image and fade it in across
+         exactly that overlap, so the photo dissolves into the copy's backdrop instead
+         of meeting it at a hard colour edge. Below the overlap the gradient's final
+         stop carries on as flat #f1f2f5. */
+      margin-top: -84px;
+      background-image: linear-gradient(
+        180deg,
+        rgba(241, 242, 245, 0) 0,
+        rgba(241, 242, 245, 0.85) 40px,
+        #f1f2f5 84px
+      );
+
+      /* NO background-color here: it would paint behind the gradient across the whole
+         box and show through the transparent top, cancelling the fade. */
+
+      /* 64px of overlap + 32px of clearance, so the copy still starts 32px below where
+         the image ends. */
+      padding-top: 96px;
+      padding-bottom: 40px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    #shopify-section-{{ section.id }} .hero-banner-content {
+      background-image: linear-gradient(
+        270deg,
+        rgba(241, 242, 245, 0) 7.25%,
+        rgba(241, 242, 245, 0.8) 49.26%,
+        #f1f2f5 76.11%
+      );
+    }
+  }
+{% endstyle %}
+
+<div class="hero-banner-section relative overflow-hidden md:pt-[41.7%] md:min-h-[500px]">
   <div class="hero-banner-image absolute inset-0 h-full w-full overflow-hidden">
     {% assign desktop_image = section.settings.image %}
     {% assign mobile_image = section.settings.mobile_image | default: desktop_image %}
 
-    {% if desktop_image %}
-      {%- render 'image-element'
-        ,
- image: desktop_image
-        ,
- widths: '375, 550, 750, 950,1150, 1500, 1780, 2000, 2500'
-        ,
- sizes: '(max-width: 749px) 100vw, 100vw'
-        ,
- class: 'w-full block object-cover h-full max-md:hidden h-auto'
-      -%}
-    {% endif %}
+    {%- comment -%}
+      Use a single <picture> with a media-switched <source> so only ONE hero image
+      downloads (previously both desktop and mobile images loaded on every device and
+      were merely CSS-hidden, which does not stop the download). Only the first section
+      on the page (the LCP hero) is eager/high-priority and preloaded.
+    {%- endcomment -%}
+    {%- if section.index == 1 -%}
+      {%- assign hero_loading = 'eager' -%}
+      {%- assign hero_priority = 'high' -%}
+    {%- else -%}
+      {%- assign hero_loading = 'lazy' -%}
+      {%- assign hero_priority = 'auto' -%}
+    {%- endif -%}
 
-    {% if mobile_image %}
-      {%- render 'image-element'
-        ,
- image: mobile_image
-        ,
- widths: '300, 480, 640, 750'
-        ,
- sizes: '(max-width: 749px) 100vw, 750px'
-        ,
- class: 'w-full block object-cover h-full md:hidden h-auto'
-      -%}
-    {% endif %}
+    {%- if desktop_image -%}
+      {%- assign dwidths = '750,1150,1500,1780,2000,2500' | split: ',' -%}
+      {%- capture desktop_srcset -%}{%- for w in dwidths -%}{{ desktop_image | image_url: width: w }} {{ w }}w{%- unless forloop.last -%}, {%- endunless -%}{%- endfor -%}{%- endcapture -%}
+    {%- endif -%}
+    {%- if mobile_image -%}
+      {%- capture mobile_srcset -%}{%- assign mwidths = '375,480,640,750,900' | split: ',' -%}{%- for w in mwidths -%}{{ mobile_image | image_url: width: w }} {{ w }}w{%- unless forloop.last -%}, {%- endunless -%}{%- endfor -%}{%- endcapture -%}
+    {%- endif -%}
+
+    {%- assign hero_alt = desktop_image.alt | default: section.settings.heading | strip_html | default: shop.name | escape -%}
+
+    {%- comment -%}
+      The hero LCP preload now lives in <head> via snippets/lcp-preload.liquid (discovered
+      by the preload scanner before the render-blocking CSS). It is intentionally NOT
+      emitted here in the body anymore.
+    {%- endcomment -%}
+
+    <picture>
+      {%- if desktop_image -%}
+        {%- comment -%}
+          768px, NOT 750px: it must match the `md` breakpoint the layout switches at,
+          or between 750-767px the stacked mobile layout would render the wide desktop
+          banner in normal flow. Keep in sync with snippets/lcp-preload.liquid.
+        {%- endcomment -%}
+        <source media="(min-width: 768px)" srcset="{{ desktop_srcset }}" sizes="100vw" width="{{ desktop_image.width }}" height="{{ desktop_image.height }}">
+      {%- endif -%}
+      {%- if mobile_image -%}
+        <img
+          src="{{ mobile_image | image_url: width: 750 }}"
+          srcset="{{ mobile_srcset }}"
+          sizes="100vw"
+          alt="{{ hero_alt }}"
+          width="{{ mobile_image.width }}"
+          height="{{ mobile_image.height }}"
+          class="w-full block object-cover h-full h-auto"
+          loading="{{ hero_loading }}"
+          fetchpriority="{{ hero_priority }}"
+          decoding="async">
+      {%- endif -%}
+    </picture>
   </div>
   {% capture 'caption_alignment' %}
     {% if section.settings.text_alignment == 'align-left' %}text-left md:justify-start
@@ -49,7 +155,7 @@
     {% else %}text-center justify-center{% endif %}
   {% endcapture %}
 
-  <div class="hero-banner-content bg-[linear-gradient(180deg,rgba(241,242,245,0)9.16%,rgba(241,242,245,0.8)36.44%,#F1F2F5_100%);] md:bg-[linear-gradient(270deg,rgba(241,242,245,0)7.25%,rgba(241,242,245,0.8)49.26%,#F1F2F5_76.11%)] w-full md:w-[57.5%] absolute left-0 md:top-0 bottom-0 flex items-center md:h-full min-[1440px]:pl-[calc((100%-1200px)/2+0px)] pl-[120px] pr-[150px] max-[1199px]:pl-[60px] max-[1199px]:pr-[60px] max-md:px-[13px] max-md:pt-[160px] max-md:pb-[30px] py-[60px] {{ caption_alignment }}">
+  <div class="hero-banner-content w-full md:w-[57.5%] absolute left-0 md:top-0 bottom-0 flex items-center md:h-full min-[1440px]:pl-[calc((100%-1200px)/2+0px)] pl-[120px] pr-[150px] max-[1199px]:pl-[60px] max-[1199px]:pr-[60px] max-md:px-[13px] py-[60px] {{ caption_alignment }}">
     <div class="hero-banner-inner w-full lg:max-w-[558px]">
       <div class="hero-banner-text max-md:text-center">
         {%- if section.settings.heading != blank -%}

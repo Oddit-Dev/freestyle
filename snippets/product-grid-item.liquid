@@ -1,6 +1,6 @@
 <div class="b-product">
   <a href="{{ product.url }}" class="b-product-link">
-    {% render 'image' with product.featured_image %}
+    {% render 'image' with product.featured_image, lazyload: true, sizes: '(max-width: 749px) 50vw, 25vw' %}
   </a>
   <h3 class="b-product-title">
     <a href="{{ product.url }}">{{ product.title }}</a>

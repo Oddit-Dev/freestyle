@@ -52,7 +52,7 @@
           {% render 'product-gallery', product: product %}
         </div>
         {% if section.settings.show_store_locator %}
-          <div class="custom-pdp-store-locater-desktop">
+          <div class="custom-pdp-store-locater-desktop max-md:hidden">
             <div class="custom-pdp-store-locater">
               {% assign walmartlogo = section.settings.store_main_logo %}
               {% assign storetitle = section.settings.store_main_heading %}
@@ -282,7 +282,7 @@
                   {% endif %}
                 </div>
 
-                <div class="custom-pdp-store-locater-mobile"></div>
+                <div class="custom-pdp-store-locater-mobile md:hidden"></div>
               </div>
 
             {% when 'description' %}

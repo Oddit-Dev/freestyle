@@ -25,3 +25,6 @@ jsconfig.json
 /.vim
 assets/.vite/
 .vite/
+
+# Never ship JS/CSS source maps to the storefront
+assets/*.map

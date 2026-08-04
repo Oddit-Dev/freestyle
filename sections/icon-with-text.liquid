@@ -118,6 +118,12 @@
 {% assign block_count = section.blocks.size %}
 
 {% style %}
+  /*
+    Keep these column rules in a stylesheet, NOT an inline style attribute: inline styles
+    outrank class selectors, so a `style="grid-template-columns: repeat(N, ...)"` here
+    overrode the mobile single-column rule and forced N columns into a ~375px viewport
+    (each icon is min-w-[60px] plus text and gaps), overflowing the page horizontally.
+  */
   .icon-grid-{{ section.id }} {
     grid-template-columns: repeat({{ block_count }}, minmax(0, 1fr));
     max-width: {{ block_count | times: 260 }}px;
