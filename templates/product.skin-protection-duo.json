@@ -78,7 +78,7 @@
           "type": "cta",
           "settings": {
             "cta_type": "add_to_cart",
-            "cta_label": "Add to cart",
+            "cta_label": "Shop Diapers + Wipes",
             "cta_url": "#",
             "text": "<ul><li>Free shipping every month</li><li>Fast delivery</li></ul>"
           }
