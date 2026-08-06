@@ -364,6 +364,7 @@
         },
         "icon_cPwWet": {
           "type": "icon",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Works_Overnight.png",
             "heading": "Total Chlorine Free",
