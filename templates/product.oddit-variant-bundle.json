@@ -83,11 +83,12 @@
         },
         "cta_MaBGF4": {
           "type": "cta",
+          "disabled": true,
           "settings": {
             "cta_type": "add_to_cart",
             "cta_label": "Add to cart",
             "cta_url": "#",
-            "text": "<ul><li>Free shipping with subscription</li><li>Fast delivery</li></ul>"
+            "text": "<p></p><ul><li>Fast delivery</li></ul>"
           }
         },
         "product_features_jDgQVM": {
