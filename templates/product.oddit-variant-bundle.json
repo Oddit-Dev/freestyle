@@ -201,7 +201,7 @@
         "extra_product_quantity": 0,
         "show_product_details": false,
         "show_store_locator": true,
-        "store_main_heading": "Find SkinShield near you",
+        "store_main_heading": "",
         "store_sub_heading": "",
         "enable_walmart_btn": true,
         "walmart_btn_text": "Buy on Walmart",
