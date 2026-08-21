@@ -240,11 +240,12 @@
           "settings": {
             "image": "shopify://shop_images/Frame_26682.png",
             "heading": "",
-            "text": "Order a full month's supply and apply the discount code"
+            "text": "Enjoy premium protection, comfort and performance, delivered straight to your door so you never run out."
           }
         },
         "icon_kVGNdN": {
           "type": "icon",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Frame_26683.png",
             "heading": "",
