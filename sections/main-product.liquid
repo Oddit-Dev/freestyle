@@ -664,6 +664,7 @@
               } else {
                 this.selectedBundleVariants = [];
               }
+              this.setupVariants();
               this.updateBundlePrice();
             },
   
@@ -1233,7 +1234,10 @@
                   if (matches) {
                     const size = matches[1];
                     const weight = matches[2];
-                    const count = matches[3];
+                    const countQty = this.enableBundleMode ? this.getSalePriceQty() : 1;
+                    const count = countQty > 1
+                      ? matches[3].replace(/\d+/, n => Number(n) * countQty)
+                      : matches[3];
   
                     const mainDiv = document.createElement("div");
                     mainDiv.classList.add("main-div");
