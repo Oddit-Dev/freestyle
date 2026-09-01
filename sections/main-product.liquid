@@ -664,6 +664,7 @@
               } else {
                 this.selectedBundleVariants = [];
               }
+              this.setupVariants();
               this.updateBundlePrice();
             },
   
@@ -915,10 +916,18 @@
   
                     const countDiv = document.createElement("div");
 
+                    {%- comment -%}
+                      `pill_companion` is a per-template section setting, so a bundle PDP can
+                      append a fixed second-product count (e.g. ' + 216 wipes') while the
+                      diaper count keeps tracking the selected size. Empty string wherever it
+                      is not set, so this is a no-op on every other product template.
+                      NOTE: this block appears twice in updateActiveVariant and the later copy
+                      wins, so both must stay in sync.
+                    {%- endcomment -%}
                     {% if product.handle == 'skinshield-trial-pack' %}
-                      countDiv.textContent = '8 diapers';
+                      countDiv.textContent = '8 diapers' + {{ section.settings.pill_companion | default: '' | json }};
                     {% else %}
-                      countDiv.textContent = count;
+                      countDiv.textContent = count + {{ section.settings.pill_companion | default: '' | json }};
                     {% endif %}
 
                     countDiv.classList.add("count-main");
@@ -1027,10 +1036,18 @@
 
                     const countDiv = document.createElement("div");
 
+                    {%- comment -%}
+                      `pill_companion` is a per-template section setting, so a bundle PDP can
+                      append a fixed second-product count (e.g. ' + 216 wipes') while the
+                      diaper count keeps tracking the selected size. Empty string wherever it
+                      is not set, so this is a no-op on every other product template.
+                      NOTE: this block appears twice in updateActiveVariant and the later copy
+                      wins, so both must stay in sync.
+                    {%- endcomment -%}
                     {% if product.handle == 'skinshield-trial-pack' %}
-                      countDiv.textContent = '8 diapers';
+                      countDiv.textContent = '8 diapers' + {{ section.settings.pill_companion | default: '' | json }};
                     {% else %}
-                      countDiv.textContent = count;
+                      countDiv.textContent = count + {{ section.settings.pill_companion | default: '' | json }};
                     {% endif %}
 
                     countDiv.classList.add("count-main");
@@ -1217,7 +1234,10 @@
                   if (matches) {
                     const size = matches[1];
                     const weight = matches[2];
-                    const count = matches[3];
+                    const countQty = this.enableBundleMode ? this.getSalePriceQty() : 1;
+                    const count = countQty > 1
+                      ? matches[3].replace(/\d+/, n => Number(n) * countQty)
+                      : matches[3];
   
                     const mainDiv = document.createElement("div");
                     mainDiv.classList.add("main-div");
@@ -1587,6 +1607,12 @@
       "id": "sizes_accent_colors",
       "label": "Sizes Accent Colors",
       "info": "size - accent_color_top|accent_color_bottom"
+    },
+    {
+      "type": "text",
+      "id": "pill_companion",
+      "label": "Pill Companion",
+      "info": "Appended to the item count in the variant pill, for bundles that include a fixed quantity of a second product. E.g. ' + 216 wipes' makes the pill read '198 diapers + 216 wipes • 1 month supply'. The diaper count still changes with the selected size. Leave blank on non-bundle products."
     },
     {
       "type": "richtext",
