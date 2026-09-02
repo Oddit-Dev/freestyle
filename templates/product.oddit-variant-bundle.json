@@ -92,6 +92,7 @@
         },
         "product_features_jDgQVM": {
           "type": "product_features",
+          "disabled": true,
           "settings": {
             "note": ""
           }
