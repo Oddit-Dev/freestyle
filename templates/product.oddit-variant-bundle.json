@@ -83,7 +83,6 @@
         },
         "cta_MaBGF4": {
           "type": "cta",
-          "disabled": true,
           "settings": {
             "cta_type": "add_to_cart",
             "cta_label": "Add to cart",
