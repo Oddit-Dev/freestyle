@@ -276,6 +276,48 @@
         "section_bottom_text": "<p>Skin❤️Shield diapers offer up to 14x better absorption than a leading brand. Here’s how we measured that: We tested how well our Skin❤️Shield diaper holds onto moisture using an industry standard method called a rewet test. This test measures how much liquid comes back to the surface after the diaper has absorbed it and is put under pressure, in other words, how well the diaper keeps wetness away from your baby’s skin after absorbing it. A lower rewet score means drier skin. Testing was conducted in 2025 by SGS Laboratories, an independent, third-party lab, using size 5. </p>"
       }
     },
+    "c_table_protection_6LQgVN": {
+      "type": "c-table-protection",
+      "blocks": {
+        "content_block_aMd9MH": {
+          "type": "content_block",
+          "settings": {
+            "text_left": "Training Pant",
+            "text_right": "Rewet Score"
+          }
+        },
+        "content_block_7kLC9w": {
+          "type": "content_block",
+          "settings": {
+            "text_left": "Freestyle Skin❤️Shield",
+            "text_right": "0.100"
+          }
+        },
+        "content_block_6BzTNd": {
+          "type": "content_block",
+          "settings": {
+            "text_left": "Another leading brand",
+            "text_right": "1.090"
+          }
+        },
+        "image_block_KELezK": {
+          "type": "image_block",
+          "settings": {
+            "logo_image": "shopify://shop_images/FREESTYLE_Laboratories-SGS.png"
+          }
+        }
+      },
+      "block_order": [
+        "content_block_aMd9MH",
+        "content_block_7kLC9w",
+        "content_block_6BzTNd",
+        "image_block_KELezK"
+      ],
+      "settings": {
+        "section_title": "",
+        "section_bottom_text": "<p>Skin❤️Shield training pants offer up to 10x better absorption than a leading brand. Here’s how we measured that: We tested how well our Skin❤️Shield training pant holds onto moisture using an industry standard method called a rewet test. This test measures how much liquid comes back to the surface after the diaper has absorbed it and is put under pressure, in other words, how well the diaper keeps wetness away from your baby’s skin after absorbing it. A lower rewet score means drier skin. Testing was conducted in 2025 using sizes 5 and 6. </p>"
+      }
+    },
     "c_expert_approval_KJgrEB": {
       "type": "c-expert-approval",
       "blocks": {
@@ -538,6 +580,7 @@
     "c_carousel_table_ej7qhC",
     "c_table_protection_hjC69c",
     "c_table_protection_TRYJFz",
+    "c_table_protection_6LQgVN",
     "c_expert_approval_KJgrEB",
     "multiple_marquee_YJKmFh",
     "c_hero_img_eeyYYn",
