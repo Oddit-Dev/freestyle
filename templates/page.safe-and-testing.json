@@ -302,6 +302,7 @@
         },
         "image_block_KELezK": {
           "type": "image_block",
+          "disabled": true,
           "settings": {
             "logo_image": "shopify://shop_images/FREESTYLE_Laboratories-SGS.png"
           }
