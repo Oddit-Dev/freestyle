@@ -13,12 +13,12 @@
       "type": "image-with-overlay-banner",
       "name": "Image With Overlay Banner",
       "settings": {
-        "image": "shopify://shop_images/FREESTYLE_Header_2026_Desktop_V2.jpg",
-        "mobile_image": "shopify://shop_images/Homepage_hero_mobile_2_d27e80af-36e1-4d80-a2c5-35520d4eb95c-compressed.png",
-        "heading": "<p>Try Your First Month Of Ultra Soft Skin $heart Shield <strong>Diapers</strong></p>",
-        "text": "14x Better Absorption  <strong>•</strong>  7-Layer Skin Protection  <strong>•</strong>  Total Chlorine Free <strong>•</strong>  Monthly Supply + Free Shipping",
-        "button_text": "Shop Skin $heart Shield Diapers",
-        "button_link": "shopify://products/skinshield-diapers",
+        "image": "shopify://shop_images/Frame_26696.jpg",
+        "mobile_image": "shopify://shop_images/Frame_26694.jpg",
+        "heading": "<p>Skin protection, </p><p>bundled for less.</p>",
+        "text": "Premium diapers + baby wipes, together in one convenient duo.",
+        "button_text": "Shop Skin Protection Duo",
+        "button_link": "shopify://products/skinprotectionduo",
         "text_alignment": "align-left"
       }
     },
