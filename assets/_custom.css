@@ -1831,15 +1831,15 @@ video {
 }
 
 .\!max-w-\[1360px\] {
-  max-width: 1360px !important;
+  max-width: 1360px;
 }
 
 .\!max-w-\[390px\] {
-  max-width: 390px !important;
+  max-width: 390px;
 }
 
 .\!max-w-\[500px\] {
-  max-width: 500px !important;
+  max-width: 500px;
 }
 
 .max-w-10 {
