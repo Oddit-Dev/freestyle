@@ -53,7 +53,7 @@
       never download the full-native image (e.g. 4000px / 4MB). The srcset from
       `widths` still scales up as needed for high-DPR screens.
     endcomment
-    assign src_width = image.width | at_most: 1500
+    assign src_width = image.width | default: 1500 | at_most: 1500
   -%}
   {%- assign alt_text = image.alt | default: image | split: '?' | first | split: '/' | last | split: '.' | first -%}
 
