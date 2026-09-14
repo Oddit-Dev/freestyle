@@ -21,7 +21,7 @@
         "richtext_7RtPic": {
           "type": "richtext",
           "settings": {
-            "richtext": "<p>The Trial Pack gives you $10 off your first purchase of a month's supply of SkinShield Diapers.</p>"
+            "richtext": "<p>Try a sample of our Skin❤️Shield diapers and get $10 off your first subscription order.</p>"
           }
         },
         "variant_text_JnAzJ8": {
@@ -87,11 +87,12 @@
             "cta_type": "add_to_cart",
             "cta_label": "Add to cart",
             "cta_url": "#",
-            "text": "<ul><li>Free shipping with subscription</li><li>Fast delivery</li></ul>"
+            "text": "<ul><li>Free shipping</li><li>Fast delivery</li></ul>"
           }
         },
         "product_features_jDgQVM": {
           "type": "product_features",
+          "disabled": true,
           "settings": {
             "note": ""
           }
@@ -117,7 +118,7 @@
           "settings": {
             "icon": "<svg width=\"46\" height=\"30\" viewbox=\"0 0 46 30\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M36.2264 12.06L36.2046 12.309C35.6717 12.2622 35.2635 11.8094 35.2635 11.2737V11.2334C35.2635 8.53142 33.9663 5.99103 31.782 4.41018C29.5979 2.82947 26.79 2.39895 24.2357 3.25525C21.681 4.1117 19.6916 6.14269 18.887 8.72725L18.8865 8.72869C18.7883 9.03769 18.5514 9.29115 18.2371 9.39855C17.9267 9.50463 17.5832 9.45833 17.312 9.27242L17.3099 9.27099C16.4382 8.66039 15.3991 8.33365 14.3365 8.33845L14.0853 8.33959V8.33931C11.3082 8.4704 9.09715 10.7741 9.09249 13.5976V14.4288C9.09249 14.9572 8.69745 15.4043 8.1713 15.4585C4.99564 15.8172 2.64762 18.6042 2.82603 21.8086C3.00447 25.0133 5.64708 27.5197 8.84249 27.5197H35.5135C38.1428 27.5197 40.5879 26.1536 41.9735 23.9087C43.359 21.664 43.4855 18.8578 42.3089 16.4958L42.3087 16.4954C41.1372 14.1337 38.8234 12.548 36.2037 12.3089L36.2264 12.06ZM36.2264 12.06C35.8248 12.0247 35.5135 11.682 35.5135 11.2737V11.2334C35.5135 8.45134 34.1779 5.83558 31.9286 4.20766C29.6792 2.57974 26.7872 2.13622 24.1562 3.01822C21.5253 3.90022 19.4767 5.99182 18.6483 8.65294C18.573 8.88982 18.3922 9.08134 18.1562 9.16198C17.9203 9.24262 17.6592 9.20734 17.4533 9.06622L36.2264 12.06ZM2.12258 25.9985L2.12266 25.9986C3.62995 28.2499 6.14787 29.5972 8.84752 29.5972H35.5185C38.7813 29.5972 41.8275 27.9466 43.6109 25.2045C45.394 22.4627 45.6773 19.0021 44.3685 16.0021L44.3684 16.0018C43.0808 13.0621 40.4372 10.956 37.3001 10.3661C37.0461 7.27748 35.4351 4.45288 32.9065 2.66297L32.9063 2.66283C30.3188 0.834912 27.0471 0.282371 24.0069 1.15504C21.0504 2.0037 18.6246 4.11686 17.3628 6.91937C15.1471 5.90577 12.5656 6.06738 10.488 7.35693C8.34684 8.686 7.03979 11.0319 7.02609 13.5571C4.47236 14.1476 2.35551 15.9487 1.35593 18.3913C0.330276 20.8976 0.620335 23.7521 2.12258 25.9985Z\" fill=\"#262626\" stroke=\"#262626\" stroke-width=\"0.5\"></path>\n</svg>",
             "icon_image": "shopify://shop_images/Works_Overnight.png",
-            "title": "<p>TotalChlorine Free</p>"
+            "title": "<p>Total Chlorine Free</p>"
           }
         },
         "product_feature_HWGJLV": {
@@ -136,7 +137,7 @@
           "type": "accordion_item",
           "settings": {
             "title": "How to redeem your $10 off",
-            "content": "<p>You get to redeem the $10 you paid for the Trial Pack when purchasing your full month's supply of SkinShield Diapers.<br/><br/>Here's how it works:<br/><br/>Step 1: Select the two sizes that you want to try. You can choose the same size twice or to different sizes as part of this trial pack. We send you a discount code via email after your purchase.<br/><br/>Step 2: Try the diapers and determine which size fits your baby best.<br/><br/>Step 3: Order your full month's supply of SkinShield diapers and fill in the discount code at checkout.<br/> </p><p>Size NB: 32 diapers per pack, 192 diapers total count<br/>Size 1: 34 diapers per pack, 204 diapers total count<br/>Size 2: 32 diapers per pack, 192 diapers total count<br/>Size 3: 28 diapers per pack, 168 diapers total count<br/>Size 4: 24 diapers per pack, 144 diapers total count<br/>Size 5: 22 diapers per pack, 132 diapers total count<br/>Size 6: 20 diapers per pack, 120 diapers total count<br/>3 packs of wipes: 72 wipes per pack; 216 wipes total count</p>"
+            "content": "<p>You get to redeem the $10 you paid for the Trial Pack when purchasing your full month's supply of SkinShield Diapers.<br/><br/>Here's how it works:<br/><br/>Step 1: Select the two sizes that you want to try. You can choose the same size twice or to different sizes as part of this trial pack. We send you a discount code via email after your purchase.<br/><br/>Step 2: Try the diapers and determine which size fits your baby best.<br/><br/>Step 3: Order your full month's supply of SkinShield diapers and fill in the discount code at checkout.</p>"
           }
         },
         "accordion_item_FXLdAb": {
@@ -156,15 +157,16 @@
         "accordion_item_QDWeYg": {
           "type": "accordion_item",
           "settings": {
-            "title": "Skin ❤️ Shield™'s performance",
-            "content": "<p>SkinShield™ has been tested against leading competitors and is up to 14x more absorbent than a leading brand. This means better performance at the best price. Read more <a href=\"https://freestyle.world/pages/safety-and-testing\" target=\"_blank\" title=\"https://freestyle.world/pages/safety-and-testing\">here</a>.</p>"
+            "title": "Skin ❤️ Shield's performance",
+            "content": "<p>SkinShield has been tested against leading competitors and is up to 14x more absorbent than a leading brand. This means better performance at the best price. Read more <a href=\"https://freestyle.world/pages/safety-and-testing\" target=\"_blank\" title=\"https://freestyle.world/pages/safety-and-testing\">here</a>.</p>"
           }
         },
         "accordion_item_ztzDDX": {
           "type": "accordion_item",
+          "disabled": true,
           "settings": {
             "title": "Where to shop",
-            "content": "<p>SkinShield™ diapers are available at here at Freestyle.World, at <a href=\"https://www.walmart.com/ip/Freestyle-Diaper-Size-4-48CT/13932710597\" target=\"_blank\" title=\"https://www.walmart.com/ip/Freestyle-Diaper-Size-4-48CT/13932710597 \">Walmart.com </a>and select Walmart stores (find one <a href=\"https://freestyle.world/pages/about-us?view=store-locator\" title=\"https://freestyle.world/pages/about-us?view=store-locator\">here</a>).</p>"
+            "content": "<p>SkinShield diapers are available at here at Freestyle.World, at <a href=\"https://www.walmart.com/ip/Freestyle-Diaper-Size-4-48CT/13932710597\" target=\"_blank\" title=\"https://www.walmart.com/ip/Freestyle-Diaper-Size-4-48CT/13932710597 \">Walmart.com </a>and select Walmart stores (find one <a href=\"https://freestyle.world/pages/about-us?view=store-locator\" title=\"https://freestyle.world/pages/about-us?view=store-locator\">here</a>).</p>"
           }
         }
       },
@@ -195,12 +197,13 @@
       ],
       "settings": {
         "sizes_accent_colors": "1 - F3B232 | FBECA6\n2 - F3B232 | FBECA6\n3 - CBDB2A| E2E66A\n4 - 8BB6E1 | C3D6EE\n5 - AC95C7 | C4B3D7\n6 - F04C5E | F6A1B2",
+        "pill_companion": "",
         "review_numbers": "<p>4.8 based on <a href=\"#pdp-reviews\" title=\"#pdp-reviews\">1000+ Reviews</a></p>",
         "extra_product_for_bambootek": "",
         "extra_product_quantity": 0,
         "show_product_details": false,
         "show_store_locator": true,
-        "store_main_heading": "Find SkinShield™ near you",
+        "store_main_heading": "",
         "store_sub_heading": "",
         "enable_walmart_btn": true,
         "walmart_btn_text": "Buy on Walmart",
@@ -222,7 +225,7 @@
           "settings": {
             "image": "shopify://shop_images/Frame_26680.png",
             "heading": "",
-            "text": "Pick the sizes you want to try and complete the purchase"
+            "text": "Order 1 or 2 sizes of the Trial Pack. After your purchase, we’ll email you a <strong>$10 coupon</strong> to use toward your first subscription order."
           }
         },
         "icon_4ERqCi": {
@@ -230,7 +233,7 @@
           "settings": {
             "image": "shopify://shop_images/Frame_26681.png",
             "heading": "",
-            "text": "Try the diapers and determine the right size for your baby"
+            "text": "Subscribe to Skin❤️Shield and use your<strong> </strong>coupon to save on your first subscription order."
           }
         },
         "icon_mx7NtG": {
@@ -238,11 +241,12 @@
           "settings": {
             "image": "shopify://shop_images/Frame_26682.png",
             "heading": "",
-            "text": "Order a full month's supply and apply the discount code"
+            "text": "Enjoy premium protection, comfort and performance, delivered straight to your door so you never run out."
           }
         },
         "icon_kVGNdN": {
           "type": "icon",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Frame_26683.png",
             "heading": "",
@@ -258,8 +262,8 @@
       ],
       "name": "Icon With Text",
       "settings": {
-        "heading": "Trial & Get $10 off!",
-        "text": "You want to be sure your baby is wearing the perfect size. The trial pack allows you to try Skin❤️Shield diapers before purchasing a full month's supply."
+        "heading": "Try Skin❤️Shield & Get $10 off!",
+        "text": "Want to try our diapers before committing to a full month’s supply? Get the Trial Pack to experience the fit, comfort and performance for yourself, then stock up with confidence."
       }
     },
     "multiple_marquee_4VUVyj": {
@@ -371,7 +375,7 @@
           "settings": {
             "image": "shopify://shop_images/Frame.png",
             "heading": "14x better absorption",
-            "description": "Better protection and fewer changes. Skin $heart Shield™ ‘s superior absorption technology keeps your baby’s skin dry.",
+            "description": "Better protection and fewer changes. Skin $heart Shield's superior absorption technology keeps your baby’s skin dry.",
             "text": "*Up to 14x better absorption as measured by rewet testing compared to a leading brand"
           }
         },
@@ -460,7 +464,7 @@
       "name": "Icon With Text",
       "settings": {
         "heading": "Safe & Soft Protection",
-        "text": "SkinShield™ diapers use non-toxic, lab-tested, clean materials that keep your baby protected and you worry-free."
+        "text": "SkinShield diapers use non-toxic, lab-tested, clean materials that keep your baby protected and you worry-free."
       }
     },
     "174411240666086477": {
@@ -612,7 +616,7 @@
       "name": "Testimonial",
       "settings": {
         "heading": "Trusted by Real Families",
-        "button": "Shop Skin $heart Shield™ Diapers",
+        "button": "Shop Skin $heart Shield Diapers",
         "link": "shopify://products/skinshield-diapers"
       }
     }

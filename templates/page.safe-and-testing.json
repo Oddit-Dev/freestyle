@@ -44,7 +44,7 @@
       "type": "c-hero-text",
       "settings": {
         "title": "Safer choices, always",
-        "subtitle": "<p>As parents, we know that nothing is more important than the safety of our kids. So, we’re committed to only using clean, non-toxic, Total Chlorine Free materials in our Skin❤️Shield diapers and lab testing all of our products for safety to make sure. What’s more, we test for performance to ensure you don’t have to make any compromises.</p>",
+        "subtitle": "<p>As parents, we know that nothing is more important than the safety of our kids. So, we’re committed to only using clean, non-toxic, Total Chlorine Free materials in our Skin❤️Shield diapers and training pants, and lab testing all of our products for safety to make sure. What’s more, we test for performance to ensure you don’t have to make any compromises.</p>",
         "baner_button": "",
         "baner_button_link": "",
         "bg_color": "#6638b6",
@@ -98,7 +98,7 @@
         "logo_block_3KHCn9"
       ],
       "settings": {
-        "main_text": "Skin❤️Shield diapers are",
+        "main_text": "Skin❤️Shield diapers and training pants are",
         "additional_text": ""
       }
     },
@@ -149,7 +149,7 @@
           "type": "content_block",
           "settings": {
             "block_title": "EWG Verified®",
-            "richtext_1": "<p>Fully published ingredient listing available <a href=\"https://cdn.shopify.com/s/files/1/0616/2835/0723/files/EWG_INCI_LISTS.png?v=1747813229\" title=\"https://cdn.shopify.com/s/files/1/0616/2835/0723/files/EWG_INCI_LISTS.png?v=1747813229\">here</a> and the third diaper ever to be verified</p>",
+            "richtext_1": "<p>Fully published ingredient listing available <a href=\"https://cdn.shopify.com/s/files/1/0616/2835/0723/files/EWG_INCI_LISTS_DIAPERS_PANTS.png?v=1788924016\" title=\"https://cdn.shopify.com/s/files/1/0616/2835/0723/files/EWG_INCI_LISTS_DIAPERS_PANTS.png?v=1788924016\">here</a> and the third diaper ever to be verified</p>",
             "richtext_2": "<p>Often not verified</p>"
           }
         }
@@ -231,7 +231,7 @@
       ],
       "settings": {
         "section_title": "Safe & Soft Protection",
-        "section_bottom_text": "<p>Results of testing conducted by Vartest and SGS Laboratories,  independent, third-party labs, performed on Freestyle’s Skin❤️Shield and BambooTek™ diapers and diapers from other brands using industry standard methodology, based on size 5. Pediatrician safety reviews independently performed.</p>"
+        "section_bottom_text": "<p>Results of testing conducted by Vartest and SGS Laboratories,  independent, third-party labs, performed on Freestyle’s Skin❤️Shield and BambooTek™ diapers and training pants components, and diapers from other brands using industry standard methodology, based on size 5. Pediatrician safety reviews independently performed.</p>"
       }
     },
     "c_table_protection_TRYJFz": {
@@ -274,6 +274,49 @@
       "settings": {
         "section_title": "The results are in",
         "section_bottom_text": "<p>Skin❤️Shield diapers offer up to 14x better absorption than a leading brand. Here’s how we measured that: We tested how well our Skin❤️Shield diaper holds onto moisture using an industry standard method called a rewet test. This test measures how much liquid comes back to the surface after the diaper has absorbed it and is put under pressure, in other words, how well the diaper keeps wetness away from your baby’s skin after absorbing it. A lower rewet score means drier skin. Testing was conducted in 2025 by SGS Laboratories, an independent, third-party lab, using size 5. </p>"
+      }
+    },
+    "c_table_protection_6LQgVN": {
+      "type": "c-table-protection",
+      "blocks": {
+        "content_block_aMd9MH": {
+          "type": "content_block",
+          "settings": {
+            "text_left": "Training Pant",
+            "text_right": "Rewet Score"
+          }
+        },
+        "content_block_7kLC9w": {
+          "type": "content_block",
+          "settings": {
+            "text_left": "Freestyle Skin❤️Shield",
+            "text_right": "0.100"
+          }
+        },
+        "content_block_6BzTNd": {
+          "type": "content_block",
+          "settings": {
+            "text_left": "Another leading brand",
+            "text_right": "1.090"
+          }
+        },
+        "image_block_KELezK": {
+          "type": "image_block",
+          "disabled": true,
+          "settings": {
+            "logo_image": "shopify://shop_images/FREESTYLE_Laboratories-SGS.png"
+          }
+        }
+      },
+      "block_order": [
+        "content_block_aMd9MH",
+        "content_block_7kLC9w",
+        "content_block_6BzTNd",
+        "image_block_KELezK"
+      ],
+      "settings": {
+        "section_title": "",
+        "section_bottom_text": "<p>Skin❤️Shield training pants offer up to 10x better absorption than a leading brand. Here’s how we measured that: We tested how well our Skin❤️Shield training pant holds onto moisture using an industry standard method called a rewet test. This test measures how much liquid comes back to the surface after the diaper has absorbed it and is put under pressure, in other words, how well the diaper keeps wetness away from your baby’s skin after absorbing it. A lower rewet score means drier skin. Testing was conducted in 2025 using sizes 5 and 6. </p>"
       }
     },
     "c_expert_approval_KJgrEB": {
@@ -538,6 +581,7 @@
     "c_carousel_table_ej7qhC",
     "c_table_protection_hjC69c",
     "c_table_protection_TRYJFz",
+    "c_table_protection_6LQgVN",
     "c_expert_approval_KJgrEB",
     "multiple_marquee_YJKmFh",
     "c_hero_img_eeyYYn",

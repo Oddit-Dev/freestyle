@@ -1,24 +1,17 @@
 {% comment %}
-  {% render 'image-element',
-    image: recommendation.featured_image,
-    widths: '100, 200, 300, 375, 550, 750, 1100, 1500, 1780',
-    sizes: '(max-width: 989px) 100vw, 45vw',
-    class: 'tw-w-full tw-block tw-object-contain tw-h-auto'
-  %}
+  {% render 'image-element', image: recommendation.featured_image, widths: '100, 200, 300, 375, 550, 750, 1100, 1500, 1780', sizes: '(max-width: 989px) 100vw, 45vw', class: 'tw-w-full tw-block tw-object-contain tw-h-auto' %}
 {% endcomment %}
 
 {%- if image != blank -%}
   {%- liquid
     assign sizes = sizes | default: '100vw'
+    
     if ignore_auto_priority != true
       comment
         Priority resolution (most specific wins):
         1. Explicit caller intent: loading/fetchpriority/eager/priority args.
-        2. LCP heuristic: the first section on the page (only works when the caller
-           passes `section: section`, since `section` is not in a render snippet's scope).
-        3. Safe default: lazy. Previously this defaulted to eager, and because
-           `section` is nil inside a rendered snippet the old `section.index > 1`
-           test always fell through to eager — so every image loaded eagerly.
+        2. LCP heuristic: the first section on the page (only works when the caller passes `section: section`, since `section` is not in a render snippet's scope).
+        3. Safe default: lazy. Previously this defaulted to eager, and because `section` is nil inside a rendered snippet the old `section.index > 1` test always fell through to eager — so every image loaded eagerly.
       endcomment
       if loading == 'eager' or fetchpriority == 'high' or eager == true or priority == 'high'
         assign lazy_loading = 'eager'
@@ -34,14 +27,14 @@
         assign fetch_priority = 'low'
       endif
     endif
+
     assign image_class = class
+
     comment
       Always emit BOTH width and height so the browser can reserve space (prevents CLS).
-      This previously derived height as `image.width | divided_by: image.aspect_ratio`,
-      which returns nil whenever aspect_ratio is nil or 0 (e.g. some SVG uploads). That
-      dropped both attributes and DevTools flagged the result as an "Unsized image"
-      layout-shift culprit. Prefer the image's own intrinsic height, and only derive a
-      height when the caller has explicitly scaled the width.
+      This previously derived height as `image.width | divided_by: image.aspect_ratio`, which returns nil whenever aspect_ratio is nil or 0 (e.g. some SVG uploads).
+      That dropped both attributes and DevTools flagged the result as an "Unsized image" layout-shift culprit.
+      Prefer the image's own intrinsic height, and only derive a height when the caller has explicitly scaled the width.
     endcomment
     assign source_image = image
     if image.value != blank
@@ -52,10 +45,11 @@
     if image_width != source_image.width and source_image.aspect_ratio > 0
       assign image_height = image_width | divided_by: source_image.aspect_ratio
     endif
+
     comment
-      Cap the fallback src at a sane resolution so non-srcset clients (and crawlers)
-      never download the full-native image (e.g. 4000px / 4MB). The srcset from
-      `widths` still scales up as needed for high-DPR screens.
+      Cap the fallback src at a sane resolution so non-srcset clients (and crawlers) never download the full-native image (e.g. 4000px / 4MB).
+      The srcset from `widths` still scales up as needed for high-DPR screens.
+      ADDED SAFETY FILTER: Ensures src_width falls exactly within Shopify's required 1 to 5760px window.
     endcomment
     assign src_width = source_image.width | at_most: 1500
     if src_width > 0
