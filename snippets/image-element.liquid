@@ -43,23 +43,31 @@
       layout-shift culprit. Prefer the image's own intrinsic height, and only derive a
       height when the caller has explicitly scaled the width.
     endcomment
-    assign image_width = image_width | default: image.width
-    assign image_height = image.height
-    if image_width != image.width and image.aspect_ratio > 0
-      assign image_height = image_width | divided_by: image.aspect_ratio
+    assign source_image = image
+    if image.value != blank
+      assign source_image = image.value
+    endif
+    assign image_width = image_width | default: source_image.width
+    assign image_height = source_image.height
+    if image_width != source_image.width and source_image.aspect_ratio > 0
+      assign image_height = image_width | divided_by: source_image.aspect_ratio
     endif
     comment
       Cap the fallback src at a sane resolution so non-srcset clients (and crawlers)
       never download the full-native image (e.g. 4000px / 4MB). The srcset from
       `widths` still scales up as needed for high-DPR screens.
     endcomment
-    assign src_width = image.width | default: 1500 | at_most: 1500
+    assign src_width = source_image.width | at_most: 1500
+    if src_width > 0
+      assign image_src = image | image_url: width: src_width
+    else
+      assign image_src = image | image_url
+    endif
   -%}
-  {%- assign alt_text = image.alt | default: image | split: '?' | first | split: '/' | last | split: '.' | first -%}
+  {%- assign alt_text = source_image.alt | default: image | split: '?' | first | split: '/' | last | split: '.' | first -%}
 
   {{-
-    image
-    | image_url: width: src_width
+    image_src
     | image_tag:
       class: image_class,
       width: image_width,
