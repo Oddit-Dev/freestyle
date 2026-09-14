@@ -15,7 +15,11 @@
 
 {% liquid
   assign class = 'aspect-auto h-auto w-full object-cover rounded-regular ' | append: class
-  assign alt = alt | default: image.alt | escape
+  assign source_image = image
+  if image.value != blank
+    assign source_image = image.value
+  endif
+  assign alt = alt | default: source_image.alt | escape
 
   assign lazyload = lazyload | default: false
   assign widths = widths | default: '100,200,300,400,500,600,700,800,1000,1200,1400,1600,1800,2000'
@@ -38,25 +42,29 @@
 
   # Cap the fallback src so non-srcset clients/crawlers never pull the full-native
   # image; srcset from `widths` still scales up for high-DPR screens.
-  assign src_width = image.width | at_most: 1500
+  assign src_width = source_image.width | at_most: 1500
+  if src_width > 0
+    assign image_src = image | image_url: width: src_width
+  else
+    assign image_src = image | image_url
+  endif
   # Explicit height (from intrinsic ratio) + width prevents layout shift (CLS).
   # Use the image's intrinsic height rather than deriving it from aspect_ratio: that
   # derivation returns nil when aspect_ratio is nil/0 (e.g. some SVG uploads), which drops
   # the height attribute and makes the browser unable to reserve space ("Unsized image" CLS).
-  assign image_height = image.height
+  assign image_height = source_image.height
 %}
 
 <picture class="{{ class }}">
   {% if image and image != blank %}
     {{
-      image
-      | image_url: width: src_width
+      image_src
       | image_tag:
         alt: alt,
         class: class,
         widths: widths,
         sizes: sizes,
-        width: image.width,
+        width: source_image.width,
         height: image_height,
         loading: loading,
         fetchpriority: priority,
