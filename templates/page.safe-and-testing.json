@@ -162,12 +162,80 @@
         "content_block_rJiJWB",
         "content_block_y7jRe6"
       ],
+      "disabled": true,
       "settings": {
         "section_title": "Better choices for better diapers",
         "logo_image": "shopify://shop_images/Freestyle_SkinShield_Logo2025.svg",
         "other_title": "Other brands",
         "checkmark_img": "shopify://shop_images/Vector-9.svg",
         "cancelmark_img": "shopify://shop_images/Group-2v.svg"
+      }
+    },
+    "c_carousel_table_meP3cK": {
+      "type": "c-carousel-table",
+      "blocks": {
+        "content_block_4NXjhN": {
+          "type": "content_block",
+          "settings": {
+            "block_title": "Skin safe ingredients",
+            "richtext_1": "<p>Hypoallergenic, fragrance- and lotion-free materials designed for safe comfort</p>",
+            "richtext_2": ""
+          }
+        },
+        "content_block_nttnR9": {
+          "type": "content_block",
+          "settings": {
+            "block_title": "Non-toxic",
+            "richtext_1": "<p>Free of PFAS, BPAs,  and Phthalates</p>",
+            "richtext_2": ""
+          }
+        },
+        "content_block_hhFjWi": {
+          "type": "content_block",
+          "settings": {
+            "block_title": "Chlorine free",
+            "richtext_1": "<p>Total Chlorine Free: no use of chlorine or chlorine derivatives</p>",
+            "richtext_2": ""
+          }
+        },
+        "content_block_eGhwpM": {
+          "type": "content_block",
+          "settings": {
+            "block_title": "Verified lab + dermatologist testing",
+            "richtext_1": "<p>Independently tested by third-party labs SGS and Vartest with published results, supported by dermatologist testing and clinician + pediatrician review</p>",
+            "richtext_2": ""
+          }
+        },
+        "content_block_reKTzK": {
+          "type": "content_block",
+          "settings": {
+            "block_title": "Chemical compound testing",
+            "richtext_1": "<p>Tested for chemicals that may be considered harmful or toxic</p>",
+            "richtext_2": ""
+          }
+        },
+        "content_block_U8BYLQ": {
+          "type": "content_block",
+          "settings": {
+            "block_title": "EWG Verified®",
+            "richtext_1": "<p>Fully published ingredient listing available <a href=\"https://cdn.shopify.com/s/files/1/0616/2835/0723/files/EWG_INCI_LISTS_DIAPERS_PANTS.png?v=1788924016\" title=\"https://cdn.shopify.com/s/files/1/0616/2835/0723/files/EWG_INCI_LISTS_DIAPERS_PANTS.png?v=1788924016\">here</a> and the third diaper ever to be verified</p>",
+            "richtext_2": ""
+          }
+        }
+      },
+      "block_order": [
+        "content_block_4NXjhN",
+        "content_block_nttnR9",
+        "content_block_hhFjWi",
+        "content_block_eGhwpM",
+        "content_block_reKTzK",
+        "content_block_U8BYLQ"
+      ],
+      "settings": {
+        "section_title": "Better choices for better diapers",
+        "logo_image": "shopify://shop_images/Freestyle_SkinShield_Logo2025.svg",
+        "other_title": "",
+        "checkmark_img": "shopify://shop_images/Vector-9.svg"
       }
     },
     "c_table_protection_hjC69c": {
@@ -579,6 +647,7 @@
     "c_hero_text_p6zYVE",
     "c_product_features_AjpaFw",
     "c_carousel_table_ej7qhC",
+    "c_carousel_table_meP3cK",
     "c_table_protection_hjC69c",
     "c_table_protection_TRYJFz",
     "c_table_protection_6LQgVN",
