@@ -45,6 +45,8 @@
             {% endfor %}
 
             {% for variant in product.variants %}
+              {%- assign variant_size = variant.title | split: '(' | first | remove_first: 'Size' | downcase | remove: ' ' -%}
+              {%- if hidden_sizes and hidden_sizes contains variant_size -%}{%- continue -%}{%- endif -%}
               {% if variant.featured_image %}
                 <div
                   class="swiper-slide opacity-45 after:hidden m-variant"
@@ -86,6 +88,8 @@
             {% endunless %}
           {% endfor %}
           {% for variant in product.variants %}
+            {%- assign variant_size = variant.title | split: '(' | first | remove_first: 'Size' | downcase | remove: ' ' -%}
+            {%- if hidden_sizes and hidden_sizes contains variant_size -%}{%- continue -%}{%- endif -%}
             {% if variant.featured_image %}
               <div
                 class="swiper-slide opacity-45 after:hidden m-variant"
