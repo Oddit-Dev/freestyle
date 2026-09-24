@@ -5,6 +5,8 @@
 {% assign features = blocks | where: 'type', 'product_feature' %}
 {% assign accordionItems = blocks | where: 'type', 'accordion_item' %}
 {% assign specificationItems = blocks | where: 'type', 'specification_item' %}
+{% assign variants_block = blocks | where: 'type', 'variants' | first %}
+{% assign hidden_sizes = variants_block.settings.hidden_sizes | downcase | remove: ' ' | split: ',' %}
 {% assign productCurrent = product %}
 {% assign activeVariant = product.selected_or_first_available_variant %}
 {% assign product_badge = product.metafields.custom.badge_product %}
@@ -49,7 +51,7 @@
     <div class="product__inner !gap-0">
       <div class="main-image-gallery-with-location overflow-auto max-md:mb-[20px] ">
         <div class="custom-gallery">
-          {% render 'product-gallery', product: product %}
+          {% render 'product-gallery', product: product, hidden_sizes: hidden_sizes %}
         </div>
         {% if section.settings.show_store_locator %}
           <div class="custom-pdp-store-locater-desktop max-md:hidden">
@@ -653,7 +655,7 @@
             showWeight: true,
             bundleMode: false,
             selectedBundleVariants: [],
-            enableBundleMode: {% assign variants_block = section.blocks | where: 'type', 'variants' | first %}{% if variants_block.settings.enable_bundle_mode %}true{% else %}false{% endif %},
+            enableBundleMode: {% if variants_block.settings.enable_bundle_mode %}true{% else %}false{% endif %},
   
             handleBundleModeChange() {
               if (!this.bundleMode) {
@@ -812,6 +814,8 @@
             },
             variants: [
                 {% for variant in product.variants %}
+                    {%- assign variant_size = variant.title | split: '(' | first | remove_first: 'Size' | downcase | remove: ' ' -%}
+                    {%- if hidden_sizes contains variant_size -%}{%- continue -%}{%- endif -%}
                     {
                         available: {{ variant.available }},
                         id: {{ variant.id }},
@@ -1932,6 +1936,12 @@
           "label": "Show Weight",
           "info": "Display the weight information for each variant",
           "default": true
+        },
+        {
+          "type": "text",
+          "id": "hidden_sizes",
+          "label": "Hidden Sizes",
+          "info": "Comma separated sizes to hide from this PDP, e.g. 4, 5, 6. Hidden sizes cannot be selected or purchased and stay active in Shopify."
         },
         {
           "type": "header",
