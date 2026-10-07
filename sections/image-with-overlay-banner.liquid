@@ -149,7 +149,7 @@
       {%- endif -%}
     </picture>
   </div>
-  {% capture 'caption_alignment' %}
+  {% capture caption_alignment %}
     {% if section.settings.text_alignment == 'align-left' %}text-left md:justify-start
     {% elsif section.settings.text_alignment == 'align-right' %}text-right md:justify-end
     {% else %}text-center justify-center{% endif %}
@@ -249,4 +249,13 @@
       }
     ]
   }
-{% endschema %}
+{% endschema %}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% capture 'caption_alignment' %}"
+  to: "{% capture caption_alignment %}"
+  position: 6945..6976
+{%- endcomment -%}
