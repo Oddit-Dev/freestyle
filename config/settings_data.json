@@ -66,7 +66,7 @@
     "mobile_menu_shipping_text": "FREE SHIPPING ON DIAPERS",
     "announcement_text": "Free shipping on diapers",
     "announcement2_text": "Fast delivery",
-    "announcement3_text": "<p><a href=\"/products/skinshield-diapers\" title=\"Skin❤️Shield™ Diapers\">Shop Ultra Premium TCF Diapers</a></p>",
+    "announcement3_text": "<p><a href=\"/products/skinshield-trial-pack\" title=\"SkinShield Diaper Trial Pack\">Try Freestyle for $10</a></p>",
     "link_url": "",
     "main_menu": "new-main-menu",
     "secondary_main_menu": "new-secondary-menu",
@@ -182,7 +182,9 @@
           "enable_onetime_purchase": true,
           "custom_upsell_heading": "Add wipes",
           "custom_upsell_product": "wipes",
-          "custom_upsell_exclude_products": ["skinprotectionduo"]
+          "custom_upsell_exclude_products": [
+            "skinprotectionduo"
+          ]
         }
       }
     },
