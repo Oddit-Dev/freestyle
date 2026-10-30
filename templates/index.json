@@ -216,12 +216,6 @@
     "comparison_W96rKh": {
       "type": "comparison",
       "blocks": {
-        "text_HRaCKH": {
-          "type": "text",
-          "settings": {
-            "text": "14x better absorption"
-          }
-        },
         "text_3NTQVL": {
           "type": "text",
           "settings": {
@@ -302,7 +296,6 @@
         }
       },
       "block_order": [
-        "text_HRaCKH",
         "text_3NTQVL",
         "text_YgiTMi",
         "text_U7yeed",
