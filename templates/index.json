@@ -695,6 +695,7 @@
       "blocks": {
         "text_ThgDfk": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "big_text": "14x",
             "small_text": "Better Absorption"
