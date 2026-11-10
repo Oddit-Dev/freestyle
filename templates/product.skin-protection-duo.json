@@ -30,7 +30,7 @@
         "richtext_kqgkj3": {
           "type": "richtext",
           "settings": {
-            "richtext": "<ul><li>Ultra absorbent diapers</li><li>99% water wipes</li><li>Skin-safe</li><li>No harsh chemicals</li><li>EWG Verified®</li><li>Cloud-like softness</li></ul>"
+            "richtext": "<ul><li>Hyper absorbent diapers</li><li>99% water wipes</li><li>Skin-safe</li><li>No harsh chemicals</li><li>EWG Verified®</li><li>Cloud-like softness</li></ul>"
           }
         },
         "variants_EBNBwP": {
@@ -39,6 +39,7 @@
             "title": "Select diaper size:",
             "sizes_accent_colors": "1 - F3B232 | FBECA6\n2 - F9E07D | FBECA6\n3 - CBDB2A| E2E66A\n4 - 8BB6E1 | C3D6EE\n5 - AC95C7 | C4B3D7\n6 - F04C5E | F6A1B2",
             "show_weight": false,
+            "hidden_sizes": "",
             "enable_bundle_mode": false,
             "bundle_label": "select two sizes"
           }
