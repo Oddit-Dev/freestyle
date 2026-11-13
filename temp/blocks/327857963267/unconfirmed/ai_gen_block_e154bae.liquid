@@ -1,0 +1,43 @@
+{% doc %}
+  @prompt
+    plain text
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-plain-text-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    color: {{ block.settings.text_color }};
+    font-family: {{ block.settings.body_font.family }}, {{ block.settings.body_font.fallback_families }};
+    font-size: {{ block.settings.font_size }}px;
+    line-height: 1.5;
+    text-align: {{ block.settings.alignment }};
+    overflow-wrap: anywhere;
+  }
+  .ai-plain-text-{{ ai_gen_id }} p { margin: 0; }
+{% endstyle %}
+
+<div class="ai-plain-text-{{ ai_gen_id }}" {{ block.shopify_attributes }}>{{ block.settings.text | escape | newline_to_br }}</div>
+
+{% schema %}
+{
+  "name": "Plain text",
+  "settings": [
+    { "type": "text", "id": "text", "label": "Text", "default": "Add your text" },
+    { "type": "range", "id": "desktop_width_percent", "label": "Desktop width", "min": 50, "max": 100, "step": 5, "unit": "%", "default": 100 },
+    { "type": "select", "id": "alignment", "label": "Alignment", "options": [
+      { "value": "left", "label": "Left" },
+      { "value": "center", "label": "Center" },
+      { "value": "right", "label": "Right" }
+    ], "default": "left" },
+    { "type": "range", "id": "font_size", "label": "Font size", "min": 12, "max": 36, "step": 1, "unit": "px", "default": 16 },
+    { "type": "color", "id": "text_color", "label": "Text color", "default": "#121212" },
+    { "type": "font_picker", "id": "body_font", "label": "Font", "default": "helvetica_n4" }
+  ],
+  "presets": [{ "name": "Plain text" }],
+  "tag": null,
+  "class": "plain-text-block"
+}
+{% endschema %}
