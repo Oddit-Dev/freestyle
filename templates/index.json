@@ -14,7 +14,7 @@
       "name": "Image With Overlay Banner",
       "settings": {
         "image": "shopify://shop_images/FREESTYLE_BlackFriday_Header_nov26_1.jpg",
-        "mobile_image": "shopify://shop_images/FREESTYLE_Bundle_Header_720x755_V5.jpg",
+        "mobile_image": "shopify://shop_images/FREESTYLE_BlackFriday_Mobile_Header_nov26_1.jpg",
         "heading": "<p>Get 30% off</p><p>your first 3 months*</p>",
         "text": "When newly subscribing to diapers + wipes",
         "button_text": "Shop Now",
