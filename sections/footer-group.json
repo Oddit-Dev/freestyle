@@ -50,6 +50,23 @@
     },
     "1762404763fe7a6502": {
       "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_e154bae_EwjJMD": {
+          "type": "ai_gen_block_e154bae",
+          "settings": {
+            "text": "*New customers only. Use code BLACKFRIDAY30 at checkout between Nov 12 and Nov 30, 2026 (ends 11:59 p.m. PST) for 30% off your first 3 monthly deliveries of SkinShield diaper subscription OR Skin Protection Duo subscription. One use per customer and household. Excludes shipping, taxes and other products. Subscription renews monthly at full price ($70/$80mo) after the discounted 3 months and until cancelled; cancel anytime. Can’t be combined with other offers.",
+            "desktop_width_percent": 100,
+            "alignment": "center",
+            "font_size": 14,
+            "text_color": "#121212",
+            "body_font": "sans_serif_n4"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_e154bae_EwjJMD"
+      ],
       "settings": {}
     },
     "footer_custom_fPQhVk": {
